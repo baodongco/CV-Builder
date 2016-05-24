@@ -2,8 +2,8 @@
 
 <div class="col-sm-6 col-sm-offset-3">
 
-    <h1><span class="fa fa-sign-in"></span> Signup</h1>
-
+    <h1><span class="fa fa-sign-in"></span> Register </h1>
+    <p class="text-primary">* : Required</p>
     <!-- show any messages that come back with authentication -->
     <% if (message.length > 0) { %>
         <div class="alert alert-danger"><%= message %></div>
@@ -12,7 +12,7 @@
     <div ng-app="auth" ng-controller="authController">
         <form action="/register" method="post" role="form" name="registerForm" novalidate>
             <div class="form-group">
-                <label>Email</label>
+                <label>Email *</label>
                 <input type="email" class="form-control" name="email" ng-model="email" required>
                 <span class="text-danger" ng-show = "registerForm.email.$dirty && registerForm.email.$invalid">
                     <span ng-show = "registerForm.email.$error.required">Email is required.</span>
@@ -20,7 +20,7 @@
             </div>
 
             <div class="form-group">
-                <label>Username</label>
+                <label>Username *</label>
                 <input type="text" class="form-control" name="username" ng-model="username" required>
                 <span class="text-danger" ng-show = "registerForm.username.$dirty && registerForm.username.$invalid">
                     <span ng-show = "registerForm.username.$error.required">Username is required.</span>
@@ -28,18 +28,24 @@
             </div>
 
             <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" ng-model="password" required>
+                <label>Password *</label>
+                <input type="password" class="form-control" name="password" ng-model="password"
+                       ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/" required>
                 <span class="text-danger" ng-show = "registerForm.password.$dirty && registerForm.password.$invalid">
                     <span ng-show = "registerForm.password.$error.required">Password is required.</span>
+                    <span ng-show="registerForm.password.$error.pattern">
+                        Password must have at least 8 characters, 1 number, 1 uppercase and 1 lowercase
+                    </span>
                 </span>
+
+                <!--http://stackoverflow.com/questions/14850553/javascript-regex-for-password-containing-at-least-8-characters-1-number-1-uppe-->
             </div>
 
             <div class="form-group">
-                <label>Retype Password</label>
-                <input type="password" class="form-control" name="retype_password" ng-model="retype_password" ng-pattern="password">
+                <label>Retype Password *</label>
+                <input type="password" class="form-control" name="retype_password" ng-model="retype_password" ng-pattern="password" required>
                 <span class="text-danger" ng-show = "registerForm.retype_password.$dirty && registerForm.retype_password.$invalid">
-                    <span ng-show = "registerForm.retype_password.$error.pattern">Password dont't match.</span>
+                    <span ng-show = "registerForm.retype_password.$error.pattern">Password doesn't match.</span>
                 </span>
             </div>
 
@@ -50,7 +56,7 @@
             <button ng-disabled =
                     "registerForm.username.$invalid || registerForm.email.$invalid
                     || registerForm.password.$invalid || registerForm.retype_password.$invalid
-                    || registerForm.retype_password.$error.pattern"
+                    || registerForm.retype_password.$invalid"
                     type="submit" class="btn btn-warning btn-lg">Register</button>
         </form>
     </div>
