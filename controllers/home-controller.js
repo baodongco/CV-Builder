@@ -1,4 +1,4 @@
-var connection = require('../DAL/connection');
+var connection = require('../connection');
 
 function homeController() {
     this.get = function (req, res) {

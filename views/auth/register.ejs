@@ -15,7 +15,9 @@
                 <label>Email *</label>
                 <input type="email" class="form-control" name="email" ng-model="email" required>
                 <span class="text-danger" ng-show = "registerForm.email.$dirty && registerForm.email.$invalid">
-                    <span ng-show = "registerForm.email.$error.required">Email is required.</span>
+                    <span ng-show = "registerForm.email.$error.required || registerForm.email.$error.email">
+                        This is not an email.
+                    </span>
                 </span>
             </div>
 
@@ -32,9 +34,8 @@
                 <input type="password" class="form-control" name="password" ng-model="password"
                        ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/" required>
                 <span class="text-danger" ng-show = "registerForm.password.$dirty && registerForm.password.$invalid">
-                    <span ng-show = "registerForm.password.$error.required">Password is required.</span>
-                    <span ng-show="registerForm.password.$error.pattern">
-                        Password must have at least 8 characters, 1 number, 1 uppercase and 1 lowercase
+                    <span ng-show = "registerForm.password.$error.required || registerForm.password.$error.pattern">
+                        Password must have at least 8 characters, 1 number, 1 uppercase and 1 lowercase.
                     </span>
                 </span>
 
