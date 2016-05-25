@@ -5,8 +5,7 @@
   "scripts": {
     "start": "node ./bin/www"
   },
-  "dependencies": {
-    "angular": "^1.5.5",
+  "dependencies": {    
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.13.2",
     "bootstrap": "^3.3.6",

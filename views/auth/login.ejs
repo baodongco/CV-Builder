@@ -8,31 +8,23 @@
         <div class="alert alert-danger"><%= message %></div>
     <% } %>
     <!-- LOGIN FORM -->
-    <div ng-app="auth" ng-controller="authController">
-        <form action="/login" method="post" role="form" name="loginForm">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" class="form-control" name="username" ng-model="username" required>
-                <span class="text-danger" ng-show = "loginForm.username.$dirty && loginForm.username.$invalid">
-                    <span ng-show = "loginForm.username.$error.required">Username is required.</span>
-                </span>
-            </div>
+    <form action="/login" method="post" role="form" id="loginForm">
+        <div class="form-group">
+            <label>Username</label>
+            <input type="text" class="form-control" name="username">
+        </div>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" ng-model="password" required>
-                <span class="text-danger" ng-show = "loginForm.password.$dirty && loginForm.password.$invalid">
-                    <span ng-show = "loginForm.password.$error.required">Password is required.</span>
-                </span>
-            </div>
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="password">
+        </div>
 
-            <div class="form-group">
-                <input type="checkbox" name="remember" value="Remember"> Remember me <br>
-            </div>
+        <div class="form-group">
+            <input type="checkbox" name="remember" value="Remember"> Remember me <br>
+        </div>
 
-            <button ng-disabled = "loginForm.username.$invalid || loginForm.password.$invalid" ng-click="submit()" class="btn btn-warning btn-lg">Login</button>
-        </form>
-    </div>
+        <input type="submit" name="Login" value="Login" class="btn btn-default">
+    </form>
 
     <hr>
 
@@ -40,5 +32,4 @@
     <p>Or go <a href="/">home</a>.</p>
 </div>
 
-<script src="/node_modules/angular/angular.js"></script>
-<script src="/public/javascripts/angular-controller/auth-controller.js"></script>
+<script src="/public/javascripts/login-validation.js"></script>
