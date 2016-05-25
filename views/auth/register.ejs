@@ -32,9 +32,9 @@
             <div class="form-group">
                 <label>Password *</label>
                 <input type="password" class="form-control" name="password" ng-model="password"
-                       ng-pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/" required>
+                       required>
                 <span class="text-danger" ng-show = "registerForm.password.$dirty && registerForm.password.$invalid">
-                    <span ng-show = "registerForm.password.$error.required || registerForm.password.$error.pattern">
+                    <span ng-show = "registerForm.password.$error.required">
                         Password must have at least 8 characters, 1 number, 1 uppercase and 1 lowercase.
                     </span>
                 </span>

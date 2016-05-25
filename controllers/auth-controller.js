@@ -1,7 +1,8 @@
 var bcrypt = require('bcrypt-nodejs');
 
 var connection = require('../connection');
-var queries = require('../utilities/queries');
+var queries = require('../services/user-services');
+var User = require('../models/user');
 
 function authController() {
     this.getRegister = function (req, res) {
@@ -19,13 +20,8 @@ function authController() {
                     if (rows.length) {
                         return done(null, false, req.flash('signupMessage', 'Username is already taken.'));
                     } else {
-                        var newUser = {
-                            username: username,
-                            email: req.body.email,
-                            // Hash password
-                            password: bcrypt.hashSync(password, bcrypt.genSaltSync(8), null)
-                        };
-
+                        var newUser = new User(req.body);
+                        
                         connection.pool.query(queries.registerUser, newUser, function(err, rows) {
                             newUser.id = rows.insertId;
                             return done(null, newUser);
@@ -44,10 +40,10 @@ function authController() {
     this.postLogin = function (req, username, password, done) {
         connection.pool.query(queries.login, username, function(err, rows){
             if (!rows.length)
-                return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled')); // req.flash is the way to set flashdata using connect-flash
+                return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled')); 
             // if the user is found but the password is wrong
             else if (!bcrypt.compareSync(password, rows[0].password))
-                return done(null, false, req.flash('loginMessage', 'Wrong password!!!')); // create the loginMessage and save it to session as flashdata
+                return done(null, false, req.flash('loginMessage', 'Wrong password!!!'));
 
             // all is well, return successful user
             return done(null, rows[0]);
