@@ -50,7 +50,7 @@ function authController() {
             else if (!bcrypt.compareSync(user.password, rows[0].password))
                 return done(null, false, req.flash('loginMessage', 'Wrong password!!!'));
             // Account not activated
-            else if (!rows[0].activationCode)
+            else if (rows[0].activationCode)
                 return done(null, false, req.flash('loginMessage', 'Your account is not activated. Check your email for activation link.'));
 
             // Successful
