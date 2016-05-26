@@ -1,0 +1,31 @@
+
+/*
+ The app's settings file
+ Usage:
+
+    var config = require('config'); 
+    var dbSettings = config.get('cv-builder.db');
+    
+    // access key to get your value
+    
+    var host = dbSettings['host'] 
+    ...
+*/
+
+{
+  "cv-builder": {
+    "db": {
+      "host": "localhost",
+      "port": 5984,
+      "dbName": "customers"
+    },
+    "email": {
+      "from": "tungchelsea21@gmail.com",
+      "host": "smtp.gmail.com",
+      "auth": {
+        "user": "tungchelsea21@gmail.com",
+        "pass": "chelsea0908953800"
+      }
+    }
+  }
+}
