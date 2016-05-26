@@ -6,9 +6,9 @@
     </div>
 <% } %>
 
-<% if (user != undefined) { %>
-    <h3>Welcome <%= user.username %> , Role <%= user.role %></h3>
-    <p><%= user.id %></p>    
+<% if (req.isAuthenticated()) { %>
+    <h3>Welcome <%= req.user.username %> , Role <%= req.user.role %></h3>
+    <p>Id: <%= req.user.id %></p>    
     <a href="/admin">Go to admin page</a>
     <a href="/logout">Logout</a><br>
 <% } else { %>

@@ -3,7 +3,6 @@ var bcrypt = require('bcrypt-nodejs');
 var connection = require('../connection');
 var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
-var LoginUser = require('../models/login-user');
 
 function authController() {
     this.getRegister = function (req, res) {
@@ -40,14 +39,12 @@ function authController() {
         res.render('auth/login', { title: 'Login',message: req.flash('loginMessage') });
     };
     
-    this.postLogin = function (req, done) {
-        var user = new LoginUser(req.body);
-        
-        connection.pool.query(queries.login, user.username, function(err, rows){
-            if (!rows.length)
+    this.postLogin = function (req, done) {        
+        connection.pool.query(queries.login, req.body.username, function(err, rows){
+            if (!rows)
                 return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled')); 
             // Wrong password
-            else if (!bcrypt.compareSync(user.password, rows[0].password))
+            else if (!bcrypt.compareSync(req.body.password, rows[0].password))
                 return done(null, false, req.flash('loginMessage', 'Wrong password!!!'));
             // Account not activated
             else if (rows[0].activationCode)
