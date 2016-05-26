@@ -9,10 +9,9 @@ module.exports = {
         });
 
         // POST: /register
-        app.post('/register', passport.authenticate('local-signup', {
-            failureRedirect : '/register', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash mess ages
-        }), function(req, res) { cache.action(req, res); });
+        app.post('/register', function (req, res) {
+            authController.postRegister(req, res);
+        });
 
 
         // GET: /login

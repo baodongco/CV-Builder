@@ -11,11 +11,13 @@ CREATE TABLE `users` (
   `email` varchar(50) NOT NULL DEFAULT '',
   `password` varchar(100) NOT NULL DEFAULT '',
   `role` varchar(10) DEFAULT 'user',
-  `isActivated` tinyint(1) DEFAULT '0',
+  `activationCode` varchar(50) DEFAULT '',
+  `changePassCode` varchar(50) DEFAULT NULL,
+  `passCodeStartDate` timestamp NULL DEFAULT NULL,
   `isDisabled` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 ```
 -   Open Terminal/Command Prompt/Powershell, direct to project's folder and type this to run:
 ```

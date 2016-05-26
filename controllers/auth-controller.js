@@ -2,29 +2,32 @@ var bcrypt = require('bcrypt-nodejs');
 
 var connection = require('../connection');
 var queries = require('../services/user-services');
-var User = require('../models/user');
+var RegisterUser = require('../models/register-user');
+var LoginUser = require('../models/login-user');
 
 function authController() {
     this.getRegister = function (req, res) {
         res.render('auth/register', { message: req.flash('signupMessage') });
     };
     
-    this.postRegister = function (req, username, password, done) {
+    this.postRegister = function (req, res) {
+        var newUser = new RegisterUser(req.body);
+        
         // Check if username already exists.
-        connection.pool.query(queries.checkUserByEmail, req.body.email, function(err, rows) {
+        connection.pool.query(queries.checkUserByEmail, newUser.email, function(err, rows) {
             if (rows.length) {
-                return done(null, false, req.flash('signupMessage', 'Email is already taken.'));
+                req.flash('signupMessage', 'Email is already taken.');
+                res.redirect('/register');
             } else {
                 // Check if email already exists.
-                connection.pool.query(queries.checkUserByUsername, username, function(err, rows) {
-                    if (rows.length) {
-                        return done(null, false, req.flash('signupMessage', 'Username is already taken.'));
-                    } else {
-                        var newUser = new User(req.body);
-                        
-                        connection.pool.query(queries.registerUser, newUser, function(err, rows) {
-                            newUser.id = rows.insertId;
-                            return done(null, newUser);
+                connection.pool.query(queries.checkUserByUsername, newUser.username, function(err, rows) {
+                    if (rows.length) {                        
+                        req.flash('signupMessage', 'Username is already taken.');
+                        res.redirect('/register');
+                    } else {                                                
+                        connection.pool.query(queries.registerUser, newUser, function(err, rows) {    
+                            req.flash('registerConfirm', 'Check your email for activation link.');
+                            res.redirect('/');                                                    
                         });
                     }
                 });
@@ -37,15 +40,20 @@ function authController() {
         res.render('auth/login', { message: req.flash('loginMessage') });
     };
     
-    this.postLogin = function (req, username, password, done) {
-        connection.pool.query(queries.login, username, function(err, rows){
+    this.postLogin = function (req, done) {
+        var user = new LoginUser(req.body);
+        
+        connection.pool.query(queries.login, user.username, function(err, rows){
             if (!rows.length)
                 return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled')); 
-            // if the user is found but the password is wrong
-            else if (!bcrypt.compareSync(password, rows[0].password))
+            // Wrong password
+            else if (!bcrypt.compareSync(user.password, rows[0].password))
                 return done(null, false, req.flash('loginMessage', 'Wrong password!!!'));
+            // Account not activated
+            else if (!rows[0].activationCode)
+                return done(null, false, req.flash('loginMessage', 'Your account is not activated. Check your email for activation link.'));
 
-            // all is well, return successful user
+            // Successful
             return done(null, rows[0]);
         });  
     };
@@ -55,7 +63,6 @@ function authController() {
         req.logout();
         res.redirect('/');
     };
-
     
     this.serializeUser = function (user, done) {
         done(null, user.id);  
@@ -65,7 +72,7 @@ function authController() {
         connection.pool.query(queries.getUserById, id, function(err, rows){
             done(err, rows[0]);
         });
-    }
+    };
 }
 
 module.exports = new authController();
