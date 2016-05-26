@@ -1,15 +1,15 @@
 <% layout('./layouts/main.ejs') -%>
 
-<h1><%= title %></h1>
-
 <% if (message.length > 0) { %>
     <div class="alert alert-danger">
         <%= message %>
     </div>
 <% } %>
 
-<% if (username != 'null') { %>
-    <h3>Welcome <%= username %></h3>
+<% if (user != undefined) { %>
+    <h3>Welcome <%= user.username %> , Role <%= user.role %></h3>
+    <p><%= user.id %></p>    
+    <a href="/admin">Go to admin page</a>
     <a href="/logout">Logout</a><br>
 <% } else { %>
     <a href="/login">Login</a><br>

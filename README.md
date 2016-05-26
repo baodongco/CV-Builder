@@ -9,3 +9,5 @@
 ```
 $ npm start
 ```
+
+- To login as admin type username : admin, password : Admin1234

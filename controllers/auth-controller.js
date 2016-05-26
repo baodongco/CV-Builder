@@ -7,7 +7,7 @@ var LoginUser = require('../models/login-user');
 
 function authController() {
     this.getRegister = function (req, res) {
-        res.render('auth/register', { message: req.flash('signupMessage') });
+        res.render('auth/register', { title: 'Register', message: req.flash('signupMessage') });
     };
     
     this.postRegister = function (req, res) {
@@ -26,7 +26,7 @@ function authController() {
                         res.redirect('/register');
                     } else {                                                
                         connection.pool.query(queries.registerUser, newUser, function(err, rows) {    
-                            req.flash('registerConfirm', 'Check your email for activation link.');
+                            req.flash('homeMessage', 'Check your email for activation link.');
                             res.redirect('/');                                                    
                         });
                     }
@@ -37,7 +37,7 @@ function authController() {
     
     
     this.getLogin = function (req, res) {
-        res.render('auth/login', { message: req.flash('loginMessage') });
+        res.render('auth/login', { title: 'Login',message: req.flash('loginMessage') });
     };
     
     this.postLogin = function (req, done) {
