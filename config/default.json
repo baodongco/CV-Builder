@@ -15,9 +15,11 @@
 {
   "cv-builder": {
     "db": {
+      "connectionPool": 10,
       "host": "localhost",
-      "port": 5984,
-      "dbName": "customers"
+      "dbName": "CVBuilder",
+      "user": "root",
+      "pass": "root"
     },
     "email": {
       "from": "tungchelsea21@gmail.com",
