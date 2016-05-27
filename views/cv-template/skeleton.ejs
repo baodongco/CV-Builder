@@ -30,8 +30,8 @@
         <div class="sidebar-wrapper">
             <div class="profile-container">
                 <% if (user.photoUrl) { %><img class="profile" src="<%= user.photoUrl || "images/no-photo.png" %>" alt="Profile picture" /><% } %>
-                <h1 class="name"><%= user.firstName || "" +" "+ user.lastName || "" %></h1>
-                <h3 class="tagline"><%= user.sumHeadline || ""%></h3>
+                <h1 class="name"><%= user.firstName || ""%> <%= user.lastName || "" %></h1>
+                <h3 class="tagline"><%- user.sumHeadline || ""%></h3>
             </div><!--//profile-container-->
             
             <div class="contact-container container-block">
@@ -50,7 +50,7 @@
                     <h4 class="degree"><%= user.educations[i].degree %></h4>
                     <h5 class="meta"><%= user.educations[i].institute %></h5>
                     <div class="time"><%= user.educations[i].startMonth %> - <%= user.educations[i].endMonth %></div>
-                    <div class="edu-detail"><%= user.educations[i].detail %></div>
+                    <div class="edu-detail"><%- user.educations[i].detail %></div>
                 </div><!--//item-->
                 <% } %>                
             </div><!--//education-container-->
@@ -70,7 +70,7 @@
             <section class="section summary-section">
                 <h2 class="section-title"><i class="fa fa-user"></i>Career Profile</h2>
                 <div class="summary">
-                    <%= user.sumContent %>
+                    <%- user.sumContent %>
                 </div><!--//summary-->
             </section><!--//section-->
             <% if (typeof user.experiences !== 'undefined') { %>
@@ -86,7 +86,7 @@
                         <div class="company"><%= user.experiences[i].company %></div>
                     </div><!--//meta-->
                     <div class="details">
-                        <%= user.experiences[i].details %>
+                        <%- user.experiences[i].details %>
                     </div><!--//details-->
                 </div><!--//item-->
                 <% } %>
@@ -113,9 +113,13 @@
                         <h3 class="level-title"><%= user.skills[i].name %></h3>
                         <span></span>
                         <div class="level-bar">
-                            <div class="level-bar-inner" data-level="98%">
+                            <div class="level-bar-inner" data-level="<%= user.skills[i].expertise * 20 %>%">
                             </div>                                      
-                        </div><!--//level-bar-->                                 
+                        </div><!--//level-bar--> 
+                        <div class="summary pull-right text-right">
+                            Experiences: <%= user.skills[i].experience %><br />
+                            Last used: <%= user.skills[i].lastUsed %>
+                        </div>                                
                     </div><!--//item-->   
                 <% } %>             
                 </div>  
