@@ -2,12 +2,12 @@
  The app's settings file
  Usage:
 
-    var config = require('config'); 
+    var config = require('config');
     var dbSettings = config.get('cv-builder.db');
-    
+
     // access key to get your value
-    
-    var host = dbSettings['host'] 
+
+    var host = dbSettings['host']
     ...
 */
 
@@ -21,7 +21,7 @@
       "pass": "3120"
     },
     "email": {
-      "from": "tungchelsea21@gmail.com",
+      "from": "no-reply@example.com",
       "host": "smtp.gmail.com",
       "port": 465,
       "secureConnection": true,

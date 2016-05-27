@@ -8,7 +8,7 @@ var Email = require('../models/email');
 function authController() {
     this.getRegister = function(req, res) {
         res.render('auth/register', {
-            message: req.flash('signupMessage')
+            message: req.flash('signupMessage'), title: 'Register'
         });
     };
 
@@ -43,14 +43,12 @@ function authController() {
 
     this.getLogin = function(req, res) {
         res.render('auth/login', {
-            message: req.flash('loginMessage')
+            message: req.flash('loginMessage'), title: 'Login'
         });
     };
 
     this.postLogin = function(req, done) {
-        var user = new LoginUser(req.body);
-
-        connection.pool.query(queries.login, user.username, function(err, rows) {
+        connection.pool.query(queries.login, req.body.username, function(err, rows) {
             if (!rows.length)
                 return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled'));
             // Wrong password

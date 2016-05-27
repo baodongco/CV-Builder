@@ -4,6 +4,6 @@ module.exports = {
     registerUser: "INSERT INTO user SET ?",
     login: "SELECT id, username, password, activationCode, role FROM user WHERE username = ? AND isDisabled = false",
     getUserById: "SELECT * FROM user WHERE id = ? ",
-    getAllUsers: "SELECT username, email, role, activationCode FROM user"
+    getAllUsers: "SELECT username, email, role, activationCode FROM user",
     getCodeCreatedDate: "SELECT passCodeStartDate FROM user where id = ?"
 };
