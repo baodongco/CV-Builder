@@ -1,5 +1,4 @@
 var authController = require('../controllers/auth-controller');
-var cache = require('../middlewares/cache-login-user');
 var Email = require('../models/email');
 var EmailInfo = require('../models/email-info');
 
@@ -23,9 +22,10 @@ module.exports = {
 
         // POST: /login
         app.post('/login', passport.authenticate('local-login', {
+            successRedirect: '/',
             failureRedirect: '/login', // redirect back to the signup page if there is an error
             failureFlash: true // allow flash messages
-        }), cache);
+        }));
 
         // Logout.
         app.get('/logout', function(req, res) {
