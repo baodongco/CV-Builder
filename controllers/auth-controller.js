@@ -4,6 +4,7 @@ var connection = require('../connection');
 var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
 var Email = require('../models/email');
+var EmailInfo = require('../models/email-info');
 
 function authController() {
     this.getRegister = function(req, res) {
@@ -32,7 +33,8 @@ function authController() {
                             res.redirect('/');
                         });
                         // send email
-                        var email = new Email(newUser.username, newUser.email, newUser.activationCode);
+                        var emailInfo = new EmailInfo(newUser.username, newUser.email, newUser.activationCode);
+                        var email = new Email(emailInfo);
                         email.sendEmail();
                     }
                 });
