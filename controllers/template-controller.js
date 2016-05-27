@@ -11,7 +11,7 @@ function templateController() {
         var ejs = require('ejs');
         var user = { name: "Tran Dung Sy", email: "sybikhung"};
         var file ="";
-        if (req.params.id) {
+        if (req.params.id > 0) {
             file = "skeleton.ejs";
         } else {
             file = "demo.ejs";
@@ -32,14 +32,15 @@ function templateController() {
 
                   // Page options
                   "border": "1cm",             // default is 0, units: mm, cm, in, px
-                    "format": "A4"
+                   "width": "1240px",
+                   "height": "1758px",
 
                   "header": {
                     "height": "15mm",
                     "contents": '<div style="text-align: center;">Team <b>GAIS</b> - Nodejs 2</div>'
                 },
                 "footer": {
-                    "height": "15mm"                    
+                    "height": "20mm"                  
                 },
 
 
@@ -65,7 +66,7 @@ function templateController() {
             });
           }
       });
-    }
-}
+    };
+};
 
 module.exports = new templateController();

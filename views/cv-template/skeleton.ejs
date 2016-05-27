@@ -60,7 +60,7 @@
             <div class="languages-container container-block">
                 <h2 class="container-block-title">Languages</h2>
                 <ul class="list-unstyled interests-list">
-                    <li><%= user.languages[i].name %> <span class="lang-desc">(<%= user.languages[i].proficiency %>)</span></li>
+                    <li><%= user.languages[i].name %> <span class="lang-desc">( <%= user.languages[i].proficiency %> )</span></li>
                 </ul>
             </div><!--//languages-->
             <% } %>          
@@ -78,7 +78,7 @@
             <% if (user.experiences.length > 0) { %>
             <section class="section experiences-section">
                 <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiences</h2>                
-                <% for(var i=0; i<user.experiences.length; i++) { %>
+                <% for (var i=0; i < user.experiences.length; i++) { %>
                 <div class="item">
                     <div class="meta">
                         <div class="upper-row">
@@ -140,4 +140,3 @@
     <script type="text/javascript" src="public/javascripts/template/main-min.js"></script>            
 </body>
 </html> 
-
