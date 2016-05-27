@@ -1,4 +1,4 @@
-var templateController = require('../controllers/cv-controller');
+var cvController = require('../controllers/cv-controller');
 
 module.exports = {
     configure: function (app) {

@@ -12,7 +12,7 @@ var session      = require('express-session');
 var home = require('./routes/home');
 var auth = require('./routes/auth');
 var admin = require('./routes/admin');
-var cvTemplate = require('./routes/template');
+var cv = require('./routes/cv');
 var connection = require('./connection');
 
 var app = express();
@@ -48,7 +48,7 @@ app.use('/node_modules', express.static(path.join(__dirname, '/node_modules')));
 home.configure(app);
 auth.configure(app, passport);
 admin.configure(app);
-cvTemplate.configure(app);
+cv.configure(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -7,7 +7,7 @@ function cvController() {
             res.render('cv-template/skeleton', {user: user});
         };                               
     };
-    this.getDownload = function (req.user, res) {
+    this.getDownload = function (req, res) {
         var ejs = require('ejs');
         var user = { firstName: "Tran", lastName: "Dung Sy", email: "sybikhung"};
         var file ="";
@@ -16,13 +16,13 @@ function cvController() {
         } else {
             file = "demo.ejs";
         }
-        ejs.renderFile('./views/cv-template/'+ file, {user: user, style}, null, function (err,html) {
+        ejs.renderFile('./views/cv-template/'+ file, {user: user}, null, function (err,html) {
             if (err) {
                 console.log(err.stack);
                 throw err;
             } else {
                 var pdf = require('html-pdf');
-                var options = require('cv-pdf.json');
+                var options = require('../config/cv-pdf.js');
                 options.base = "http://" +req.headers.host;
                 pdf.create(html,options).toStream(function(err, stream){
                 res.setHeader("content-type", "application/pdf");
