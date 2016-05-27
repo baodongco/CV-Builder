@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="favicon.ico">  
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <!-- Global CSS -->
-    <link rel="stylesheet" href="/public/stylesheets/template-css/nonresponsive-boostrap.css">  
+    <link rel="stylesheet" href="/public/stylesheets/template-css/nonresponsive-bootstrap.css">  
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="/public/stylesheets/template-css/font-awesome/css/font-awesome.min.css">      
     <!-- Theme CSS -->  
@@ -29,22 +29,20 @@
     <div class="wrapper">
         <div class="sidebar-wrapper">
             <div class="profile-container">
-                <img class="profile" src="<%= user.photoUrl %>" alt="<%= user.firstname +" "+ user.lastname %>" />
-                <h1 class="name"><%= user.firstname +" "+ user.lastname %></h1>
-                <h3 class="tagline"><%= user.sumHeadline %></h3>
+                <% if (user.photoUrl) { %><img class="profile" src="<%= user.photoUrl || "images/no-photo.png" %>" alt="Profile picture" /><% } %>
+                <h1 class="name"><%= user.firstName || "" +" "+ user.lastName || "" %></h1>
+                <h3 class="tagline"><%= user.sumHeadline || ""%></h3>
             </div><!--//profile-container-->
             
             <div class="contact-container container-block">
                 <ul class="list-unstyled contact-list">
-                    <li class="email"><i class="fa fa-envelope"></i><a href="mailto: <%= user.email %>"><%= user.email %></a></li>
-                    <li class="phone"><i class="fa fa-phone"></i><a href="tel:<%= user.phone %>"><%= user.phone %></a></li>
-                    <li class="website"><i class="fa fa-globe"></i><a href="<%= user.website %>" target="_blank"><%= user.website %></a></li>
-                    <li class="linkedin"><i class="fa fa-linkedin"></i><a href="#" target="_blank">linkedin.com/in/alandoe</a></li>
-                    <li class="github"><i class="fa fa-github"></i><a href="#" target="_blank">github.com/username</a></li>
-                    <li class="twitter"><i class="fa fa-twitter"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">@twittername</a></li>
-                    <li class="address"><i class="fa fa-map-marker"></i><%= user.address %></li>
+                    <% if (user.email) { %><li class="email"><i class="fa fa-envelope"></i><a href="mailto: <%= user.email %>"><%= user.email %></a></li> <% } %>
+                    <% if (user.phone) { %><li class="phone"><i class="fa fa-phone"></i><a href="tel:<%= user.phone %>"><%= user.phone %></a></li> <% } %>
+                    <% if (user.website) { %><li class="website"><i class="fa fa-globe"></i><a href="<%= user.website %>" target="_blank"><%= user.website %></a></li><% } %>
+                    <% if (user.address) { %><li class="address"><i class="fa fa-map-marker"></i><%= user.address %></li> <% } %>
                 </ul>
             </div><!--//contact-container-->
+            <% if (typeof user.educations !== 'undefined' ) { %>
             <div class="education-container container-block">
                 <h2 class="container-block-title">Education</h2>
                 <% for (var i = 0 ; i < user.educations.length ; i++) { %>
@@ -56,11 +54,11 @@
                 </div><!--//item-->
                 <% } %>                
             </div><!--//education-container-->
-            <% if (user.languages.length > 0 ) { %>
+            <% } if (typeof user.languages !== 'undefined' ) { %>
             <div class="languages-container container-block">
                 <h2 class="container-block-title">Languages</h2>
                 <ul class="list-unstyled interests-list">
-                    <li><%= user.languages[i].name %> <span class="lang-desc">( <%= user.languages[i].proficiency %> )</span></li>
+                    <li><%= user.languages[i].name %> <span class="lang-desc"> <%= user.languages[i].proficiency %> </span></li>
                 </ul>
             </div><!--//languages-->
             <% } %>          
@@ -75,7 +73,7 @@
                     <%= user.sumContent %>
                 </div><!--//summary-->
             </section><!--//section-->
-            <% if (user.experiences.length > 0) { %>
+            <% if (typeof user.experiences !== 'undefined') { %>
             <section class="section experiences-section">
                 <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiences</h2>                
                 <% for (var i=0; i < user.experiences.length; i++) { %>
@@ -94,18 +92,19 @@
                 <% } %>
             </section><!--//section-->
             <% } %>
-            <% if (user.projects.length > 0) { %>
+            <% if (typeof user.projects !== 'undefined') { %>
             <section class="section projects-section">
                 <h2 class="section-title"><i class="fa fa-archive"></i>Projects</h2>
                 <% for(var i=0; i<user.projects.length; i++) {%>
                 <div class="item">
                     <span class="project-title"><a href="#hook">Velocity</a></span> - <span class="project-tagline">A responsive website template designed to help startups promote, market and sell their products.</span>
                     
-                </div><!--//item-->               
+                </div><!--//item-->
+                <% } %>               
                 
             </section><!--//section-->
             <% } %>
-            <% if (user.skills.length > 0) { %>
+            <% if (typeof user.skills !== 'undefined') { %>
             <section class="skills-section section">
                 <h2 class="section-title"><i class="fa fa-rocket"></i>Skills &amp; Proficiency</h2>
                 <div class="skillset">
@@ -134,9 +133,9 @@
     </footer><!--//footer-->
  
     <!-- Javascript -->          
-    <script type="text/javascript" src="public/javascripts/template/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="public/javascripts/template/bootstrap.min.js"></script>    
+    <script type="text/javascript" src="/public/javascripts/template/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/public/javascripts/template/bootstrap.min.js"></script>    
     <!-- custom js -->
-    <script type="text/javascript" src="public/javascripts/template/main-min.js"></script>            
+    <script type="text/javascript" src="/public/javascripts/template/main-min.js"></script>            
 </body>
 </html> 

@@ -1,39 +1,37 @@
 {
-
   // Export options
   "directory": "/public/public-cv",       // The directory the file gets written into if not using .toFile(filename, callback). 
 
   // Papersize Options: http://phantomjs.org/api/webpage/property/paper-size.html
-  "format": "A4",        // allowed units: A3, A4, A5, Legal, Letter, Tabloid
+  
   "orientation": "portrait", // portrait or landscape
 
   // Page options
   "border": "1cm",             // default is 0, units: mm, cm, in, px
-  "height": "1680px",        // allowed units: mm, cm, in, px 
-  "width": "2631px",
+  "width": "1240px",
+  "height": "1758px",
+
   "header": {
-    "height": "45mm",
-    "contents": '<div style="text-align: center;">Team Nodejs 2</div>'
-  },
-  "footer": {
-    "height": "28mm",
-    "contents": '<span style="color: #444;">Designed by <a href="http://themes.3rdwavemedia.com/">Xiaoying Riley</a></span>'
-  },
+    "height": "15mm",
+    "contents": '<div style="text-align: center;">Team <b>GAIS</b> - Nodejs 2</div>'
+    },
+    "footer": {
+      "height": "20mm"                  
+      },
 
 
   // Rendering options
   // Base path that's used to load files (images, css, js) when they aren't referenced using a host
-  "base": path.join(__dirname, "public"),
   // File options
   "type": "pdf",             // allowed file types: png, jpeg, pdf
   //"quality": "75",           only used for types png & jpeg
 
   // Script options
-  "phantomPath": "./node_modules/phantomjs/bin/phantomjs", // PhantomJS binary which should get downloaded automatically
+   // PhantomJS binary which should get downloaded automatically
   "timeout": 30000,           // Timeout that will cancel phantomjs, in milliseconds
 
   //"httpHeaders": {
   //  "Authorization": "Bearer ACEFAD8C-4B4D-4042-AB30-6C735F5BAC8B"
   //}
 
-}
+};
