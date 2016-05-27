@@ -3,5 +3,6 @@ module.exports = {
     checkUserByUsername: "SELECT id FROM user WHERE username = ?",
     registerUser: "INSERT INTO user SET ?",
     login: "SELECT id, username, password, activationCode FROM user WHERE username = ? AND isDisabled = false",
-    getUserById: "SELECT * FROM user WHERE id = ? "
+    getUserById: "SELECT * FROM user WHERE id = ? ",
+    getCodeCreatedDate: "SELECT passCodeStartDate FROM user where id = ?"
 };

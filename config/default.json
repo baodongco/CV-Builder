@@ -1,4 +1,3 @@
-
 /*
  The app's settings file
  Usage:
@@ -24,6 +23,9 @@
     "email": {
       "from": "tungchelsea21@gmail.com",
       "host": "smtp.gmail.com",
+      "port": 465,
+      "secureConnection": true,
+      "transportMethod": "SMTP",
       "auth": {
         "user": "tungchelsea21@gmail.com",
         "pass": "chelsea0908953800"

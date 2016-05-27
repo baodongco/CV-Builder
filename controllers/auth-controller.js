@@ -4,15 +4,18 @@ var connection = require('../connection');
 var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
 var LoginUser = require('../models/login-user');
+var Email = require('../models/email');
 
 function authController() {
-    this.getRegister = function (req, res) {
-        res.render('auth/register', { message: req.flash('signupMessage') });
+    this.getRegister = function(req, res) {
+        res.render('auth/register', {
+            message: req.flash('signupMessage')
+        });
     };
-    
-    this.postRegister = function (req, res) {
+
+    this.postRegister = function(req, res) {
         var newUser = new RegisterUser(req.body);
-        
+
         // Check if username already exists.
         connection.pool.query(queries.checkUserByEmail, newUser.email, function(err, rows) {
             if (rows.length) {
@@ -21,31 +24,36 @@ function authController() {
             } else {
                 // Check if email already exists.
                 connection.pool.query(queries.checkUserByUsername, newUser.username, function(err, rows) {
-                    if (rows.length) {                        
+                    if (rows.length) {
                         req.flash('signupMessage', 'Username is already taken.');
                         res.redirect('/register');
-                    } else {                                                
-                        connection.pool.query(queries.registerUser, newUser, function(err, rows) {    
+                    } else {
+                        connection.pool.query(queries.registerUser, newUser, function(err, rows) {
                             req.flash('registerConfirm', 'Check your email for activation link.');
-                            res.redirect('/');                                                    
+                            res.redirect('/');
                         });
+                        // send email
+                        var email = new Email(newUser.username, newUser.email, newUser.activationCode);
+                        email.sendEmail();
                     }
                 });
             }
         });
     };
-    
-    
-    this.getLogin = function (req, res) {
-        res.render('auth/login', { message: req.flash('loginMessage') });
+
+
+    this.getLogin = function(req, res) {
+        res.render('auth/login', {
+            message: req.flash('loginMessage')
+        });
     };
-    
-    this.postLogin = function (req, done) {
+
+    this.postLogin = function(req, done) {
         var user = new LoginUser(req.body);
-        
-        connection.pool.query(queries.login, user.username, function(err, rows){
+
+        connection.pool.query(queries.login, user.username, function(err, rows) {
             if (!rows.length)
-                return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled')); 
+                return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled'));
             // Wrong password
             else if (!bcrypt.compareSync(user.password, rows[0].password))
                 return done(null, false, req.flash('loginMessage', 'Wrong password!!!'));
@@ -55,21 +63,28 @@ function authController() {
 
             // Successful
             return done(null, rows[0]);
-        });  
+        });
     };
-    
 
-    this.logout = function (req, res) {
+
+    this.logout = function(req, res) {
         req.logout();
         res.redirect('/');
     };
-    
-    this.serializeUser = function (user, done) {
-        done(null, user.id);  
+
+    this.getActivate = function(req, res){
+        var activationCode = req.param['guid'];
+        
+
+
     };
-    
-    this.deserializeUser = function (id, done) {
-        connection.pool.query(queries.getUserById, id, function(err, rows){
+
+    this.serializeUser = function(user, done) {
+        done(null, user.id);
+    };
+
+    this.deserializeUser = function(id, done) {
+        connection.pool.query(queries.getUserById, id, function(err, rows) {
             done(err, rows[0]);
         });
     };
