@@ -82,3 +82,11 @@ CREATE TABLE education (
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
 );
+
+-- Insert default admin account
+INSERT INTO user(username, email, password, role) VALUES (
+  'admin',
+  'admin@admin.com',
+  '$2a$08$Tbv4/2.0JQCJ0iK2IkMF3e1PQn4V/u6CmZr2f.d4ysEp0.qX5BdfC',
+  'admin'
+);

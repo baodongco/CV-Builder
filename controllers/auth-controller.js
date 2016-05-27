@@ -3,7 +3,6 @@ var bcrypt = require('bcrypt-nodejs');
 var connection = require('../connection');
 var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
-var LoginUser = require('../models/login-user');
 var Email = require('../models/email');
 
 function authController() {
@@ -29,7 +28,7 @@ function authController() {
                         res.redirect('/register');
                     } else {
                         connection.pool.query(queries.registerUser, newUser, function(err, rows) {
-                            req.flash('registerConfirm', 'Check your email for activation link.');
+                            req.flash('homeMessage', 'Check your email for activation link.');
                             res.redirect('/');
                         });
                         // send email
@@ -55,7 +54,7 @@ function authController() {
             if (!rows.length)
                 return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled'));
             // Wrong password
-            else if (!bcrypt.compareSync(user.password, rows[0].password))
+            else if (!bcrypt.compareSync(req.body.password, rows[0].password))
                 return done(null, false, req.flash('loginMessage', 'Wrong password!!!'));
             // Account not activated
             else if (rows[0].activationCode)
