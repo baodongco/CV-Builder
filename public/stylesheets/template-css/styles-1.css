@@ -25,7 +25,7 @@ h6 {
   font-weight: 700;
 }
 a {
-  color: #3d884d;
+  color: #2d7788;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
@@ -33,7 +33,7 @@ a {
 }
 a:hover {
   text-decoration: underline;
-  color: #25532f;
+  color: #1d423c;
 }
 a:focus {
   text-decoration: none;
@@ -46,7 +46,7 @@ p {
     list-style: none;
 }
 .wrapper {
-  background: #5BB66F;
+  background: #42A8C0;
   margin: 0 auto;
   position: relative;
   -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -54,7 +54,7 @@ p {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .sidebar-wrapper {
-  background: #5BB66F;
+  background: #42A8C0;
   position: absolute;
   right: 0;
   width: 300px;
@@ -163,7 +163,7 @@ p {
   text-transform: uppercase;
   font-size: 20px;
   font-weight: 500;
-  color: #3d884d;
+  color: #2d7788;
   position: relative;
   margin-top: 0;
   margin-bottom: 20px;
@@ -182,7 +182,7 @@ p {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background: #3d884d;
+  background: #2d7788;
   text-align: center;
   padding-top: 8px;
   font-size: 16px;
@@ -244,7 +244,7 @@ p {
 }
 .skillset .level-bar-inner {
   height: 22px;
-  background: #90ce9d;
+  background: #7bc2d3;
   text-align: center;
 }
 .footer {

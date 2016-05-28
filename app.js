@@ -8,18 +8,19 @@ var engine       = require('ejs-mate');
 var passport     = require('passport');
 var flash        = require('connect-flash');
 var session      = require('express-session');
+var url          = require('url');
 
 var home = require('./routes/home');
 var auth = require('./routes/auth');
 var admin = require('./routes/admin');
-var cv = require('./routes/cv');
+var resume = require('./routes/resume');
 var connection = require('./connection');
 
 var app = express();
 
-// Initialize mysql connection.
-// connection.init();
-// connection.pool.connect();
+//Initialize mysql connection.
+connection.init();
+connection.pool.connect();
 
 // Setup view engine
 app.engine('ejs', engine);
@@ -48,7 +49,7 @@ app.use('/node_modules', express.static(path.join(__dirname, '/node_modules')));
 home.configure(app);
 auth.configure(app, passport);
 admin.configure(app);
-cv.configure(app);
+resume.configure(app);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
