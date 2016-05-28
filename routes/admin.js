@@ -6,6 +6,14 @@ module.exports = {
         // GET: /register
         app.get('/admin', checkAdmin, function(req, res) {
             adminController.getIndex(req, res);
-        });        
+        });    
+        
+        app.get('/admin/user/disable/:id', function (req, res) {
+            adminController.disableUser(req, res); 
+        });
+
+        app.get('/admin/user/enable/:id', function (req, res) {
+            adminController.enableUser(req, res);
+        });
     }
 };
