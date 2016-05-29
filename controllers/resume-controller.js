@@ -1,46 +1,18 @@
 /*
 references: https://www.npmjs.com/package/html-pdf
  */
-
-var connection = require('../connection');
-var queries = require('../services/resume-services');
+Q = require('q');
+var connection    = require('../connection');
+var sql       = require('../services/resume-services');
+// import models
+var Resume        = require('../models/resume');
+var Certification = require('../models/certification');
+var Education     = require('../models/education');
+var Experience    = require('../models/experience');
+var Project       = require('../models/project');
+var Skill         = require('../models/skill');
 
 function resumeController() {
-      var demoUser = {
-        id: 1,
-        firstName: "Tran",
-        lastName:"Dung Sy",
-        email: "sybikhung@gmail.com",
-        phone: "0123456789",
-        website: "google.com",
-        address: "Abc, Vietnam",
-        sumHeadline: "<h5><em>Sum of</em></h5> sumHeadline sumHeadline sumHeadline sumHeadline sumHeadline sumHeadline sumHeadline ",
-        sumContent: "<h4><em>Sum of</em></h4> sumContent sumContent sumContent sumContent sumContent sumContent sumContent sumContent sumContent",
-        photoUrl: "/public/images/sysysy.png",
-        publiclink: "https://facebook.com/BillGates",
-        skills: [{
-          name: "C#", expertise: "5",
-          experience: "3 years"
-        }, { 
-          name: "PHP", expertise: "3",
-           experience: "1 year", lastUsed: "Tuan truoc"
-        }],
-        projects: [{
-          title: "Tam su cung nguoi la",
-          url: "google.com",
-          startTime: "3/5/1999",
-          endTime: "5/3/2000",
-          detail: "Detail Detail Detail Detail Detail Detail Detail Detail"
-        }, {
-          title: "Tam su cung nguoi quen",
-          url: "google.com",
-          startTime: "3/5/2009",
-          endTime: "5/3/2011",
-          detail: "Detail Detail Detail Detail Detail Detail Detail Detail"
-        }]
-      };
-      var demoStyle = "styles-1";
-
     /**
      * @param  req
      * @param  res
@@ -48,20 +20,28 @@ function resumeController() {
      * @return resume
      */
     this.getResume = function (req, res) {
-        
-        var resume = getResumeDataById(req.params.id);
-        console.log(resume);
-        if (resume === {}) {
-          res.status(404)
-          res.send('File not found');
-        }
-        //demo w/o DB
-        //var resume = demoUser;        
-        if (req.query.type == 'pdf') {
-          responsePdf(req, res, resume);
-        } else {
-          responseHtml(res, resume);
-        };        
+      //demo w/o DB
+      //var resume = demoUser;        
+      if (req.query.type == 'pdf') {
+        getResumeDataById(req.params.id).then(function (resume) {
+          if (resume === null) {
+            res.status(404)
+            res.send('File not found');
+          } else {
+            responsePdf(req, res, resume);
+          }
+        });        
+      } else {
+        getResumeDataById(req.params.id).then(function (resume) {
+          if (resume === null) {
+            res.status(404)
+            res.send('File not found');
+          } else {
+            responseHtml(res, resume);
+          }
+        });        
+      };  
+              
     };
 
     /**
@@ -69,7 +49,7 @@ function resumeController() {
      * @param  user - user data
      * @return resume in pdf format
      */
-    var responsePdf = function (req, res, user, template) {
+    var responsePdf = function (req, res, resume) {
       var ejs = require('ejs');
         ejs.renderFile('./views/cv-template/skeleton.ejs', {resume: resume}, null, function (err,html) {
             if (err) {
@@ -92,50 +72,58 @@ function resumeController() {
      * @param  user - user data
      * @return resume in html format
      */
-    var responseHtml = function (res, user, template) {
+    var responseHtml = function (res, resume) {
       res.render('cv-template/skeleton', {resume: resume});
     };
 
     var getResumeDataById = function (id) {
-      connection.pool.query(queries.getResumeById, id, function (err, rows) {
-        if (!rows[0]) {
-          console.log(!rows[0]);
-          return {};
+      var defered = Q.defer();
+      connection.pool.query(sql.getResumeById, id, function (err, rows) {
+        if (err) {
+          defered.reject(err);
         } else {
-          console.log(resume);
-          connection.pool.query(queries.getSkillsByResumeId, resume.id, function (err, rows) {
-            if (!rows) {
-              resume.skills = undefined;
-            } else {
-              resume.skills = rows;
-            }
+          parseArray(id, sql.getCertificationsByResumeId, Certification, function (certs) {
+            parseArray(id,  sql.getExperiencesByResumeId, Experience, function (exps) {
+              parseArray(id, sql.getEducationsByResumeId, Education, function (edus) {                
+                parseArray(id, sql.getProjectsByResumeId, Project, function (projects) {
+                  parseArray(id, sql.getSkillsByResumeId, Skill, function (skills) {
+                    resume = new Resume(rows[0]);
+                    resume.skills         = skills;
+                    resume.experiences    = exps;
+                    resume.educations     = edus;
+                    resume.certifications = resume.certs;
+                    resume.projects       = projects;
+                    console.log(resume);
+                    defered.resolve(resume);
+                  });
+                });
+              });
+            });
           });
-          connection.pool.query(queries.getEducationsByResumeId, resume.id, function (err, rows) {
-            if (!rows) {
-              resume.educations = undefined;
-            } else {
-              resume.educations = rows;
-            }
-          });
-          connection.pool.query(queries.getCertificationsByResumeId, resume.id, function (err, rows) {
-            if (!rows) {
-              resume.certifications = undefined;
-            } else {
-              resume.certifications = rows;
-            }
-          });
-          connection.pool.query(queries.getExperiencesByResumeId, resume.id, function (err, rows) {
-            if (!rows) {
-              resume.experiences = undefined;
-            } else {
-              resume.experiences = rows;
-            }
-          });
-          return resume;
+        }        
+      }); 
+      return defered.promise;             
+    };      
+
+    /**
+     * @param  query string
+     * @param  id of resume
+     * @param  Ojb type of attribute
+     * @return array of objs
+     */
+    var parseArray = function (id, query, Obj, callback) {
+      connection.pool.query(query, id, function (err, rows) {
+        if (err) {
+          callback(err, [])
+        } else { 
+          var array = [];
+          for (var i = 0; i < rows.length; i++) {
+            array[i] = new Obj(rows[i]);
+          };    
+          callback(array);
         }
-      });
-    }
-    
+      });    
+    };
 };
 
 module.exports = new resumeController();

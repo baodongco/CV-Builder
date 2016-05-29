@@ -9,7 +9,9 @@ module.exports = {
     	FROM education WHERE resId = ? ",
     getSkillsByResumeId: "SELECT resId, id, name, expertise, experience, lastUsed FROM skill WHERE resId = ?",
     getExperiencesByResumeId: "SELECT resId, id, company, designation, startTime, endTime, detail \
-    FROM WHERE resId = ? ",
+    FROM experience WHERE resId = ? ",
     getCertificationsByResumeId: "SELECT resId, id, title, authority, date, detail \
-    FROM certification WHERE resId = ? "    
+    FROM certification WHERE resId = ? ",
+    getProjectsByResumeId: "SELECT resId, id, title, startTime, endTime, detail \
+    FROM project WHERE resId = ? "    
 };
