@@ -9,9 +9,9 @@ CREATE TABLE user (
   password varchar(100) NOT NULL,
   role varchar(10) DEFAULT 'user',
   activationCode varchar(50),
-  changePassCode varchar(50),
-  passCodeStartDate TIMESTAMP,
-  isDisabled tinyint(1) DEFAULT '0'
+  resetPassCode varchar(50),
+  codeStartDate TIMESTAMP,
+  isDisabled tinyint(1) DEFAULT 0
 );
 
 CREATE TABLE resume (
