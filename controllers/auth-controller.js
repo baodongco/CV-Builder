@@ -94,14 +94,15 @@ function authController() {
                 message = 'Your account has been activated. Please enjoy!!';
                 isError = false;
             }
-
-            req.flash('loginMessage', message);
     
-            if(isError)
-                res.redirect('/');
-            else
-                res.redirect('/login');
-        });
+        if(isError){
+            req.flash('homeMessage', message);
+           res.redirect('/');
+        }else{
+            req.flash('loginMessage', message);
+            res.redirect('/login');
+        }
+     });
     };
 
     this.getReset = function(req, res){
