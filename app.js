@@ -9,6 +9,7 @@ var passport     = require('passport');
 var flash        = require('connect-flash');
 var session      = require('express-session');
 var url          = require('url');
+var elogger = require('express-logger');
 
 var home = require('./routes/home');
 var auth = require('./routes/auth');
@@ -37,7 +38,10 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
+// Write dev log and log files.
 app.use(logger('dev'));
+app.use(elogger({path: __dirname + "/logfile.txt"}));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -83,6 +87,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;
