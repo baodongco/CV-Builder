@@ -82,19 +82,18 @@ function authController() {
         var index = 0;
         var message = '';
     
-        connection.pool.query("CALL SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")",function(err, rows){  
-
+        connection.pool.query("CALL SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")",function(err, rows){
             console.log("SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")");
       
-        if (err){
-            console.log(err);
-            message = err.message;
-            index = message.indexOf(':');
-            message = message.substring(index + 1);
-         }else{
-            message = 'Your account has been activated. Please enjoy!!';
-            isError = false;
-         }
+            if (err){
+                console.log(err);
+                message = err.message;
+                index = message.indexOf(':');
+                message = message.substring(index + 1);
+            } else {
+                message = 'Your account has been activated. Please enjoy!!';
+                isError = false;
+            }
     
         if(isError){
             req.flash('homeMessage', message);
@@ -215,7 +214,7 @@ function authController() {
     this.postChangePassword = function (req, res) {
         var user = new PassModification(req.body);
         
-        connection.pool.query('SELECT password FROM user WHERE id = ?', user.id, function(err, rows) {
+        connection.pool.query(queries.getUserById, user.id, function(err, rows) {
             if (!bcrypt.compareSync(user.oldPass, rows[0].password)) {
                 req.flash('changePass', 'Old password is incorrect');
                 res.redirect('/change_password');
