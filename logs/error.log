@@ -1,0 +1,533 @@
+2016-05-26T15:37:37.271Z - error: Error during processing request: http://localhost:3000/export/api/report details: Engine must be specified Error: Engine must be specified
+    at invokeRender (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:66:11)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:12
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:42:11.211Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=5
+2016-05-26T15:42:11.334Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:46:22.642Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=7
+2016-05-26T15:46:22.792Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:47:31.140Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=9
+2016-05-26T15:47:31.249Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:49:05.190Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=11
+2016-05-26T15:49:05.305Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:49:16.635Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=13
+2016-05-26T15:49:16.745Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:49:21.884Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=15
+2016-05-26T15:49:21.984Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:53:46.323Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=17
+2016-05-26T15:53:46.461Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:54:06.294Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=19
+2016-05-26T15:54:06.347Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:08:29.492Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=21
+2016-05-26T16:08:29.608Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:16:12.030Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token " SyntaxError: Unexpected token "
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:16:41.642Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token " SyntaxError: Unexpected token "
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:17:47.628Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=23
+2016-05-26T16:17:47.631Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:20:09.900Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:20:13.120Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:20:37.394Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:21:11.115Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:21:42.351Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:21:48.837Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:23:06.011Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token - SyntaxError: Unexpected token -
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:23:17.060Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token - SyntaxError: Unexpected token -
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:23:58.009Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token - SyntaxError: Unexpected token -
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:25:55.640Z - error: Error when processing render request Error during rendering report: First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object. TypeError: First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.
+    at fromObject (buffer.js:287:9)
+    at Function.Buffer.from (buffer.js:133:10)
+    at new Buffer (buffer.js:112:17)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:98:24
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=1
+2016-05-26T16:25:55.761Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object. TypeError: First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.
+    at fromObject (buffer.js:287:9)
+    at Function.Buffer.from (buffer.js:133:10)
+    at new Buffer (buffer.js:112:17)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:98:24
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:30:09.460Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=2
+2016-05-26T16:30:09.560Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:33:24.485Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=4
+2016-05-26T16:33:24.611Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:34:14.645Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=6
+2016-05-26T16:34:14.764Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:34:28.780Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=8
+2016-05-26T16:34:28.828Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T18:16:05.337Z - error: uncaughtException: res.redirect is not a function date=Fri May 27 2016 01:16:05 GMT+0700 (SE Asia Standard Time), pid=10228, uid=null, gid=null, cwd=C:\Users\sytra\Projects\Challenge_2, execPath=C:\Program Files\nodejs\node.exe, version=v6.1.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\sytra\Projects\Challenge_2\bin\www], rss=76587008, heapTotal=61861888, heapUsed=38174056, loadavg=[0, 0, 0], uptime=470349.8345448, trace=[column=29, file=C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js, function=null, line=20, method=null, native=false, column=14, file=C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js, function=, line=121, method=null, native=false, column=13, file=events.js, function=emitTwo, line=106, method=null, native=false, column=7, file=events.js, function=ChildProcess.emit, line=191, method=emit, native=false, column=12, file=internal/child_process.js, function=Process.ChildProcess._handle.onexit, line=204, method=ChildProcess._handle.onexit, native=false], stack=[TypeError: res.redirect is not a function,     at C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js:20:29,     at ChildProcess.<anonymous> (C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js:121:14),     at emitTwo (events.js:106:13),     at ChildProcess.emit (events.js:191:7),     at Process.ChildProcess._handle.onexit (internal/child_process.js:204:12)]
+2016-05-26T18:18:31.927Z - error: uncaughtException: res.redirect is not a function date=Fri May 27 2016 01:18:31 GMT+0700 (SE Asia Standard Time), pid=9080, uid=null, gid=null, cwd=C:\Users\sytra\Projects\Challenge_2, execPath=C:\Program Files\nodejs\node.exe, version=v6.1.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\sytra\Projects\Challenge_2\bin\www], rss=76169216, heapTotal=61861888, heapUsed=34483792, loadavg=[0, 0, 0], uptime=470496.42214, trace=[column=29, file=C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js, function=null, line=20, method=null, native=false, column=14, file=C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js, function=, line=121, method=null, native=false, column=13, file=events.js, function=emitTwo, line=106, method=null, native=false, column=7, file=events.js, function=ChildProcess.emit, line=191, method=emit, native=false, column=12, file=internal/child_process.js, function=Process.ChildProcess._handle.onexit, line=204, method=ChildProcess._handle.onexit, native=false], stack=[TypeError: res.redirect is not a function,     at C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js:20:29,     at ChildProcess.<anonymous> (C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js:121:14),     at emitTwo (events.js:106:13),     at ChildProcess.emit (events.js:191:7),     at Process.ChildProcess._handle.onexit (internal/child_process.js:204:12)]
+2016-05-26T18:21:27.947Z - error: uncaughtException: res.redirect is not a function date=Fri May 27 2016 01:21:27 GMT+0700 (SE Asia Standard Time), pid=6624, uid=null, gid=null, cwd=C:\Users\sytra\Projects\Challenge_2, execPath=C:\Program Files\nodejs\node.exe, version=v6.1.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\sytra\Projects\Challenge_2\bin\www], rss=77066240, heapTotal=61861888, heapUsed=37859608, loadavg=[0, 0, 0], uptime=470672.4364001, trace=[column=29, file=C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js, function=null, line=20, method=null, native=false, column=14, file=C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js, function=, line=121, method=null, native=false, column=13, file=events.js, function=emitTwo, line=106, method=null, native=false, column=7, file=events.js, function=ChildProcess.emit, line=191, method=emit, native=false, column=12, file=internal/child_process.js, function=Process.ChildProcess._handle.onexit, line=204, method=ChildProcess._handle.onexit, native=false], stack=[TypeError: res.redirect is not a function,     at C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js:20:29,     at ChildProcess.<anonymous> (C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js:121:14),     at emitTwo (events.js:106:13),     at ChildProcess.emit (events.js:191:7),     at Process.ChildProcess._handle.onexit (internal/child_process.js:204:12)]
+2016-05-26T18:24:11.884Z - error: uncaughtException: res.redirect is not a function date=Fri May 27 2016 01:24:11 GMT+0700 (SE Asia Standard Time), pid=3808, uid=null, gid=null, cwd=C:\Users\sytra\Projects\Challenge_2, execPath=C:\Program Files\nodejs\node.exe, version=v6.1.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\sytra\Projects\Challenge_2\bin\www], rss=76066816, heapTotal=61861888, heapUsed=34508480, loadavg=[0, 0, 0], uptime=470836.3735065, trace=[column=29, file=C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js, function=null, line=20, method=null, native=false, column=14, file=C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js, function=, line=121, method=null, native=false, column=13, file=events.js, function=emitTwo, line=106, method=null, native=false, column=7, file=events.js, function=ChildProcess.emit, line=191, method=emit, native=false, column=12, file=internal/child_process.js, function=Process.ChildProcess._handle.onexit, line=204, method=ChildProcess._handle.onexit, native=false], stack=[TypeError: res.redirect is not a function,     at C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js:20:29,     at ChildProcess.<anonymous> (C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js:121:14),     at emitTwo (events.js:106:13),     at ChildProcess.emit (events.js:191:7),     at Process.ChildProcess._handle.onexit (internal/child_process.js:204:12)]
+2016-05-26T18:34:09.760Z - error: uncaughtException: res.sendFile is not a function date=Fri May 27 2016 01:34:09 GMT+0700 (SE Asia Standard Time), pid=2052, uid=null, gid=null, cwd=C:\Users\sytra\Projects\Challenge_2, execPath=C:\Program Files\nodejs\node.exe, version=v6.1.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\sytra\Projects\Challenge_2\bin\www], rss=75886592, heapTotal=61861888, heapUsed=34049152, loadavg=[0, 0, 0], uptime=471434.2495344, trace=[column=29, file=C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js, function=null, line=20, method=null, native=false, column=14, file=C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js, function=, line=121, method=null, native=false, column=13, file=events.js, function=emitTwo, line=106, method=null, native=false, column=7, file=events.js, function=ChildProcess.emit, line=191, method=emit, native=false, column=12, file=internal/child_process.js, function=Process.ChildProcess._handle.onexit, line=204, method=ChildProcess._handle.onexit, native=false], stack=[TypeError: res.sendFile is not a function,     at C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js:20:29,     at ChildProcess.<anonymous> (C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js:121:14),     at emitTwo (events.js:106:13),     at ChildProcess.emit (events.js:191:7),     at Process.ChildProcess._handle.onexit (internal/child_process.js:204:12)]
+2016-05-26T18:35:01.364Z - error: uncaughtException: path must be absolute or specify root to res.sendFile date=Fri May 27 2016 01:35:01 GMT+0700 (SE Asia Standard Time), pid=8204, uid=null, gid=null, cwd=C:\Users\sytra\Projects\Challenge_2, execPath=C:\Program Files\nodejs\node.exe, version=v6.1.0, argv=[C:\Program Files\nodejs\node.exe, C:\Users\sytra\Projects\Challenge_2\bin\www], rss=75935744, heapTotal=61861888, heapUsed=34076568, loadavg=[0, 0, 0], uptime=471485.8526621, trace=[column=11, file=C:\Users\sytra\Projects\Challenge_2\node_modules\express\lib\response.js, function=ServerResponse.sendFile, line=403, method=sendFile, native=false, column=29, file=C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js, function=null, line=20, method=null, native=false, column=14, file=C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js, function=, line=121, method=null, native=false, column=13, file=events.js, function=emitTwo, line=106, method=null, native=false, column=7, file=events.js, function=ChildProcess.emit, line=191, method=emit, native=false, column=12, file=internal/child_process.js, function=Process.ChildProcess._handle.onexit, line=204, method=ChildProcess._handle.onexit, native=false], stack=[TypeError: path must be absolute or specify root to res.sendFile,     at ServerResponse.sendFile (C:\Users\sytra\Projects\Challenge_2\node_modules\express\lib\response.js:403:11),     at C:\Users\sytra\Projects\Challenge_2\controllers\template-controller.js:20:29,     at ChildProcess.<anonymous> (C:\Users\sytra\Projects\Challenge_2\node_modules\html-pdf\lib\pdf.js:121:14),     at emitTwo (events.js:106:13),     at ChildProcess.emit (events.js:191:7),     at Process.ChildProcess._handle.onexit (internal/child_process.js:204:12)]

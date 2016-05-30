@@ -14,8 +14,13 @@ CREATE TABLE user (
   isDisabled tinyint(1) DEFAULT 0
 );
 
-CREATE TABLE resume (
+CREATE TABLE template (
   id int PRIMARY KEY AUTO_INCREMENT,
+  name varchar(30) NOT NULL
+);
+
+CREATE TABLE resume (
+  id int PRIMARY KEY AUTO_INCREMENT,  
   firstName VARCHAR(100) NOT NULL,
   lastName VARCHAR(100),
   email VARCHAR(100) NOT NULL,
@@ -27,7 +32,9 @@ CREATE TABLE resume (
   photoUrl VARCHAR(300),
   publicLink VARCHAR(300),
   userId int,
-  FOREIGN KEY (userId) REFERENCES user(id)
+  templateId int NOT NULL,
+  FOREIGN KEY (userId) REFERENCES user(id),
+  FOREIGN KEY (templateId) REFERENCES template(id)
 );
 
 CREATE TABLE skill (
