@@ -168,6 +168,7 @@ BEGIN
         WHERE email = email_address;
         
         SELECT uuid;
+        SELECT username FROM `user` where resetPassCode = uuid;
     
     END IF;
 
