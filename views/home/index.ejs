@@ -1,7 +1,12 @@
 <% layout('./layouts/main.ejs') -%>
 
+<h3>Home page</h3>
+
 <% if (message.length > 0) { %>
-    <div class="alert alert-danger">
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <%= message %>
     </div>
 <% } %>
@@ -9,9 +14,11 @@
 <% if (req.isAuthenticated()) { %>
     <h3>Welcome <%= req.user.username %> , Role <%= req.user.role %></h3>
     <p>Id: <%= req.user.id %></p>    
-    <a href="/admin">Go to admin page</a>
+    <a href="/admin">Go to admin page</a><br>
+    <a href="/change_password">Change password</a><br>
     <a href="/logout">Logout</a><br>
 <% } else { %>
     <a href="/login">Login</a><br>
-    <a href="/register">Register</a>
+    <a href="/register">Register</a><br>
+    <a href="/reset">Forgot password</a>
 <% } %>

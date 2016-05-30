@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt-nodejs');
-var Guid = require('Guid');
+var Guid = require('guid');
 
 function User(user) {
     this.username = user.username;

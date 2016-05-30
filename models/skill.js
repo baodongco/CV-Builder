@@ -1,10 +1,9 @@
-function Skill(obj) {
-    this.id = obj.id;
-    this.name = obj.name;
-    this.expertise = obj.expertise;
-    this.experience = obj.experience;
-    this.latUsed = obj.latUsed;
-    this.resId = obj.resId;
+function skillModel(skill) {
+	this.resId = skill.resId,
+	this.name = skill.name,
+	this.expertise = skill.expertise,
+	this.experience = skill.experience,
+	this.lastUsed = skill.lastUsed
 }
 
-module.exports = Skill;
+module.exports = skillModel;

@@ -1,10 +1,9 @@
-function Certification(obj) {
-    this.id 			= obj.id;
-    this.title 			= obj.title;
-    this.authority 		= obj.authority;
-    this.date 			= obj.date;
-    this.detail			= obj.detail;
-    this.resId 			= obj.resId;
-}
+function certificationModel(certification) {
+	this.resId = certification.resId,
+	this.title = certification.title,
+	this.authority = certification.authority,
+	this.date = certification.date,
+	this.detail = certification.detail	
+};
 
-module.exports = Certification;
+module.exports = certificationModel;

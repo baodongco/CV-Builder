@@ -1,11 +1,10 @@
-function Education(obj) {
-    this.id 		= obj.id;
-    this.institute 	= obj.institute;
-    this.degree 	= obj.degree;
-    this.startTime 	= obj.startTime;
-    this.endTime	= obj.endTime;
-    this.detail 	= obj.detail;
-    this.resId 		= obj.resId;
-}
+function educationModel(education) {
+	this.resId = education.resId,
+	this.institute = education.institute,
+	this.degree = education.degree,
+	this.startTime = education.startTime,
+	this.endTime = education.endTime,
+	this.detail = education.detail
+};
 
-module.exports = Education;
+module.exports = educationModel;

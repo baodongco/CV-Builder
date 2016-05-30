@@ -1,11 +1,10 @@
-function Experience(obj) {
-    this.id 			= obj.id;
-    this.company 		= obj.company;
-    this.designation 	= obj.designation;
-    this.startTime 		= obj.startTime;
-    this.endTime		= obj.endTime;
-    this.detail 		= obj.detail;
-    this.resId 		    = obj.resId;
+function experienceModel(experience) {
+	this.resId = experience.resId;
+	this.company = experience.company;
+	this.designation = experience.designation;
+	this.startTime = experience.startTime;
+	this.endTime = experience.endTime;
+	this.detail = experience.detail;
 }
 
-module.exports = Experience;
+module.exports = experienceModel;
