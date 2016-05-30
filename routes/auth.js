@@ -15,6 +15,21 @@ module.exports = {
             authController.postRegister(req, res);
         });
 
+        // GET: /activate
+        app.get('/activate', function(req, res){
+            authController.getActivate(req, res);           
+        });
+
+         // GET: /reset
+        app.get('/reset', function(req, res){
+            authController.getReset(req, res);           
+        });
+
+         // POST: /reset
+        app.get('/reset', function(req, res){
+            authController.postReset(req, res);           
+        });
+
 
         // GET: /login
         app.get('/login', function(req, res) {

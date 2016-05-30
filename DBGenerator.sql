@@ -90,3 +90,44 @@ INSERT INTO user(username, email, password, role) VALUES (
   '$2a$08$Tbv4/2.0JQCJ0iK2IkMF3e1PQn4V/u6CmZr2f.d4ysEp0.qX5BdfC',
   'admin'
 );
+
+-- Store Procedure: activate account
+DELIMITER $$
+CREATE PROCEDURE SP_ACTIVATE_ACCOUNT(IN activation_code varchar(50), IN ttl INT)
+BEGIN
+	
+	DECLARE created_time TIMESTAMP;
+
+	DECLARE created_time_milis BIGINT;
+	DECLARE now_time_milis BIGINT;
+	DECLARE ttl_milis BIGINT;
+	DECLARE distance_time_milis BIGINT;
+
+	SET ttl_milis = ttl * 60;
+	SELECT unix_timestamp(now()) INTO now_time_milis;
+
+	SELECT codeStartDate INTO created_time FROM `user` WHERE activationCode = activation_code;
+	SELECT unix_timestamp(created_time) INTO created_time_milis;
+
+	SET distance_time_milis = now_time_milis - created_time_milis;
+
+	IF (created_time IS NULL) THEN
+		
+			SIGNAL SQLSTATE '45000'
+			SET MESSAGE_TEXT = 'Already activated!!';
+
+	ELSEIF (distance_time_milis > ttl_milis) THEN
+
+			SIGNAL SQLSTATE '46000'
+			SET MESSAGE_TEXT = 'Expired link to activate your account!!';
+
+	ELSE
+		
+			UPDATE `user` SET activationCode = NULL
+			WHERE activationCode = activation_code;
+	
+	END IF;
+
+
+END; $$
+DELIMITER ;
