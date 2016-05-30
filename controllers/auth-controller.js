@@ -157,7 +157,7 @@ function authController() {
         var isError = true;
         var index = 0;
         var message = '';
-        var guid = '';
+        var _guid = '';
 
         connection.pool.query("CALL SP_RESET_PASSWORD_COMPLETE('"+ guid +"',"+ ttl +")", function(err, rows){
 
@@ -170,7 +170,7 @@ function authController() {
                 console.log(rows);
                 isError = false;
                 message = 'Enter your new password to reset!!';
-                id = rows[0][0]['guid'];
+                _guid = rows[0][0]['guid'];
             }
 
             console.log(message);
@@ -180,7 +180,7 @@ function authController() {
             if(isError){
                 res.redirect('/');
             }else{
-                res.redirect('/reset-form?guid='+guid);
+                res.redirect('/reset-form?guid='+_guid);
             }
 
         });
@@ -203,7 +203,7 @@ function authController() {
 
     this.getResetForm = function(req, res){
         res.render('auth/reset-form', {
-            message: req.flash('resetMessage'), title: 'Reset-form', id: req.query.guid
+            message: req.flash('resetMessage'), title: 'Reset-form', guid: req.query.guid
         });
     };
 
