@@ -30,6 +30,9 @@
         "user": "gaizteam@gmail.com",
         "pass": "Gaizteam1234"
       }
+    },
+    "active-user": {
+      "ttl": 1
     }
   }
 }
