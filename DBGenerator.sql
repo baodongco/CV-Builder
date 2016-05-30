@@ -131,3 +131,47 @@ BEGIN
 
 END; $$
 DELIMITER ;
+
+-- Store Procedure: reset password
+DELIMITER $$
+CREATE PROCEDURE SP_RESET_PASSWORD(IN email_address VARCHAR(100))
+BEGIN
+   
+  DECLARE uuid VARCHAR(50);
+  DECLARE now_time TIMESTAMP;
+
+  DECLARE email_address_exist VARCHAR(100);
+  DECLARE activation_code VARCHAR(50);
+
+  SELECT UUID() INTO uuid;
+  SELECT NOW() INTO now_time;
+
+  SELECT email INTO email_address_exist FROM `user` WHERE email = email_address;
+
+  IF (email_address_exist IS NULL) THEN
+    
+    SIGNAL SQLSTATE '47000'
+    SET MESSAGE_TEXT = 'Email address doesn\'t exist!!';
+
+  ELSE
+
+    SELECT activationCode INTO activation_code FROM `user` WHERE email = email_address;
+    
+    IF (activation_code IS NOT NULL) THEN
+
+        SIGNAL SQLSTATE '48000'
+        SET MESSAGE_TEXT = 'Your account must be activated!!';
+    
+    ELSE
+        
+        UPDATE `user` set resetPassCode = uuid, codeStartDate = now_time
+        WHERE email = email_address;
+        
+        SELECT uuid;
+    
+    END IF;
+
+  END IF;
+  
+END; $$
+DELIMITER ;
