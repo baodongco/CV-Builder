@@ -30,6 +30,21 @@ module.exports = {
             authController.postReset(req, res);           
         });
 
+        // GET: /reset-complete
+        app.get('/reset-complete', function(req, res){
+            authController.getResetComplete(req, res);           
+        });
+
+        // POST: /reset-complete
+        app.post('/reset-complete', function(req, res){
+            authController.postResetComplete(req, res);           
+        });
+
+        // GET: /reset-form
+        app.get('/reset-form', function(req, res){
+            authController.getResetForm(req, res);           
+        });
+
 
         // GET: /login
         app.get('/login', function(req, res) {
