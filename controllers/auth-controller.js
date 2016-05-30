@@ -112,7 +112,41 @@ function authController() {
     };
 
      this.postReset = function(req, res){
-         var email = req.body.email;
+        var email_address = req.body.email;
+
+        connection.pool.query("CALL SP_RESET_PASSWORD('"+ email_address +"')",function(err, rows){  
+
+        console.log("SP_RESET_PASSWORD('"+ email_address +"')");
+      
+        var index = 0;
+        var message = ''; 
+        var uuid = '';
+        var username = '';
+      
+        if (err){
+            console.log(err);
+            message = err.message;
+            index = message.indexOf(':');
+            message = message.substring(index + 1);
+         }else{
+            message = 'Please check you email to reset your password!!';
+            uuid = rows[0][0]['uuid'];
+            username = rows[1][0]['username'];
+            console.log('=========================uuid: ' + uuid);
+            console.log('=========================username: ' + username);
+            console.log(rows);
+
+            // send email for reset password
+             var emailInfo = new EmailInfo(username, email_address, uuid);
+             var email = new Email(emailInfo);
+             email.sendEmailResetPassword();
+         }
+
+         console.log(message);
+
+        req.flash('homeMessage', message);
+        res.redirect('/');
+     });
          
     };
 

@@ -48,5 +48,21 @@ Email.prototype.sendEmail = function() {
 	});
 };
 
+Email.prototype.sendEmailResetPassword = function() {
+	// send email
+	app.mailer.send('reset', {
+		to: this.mailTo,
+		subject: '[Gaiz Team] Acivation account',
+		receiver: this.name,
+		resetLink: 'http://localhost:3000/reset-complete?guid=' + this.activationCode
+	}, function(err) {
+		if (err) {
+			console.log(err);
+			console.log('email-error');
+			return;
+		}
+		console.log('email-sucess');
+	});
+};
 
 module.exports = Email;

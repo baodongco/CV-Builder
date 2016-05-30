@@ -26,7 +26,7 @@ module.exports = {
         });
 
          // POST: /reset
-        app.get('/reset', function(req, res){
+        app.post('/reset', function(req, res){
             authController.postReset(req, res);           
         });
 
