@@ -12,7 +12,7 @@ var projectModel       = require('../models/project');
 var skillModel         = require('../models/skill');
 
 function resumeController() {
-this.insertResume = function(req, res) {
+    this.insertResume = function(req, res) {
 		var resume = new resumeModel(req.body);				
 		// insert resume	
 		connection.pool.query(query.insertResume, resume, function(err, rows) {
@@ -57,6 +57,7 @@ this.insertResume = function(req, res) {
 				});
 			}
 		});
+    };
 	
     /**
      * @param  req
@@ -130,7 +131,7 @@ this.insertResume = function(req, res) {
      * @param  id resumeId
      * @param  callback do whatever you want with returned resume data
      */
-     var getResumeDataById = function (id, callback) {     
+    var getResumeDataById = function (id, callback) {     
       connection.pool.query("CALL udsp_getAllResumeData(?)", id, function (err, rows) {
         if (err) {
           console.log(err);
@@ -176,8 +177,8 @@ this.insertResume = function(req, res) {
 
           callback(resume);
         };
-      })       
-};
+      });       
+    };
 };
 
 module.exports = new resumeController();
