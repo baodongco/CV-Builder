@@ -3,6 +3,7 @@ var bcrypt = require('bcrypt-nodejs');
 var connection = require('../connection');
 var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
+var PassModification = require('../models/password-modification');
 var Email = require('../models/email');
 var EmailInfo = require('../models/email-info');
 
@@ -76,6 +77,30 @@ function authController() {
         
 
 
+    };
+
+    this.getChangePassword = function (req, res) {
+        res.render('auth/change-password', { title: 'Change password', message: req.flash('changePass'), 
+            username: req.user.username, id: req.user.id });
+    };
+
+    this.postChangePassword = function (req, res) {
+        var user = new PassModification(req.body);
+        
+        connection.pool.query('SELECT password FROM user WHERE id = ?', user.id, function(err, rows) {
+            if (!bcrypt.compareSync(user.oldPass, rows[0].password)) {
+                req.flash('changePass', 'Old password is incorrect');
+                res.redirect('/change_password');
+            } else if (user.oldPass == user.newPass) {
+                req.flash('changePass', 'Old password and new password are the same');
+                res.redirect('/change_password');
+            } else {
+                connection.pool.query('UPDATE user SET password = ? WHERE id = ?', [user.newHasingPass, user.id], function(err, rows) {
+                    req.flash('homeMessage', 'Password updated successfully');
+                    res.redirect('/');
+                });
+            }        
+        });
     };
 
     this.serializeUser = function(user, done) {

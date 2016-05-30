@@ -1,8 +1,4 @@
-#registerForm .error {
-    color: red;
-}
-
-#loginForm .error {
+form .error {
     color: red;
 }
 

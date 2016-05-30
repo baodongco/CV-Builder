@@ -5,7 +5,12 @@
 
     <!-- show any messages that come back with authentication -->
     <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <%= message %>
+        </div>
     <% } %>
     <!-- LOGIN FORM -->
     <form action="/login" method="post" role="form" id="loginForm">

@@ -4,7 +4,8 @@ var Guid = require('guid');
 function User(user) {
     this.username = user.username;
     this.email = user.email;
-    this.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8), null);
+    this.oldPass = user.oldPass;
+    this.newPass = bcrypt.hashSync(user.newPass, bcrypt.genSaltSync(8), null);
     this.activationCode = Guid.create();
 }
 
