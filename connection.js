@@ -11,7 +11,8 @@ function Connection() {
             host: dbSettings['host'],
             user: dbSettings['user'],
             password: dbSettings['pass'],
-            database: dbSettings['dbName']
+            database: dbSettings['dbName'],
+            multipleStatements: true
         });
     }
 }

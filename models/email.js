@@ -37,7 +37,7 @@ Email.prototype.sendEmail = function() {
 		to: this.mailTo,
 		subject: '[Gaiz Team] Acivation account',
 		receiver: this.name,
-		activateLink: 'http://localhost:3030/activate?guid=' + this.activationCode
+		activateLink: 'http://localhost:3000/activate?guid=' + this.activationCode
 	}, function(err) {
 		if (err) {
 			console.log(err);

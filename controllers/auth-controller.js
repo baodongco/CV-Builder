@@ -5,6 +5,8 @@ var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
 var Email = require('../models/email');
 var EmailInfo = require('../models/email-info');
+var config = require('config');
+var activeUserSettings = config.get('cv-builder.active-user');
 
 function authController() {
     this.getRegister = function(req, res) {
@@ -72,10 +74,45 @@ function authController() {
     };
 
     this.getActivate = function(req, res){
-        var activationCode = req.param['guid'];
-        
+        var activationCode = req.query.guid;
+        var ttl = activeUserSettings['ttl'];
+        var isError = true;
+        var index = 0;
+        var message = '';
+    
+        connection.pool.query("CALL SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")",function(err, rows){  
 
+            console.log("SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")");
+      
+        if (err){
+            console.log(err);
+            message = err.message;
+            index = message.indexOf(':');
+            message = message.substring(index + 1);
+         }else{
+            message = 'Your account has been activated. Please enjoy!!';
+            isError = false;
+         }
 
+        req.flash('homeMessage', message);
+    
+        if(isError){
+           res.redirect('/');
+        }else{
+            res.redirect('/login');
+        }
+     });
+    };
+
+    this.getReset = function(req, res){
+         res.render('auth/reset', {
+            message: req.flash('resetMessage'), title: 'Reset'
+        });
+    };
+
+     this.postReset = function(req, res){
+         var email = req.body.email;
+         
     };
 
     this.serializeUser = function(user, done) {

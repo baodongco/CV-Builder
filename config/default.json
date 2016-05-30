@@ -30,6 +30,9 @@
         "user": "tungchelsea21@gmail.com",
         "pass": "chelsea0908953800"
       }
+    },
+     "active-user": {
+      "ttl": 1
     }
   }
 }
