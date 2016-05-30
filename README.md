@@ -11,3 +11,9 @@ $ npm start
 ```
 
 - To login as admin type username : admin, password : Admin1234
+
+## Disable custom error page for debugging
+
+-   Comment the "res.redirect('/404.html');" line
+
+-   Uncomment "// next(err);" line   

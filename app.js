@@ -58,10 +58,14 @@ resume.configure(app);
 preview.configure(app);
 
 // catch 404 and forward to error handler
+app.get('/404', function (req, res) {
+   res.render('404');
+});
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    next(err);
+    // next(err);
+    res.redirect('/404.html');
 });
 
 // error handlers
