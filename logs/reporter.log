@@ -1,0 +1,1171 @@
+2016-05-26T14:44:28.330Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T14:44:28.345Z - info: Using configuration file dev.config.json
+2016-05-26T14:44:29.371Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T14:44:29.509Z - info: Found 0 extensions
+2016-05-26T14:44:29.525Z - warn: Extension express was not found.
+2016-05-26T14:44:29.541Z - warn: Extension templates was not found.
+2016-05-26T14:44:29.541Z - warn: Extension phantom-pdf was not found.
+2016-05-26T14:44:29.556Z - warn: Extension scripts was not found.
+2016-05-26T14:44:29.556Z - warn: Extension data was not found.
+2016-05-26T14:44:29.556Z - warn: Extension images was not found.
+2016-05-26T14:44:29.572Z - warn: Extension statistics was not found.
+2016-05-26T14:44:29.572Z - warn: Extension reports was not found.
+2016-05-26T14:44:29.572Z - warn: Extension ejs was not found.
+2016-05-26T14:44:29.588Z - info: Extensions loaded.
+2016-05-26T14:44:30.419Z - info: Creating memory store
+2016-05-26T14:44:30.465Z - info: reporter initialized
+2016-05-26T14:51:45.773Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T14:51:45.789Z - info: Using configuration file dev.config.json
+2016-05-26T14:51:46.655Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T14:51:48.558Z - info: Found 30 extensions
+2016-05-26T14:51:48.611Z - info: Using extension express
+2016-05-26T14:51:49.913Z - info: Using extension templates
+2016-05-26T14:51:49.944Z - info: Using extension phantom-pdf
+2016-05-26T14:51:50.198Z - info: Using extension scripts
+2016-05-26T14:51:50.198Z - info: Using extension data
+2016-05-26T14:51:50.227Z - info: Using extension images
+2016-05-26T14:51:50.361Z - info: Using extension statistics
+2016-05-26T14:51:50.398Z - info: Using extension reports
+2016-05-26T14:51:50.430Z - info: Extensions loaded.
+2016-05-26T14:51:50.815Z - info: Creating memory store
+2016-05-26T14:51:50.899Z - info: Configuring routes for existing express app.
+2016-05-26T14:51:51.864Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T14:51:51.864Z - info: reporter initialized
+2016-05-26T14:52:02.209Z - debug: OData query on settings
+2016-05-26T14:52:02.255Z - debug: OData query on templates
+2016-05-26T14:52:02.564Z - debug: OData insert into settings
+2016-05-26T14:52:03.975Z - debug: OData query on data
+2016-05-26T14:52:03.991Z - debug: OData query on scripts
+2016-05-26T15:21:41.789Z - info: Starting rendering request 1 (user: null) requestId=1
+2016-05-26T15:21:41.807Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:21:41.814Z - debug: Data item not defined for this template.
+2016-05-26T15:21:41.856Z - debug: Rendering engine none requestId=1
+2016-05-26T15:21:42.344Z - debug: Replaced images []
+2016-05-26T15:21:42.352Z - debug: Executing recipe phantom-pdf requestId=1
+2016-05-26T15:21:42.358Z - debug: phantom-pdf recipe start requestId=1
+2016-05-26T15:21:44.911Z - debug: Converting in dedicated phantomjs 1.9.8 timestamp=Thu May 26 2016 22:21:43 GMT+0700 (SE Asia Standard Time), requestId=1
+2016-05-26T15:21:44.936Z - debug: Request file:///C%3A%5CUsers%5Csytra%5CAppData%5CLocal%5CTemp%5Cjsreport-temp%5C8cd91c90-2355-11e6-befd-0d8e30f49a96html.html timestamp=Thu May 26 2016 22:21:43 GMT+0700 (SE Asia Standard Time), requestId=1
+2016-05-26T15:21:44.960Z - debug: phantom-pdf recipe finished. requestId=1
+2016-05-26T15:21:44.980Z - debug: Skipping storing report.
+2016-05-26T15:21:44.983Z - info: Rendering request 1 finished in 3206 ms requestId=1
+2016-05-26T15:22:17.892Z - info: Starting rendering request 2 (user: null) requestId=2
+2016-05-26T15:22:17.903Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:22:17.909Z - debug: Data item not defined for this template.
+2016-05-26T15:22:17.923Z - debug: Rendering engine none requestId=2
+2016-05-26T15:22:17.970Z - debug: Replaced images []
+2016-05-26T15:22:17.978Z - debug: Executing recipe phantom-pdf requestId=2
+2016-05-26T15:22:17.989Z - debug: phantom-pdf recipe start requestId=2
+2016-05-26T15:22:20.234Z - debug: Converting in dedicated phantomjs 1.9.8 timestamp=Thu May 26 2016 22:22:19 GMT+0700 (SE Asia Standard Time), requestId=2
+2016-05-26T15:22:20.252Z - debug: Request file:///C%3A%5CUsers%5Csytra%5CAppData%5CLocal%5CTemp%5Cjsreport-temp%5Ca215d170-2355-11e6-befd-0d8e30f49a96html.html timestamp=Thu May 26 2016 22:22:19 GMT+0700 (SE Asia Standard Time), requestId=2
+2016-05-26T15:22:20.264Z - debug: phantom-pdf recipe finished. requestId=2
+2016-05-26T15:22:20.274Z - debug: Skipping storing report.
+2016-05-26T15:22:20.280Z - info: Rendering request 2 finished in 2392 ms requestId=2
+2016-05-26T15:37:37.147Z - info: Starting rendering request 3 (user: null) requestId=3
+2016-05-26T15:37:37.155Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:undefined}
+2016-05-26T15:37:37.160Z - debug: Data item not defined for this template.
+2016-05-26T15:37:37.270Z - error: Error during processing request: http://localhost:3000/export/api/report details: Engine must be specified Error: Engine must be specified
+    at invokeRender (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:66:11)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:12
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:38:29.471Z - info: Starting rendering request 4 (user: null) requestId=4
+2016-05-26T15:38:29.483Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:38:29.492Z - debug: Data item not defined for this template.
+2016-05-26T15:38:29.506Z - debug: Rendering engine none requestId=4
+2016-05-26T15:38:29.529Z - debug: Replaced images []
+2016-05-26T15:38:29.537Z - debug: Executing recipe phantom-pdf requestId=4
+2016-05-26T15:38:29.560Z - debug: phantom-pdf recipe start requestId=4
+2016-05-26T15:38:31.144Z - debug: Converting in dedicated phantomjs 1.9.8 timestamp=Thu May 26 2016 22:38:30 GMT+0700 (SE Asia Standard Time), requestId=4
+2016-05-26T15:38:31.164Z - debug: Request file:///C%3A%5CUsers%5Csytra%5CAppData%5CLocal%5CTemp%5Cjsreport-temp%5Ce52ff0b0-2357-11e6-befd-0d8e30f49a96html.html timestamp=Thu May 26 2016 22:38:30 GMT+0700 (SE Asia Standard Time), requestId=4
+2016-05-26T15:38:31.172Z - debug: phantom-pdf recipe finished. requestId=4
+2016-05-26T15:38:31.182Z - debug: Skipping storing report.
+2016-05-26T15:38:31.188Z - info: Rendering request 4 finished in 1722 ms requestId=4
+2016-05-26T15:39:10.882Z - info: Starting rendering request 5 (user: null) requestId=5
+2016-05-26T15:39:10.890Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:39:10.896Z - debug: Data item not defined for this template.
+2016-05-26T15:39:10.906Z - debug: Rendering engine none requestId=5
+2016-05-26T15:39:10.920Z - debug: Replaced images []
+2016-05-26T15:39:10.935Z - debug: Executing recipe phantom-pdf requestId=5
+2016-05-26T15:39:10.935Z - debug: phantom-pdf recipe start requestId=5
+2016-05-26T15:39:10.968Z - info: Starting rendering request 6 (user: null) requestId=6
+2016-05-26T15:39:10.975Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T15:39:10.979Z - debug: Inline data specified.
+2016-05-26T15:39:10.979Z - debug: Rendering engine none requestId=6
+2016-05-26T15:39:10.995Z - debug: Replaced images []
+2016-05-26T15:39:11.010Z - debug: Executing recipe html requestId=6
+2016-05-26T15:39:11.010Z - debug: Skipping storing report.
+2016-05-26T15:39:11.026Z - info: Rendering request 6 finished in 64 ms requestId=6
+2016-05-26T15:42:11.211Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=5
+2016-05-26T15:42:11.334Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:43:22.330Z - info: Starting rendering request 7 (user: null) requestId=7
+2016-05-26T15:43:22.342Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:43:22.349Z - debug: Data item not defined for this template.
+2016-05-26T15:43:22.360Z - debug: Rendering engine none requestId=7
+2016-05-26T15:43:22.389Z - debug: Replaced images []
+2016-05-26T15:43:22.392Z - debug: Executing recipe phantom-pdf requestId=7
+2016-05-26T15:43:22.392Z - debug: phantom-pdf recipe start requestId=7
+2016-05-26T15:43:22.407Z - info: Starting rendering request 8 (user: null) requestId=8
+2016-05-26T15:43:22.407Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T15:43:22.407Z - debug: Inline data specified.
+2016-05-26T15:43:22.423Z - debug: Rendering engine none requestId=8
+2016-05-26T15:43:22.454Z - debug: Replaced images []
+2016-05-26T15:43:22.454Z - debug: Executing recipe html requestId=8
+2016-05-26T15:43:22.470Z - debug: Skipping storing report.
+2016-05-26T15:43:22.477Z - info: Rendering request 8 finished in 78 ms requestId=8
+2016-05-26T15:44:30.827Z - info: Starting rendering request 9 (user: null) requestId=9
+2016-05-26T15:44:30.843Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:44:30.850Z - debug: Data item not defined for this template.
+2016-05-26T15:44:30.858Z - debug: Rendering engine none requestId=9
+2016-05-26T15:44:30.881Z - debug: Replaced images []
+2016-05-26T15:44:30.887Z - debug: Executing recipe phantom-pdf requestId=9
+2016-05-26T15:44:30.888Z - debug: phantom-pdf recipe start requestId=9
+2016-05-26T15:44:30.888Z - info: Starting rendering request 10 (user: null) requestId=10
+2016-05-26T15:44:30.904Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T15:44:30.904Z - debug: Inline data specified.
+2016-05-26T15:44:30.919Z - debug: Rendering engine none requestId=10
+2016-05-26T15:44:30.935Z - debug: Replaced images []
+2016-05-26T15:44:30.935Z - debug: Executing recipe html requestId=10
+2016-05-26T15:44:30.958Z - debug: Skipping storing report.
+2016-05-26T15:44:30.965Z - info: Rendering request 10 finished in 70 ms requestId=10
+2016-05-26T15:46:04.907Z - info: Starting rendering request 11 (user: null) requestId=11
+2016-05-26T15:46:04.914Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:46:04.928Z - debug: Data item not defined for this template.
+2016-05-26T15:46:04.941Z - debug: Rendering engine none requestId=11
+2016-05-26T15:46:04.972Z - debug: Replaced images []
+2016-05-26T15:46:04.979Z - debug: Executing recipe phantom-pdf requestId=11
+2016-05-26T15:46:04.986Z - debug: phantom-pdf recipe start requestId=11
+2016-05-26T15:46:04.995Z - info: Starting rendering request 12 (user: null) requestId=12
+2016-05-26T15:46:05.002Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T15:46:05.008Z - debug: Inline data specified.
+2016-05-26T15:46:05.012Z - debug: Rendering engine none requestId=12
+2016-05-26T15:46:05.028Z - debug: Replaced images []
+2016-05-26T15:46:05.028Z - debug: Executing recipe html requestId=12
+2016-05-26T15:46:05.043Z - debug: Skipping storing report.
+2016-05-26T15:46:05.043Z - info: Rendering request 12 finished in 53 ms requestId=12
+2016-05-26T15:46:16.335Z - info: Starting rendering request 13 (user: null) requestId=13
+2016-05-26T15:46:16.347Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:46:16.353Z - debug: Data item not defined for this template.
+2016-05-26T15:46:16.366Z - debug: Rendering engine none requestId=13
+2016-05-26T15:46:16.383Z - debug: Replaced images []
+2016-05-26T15:46:16.390Z - debug: Executing recipe phantom-pdf requestId=13
+2016-05-26T15:46:16.396Z - debug: phantom-pdf recipe start requestId=13
+2016-05-26T15:46:16.401Z - info: Starting rendering request 14 (user: null) requestId=14
+2016-05-26T15:46:16.414Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T15:46:16.420Z - debug: Inline data specified.
+2016-05-26T15:46:16.432Z - debug: Rendering engine none requestId=14
+2016-05-26T15:46:16.448Z - debug: Replaced images []
+2016-05-26T15:46:16.452Z - debug: Executing recipe html requestId=14
+2016-05-26T15:46:16.452Z - debug: Skipping storing report.
+2016-05-26T15:46:16.470Z - info: Rendering request 14 finished in 52 ms requestId=14
+2016-05-26T15:46:21.605Z - info: Starting rendering request 15 (user: null) requestId=15
+2016-05-26T15:46:21.614Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:46:21.620Z - debug: Data item not defined for this template.
+2016-05-26T15:46:21.631Z - debug: Rendering engine none requestId=15
+2016-05-26T15:46:21.649Z - debug: Replaced images []
+2016-05-26T15:46:21.654Z - debug: Executing recipe phantom-pdf requestId=15
+2016-05-26T15:46:21.661Z - debug: phantom-pdf recipe start requestId=15
+2016-05-26T15:46:21.670Z - info: Starting rendering request 16 (user: null) requestId=16
+2016-05-26T15:46:21.676Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T15:46:21.681Z - debug: Inline data specified.
+2016-05-26T15:46:21.681Z - debug: Rendering engine none requestId=16
+2016-05-26T15:46:21.697Z - debug: Replaced images []
+2016-05-26T15:46:21.713Z - debug: Executing recipe html requestId=16
+2016-05-26T15:46:21.713Z - debug: Skipping storing report.
+2016-05-26T15:46:21.728Z - info: Rendering request 16 finished in 49 ms requestId=16
+2016-05-26T15:46:22.641Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=7
+2016-05-26T15:46:22.792Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:47:31.140Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=9
+2016-05-26T15:47:31.249Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:49:05.190Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=11
+2016-05-26T15:49:05.305Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:49:16.635Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=13
+2016-05-26T15:49:16.745Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:49:21.884Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=15
+2016-05-26T15:49:21.984Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:50:46.017Z - info: Starting rendering request 17 (user: null) requestId=17
+2016-05-26T15:50:46.031Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:50:46.037Z - debug: Data item not defined for this template.
+2016-05-26T15:50:46.050Z - debug: Rendering engine none requestId=17
+2016-05-26T15:50:46.088Z - debug: Replaced images []
+2016-05-26T15:50:46.090Z - debug: Executing recipe phantom-pdf requestId=17
+2016-05-26T15:50:46.090Z - debug: phantom-pdf recipe start requestId=17
+2016-05-26T15:50:46.106Z - info: Starting rendering request 18 (user: null) requestId=18
+2016-05-26T15:50:46.106Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T15:50:46.106Z - debug: Inline data specified.
+2016-05-26T15:50:46.127Z - debug: Rendering engine none requestId=18
+2016-05-26T15:50:46.143Z - debug: Replaced images []
+2016-05-26T15:50:46.143Z - debug: Executing recipe html requestId=18
+2016-05-26T15:50:46.159Z - debug: Skipping storing report.
+2016-05-26T15:50:46.159Z - info: Rendering request 18 finished in 69 ms requestId=18
+2016-05-26T15:51:05.998Z - info: Starting rendering request 19 (user: null) requestId=19
+2016-05-26T15:51:06.015Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T15:51:06.033Z - debug: Data item not defined for this template.
+2016-05-26T15:51:06.045Z - debug: Rendering engine none requestId=19
+2016-05-26T15:51:06.068Z - debug: Replaced images []
+2016-05-26T15:51:06.075Z - debug: Executing recipe phantom-pdf requestId=19
+2016-05-26T15:51:06.080Z - debug: phantom-pdf recipe start requestId=19
+2016-05-26T15:51:06.091Z - info: Starting rendering request 20 (user: null) requestId=20
+2016-05-26T15:51:06.091Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T15:51:06.091Z - debug: Inline data specified.
+2016-05-26T15:51:06.115Z - debug: Rendering engine none requestId=20
+2016-05-26T15:51:06.146Z - debug: Replaced images []
+2016-05-26T15:51:06.155Z - debug: Executing recipe html requestId=20
+2016-05-26T15:51:06.164Z - debug: Skipping storing report.
+2016-05-26T15:51:06.173Z - info: Rendering request 20 finished in 79 ms requestId=20
+2016-05-26T15:53:46.323Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=17
+2016-05-26T15:53:46.459Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T15:54:06.294Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=19
+2016-05-26T15:54:06.347Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:05:29.067Z - info: Starting rendering request 21 (user: null) requestId=21
+2016-05-26T16:05:29.077Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T16:05:29.084Z - debug: Data item not defined for this template.
+2016-05-26T16:05:29.116Z - debug: Rendering engine none requestId=21
+2016-05-26T16:05:29.189Z - debug: Replaced images []
+2016-05-26T16:05:29.189Z - debug: Executing recipe phantom-pdf requestId=21
+2016-05-26T16:05:29.205Z - debug: phantom-pdf recipe start requestId=21
+2016-05-26T16:05:29.205Z - info: Starting rendering request 22 (user: null) requestId=22
+2016-05-26T16:05:29.220Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T16:05:29.220Z - debug: Inline data specified.
+2016-05-26T16:05:29.236Z - debug: Rendering engine none requestId=22
+2016-05-26T16:05:29.278Z - debug: Replaced images []
+2016-05-26T16:05:29.278Z - debug: Executing recipe html requestId=22
+2016-05-26T16:05:29.293Z - debug: Skipping storing report.
+2016-05-26T16:05:29.293Z - info: Rendering request 22 finished in 88 ms requestId=22
+2016-05-26T16:08:29.492Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=21
+2016-05-26T16:08:29.608Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:14:47.369Z - info: Starting rendering request 23 (user: null) requestId=23
+2016-05-26T16:14:47.380Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T16:14:47.387Z - debug: Data item not defined for this template.
+2016-05-26T16:14:47.400Z - debug: Rendering engine none requestId=23
+2016-05-26T16:14:47.480Z - debug: Replaced images []
+2016-05-26T16:14:47.480Z - debug: Executing recipe phantom-pdf requestId=23
+2016-05-26T16:14:47.496Z - debug: phantom-pdf recipe start requestId=23
+2016-05-26T16:14:47.512Z - info: Starting rendering request 24 (user: null) requestId=24
+2016-05-26T16:14:47.512Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T16:14:47.527Z - debug: Inline data specified.
+2016-05-26T16:14:47.527Z - debug: Rendering engine none requestId=24
+2016-05-26T16:14:47.564Z - debug: Replaced images []
+2016-05-26T16:14:47.564Z - debug: Executing recipe html requestId=24
+2016-05-26T16:14:47.583Z - debug: Skipping storing report.
+2016-05-26T16:14:47.590Z - info: Rendering request 24 finished in 87 ms requestId=24
+2016-05-26T16:15:30.453Z - info: Starting rendering request 25 (user: null) requestId=25
+2016-05-26T16:15:30.462Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T16:15:30.543Z - warn: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token o in JSON at position 1 SyntaxError: Unexpected token o in JSON at position 1
+    at Object.parse (native)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-data\lib\data.js:101:25
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\q\q.js:834:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\q\q.js:863:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\q\q.js:796:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\q\q.js:857:14
+    at runSingle (C:\Users\sytra\Projects\Challenge_2\node_modules\q\q.js:137:13)
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\q\q.js:125:13)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:16:12.030Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token " SyntaxError: Unexpected token "
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:16:41.642Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token " SyntaxError: Unexpected token "
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:17:47.628Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=23
+2016-05-26T16:17:47.631Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:20:09.900Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:20:13.120Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:20:37.394Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:21:11.115Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:21:42.351Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:21:48.837Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token t SyntaxError: Unexpected token t
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:23:06.011Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token - SyntaxError: Unexpected token -
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:23:17.060Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token - SyntaxError: Unexpected token -
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:23:58.008Z - error: Error during processing request: http://localhost:3000/export/api/report details: Unexpected token - SyntaxError: Unexpected token -
+    at parse (C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\types\json.js:83:15)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-express\node_modules\body-parser\lib\read.js:116:18
+    at invokeCallback (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:262:16)
+    at done (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:251:7)
+    at IncomingMessage.onEnd (C:\Users\sytra\Projects\Challenge_2\node_modules\raw-body\index.js:308:7)
+    at emitNone (events.js:86:13)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:926:12)
+    at _combinedTickCallback (internal/process/next_tick.js:74:11)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:25:36.998Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T16:25:37.007Z - info: Using configuration file dev.config.json
+2016-05-26T16:25:38.210Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T16:25:40.914Z - info: Found 30 extensions
+2016-05-26T16:25:41.183Z - info: Using extension express
+2016-05-26T16:25:43.787Z - info: Using extension templates
+2016-05-26T16:25:43.977Z - info: Using extension phantom-pdf
+2016-05-26T16:25:45.386Z - info: Using extension scripts
+2016-05-26T16:25:45.432Z - info: Using extension data
+2016-05-26T16:25:45.473Z - info: Using extension images
+2016-05-26T16:25:45.620Z - info: Using extension statistics
+2016-05-26T16:25:45.637Z - info: Using extension reports
+2016-05-26T16:25:45.681Z - info: Extensions loaded.
+2016-05-26T16:25:46.545Z - info: Creating memory store
+2016-05-26T16:25:46.697Z - info: Configuring routes for existing express app.
+2016-05-26T16:25:49.345Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T16:25:49.350Z - info: reporter initialized
+2016-05-26T16:25:55.292Z - info: Starting rendering request 1 (user: null) requestId=1
+2016-05-26T16:25:55.308Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T16:25:55.308Z - debug: Data item not defined for this template.
+2016-05-26T16:25:55.339Z - debug: Rendering engine none requestId=1
+2016-05-26T16:25:55.640Z - error: Error when processing render request Error during rendering report: First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object. TypeError: First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.
+    at fromObject (buffer.js:287:9)
+    at Function.Buffer.from (buffer.js:133:10)
+    at new Buffer (buffer.js:112:17)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:98:24
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=1
+2016-05-26T16:25:55.761Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object. TypeError: First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.
+    at fromObject (buffer.js:287:9)
+    at Function.Buffer.from (buffer.js:133:10)
+    at new Buffer (buffer.js:112:17)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:98:24
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:27:09.092Z - info: Starting rendering request 2 (user: null) requestId=2
+2016-05-26T16:27:09.107Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T16:27:09.113Z - debug: Data item not defined for this template.
+2016-05-26T16:27:09.130Z - debug: Rendering engine none requestId=2
+2016-05-26T16:27:09.152Z - debug: Replaced images []
+2016-05-26T16:27:09.168Z - debug: Executing recipe phantom-pdf requestId=2
+2016-05-26T16:27:09.168Z - debug: phantom-pdf recipe start requestId=2
+2016-05-26T16:27:09.203Z - info: Starting rendering request 3 (user: null) requestId=3
+2016-05-26T16:27:09.210Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T16:27:09.216Z - debug: Inline data specified.
+2016-05-26T16:27:09.233Z - debug: Rendering engine none requestId=3
+2016-05-26T16:27:09.269Z - debug: Replaced images []
+2016-05-26T16:27:09.274Z - debug: Executing recipe html requestId=3
+2016-05-26T16:27:09.284Z - debug: Skipping storing report.
+2016-05-26T16:27:09.287Z - info: Rendering request 3 finished in 101 ms requestId=3
+2016-05-26T16:30:09.460Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=2
+2016-05-26T16:30:09.560Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:30:24.143Z - info: Starting rendering request 4 (user: null) requestId=4
+2016-05-26T16:30:24.154Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T16:30:24.160Z - debug: Data item not defined for this template.
+2016-05-26T16:30:24.175Z - debug: Rendering engine none requestId=4
+2016-05-26T16:30:24.204Z - debug: Replaced images []
+2016-05-26T16:30:24.213Z - debug: Executing recipe phantom-pdf requestId=4
+2016-05-26T16:30:24.218Z - debug: phantom-pdf recipe start requestId=4
+2016-05-26T16:30:24.220Z - info: Starting rendering request 5 (user: null) requestId=5
+2016-05-26T16:30:24.235Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T16:30:24.235Z - debug: Inline data specified.
+2016-05-26T16:30:24.251Z - debug: Rendering engine none requestId=5
+2016-05-26T16:30:24.274Z - debug: Replaced images []
+2016-05-26T16:30:24.280Z - debug: Executing recipe html requestId=5
+2016-05-26T16:30:24.290Z - debug: Skipping storing report.
+2016-05-26T16:30:24.296Z - info: Rendering request 5 finished in 71 ms requestId=5
+2016-05-26T16:31:14.311Z - info: Starting rendering request 6 (user: null) requestId=6
+2016-05-26T16:31:14.323Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T16:31:14.330Z - debug: Data item not defined for this template.
+2016-05-26T16:31:14.342Z - debug: Rendering engine none requestId=6
+2016-05-26T16:31:14.372Z - debug: Replaced images []
+2016-05-26T16:31:14.378Z - debug: Executing recipe phantom-pdf requestId=6
+2016-05-26T16:31:14.385Z - debug: phantom-pdf recipe start requestId=6
+2016-05-26T16:31:14.397Z - info: Starting rendering request 7 (user: null) requestId=7
+2016-05-26T16:31:14.401Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T16:31:14.401Z - debug: Inline data specified.
+2016-05-26T16:31:14.417Z - debug: Rendering engine none requestId=7
+2016-05-26T16:31:14.432Z - debug: Replaced images []
+2016-05-26T16:31:14.432Z - debug: Executing recipe html requestId=7
+2016-05-26T16:31:14.448Z - debug: Skipping storing report.
+2016-05-26T16:31:14.448Z - info: Rendering request 7 finished in 58 ms requestId=7
+2016-05-26T16:31:28.548Z - info: Starting rendering request 8 (user: null) requestId=8
+2016-05-26T16:31:28.560Z - info: Rendering anonymous template { recipe:phantom-pdf,engine:none}
+2016-05-26T16:31:28.568Z - debug: Data item not defined for this template.
+2016-05-26T16:31:28.578Z - debug: Rendering engine none requestId=8
+2016-05-26T16:31:28.616Z - debug: Replaced images []
+2016-05-26T16:31:28.622Z - debug: Executing recipe phantom-pdf requestId=8
+2016-05-26T16:31:28.624Z - debug: phantom-pdf recipe start requestId=8
+2016-05-26T16:31:28.624Z - info: Starting rendering request 9 (user: null) requestId=9
+2016-05-26T16:31:28.639Z - info: Rendering anonymous template { recipe:html,engine:none}
+2016-05-26T16:31:28.639Z - debug: Inline data specified.
+2016-05-26T16:31:28.655Z - debug: Rendering engine none requestId=9
+2016-05-26T16:31:28.678Z - debug: Replaced images []
+2016-05-26T16:31:28.684Z - debug: Executing recipe html requestId=9
+2016-05-26T16:31:28.692Z - debug: Skipping storing report.
+2016-05-26T16:31:28.699Z - info: Rendering request 9 finished in 69 ms requestId=9
+2016-05-26T16:33:24.485Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=4
+2016-05-26T16:33:24.611Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:34:14.645Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=6
+2016-05-26T16:34:14.764Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:34:28.780Z - error: Error when processing render request Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9) requestId=8
+2016-05-26T16:34:28.828Z - error: Error during processing request: http://localhost:3000/export/api/report details: Error during rendering report: Timeout when executing in phantom Error: Timeout when executing in phantom
+    at Timeout._onTimeout (C:\Users\sytra\Projects\Challenge_2\node_modules\phantom-html-to-pdf\lib\dedicatedProcessStrategy.js:75:26)
+    at tryOnTimeout (timers.js:224:11)
+    at Timer.listOnTimeout (timers.js:198:5)
+From previous event:
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\jsreport-core\lib\render\render.js:141:54
+    at _fulfilled (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:794:54)
+    at self.promiseDispatch.done (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:823:30)
+    at Promise.promise.promiseDispatch (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:756:13)
+    at C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:564:44
+    at flush (C:\Users\sytra\Projects\Challenge_2\node_modules\listener-collection\node_modules\q\q.js:110:17)
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+2016-05-26T16:44:38.104Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T16:44:38.113Z - info: Using configuration file dev.config.json
+2016-05-26T16:44:39.074Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T16:44:41.800Z - info: Found 30 extensions
+2016-05-26T16:44:41.832Z - info: Using extension express
+2016-05-26T16:44:42.219Z - info: Using extension templates
+2016-05-26T16:44:42.234Z - info: Using extension phantom-pdf
+2016-05-26T16:44:42.406Z - info: Using extension scripts
+2016-05-26T16:44:42.423Z - info: Using extension data
+2016-05-26T16:44:42.436Z - info: Using extension images
+2016-05-26T16:44:42.460Z - info: Using extension statistics
+2016-05-26T16:44:42.469Z - info: Using extension reports
+2016-05-26T16:44:42.483Z - info: Extensions loaded.
+2016-05-26T16:44:42.601Z - info: Creating memory store
+2016-05-26T16:44:42.701Z - info: Configuring routes for existing express app.
+2016-05-26T16:44:42.996Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T16:44:43.001Z - info: reporter initialized
+2016-05-26T16:45:20.716Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T16:45:20.722Z - info: Using configuration file dev.config.json
+2016-05-26T16:45:21.671Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T16:45:24.604Z - info: Found 30 extensions
+2016-05-26T16:45:24.640Z - info: Using extension express
+2016-05-26T16:45:25.001Z - info: Using extension templates
+2016-05-26T16:45:25.022Z - info: Using extension phantom-pdf
+2016-05-26T16:45:25.155Z - info: Using extension scripts
+2016-05-26T16:45:25.171Z - info: Using extension data
+2016-05-26T16:45:25.171Z - info: Using extension images
+2016-05-26T16:45:25.204Z - info: Using extension statistics
+2016-05-26T16:45:25.212Z - info: Using extension reports
+2016-05-26T16:45:25.220Z - info: Extensions loaded.
+2016-05-26T16:45:25.306Z - info: Creating memory store
+2016-05-26T16:45:25.407Z - info: Configuring routes for existing express app.
+2016-05-26T16:45:25.708Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T16:45:25.715Z - info: reporter initialized
+2016-05-26T17:03:09.984Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T17:03:09.984Z - info: Using configuration file dev.config.json
+2016-05-26T17:03:11.096Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T17:03:14.525Z - info: Found 30 extensions
+2016-05-26T17:03:14.562Z - info: Using extension express
+2016-05-26T17:03:14.945Z - info: Using extension templates
+2016-05-26T17:03:14.970Z - info: Using extension phantom-pdf
+2016-05-26T17:03:15.110Z - info: Using extension scripts
+2016-05-26T17:03:15.120Z - info: Using extension data
+2016-05-26T17:03:15.126Z - info: Using extension images
+2016-05-26T17:03:15.148Z - info: Using extension statistics
+2016-05-26T17:03:15.148Z - info: Using extension reports
+2016-05-26T17:03:15.163Z - info: Extensions loaded.
+2016-05-26T17:03:15.263Z - info: Creating memory store
+2016-05-26T17:03:15.364Z - info: Configuring routes for existing express app.
+2016-05-26T17:03:15.680Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T17:03:15.680Z - info: reporter initialized
+2016-05-26T17:16:33.353Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T17:16:33.353Z - info: Using configuration file dev.config.json
+2016-05-26T17:16:34.289Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T17:16:36.838Z - info: Found 30 extensions
+2016-05-26T17:16:36.899Z - info: Using extension express
+2016-05-26T17:16:37.292Z - info: Using extension templates
+2016-05-26T17:16:37.307Z - info: Using extension phantom-pdf
+2016-05-26T17:16:37.445Z - info: Using extension scripts
+2016-05-26T17:16:37.460Z - info: Using extension data
+2016-05-26T17:16:37.476Z - info: Using extension images
+2016-05-26T17:16:37.499Z - info: Using extension statistics
+2016-05-26T17:16:37.507Z - info: Using extension reports
+2016-05-26T17:16:37.518Z - info: Extensions loaded.
+2016-05-26T17:16:37.613Z - info: Creating memory store
+2016-05-26T17:16:37.707Z - info: Configuring routes for existing express app.
+2016-05-26T17:16:37.992Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T17:16:37.992Z - info: reporter initialized
+2016-05-26T17:29:10.928Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T17:29:10.938Z - info: Using configuration file dev.config.json
+2016-05-26T17:29:11.459Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T17:29:13.696Z - info: Found 30 extensions
+2016-05-26T17:29:13.731Z - info: Using extension express
+2016-05-26T17:29:14.122Z - info: Using extension templates
+2016-05-26T17:29:14.151Z - info: Using extension phantom-pdf
+2016-05-26T17:29:14.317Z - info: Using extension scripts
+2016-05-26T17:29:14.332Z - info: Using extension data
+2016-05-26T17:29:14.348Z - info: Using extension images
+2016-05-26T17:29:14.580Z - info: Using extension statistics
+2016-05-26T17:29:14.682Z - info: Using extension reports
+2016-05-26T17:29:14.698Z - info: Extensions loaded.
+2016-05-26T17:29:14.795Z - info: Creating memory store
+2016-05-26T17:29:14.914Z - info: Configuring routes for existing express app.
+2016-05-26T17:29:15.271Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T17:29:15.281Z - info: reporter initialized
+2016-05-26T17:46:31.497Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T17:46:31.497Z - info: Using configuration file dev.config.json
+2016-05-26T17:46:32.151Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T17:46:35.221Z - info: Found 30 extensions
+2016-05-26T17:46:35.267Z - info: Using extension express
+2016-05-26T17:46:35.688Z - info: Using extension templates
+2016-05-26T17:46:35.717Z - info: Using extension phantom-pdf
+2016-05-26T17:46:35.872Z - info: Using extension scripts
+2016-05-26T17:46:35.883Z - info: Using extension data
+2016-05-26T17:46:35.892Z - info: Using extension images
+2016-05-26T17:46:35.915Z - info: Using extension statistics
+2016-05-26T17:46:35.922Z - info: Using extension reports
+2016-05-26T17:46:35.933Z - info: Extensions loaded.
+2016-05-26T17:46:36.026Z - info: Creating memory store
+2016-05-26T17:46:36.127Z - info: Configuring routes for existing express app.
+2016-05-26T17:46:36.480Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T17:46:36.488Z - info: reporter initialized
+2016-05-26T17:49:26.622Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T17:49:26.624Z - info: Using configuration file dev.config.json
+2016-05-26T17:49:27.560Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T17:49:28.818Z - info: Found 30 extensions
+2016-05-26T17:49:28.819Z - info: Using extension express
+2016-05-26T17:49:28.968Z - info: Using extension templates
+2016-05-26T17:49:28.983Z - info: Using extension phantom-pdf
+2016-05-26T17:49:29.035Z - info: Using extension scripts
+2016-05-26T17:49:29.035Z - info: Using extension data
+2016-05-26T17:49:29.054Z - info: Using extension images
+2016-05-26T17:49:29.063Z - info: Using extension statistics
+2016-05-26T17:49:29.066Z - info: Using extension reports
+2016-05-26T17:49:29.071Z - info: Extensions loaded.
+2016-05-26T17:49:29.108Z - info: Creating memory store
+2016-05-26T17:49:29.139Z - info: Configuring routes for existing express app.
+2016-05-26T17:49:29.335Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T17:49:29.348Z - info: reporter initialized
+2016-05-26T17:50:33.192Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T17:50:33.202Z - info: Using configuration file dev.config.json
+2016-05-26T17:50:34.670Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T17:50:37.780Z - info: Found 30 extensions
+2016-05-26T17:50:37.827Z - info: Using extension express
+2016-05-26T17:50:38.196Z - info: Using extension templates
+2016-05-26T17:50:38.222Z - info: Using extension phantom-pdf
+2016-05-26T17:50:38.359Z - info: Using extension scripts
+2016-05-26T17:50:38.359Z - info: Using extension data
+2016-05-26T17:50:38.381Z - info: Using extension images
+2016-05-26T17:50:38.397Z - info: Using extension statistics
+2016-05-26T17:50:38.412Z - info: Using extension reports
+2016-05-26T17:50:38.412Z - info: Extensions loaded.
+2016-05-26T17:50:38.518Z - info: Creating memory store
+2016-05-26T17:50:38.621Z - info: Configuring routes for existing express app.
+2016-05-26T17:50:38.918Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T17:50:38.924Z - info: reporter initialized
+2016-05-26T17:55:47.852Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T17:55:47.867Z - info: Using configuration file dev.config.json
+2016-05-26T17:55:48.607Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T17:55:50.742Z - info: Found 30 extensions
+2016-05-26T17:55:50.758Z - info: Using extension express
+2016-05-26T17:55:50.905Z - info: Using extension templates
+2016-05-26T17:55:50.905Z - info: Using extension phantom-pdf
+2016-05-26T17:55:50.958Z - info: Using extension scripts
+2016-05-26T17:55:50.958Z - info: Using extension data
+2016-05-26T17:55:50.974Z - info: Using extension images
+2016-05-26T17:55:50.974Z - info: Using extension statistics
+2016-05-26T17:55:50.990Z - info: Using extension reports
+2016-05-26T17:55:50.990Z - info: Extensions loaded.
+2016-05-26T17:55:51.039Z - info: Creating memory store
+2016-05-26T17:55:51.074Z - info: Configuring routes for existing express app.
+2016-05-26T17:55:51.205Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T17:55:51.205Z - info: reporter initialized
+2016-05-26T17:58:58.124Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T17:58:58.143Z - info: Using configuration file dev.config.json
+2016-05-26T17:58:58.827Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T17:59:00.498Z - info: Found 30 extensions
+2016-05-26T17:59:00.551Z - info: Using extension express
+2016-05-26T17:59:00.914Z - info: Using extension templates
+2016-05-26T17:59:00.951Z - info: Using extension phantom-pdf
+2016-05-26T17:59:01.091Z - info: Using extension scripts
+2016-05-26T17:59:01.102Z - info: Using extension data
+2016-05-26T17:59:01.112Z - info: Using extension images
+2016-05-26T17:59:01.125Z - info: Using extension statistics
+2016-05-26T17:59:01.146Z - info: Using extension reports
+2016-05-26T17:59:01.152Z - info: Extensions loaded.
+2016-05-26T17:59:01.280Z - info: Creating memory store
+2016-05-26T17:59:01.478Z - info: Configuring routes for existing express app.
+2016-05-26T17:59:01.765Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T17:59:01.768Z - info: reporter initialized
+2016-05-26T18:15:20.732Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T18:15:20.736Z - info: Using configuration file dev.config.json
+2016-05-26T18:15:21.198Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T18:15:23.905Z - info: Found 30 extensions
+2016-05-26T18:15:23.952Z - info: Using extension express
+2016-05-26T18:15:24.341Z - info: Using extension templates
+2016-05-26T18:15:24.375Z - info: Using extension phantom-pdf
+2016-05-26T18:15:24.475Z - info: Using extension scripts
+2016-05-26T18:15:24.475Z - info: Using extension data
+2016-05-26T18:15:24.491Z - info: Using extension images
+2016-05-26T18:15:24.491Z - info: Using extension statistics
+2016-05-26T18:15:24.491Z - info: Using extension reports
+2016-05-26T18:15:24.506Z - info: Extensions loaded.
+2016-05-26T18:15:24.538Z - info: Creating memory store
+2016-05-26T18:15:24.586Z - info: Configuring routes for existing express app.
+2016-05-26T18:15:24.758Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T18:15:24.758Z - info: reporter initialized
+2016-05-26T18:18:00.362Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T18:18:00.372Z - info: Using configuration file dev.config.json
+2016-05-26T18:18:01.471Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T18:18:03.587Z - info: Found 30 extensions
+2016-05-26T18:18:03.623Z - info: Using extension express
+2016-05-26T18:18:03.983Z - info: Using extension templates
+2016-05-26T18:18:04.014Z - info: Using extension phantom-pdf
+2016-05-26T18:18:04.156Z - info: Using extension scripts
+2016-05-26T18:18:04.156Z - info: Using extension data
+2016-05-26T18:18:04.179Z - info: Using extension images
+2016-05-26T18:18:04.201Z - info: Using extension statistics
+2016-05-26T18:18:04.208Z - info: Using extension reports
+2016-05-26T18:18:04.221Z - info: Extensions loaded.
+2016-05-26T18:18:04.315Z - info: Creating memory store
+2016-05-26T18:18:04.431Z - info: Configuring routes for existing express app.
+2016-05-26T18:18:04.733Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T18:18:04.733Z - info: reporter initialized
+2016-05-26T18:20:55.874Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T18:20:55.896Z - info: Using configuration file dev.config.json
+2016-05-26T18:20:56.816Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T18:20:59.850Z - info: Found 30 extensions
+2016-05-26T18:20:59.883Z - info: Using extension express
+2016-05-26T18:21:00.284Z - info: Using extension templates
+2016-05-26T18:21:00.315Z - info: Using extension phantom-pdf
+2016-05-26T18:21:00.453Z - info: Using extension scripts
+2016-05-26T18:21:00.469Z - info: Using extension data
+2016-05-26T18:21:00.469Z - info: Using extension images
+2016-05-26T18:21:00.500Z - info: Using extension statistics
+2016-05-26T18:21:00.500Z - info: Using extension reports
+2016-05-26T18:21:00.515Z - info: Extensions loaded.
+2016-05-26T18:21:00.619Z - info: Creating memory store
+2016-05-26T18:21:00.721Z - info: Configuring routes for existing express app.
+2016-05-26T18:21:01.016Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T18:21:01.033Z - info: reporter initialized
+2016-05-26T18:23:34.411Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T18:23:34.411Z - info: Using configuration file dev.config.json
+2016-05-26T18:23:35.384Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T18:23:36.640Z - info: Found 30 extensions
+2016-05-26T18:23:36.656Z - info: Using extension express
+2016-05-26T18:23:36.960Z - info: Using extension templates
+2016-05-26T18:23:36.991Z - info: Using extension phantom-pdf
+2016-05-26T18:23:37.139Z - info: Using extension scripts
+2016-05-26T18:23:37.155Z - info: Using extension data
+2016-05-26T18:23:37.155Z - info: Using extension images
+2016-05-26T18:23:37.186Z - info: Using extension statistics
+2016-05-26T18:23:37.186Z - info: Using extension reports
+2016-05-26T18:23:37.205Z - info: Extensions loaded.
+2016-05-26T18:23:37.301Z - info: Creating memory store
+2016-05-26T18:23:37.412Z - info: Configuring routes for existing express app.
+2016-05-26T18:23:37.693Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T18:23:37.699Z - info: reporter initialized
+2016-05-26T18:34:00.124Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T18:34:00.140Z - info: Using configuration file dev.config.json
+2016-05-26T18:34:01.117Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T18:34:04.207Z - info: Found 30 extensions
+2016-05-26T18:34:04.251Z - info: Using extension express
+2016-05-26T18:34:04.649Z - info: Using extension templates
+2016-05-26T18:34:04.682Z - info: Using extension phantom-pdf
+2016-05-26T18:34:04.878Z - info: Using extension scripts
+2016-05-26T18:34:04.890Z - info: Using extension data
+2016-05-26T18:34:04.898Z - info: Using extension images
+2016-05-26T18:34:04.924Z - info: Using extension statistics
+2016-05-26T18:34:04.929Z - info: Using extension reports
+2016-05-26T18:34:04.943Z - info: Extensions loaded.
+2016-05-26T18:34:05.052Z - info: Creating memory store
+2016-05-26T18:34:05.197Z - info: Configuring routes for existing express app.
+2016-05-26T18:34:05.537Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T18:34:05.542Z - info: reporter initialized
+2016-05-26T18:34:51.936Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T18:34:51.936Z - info: Using configuration file dev.config.json
+2016-05-26T18:34:52.918Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T18:34:56.377Z - info: Found 30 extensions
+2016-05-26T18:34:56.415Z - info: Using extension express
+2016-05-26T18:34:56.786Z - info: Using extension templates
+2016-05-26T18:34:56.814Z - info: Using extension phantom-pdf
+2016-05-26T18:34:56.959Z - info: Using extension scripts
+2016-05-26T18:34:56.970Z - info: Using extension data
+2016-05-26T18:34:56.980Z - info: Using extension images
+2016-05-26T18:34:57.004Z - info: Using extension statistics
+2016-05-26T18:34:57.011Z - info: Using extension reports
+2016-05-26T18:34:57.022Z - info: Extensions loaded.
+2016-05-26T18:34:57.119Z - info: Creating memory store
+2016-05-26T18:34:57.238Z - info: Configuring routes for existing express app.
+2016-05-26T18:34:57.546Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T18:34:57.553Z - info: reporter initialized
+2016-05-26T18:36:44.350Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T18:36:44.359Z - info: Using configuration file dev.config.json
+2016-05-26T18:36:45.219Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T18:36:46.684Z - info: Found 30 extensions
+2016-05-26T18:36:46.708Z - info: Using extension express
+2016-05-26T18:36:46.907Z - info: Using extension templates
+2016-05-26T18:36:46.926Z - info: Using extension phantom-pdf
+2016-05-26T18:36:46.991Z - info: Using extension scripts
+2016-05-26T18:36:46.995Z - info: Using extension data
+2016-05-26T18:36:46.999Z - info: Using extension images
+2016-05-26T18:36:47.010Z - info: Using extension statistics
+2016-05-26T18:36:47.013Z - info: Using extension reports
+2016-05-26T18:36:47.018Z - info: Extensions loaded.
+2016-05-26T18:36:47.057Z - info: Creating memory store
+2016-05-26T18:36:47.103Z - info: Configuring routes for existing express app.
+2016-05-26T18:36:47.225Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T18:36:47.233Z - info: reporter initialized
+2016-05-26T18:45:53.637Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T18:45:53.652Z - info: Using configuration file dev.config.json
+2016-05-26T18:45:54.422Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T18:45:55.924Z - info: Found 30 extensions
+2016-05-26T18:45:55.959Z - info: Using extension express
+2016-05-26T18:45:56.329Z - info: Using extension templates
+2016-05-26T18:45:56.345Z - info: Using extension phantom-pdf
+2016-05-26T18:45:56.492Z - info: Using extension scripts
+2016-05-26T18:45:56.508Z - info: Using extension data
+2016-05-26T18:45:56.508Z - info: Using extension images
+2016-05-26T18:45:56.530Z - info: Using extension statistics
+2016-05-26T18:45:56.545Z - info: Using extension reports
+2016-05-26T18:45:56.561Z - info: Extensions loaded.
+2016-05-26T18:45:56.661Z - info: Creating memory store
+2016-05-26T18:45:56.761Z - info: Configuring routes for existing express app.
+2016-05-26T18:45:57.062Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T18:45:57.078Z - info: reporter initialized
+2016-05-26T18:46:55.589Z - warn: Node environment not set - using development configuration. Use options --production or --development to ensure exact configuration.
+2016-05-26T18:46:55.604Z - info: Using configuration file dev.config.json
+2016-05-26T18:46:56.530Z - info: Searching for available extensions in C:\Users\sytra\Projects\Challenge_2
+2016-05-26T18:46:58.721Z - info: Found 30 extensions
+2016-05-26T18:46:58.758Z - info: Using extension express
+2016-05-26T18:46:59.137Z - info: Using extension templates
+2016-05-26T18:46:59.175Z - info: Using extension phantom-pdf
+2016-05-26T18:46:59.338Z - info: Using extension scripts
+2016-05-26T18:46:59.360Z - info: Using extension data
+2016-05-26T18:46:59.360Z - info: Using extension images
+2016-05-26T18:46:59.391Z - info: Using extension statistics
+2016-05-26T18:46:59.407Z - info: Using extension reports
+2016-05-26T18:46:59.422Z - info: Extensions loaded.
+2016-05-26T18:46:59.507Z - info: Creating memory store
+2016-05-26T18:46:59.623Z - info: Configuring routes for existing express app.
+2016-05-26T18:46:59.907Z - info: jsreport server successfully started on http port: 3000
+2016-05-26T18:46:59.907Z - info: reporter initialized
