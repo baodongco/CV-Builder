@@ -3,37 +3,37 @@ var server = require('../../app');
 var assert = require('assert');
 
 describe('Test auth routes', function () {
-    it('responds to get /login', function testSlash(done) {
+    it('Get /login', function testSlash(done) {
         request(server)
             .get('/login')
             .expect(200, done);
     });
 
-    it('responds to get /login', function testSlash(done) {
+    it('Get /login', function testSlash(done) {
         request(server)
             .get('/login')
             .expect(200, done);
     });
 
-    it('responds to /register', function testSlash(done) {
+    it('Get /register', function testSlash(done) {
         request(server)
             .get('/register')
             .expect(200, done);
     });
 
-    it('responds to /change_password', function testSlash(done) {
+    it('Found /change_password when not logged in', function testSlash(done) {
         request(server)
             .get('/change_password')
             .expect(302, done);
     });
 
-    it('responds to /activate', function testSlash(done) {
+    it('Found /activate when not logged in', function testSlash(done) {
         request(server)
             .get('/activate')
             .expect(302, done);
     });
 
-    it('responds to /reset', function testSlash(done) {
+    it('Found /reset when not logged in', function testSlash(done) {
         request(server)
             .get('/reset')
             .expect(200, done);
