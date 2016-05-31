@@ -13,7 +13,7 @@ var activeUserSettings = config.get('cv-builder.active-user');
 function authController() {
     this.getRegister = function(req, res) {
         res.render('auth/register', {
-            message: req.flash('signupMessage'), title: 'Register'
+            message: req.flash('signupMessage'), title: 'Register',req: req
         });
     };
 
@@ -49,7 +49,7 @@ function authController() {
 
     this.getLogin = function(req, res) {
         res.render('auth/login', {
-            message: req.flash('loginMessage'), title: 'Login'
+            message: req.flash('loginMessage'), title: 'Login', req: req
         });
     };
 
