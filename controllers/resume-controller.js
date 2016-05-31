@@ -106,7 +106,8 @@ function resumeController() {
             var options = require('../config/cv-pdf.js');
             options.base = "http://" + req.headers.host;
             pdf.create(html,options).toStream(function(err, stream){
-              res.setHeader("content-type", "application/pdf");
+              if (err) throw err.stack;
+              res.headers("content-type", "application/pdf");
               stream.pipe(res);
             });
           } else {
