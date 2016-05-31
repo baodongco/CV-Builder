@@ -107,7 +107,7 @@ function authController() {
 
     this.getReset = function(req, res){
          res.render('auth/reset', {
-            message: req.flash('resetMessage'), title: 'Reset'
+            message: req.flash('resetMessage'), title: 'Reset',req:req
         });
     };
 
