@@ -23,5 +23,8 @@ module.exports = {
             resumeController.getResume(req, res);
         });
 
+		app.get('/createresume', function(req,res){
+			resumeController.createResume(req,res);
+		});
 	}
 };

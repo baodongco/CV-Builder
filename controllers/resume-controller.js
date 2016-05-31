@@ -183,6 +183,9 @@ function resumeController() {
         };
       });       
     };
+    this.createResume=function(req, res) {
+      res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
+    }
 };
 
 module.exports = new resumeController();
