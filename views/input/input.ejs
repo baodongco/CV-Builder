@@ -1,0 +1,479 @@
+<% layout('./layouts/main.ejs') -%>
+    <link href="/public/stylesheets/bootstrap.vertical-tabs.min.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <script src="/public/javascripts/input/resume-validator.js"></script>
+    <link rel="stylesheet" href="/public/stylesheets/input-css.css">
+
+    <div class="container" id="content">
+        <div class="row content">
+            <div class="col-xs-12 text-center">
+                <h3></h3>
+            </div>
+            <div class="row">
+
+                <div class="col-xs-2 tab-col-left">
+                    <ul class="nav nav-tabs tabs-left">
+                        <li class="active"><a href="#contact" data-toggle="tab">Contact</a></li>
+                        <li><a href="#summary" data-toggle="tab">Summary</a></li>
+                        <li><a href="#experience" data-toggle="tab">Experience</a></li>
+                        <li><a href="#project" data-toggle="tab">Project</a></li>
+                        <li><a href="#skills" data-toggle="tab">Skills</a></li>
+                        <li><a href="#certification" data-toggle="tab">Certification</a></li>
+                        <li><a href="#education" data-toggle="tab">Education</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-10 tabs-left ">
+                    <form action="#" method="POST" id="resumeForm">
+                        <fieldset class="tab-content paper-content">
+                            <div class="tab-pane active" id="contact">
+                                <div class="row">
+                                    <div class="col-md-12 heading">
+                                        <h2><strong>Contact Information</strong></h2>
+                                    </div>
+                                </div>
+                                <fieldset>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label text-danger"> First Name:
+                                        <sup>*</sup>
+                                    </label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="firstName">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> Last Name:</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="lastName" size="255">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label text-danger"> Email:
+                                    <sup>*</sup>
+                                    </label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> Phone:</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" name="phone" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> Website:</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="url" name="website" placeholder="e.g:www.abc.com">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> Address:</label>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control" name="address"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-6 text-center ">
+                                            <button class="btn">Save</button>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <button class="btn">Save and Continue</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                            </div>
+                            <div class="tab-pane" id="summary">
+                                <div class="row">
+                                    <div class="col-md-12 heading">
+                                        <h2><strong>Summary</strong></h2>
+                                    </div>
+                                </div>
+                                <fieldset>
+                                    <div class="form-group row ">
+                                        <div class="col-md-2 form-control-label">
+                                            <label>Header:</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input class="form-control" name="sumHeadline" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label">
+                                            <label>Professional Summary:</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea class="editor" name="sumContent" placeholder="Add a short summary about yourself"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-6 text-center ">
+                                            <button class="btn">Save</button>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <button class="btn">Save and Continue</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="tab-pane" id="experience">
+                                <div class="row">
+                                    <div class="col-md-12 heading">
+                                        <h2><strong>Experience</strong></h2>
+                                    </div>
+                                </div>
+                                <fieldset>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label">
+                                            <label> Company:</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="experience[0][company]" placeholder="e.g. Harvey Nash Vietnam">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label ">
+                                            <label> Designation:</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="text" name="experience[0][designation]" placeholder="e.g. Software Engineer">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label">
+                                            <label for="experienceFromDate">From Date :</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input name="experience[0][startTime]" id="experienceFromDate" readonly class="form-control date-picker" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label">
+                                            <label for="experienceToDate"> To Date:</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input class="form-control date-picker" id="experienceToDate" type="text" readonly name="experience[0][endTime]">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label">
+                                            <label> Details:</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea class="form-control editor" name="experience[0][detail]"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <button type="submit" class="btn btn-primary" id="btnAddExperience">Add another Experience</button>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-6 text-center ">
+                                            <button class="btn">Save</button>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <button class="btn">Save and Continue</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="tab-pane" id="project">
+                                <div class="row">
+                                    <div class="col-md-12 heading">
+                                        <h2><strong>Project</strong></h2>
+                                    </div>
+                                </div>
+                                <fieldset>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label">
+                                            <label> Project title:</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <input class="form-control" name="project[0][title]" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 form-control-label"> URL:</label>
+                                        <div class="col-md-10">
+                                            <input class="form-control" type="url" id="" name="project[0][url]">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label">
+                                            <label> From date:</label>
+                                        </div>
+                                        <div class="col-md-10 ">
+                                            <input class="form-control date-picker" id="projectFromDate" type="text" name="project[0][startTime]">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label">
+                                            <label> To date:</label>
+                                        </div>
+                                        <div class="col-md-10 ">
+                                            <input class="form-control date-picker" id="projectToDate" type="text" name="project[0][endTime]">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-2 form-control-label">
+                                            <label class="label-input"> Details:</label>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <textarea class="editor" name="project[0][detail]"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="submit" class="btnAddProject">Add another project</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-6 text-center ">
+                                            <button class="btn">Save</button>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <button class="btn">Save and Continue</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="tab-pane" id="skills">
+                                <div class="row">
+                                    <div class="col-md-12 heading">
+                                        <h2><strong>Skills</strong></h2>
+                                    </div>
+                                </div>
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="">Skill name</label>
+                                                <input class="form-control" id="txtSkillName" name="txtSkillName">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group text-center">
+                                                <label for="">Level</label>
+                                                <ul id="progress" class="nav skill-progress">
+                                                    <li id="ball0">
+                                                        <div id="layer0" class="ball"></div>
+                                                        <div id="layer12" class="pulse"></div>
+                                                    </li>
+                                                    <li id="ball1">
+                                                        <div id="layer1" class="ball"></div>
+                                                        <div id="layer7" class="pulse"></div>
+                                                    </li>
+                                                    <li id="ball2">
+                                                        <div id="layer2" class="ball"></div>
+                                                        <div id="layer8" class="pulse"></div>
+                                                    </li>
+                                                    <li id="ball3">
+                                                        <div id="layer3" class="ball"></div>
+                                                        <div id="layer9" class="pulse"></div>
+                                                    </li>
+                                                    <li id="ball4">
+                                                        <div id="layer4" class="ball"></div>
+                                                        <div id="layer10" class="pulse"></div>
+                                                    </li>
+                                                    <li id="ball5">
+                                                        <div id="layer5" class="ball"></div>
+                                                        <div id="layer11" class="pulse"></div>
+                                                    </li>
+                                                </ul>
+                                                <label id="lblLevel" style="color:blue">Not Applicable</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Experience</label><br/>
+                                            <input id="txtExperience" class="form-control" name="txtExperience">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>Last year used</label><br/>
+                                            <input id="txtLYU" class="form-control" name="txtLYU">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="button" class="btn btn-info" id="btnSave">Add</button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <table id="tblSkills" class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Skill name</th>
+                                                        <th>Level</th>
+                                                        <th>Experience</th>
+                                                        <th>Last year used</th>
+                                                        <th id="action">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-6 text-center ">
+                                            <button class="btn">Save</button>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <button class="btn">Save and Continue</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <div class="tab-pane" id="certification">
+                                <div class="row">
+                                    <div class="col-md-12 heading">
+                                        <h2><strong>Certification</strong></h2>
+                                    </div>
+                                </div>
+                                <div id="nested-certification">
+                                    <fieldset id="field-certification">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="title" class="label-input">Certification</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="certification[0][title]" class="form-control" placeholder="Name of certification">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="certiAuthor" class="label-input">Certification authority</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="certification[0][authority]" id="certificationAuthor" class="form-control" placeholder="Name of the organization issuing the certificate">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="certificationDate" class="label-input">Date</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="certification[0][date]" id="certificationDate" class="form-control" readonly placeholder="e.g. May 2015 ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="ckeCertification-0" class="label-input">Details</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <textarea class="editor" name="certification[0][detail]" placeholder="Add a few details about this educational qualification..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <button type="submit" class="btn btn-primary">Add another Certification</button>
+                                        </div> <br/>
+                                        <div class="form-group row">
+                                            <div class="col-md-6 text-center ">
+                                                <button class="btn">Save</button>
+                                            </div>
+                                            <div class="col-md-6 text-center">
+                                                <button class="btn">Save and Continue</button>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="education">
+                                <div class="row">
+                                    <div class="col-md-12 heading">
+                                        <h2><strong>Education</strong></h2>
+                                    </div>
+                                </div>
+
+                                <div id="nested-education">
+                                    <fieldset id="field-education">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="institute-0" class="label-input">Institute</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="education[0][institute]" class="form-control" placeholder="e.g. Harvard University">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="degree-0" class="label-input">Degree</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="education[0][degree]" class="form-control" placeholder="e.g. Bachelor of Information Technology">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="educationFromDate" class="label-input">From date</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="education[0][startTime]" id="educationFromDate" class="form-control" readonly placeholder="e.g. May 2015 ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="educationToDate" class="label-input">To date</label>
+                                                </div>
+                                                <div class="col-md-10">
+                                                    <input type="text" name="education[0][endTime]" id="educationToDate" class="form-control" readonly placeholder="e.g. May 2015 ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2">
+                                                    <label for="ckeDetailsEducation" class="label-input">Details</label>
+                                                </div>
+                                                <div class="col-md-10" id="detailsEducation">
+                                                    <textarea class="editor" name="education[0][detail]" id="educationDetails" placeholder="Add a few details about this educational qualification..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="form-group" id="groupBtnEducation">
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+                                                <button type="button" class="btn btn-primary" id="btnAddMoreEducation">Add more education</button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-default">Save</button>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <button class="btn btn-default">Save and Continue</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/public/javascripts/input/input.js"></script>
