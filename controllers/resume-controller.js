@@ -4,7 +4,7 @@ references: https://www.npmjs.com/package/html-pdf
 var connection    = require('../connection');
 var sql       = require('../services/resume-services');
 // import models
-var Resume        = require('../models/resume');
+var Resume         = require('../models/resume');
 var certificationModel = require('../models/certification');
 var educationModel     = require('../models/education');
 var experienceModel    = require('../models/experience');
@@ -13,15 +13,19 @@ var skillModel         = require('../models/skill');
 
 function resumeController() {
     this.insertResume = function(req, res) {
-		var resume = new resumeModel(req.body);				
-		// insert resume	
-		connection.pool.query(query.insertResume, resume, function(err, rows) {
-			// insert sections
+		var resume = new Resume(req.body);	
+        console.log(req.body);
+        console.log(resume);
+        // insert resume	
+		connection.pool.query(sql.insertResume, resume, function(err, rows) {
+            if(err) console.log(err);            
+        	// insert sections
 			if (req.body.education != null) {
 				req.body.education.forEach(function(item) {	
 					item.resId = rows.insertId;
+                    console.log(item);
 					var education = new educationModel(item);	
-					connection.pool.query(query.insertEducation, education);
+					connection.pool.query(sql.insertEducation, education);
 				});								
 			}
 
@@ -29,7 +33,7 @@ function resumeController() {
 				req.body.experience.forEach(function(item) {
 					item.resId = rows.insertId;
 					var experience = new experienceModel(item);
-					connection.pool.query(query.insertExperience, experience);				
+					connection.pool.query(sql.insertExperience, experience);				
 				});
 			}
 
@@ -37,7 +41,7 @@ function resumeController() {
 				req.body.certification.forEach(function(item) {
 					item.resId = rows.insertId;
 					var certification = new certificationModel(item);
-					connection.pool.query(query.insertCertification, certification);				
+					connection.pool.query(sql.insertCertification, certification);				
 				});
 			}
 
@@ -45,7 +49,7 @@ function resumeController() {
 				req.body.project.forEach(function(item) {
 					item.resId = rows.insertId;
 					var project = new projectModel(item);
-					connection.pool.query(query.insertProject, project);				
+					connection.pool.query(sql.insertProject, project);				
 				});
 			}
 			
@@ -53,10 +57,10 @@ function resumeController() {
 				req.body.skill.forEach(function(item) {
 					item.resId = rows.insertId;
 					var skill = new skillModel(item);
-					connection.pool.query(query.insertSkill, skill);				
+					connection.pool.query(sql.insertSkill, skill);				
 				});
 			}
-		});
+		});        
     };
 	
     /**

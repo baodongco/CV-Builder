@@ -13,5 +13,11 @@ module.exports = {
     getCertificationsByResumeId: "SELECT resId, id, title, authority, date, detail \
     FROM certification WHERE resId = ? ",
     getProjectsByResumeId: "SELECT resId, id, title, startTime, endTime, detail \
-    FROM project WHERE resId = ? "    
+    FROM project WHERE resId = ? ",  
+    insertResume: "INSERT INTO resume SET ?",  
+    insertEducation: "INSERT INTO education SET ?",  
+    insertExperience: "INSERT INTO experience SET ?",  
+    insertCertification: "INSERT INTO certification SET ?",  
+    insertProject: "INSERT INTO project SET ?",  
+    insertSkill: "INSERT INTO skill SET ?"      
 };
