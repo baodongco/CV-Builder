@@ -76,12 +76,11 @@ function resumeController() {
         getResumeDataById(req.params.id, function (resume) {
             // responseHtml(res, resume);
             if (resume) {
-              console.log('resume in render func', resume);
               res.render('cv-template/skeleton', {resume: resume});
             } else {
               res.send('File not found');
             }
-          });        
+        });        
       };  
 
     };
@@ -135,48 +134,48 @@ function resumeController() {
       connection.pool.query("CALL udsp_getAllResumeData(?)", id, function (err, rows) {
         if (err) {
           console.log(err);
-        } else{
+        } else if (rows[0][0]) {
+            // resume
+            var resume = new Resume(rows[0][0]);
 
-          // resume
-          var resume = new Resume(rows[0][0]);
+            // certifications
+            var certifications = [];
+            for (var i = 0; i < rows[1].length; i++) {
+              certifications[i] = new certificationModel(rows[1][i]);
+            };
+            resume.certifications = certifications;
 
-          // certifications
-          var certifications = [];
-          for (var i = 0; i < rows[1].length; i++) {
-            certifications[i] = new certificationModel(rows[1][i]);
-          };
-          resume.certifications = certifications;
+            // educations
+            var educations = [];
+            for (var i = 0; i < rows[2].length; i++) {
+              educations[i] = new educationModel(rows[2][i]);
+            };
+            resume.educations = educations;
+            
+            //expertiences
+            var expertiences = [];
+            for (var i = 0; i < rows[3].length; i++) {
+              expertiences[i] = new experienceModel(rows[3][i]);
+            };
+            resume.expertiences = expertiences;
 
-          // educations
-          var educations = [];
-          for (var i = 0; i < rows[2].length; i++) {
-            educations[i] = new educationModel(rows[2][i]);
-          };
-          resume.educations = educations;
-          
-          //expertiences
-          var expertiences = [];
-          for (var i = 0; i < rows[3].length; i++) {
-            expertiences[i] = new experienceModel(rows[3][i]);
-          };
-          resume.expertiences = expertiences;
+            // projects
+            var projects = [];
+            for (var i = 0; i < rows[4].length; i++) {
+              projects[i] = new projectModel(rows[4][i]);
+            };
+            resume.projects = projects;projects
 
-          // projects
-          var projects = [];
-          for (var i = 0; i < rows[4].length; i++) {
-            projects[i] = new projectModel(rows[4][i]);
-          };
-          resume.projects = projects;projects
-
-          // skills
-          var skills = [];
-          for (var i = 0; i < rows[5].length; i++) {
-            skills[i] = new skillModel(rows[5][i]);
-          };
-          resume.skills = skills;
-
-          callback(resume);
-        };
+            // skills
+            var skills = [];
+            for (var i = 0; i < rows[5].length; i++) {
+              skills[i] = new skillModel(rows[5][i]);
+            };
+            resume.skills = skills;
+            callback(resume);
+        } else {
+          callback(null);
+        }
       });       
     };
 };
