@@ -1,36 +1,37 @@
 <% layout('./layouts/main.ejs') -%>
 
-<div class="col-sm-6 col-sm-offset-3">
-    <h1><span class="fa fa-sign-in"></span> Login </h1>
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1><span class="fa fa-sign-in"></span> Login </h1>
 
-    <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <!-- show any messages that come back with authentication -->
+            <% if (message.length > 0) { %>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <%= message %>
+                    <%= message %>
+                </div>
+                <% } %>
+                    <!-- LOGIN FORM -->
+                    <form action="/login" method="post" role="form" id="loginForm">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+
+                        <input type="submit" name="Login" value="Login" class="btn btn-primary">
+                    </form>
+
+                    <hr>
+
+                    <p>Haven't had have an account? <a href="/register">Register</a></p>
+                    <p>Or go <a href="/">home</a>.</p>
         </div>
-    <% } %>
-    <!-- LOGIN FORM -->
-    <form action="/login" method="post" role="form" id="loginForm">
-        <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" name="username">
-        </div>
-
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" name="password">
-        </div>
-
-        <input type="submit" name="Login" value="Login" class="btn btn-default">
-    </form>
-
-    <hr>
-
-    <p>Haven't had have an account? <a href="/register">Register</a></p>
-    <p>Or go <a href="/">home</a>.</p>
-</div>
-
-<script src="/public/javascripts/login-validation.js"></script>
+    </div>
+    <script src="/public/javascripts/login-validation.js"></script>
