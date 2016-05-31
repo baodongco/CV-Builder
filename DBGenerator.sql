@@ -14,8 +14,13 @@ CREATE TABLE user (
   isDisabled tinyint(1) DEFAULT 0
 );
 
-CREATE TABLE resume (
+CREATE TABLE template (
   id int PRIMARY KEY AUTO_INCREMENT,
+  name varchar(30) NOT NULL
+);
+
+CREATE TABLE resume (
+  id int PRIMARY KEY AUTO_INCREMENT,  
   firstName VARCHAR(100) NOT NULL,
   lastName VARCHAR(100),
   email VARCHAR(100) NOT NULL,
@@ -27,7 +32,9 @@ CREATE TABLE resume (
   photoUrl VARCHAR(300),
   publicLink VARCHAR(300),
   userId int,
-  FOREIGN KEY (userId) REFERENCES user(id)
+  templateId int NOT NULL,
+  FOREIGN KEY (userId) REFERENCES user(id),
+  FOREIGN KEY (templateId) REFERENCES template(id)
 );
 
 CREATE TABLE skill (
@@ -174,5 +181,51 @@ BEGIN
 
   END IF;
   
+END; $$
+DELIMITER ;
+
+-- Stored Procedure: reset-password-complete
+DELIMITER $$
+CREATE PROCEDURE SP_RESET_PASSWORD_COMPLETE(IN guid VARCHAR(50), IN ttl INT)
+BEGIN
+
+  
+  DECLARE created_time TIMESTAMP;
+
+  DECLARE created_time_milis BIGINT;
+  DECLARE now_time_milis BIGINT;
+  DECLARE ttl_milis BIGINT;
+  DECLARE distance_time_milis BIGINT;
+
+  DECLARE status_code INT;
+
+  SET status_code = 200;
+
+  SET ttl_milis = ttl * 60;
+  SELECT unix_timestamp(now()) INTO now_time_milis;
+
+  SELECT codeStartDate INTO created_time FROM `user` WHERE resetPassCode = guid;
+  SELECT unix_timestamp(created_time) INTO created_time_milis;
+
+  SET distance_time_milis = now_time_milis - created_time_milis;
+
+  IF (created_time IS NULL) THEN
+    
+      SIGNAL SQLSTATE '48000'
+      SET MESSAGE_TEXT = 'The link is no longer valid !';
+
+  ELSEIF (distance_time_milis > ttl_milis) THEN
+
+      SIGNAL SQLSTATE '49000'
+      SET MESSAGE_TEXT = 'Expired link to reset your password!!';
+
+  ELSE
+
+      SELECT guid;
+      SELECT status_code;
+  
+  END IF;
+
+
 END; $$
 DELIMITER ;

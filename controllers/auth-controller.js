@@ -1,9 +1,10 @@
-var bcrypt = require('bcrypt-nodejs');
+ var bcrypt = require('bcrypt-nodejs');
 
 var connection = require('../connection');
 var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
 var PassModification = require('../models/password-modification');
+var ResetPasswordInfo = require('../models/reset-password-info');
 var Email = require('../models/email');
 var EmailInfo = require('../models/email-info');
 var config = require('config');
@@ -81,25 +82,24 @@ function authController() {
         var index = 0;
         var message = '';
     
-        connection.pool.query("CALL SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")",function(err, rows){  
-
+        connection.pool.query("CALL SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")",function(err, rows){
             console.log("SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")");
       
-        if (err){
-            console.log(err);
-            message = err.message;
-            index = message.indexOf(':');
-            message = message.substring(index + 1);
-         }else{
-            message = 'Your account has been activated. Please enjoy!!';
-            isError = false;
-         }
-
-        req.flash('homeMessage', message);
+            if (err){
+                console.log(err);
+                message = err.message;
+                index = message.indexOf(':');
+                message = message.substring(index + 1);
+            } else {
+                message = 'Your account has been activated. Please enjoy!!';
+                isError = false;
+            }
     
         if(isError){
+            req.flash('homeMessage', message);
            res.redirect('/');
         }else{
+            req.flash('loginMessage', message);
             res.redirect('/login');
         }
      });
@@ -142,12 +142,68 @@ function authController() {
              email.sendEmailResetPassword();
          }
 
-         console.log(message);
+        console.log(message);
 
         req.flash('homeMessage', message);
         res.redirect('/');
      });
          
+    };
+
+    this.getResetComplete = function(req, res){
+        var guid = req.query.guid;
+        var ttl = activeUserSettings['ttl'];
+        var isError = true;
+        var index = 0;
+        var message = '';
+        var _guid = '';
+
+        connection.pool.query("CALL SP_RESET_PASSWORD_COMPLETE('"+ guid +"',"+ ttl +")", function(err, rows){
+
+            if(err){
+                console.log(err);
+                message = err.message;
+                index = message.indexOf(':');
+                message = message.substring(index + 1);
+            }else{
+                console.log(rows);
+                isError = false;
+                message = 'Enter your new password to reset!!';
+                _guid = rows[0][0]['guid'];
+            }
+
+            console.log(message);
+
+            req.flash('homeMessage', message);
+
+            if(isError){
+                res.redirect('/');
+            }else{
+                res.redirect('/reset-form?guid='+_guid);
+            }
+
+        });
+
+    };
+
+    this.postResetComplete = function(req, res){
+        var resetPasswordInfo = new ResetPasswordInfo(req.body);
+
+         connection.pool.query(queries.updatePassword, [resetPasswordInfo.newHasingPass, resetPasswordInfo.guid], function(err, rows) {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        req.flash('loginMessage', 'Password has been reset successful!!');
+                        res.redirect('/login');
+                    }
+        });
+
+    };
+
+    this.getResetForm = function(req, res){
+        res.render('auth/reset-form', {
+            message: req.flash('resetMessage'), title: 'Reset-form', guid: req.query.guid
+        });
     };
 
     this.getChangePassword = function (req, res) {
@@ -158,7 +214,7 @@ function authController() {
     this.postChangePassword = function (req, res) {
         var user = new PassModification(req.body);
         
-        connection.pool.query('SELECT password FROM user WHERE id = ?', user.id, function(err, rows) {
+        connection.pool.query(queries.getUserById, user.id, function(err, rows) {
             if (!bcrypt.compareSync(user.oldPass, rows[0].password)) {
                 req.flash('changePass', 'Old password is incorrect');
                 res.redirect('/change_password');
@@ -166,7 +222,7 @@ function authController() {
                 req.flash('changePass', 'Old password and new password are the same');
                 res.redirect('/change_password');
             } else {
-                connection.pool.query('UPDATE user SET password = ? WHERE id = ?', [user.newHasingPass, user.id], function(err, rows) {
+                connection.pool.query(queries.changePassword, [user.newHasingPass, user.id], function(err, rows) {
                     req.flash('homeMessage', 'Password updated successfully');
                     res.redirect('/');
                 });

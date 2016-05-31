@@ -30,6 +30,21 @@ module.exports = {
             authController.postReset(req, res);           
         });
 
+        // GET: /reset-complete
+        app.get('/reset-complete', function(req, res){
+            authController.getResetComplete(req, res);           
+        });
+
+        // POST: /reset-complete
+        app.post('/reset-complete', function(req, res){
+            authController.postResetComplete(req, res);           
+        });
+
+        // GET: /reset-form
+        app.get('/reset-form', function(req, res){
+            authController.getResetForm(req, res);           
+        });
+
 
         // GET: /login
         app.get('/login', function(req, res) {
@@ -38,10 +53,14 @@ module.exports = {
 
         // POST: /login
         app.post('/login', passport.authenticate('local-login', {
-            successRedirect: '/',
             failureRedirect: '/login', // redirect back to the signup page if there is an error
             failureFlash: true // allow flash messages
-        }));
+        }), function (req, res) {
+            // Set cookie so that user won't login again.
+            if (req.body.remember) req.session.cookie.maxAge = 365 * 24 * 60 * 60 * 1000;
+
+            res.redirect('/');
+        });
 
         // Logout.
         app.get('/logout', function(req, res) {
