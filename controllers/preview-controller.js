@@ -1,6 +1,17 @@
+var connection    = require('../connection');
+var sql       = require('../services/resume-services');
+
 function previewController() {
     this.get = function (req, res) {                
-        res.render('preview/index', { title: 'WTF', req: req, message: req.flash('homeMessage')  });        
+        connection.pool.query(sql.getTemplates, function (err, rows) {
+            if(err) {
+                throw err.stack
+            } else {
+                console.log(rows);
+                res.render('preview/index', { title: 'WTF', templates: rows, req: req});
+            }
+        })
+               
     };
 }
 
