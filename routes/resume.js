@@ -4,7 +4,7 @@ var checkLogin = require('../middlewares/check-login')
 
 module.exports = {
 	configure: function (app) {
-		app.post('/resume', checkLogin, getId, function (req, res) {
+		app.post('/createresume', checkLogin, getId, function (req, res) {
 			resumeController.insertResume(req, res);
 		});
 		/**

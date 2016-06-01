@@ -14,6 +14,7 @@ var skillModel         = require('../models/skill');
 function resumeController() {
     this.insertResume = function(req, res) {
 		var resume = new Resume(req.body);	
+        resume.templateId = 1;
         console.log(req.body);
         console.log(resume);
         // insert resume	
