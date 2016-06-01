@@ -5,22 +5,27 @@ form .error {
 input.error {
     border: 1px solid red;
 }
-#resume-preview-container { 
-  	height: 500px; 
+#resume-preview-container {
   	padding: 0; 
-  	overflow: auto;
+  	overflow-x: hidden;
+    overflow-y: auto; 
 }
 
 #resume-view-port { 
   	width: 1240px; 
   	height: 1600px; 
   	border: none;
-  	-ms-transform: scale(0.6);
   	-ms-transform-origin: 0 0;
-  	-webkit-transform: scale(0.6);
-	-webkit-transform-origin: 0 0;
+  	-webkit-transform-origin: 0 0;
 }
 .carousel-inner .active.left { left: -33%; }
 .carousel-inner .next        { left:  33%; }
 .carousel-inner .prev        { left: -33%; }
 .carousel-control.left,.carousel-control.right {background-image:none;}
+.img-200-235 {
+  width: 200px;
+  height: 235px;
+}
+.carousel-inner img.selected {
+  border: solid #337ab7 0.5px;
+}

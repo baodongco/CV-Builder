@@ -3,12 +3,23 @@ var sql       = require('../services/resume-services');
 
 function previewController() {
     this.get = function (req, res) {                
-        connection.pool.query(sql.getTemplates, function (err, rows) {
+        connection.pool.query(sql.getTemplates, function (err, temp_rows) {
             if(err) {
                 throw err.stack
             } else {
-                console.log(rows);
-                res.render('preview/index', { title: 'WTF', templates: rows, req: req});
+                connection.pool.query("SELECT id FROM resume WHERE id = ?", req.params.id, function (err, res_rows) {
+                    if (err) {
+                    throw err.stack;
+                    } else {
+                        console.log('res_rows', res_rows);
+                        if (!res_rows[0].id) {
+                            res.send('File not found');
+                        } else {
+                            res.render('preview/index', { title: 'Preview', resumeId: res_rows[0].id, templates: temp_rows, req: req});
+                        }
+                    }
+                });
+                
             }
         })
                

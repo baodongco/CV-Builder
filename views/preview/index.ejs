@@ -1,48 +1,74 @@
 <% layout('./layouts/main.ejs') -%>
-<div class="row">
-	<div id="form-section" class="col-md-5">
-		<div class="well well-lg">
-			<button class="btn btn-primary">Preview</button>
+<div class="container">
+	<div class="row">
+	<!-- start here template poll-->
+		<div class="col-sm-8 col-sm-offset-2">
+			<div id="temp-poll" class="carousel slide">
+			  <div class="carousel-inner">
+			  	<% for (var i = 0; i < templates.length; i++) { %>
+			    <div class="item <% if (i == 0) { %>active <% } %>" data-id="<%= templates[i].id %>">
+			    	<div class="col-sm-3">
+			     		<a href="#"><img src="/public/images/layout/Template/hover<%= templates[i].id %>.png" class="<% if (i==0) { %> selected <% } %> img-responsive" alt="<%= templates[i].name %>"></a>
+			     	</div>
+			    </div>
+			    <% } %>
+			  </div>
+			  <a class="left carousel-control" href="#temp-poll" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+			  <a class="right carousel-control" href="#temp-poll" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+			</div>
 		</div>
-		<!-- start here template poll-->
-		<div id="temp-poll" class="carousel slide">
-		  <div class="carousel-inner">
-		  	<% for (var i = 0; i < templates.length; i++) { %>
-		    <div class="item <% if (i == 0) { %> active <% } %>">
-		    	<div class="col-md-4">
-		     		<a href="#"><img src="/public/images/layout/Template/hover<%= templates[i].id %>.png" class="img-responsive" alt="<%= templates[i].name %>"></a>
-		     	</div>
-		    </div>
-		    <% } %>
-		  </div>
-		  <a class="left carousel-control" href="#temp-poll" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-		  <a class="right carousel-control" href="#temp-poll" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-		</div>
-		<!-- end template poll here -->
 	</div>
-	<div id="resume-preview-container" class="col-md-7 well">
-		<iframe src="http://localhost:3000/resumes/2" id="resume-view-port"></iframe>
+	<!-- end template poll here -->
+	<div class="row">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+			    <h3 class="panel-title">Take a look at your resume<a href="/resumes/<%= resumeId %>?type=pdf" class="pull-right"><span class="glyphicon glyphicon-download"> </span> Download</a></h3>			    
+			</div>
+			<div class="panel-body">		
+			<div id="resume-preview-container" class="col-md-12 well">		
+				<iframe src="http://localhost:3000/resumes/<%= resumeId %>" id="resume-view-port"></iframe>
+			</div>
+			</div>
+		</div>
 	</div>
 </div>
 <script type="text/javascript">
 	$(function () {
-		$('#temp-poll').carousel({
-		  interval: 1000
-		})
-
-		$('.carousel .item').each(function(){
-		  var next = $(this).next();
-		  if (!next.length) {
-		    next = $(this).siblings(':first');
-		  }
-		  next.children(':first-child').clone().appendTo($(this));
-		  
-		  if (next.next().length>0) {
-		    next.next().children(':first-child').clone().appendTo($(this));
-		  }
-		  else {
-		  	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
-		  }
+		var scale = $('#resume-preview-container').width()/1240;
+		$('#resume-view-port').css({
+		  '-webkit-transform' : 'scale(' + scale + ')',
+		  '-moz-transform'    : 'scale(' + scale + ')',
+		  '-ms-transform'     : 'scale(' + scale + ')',
+		  '-o-transform'      : 'scale(' + scale + ')',
+		  'transform'         : 'scale(' + scale + ')'
 		});
+
+		$('#temp-poll').carousel({
+		  interval: 3000
+		});
+		if ($(window).width() > 700) {
+			$('.carousel .item').each(function(){
+			  	var next = $(this).next();
+				if (!next.length) {
+				    next = $(this).siblings(':first');
+				}
+				next.children(':first-child').clone().appendTo($(this));
+				  
+				for (var i=0;i<2;i++) {
+				    next=next.next();
+				    if (!next.length) {
+				    	next = $(this).siblings(':first');
+				  	}
+				    
+				    next.children(':first-child').clone().appendTo($(this));
+				}
+			});
+		}
+
+		$('#temp-poll img').click(function () {
+			$(this).parents('#temp-poll').find('.selected').removeClass('selected');
+			$(this).addClass('selected');			
+		});
+
 	});
 </script>
