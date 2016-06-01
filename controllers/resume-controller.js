@@ -12,6 +12,9 @@ var projectModel       = require('../models/project');
 var skillModel         = require('../models/skill');
 
 function resumeController() {
+    this.createResume=function(req, res) {
+      res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
+    }
     this.insertResume = function(req, res) {
         var resume = new Resume(req.body);
         console.log(req.body);
@@ -88,8 +91,22 @@ function resumeController() {
                 }
             });
         }
-
     };
+
+    /**
+     * @param  resumeId id of resume
+     * @param  templateId id of template
+     * @return code {success| error}
+     */
+    this.updateTemplate = function (req, res) {
+      
+    }
+
+/*
+==============================================================================================
+  Helper functions
+==============================================================================================
+ */
 
     /**
      * @param  res response
@@ -189,9 +206,7 @@ function resumeController() {
         };
       });
     };
-    this.createResume=function(req, res) {
-      res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
-    }
+    
 };
 
 module.exports = new resumeController();
