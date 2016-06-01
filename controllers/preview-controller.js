@@ -13,7 +13,7 @@ function previewController() {
                     } else {
                         console.log('res_rows', res_rows);
                         if (!res_rows[0].id) {
-                            res.send('File not found');
+                            res.status(404).send('File not found');
                         } else {
                             res.render('preview/index', { title: 'Preview', resumeId: res_rows[0].id, templates: temp_rows, req: req});
                         }
@@ -21,8 +21,7 @@ function previewController() {
                 });
                 
             }
-        })
-               
+        });               
     };
 }
 
