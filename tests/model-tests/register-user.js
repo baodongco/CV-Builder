@@ -29,7 +29,7 @@ describe('Test register-user model', function () {
             email: 'dien@gmail.com'
         };
 
-        var model = new re(testUser);
+        var model = new registerUser(testUser);
 
         assert.equal(model.username, null);
 
@@ -42,7 +42,7 @@ describe('Test register-user model', function () {
             password: 'Abc123'
         };
 
-        var model = new re(testUser);
+        var model = new registerUser(testUser);
 
         assert.equal(model.email, null);
 
