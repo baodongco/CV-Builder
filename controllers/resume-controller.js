@@ -14,16 +14,16 @@ var skillModel         = require('../models/skill');
 function resumeController() {
     this.insertResume = function(req, res) {
         var resume = new Resume(req.body);
-        console.log(req.body);
+        resume.templateId = 1;
         console.log(resume);
         // insert resume
         connection.pool.query(sql.insertResume, resume, function(err, rows) {
             if(err) console.log(err);
             // insert sections
-            if (req.body.education != null) {
+            if (checkArray(req.body.education)) {
+                console.log('education hit');
                 req.body.education.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    console.log(item);
+                    item.resId = rows.insertId;                    
                     var education = new educationModel(item);
                     connection.pool.query(sql.insertEducation, education);
                 });
@@ -61,6 +61,15 @@ function resumeController() {
                 });
             }
         });
+    };
+
+    this.checkArray = function(array){
+        array.foreach(function(item){
+            if (item == '') {
+                return false;
+            }
+        });
+        return true;
     };
 
     /**
