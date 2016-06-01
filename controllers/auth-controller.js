@@ -3,20 +3,23 @@
 var connection = require('../connection');
 var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
+var LoginUser = require('../models/login-user');
 var PassModification = require('../models/password-modification');
 var ResetPasswordInfo = require('../models/reset-password-info');
-var Email = require('../models/email');
+var Email = require('../utilities/email');
 var EmailInfo = require('../models/email-info');
 var config = require('config');
 var activeUserSettings = config.get('cv-builder.active-user');
 
 function authController() {
+    // GET /register
     this.getRegister = function(req, res) {
         res.render('auth/register', {
             message: req.flash('signupMessage'), title: 'Register',req: req
         });
     };
 
+    // POST /register
     this.postRegister = function(req, res) {
         var newUser = new RegisterUser(req.body);
 
@@ -47,18 +50,22 @@ function authController() {
     };
 
 
+    // GET /login
     this.getLogin = function(req, res) {
         res.render('auth/login', {
             message: req.flash('loginMessage'), title: 'Login', req: req
         });
     };
 
+    // POST /login
     this.postLogin = function(req, done) {
-        connection.pool.query(queries.login, req.body.username, function(err, rows) {
+        var loginUser = new LoginUser(req.body);
+
+        connection.pool.query(queries.login, loginUser.username, function(err, rows) {
             if (!rows.length)
                 return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled'));
             // Wrong password
-            else if (!bcrypt.compareSync(req.body.password, rows[0].password))
+            else if (!bcrypt.compareSync(loginUser.password, rows[0].password))
                 return done(null, false, req.flash('loginMessage', 'Wrong password!!!'));
             // Account not activated
             else if (rows[0].activationCode)
@@ -75,6 +82,8 @@ function authController() {
         res.redirect('/');
     };
 
+
+    // GET /activate
     this.getActivate = function(req, res){
         var activationCode = req.query.guid;
         var ttl = activeUserSettings['ttl'];
@@ -83,10 +92,9 @@ function authController() {
         var message = '';
     
         connection.pool.query("CALL SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")",function(err, rows){
-            console.log("SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")");
-      
+            // console.log("SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")");
             if (err){
-                console.log(err);
+                // console.log(err);
                 message = err.message;
                 index = message.indexOf(':');
                 message = message.substring(index + 1);
@@ -95,61 +103,61 @@ function authController() {
                 isError = false;
             }
     
-        if(isError){
-            req.flash('homeMessage', message);
-           res.redirect('/');
-        }else{
-            req.flash('loginMessage', message);
-            res.redirect('/login');
-        }
-     });
-    };
-
-    this.getReset = function(req, res){
-         res.render('auth/reset', {
-            message: req.flash('resetMessage'), title: 'Reset'
+            if (isError) {
+                req.flash('homeMessage', message);
+                res.redirect('/');
+            } else {
+                req.flash('loginMessage', message);
+                res.redirect('/login');
+            }
         });
     };
 
-     this.postReset = function(req, res){
-        var email_address = req.body.email;
 
-        connection.pool.query("CALL SP_RESET_PASSWORD('"+ email_address +"')",function(err, rows){  
-
-        console.log("SP_RESET_PASSWORD('"+ email_address +"')");
-      
-        var index = 0;
-        var message = ''; 
-        var uuid = '';
-        var username = '';
-      
-        if (err){
-            console.log(err);
-            message = err.message;
-            index = message.indexOf(':');
-            message = message.substring(index + 1);
-         }else{
-            message = 'Please check you email to reset your password!!';
-            uuid = rows[0][0]['uuid'];
-            username = rows[1][0]['username'];
-            console.log('=========================uuid: ' + uuid);
-            console.log('=========================username: ' + username);
-            console.log(rows);
-
-            // send email for reset password
-             var emailInfo = new EmailInfo(username, email_address, uuid);
-             var email = new Email(emailInfo);
-             email.sendEmailResetPassword();
-         }
-
-        console.log(message);
-
-        req.flash('homeMessage', message);
-        res.redirect('/');
-     });
-         
+    // GET /reset
+    this.getReset = function(req, res){
+         res.render('auth/reset', {
+            message: req.flash('resetMessage'), title: 'Reset',req:req
+        });
     };
 
+    // POST /reset
+    this.postReset = function(req, res){
+        var email_address = req.body.email;
+        connection.pool.query("CALL SP_RESET_PASSWORD('"+ email_address +"')",function(err, rows){
+            console.log("SP_RESET_PASSWORD('"+ email_address +"')");
+            var index = 0;
+            var message = '';
+            var uuid = '';
+            var username = '';
+
+            if (err) {
+                console.log(err);
+                message = err.message;
+                index = message.indexOf(':');
+                message = message.substring(index + 1);
+            } else {
+                message = 'Please check you email to reset your password!!';
+                uuid = rows[0][0]['uuid'];
+                username = rows[1][0]['username'];
+                console.log('=========================uuid: ' + uuid);
+                console.log('=========================username: ' + username);
+                console.log(rows);
+
+                // send email for reset password
+                 var emailInfo = new EmailInfo(username, email_address, uuid);
+                 var email = new Email(emailInfo);
+                 email.sendEmailResetPassword();
+            }
+
+            console.log(message);
+            req.flash('homeMessage', message);
+            res.redirect('/');
+        });
+    };
+
+    
+    // GET: /reset
     this.getResetComplete = function(req, res){
         var guid = req.query.guid;
         var ttl = activeUserSettings['ttl'];
@@ -160,12 +168,12 @@ function authController() {
 
         connection.pool.query("CALL SP_RESET_PASSWORD_COMPLETE('"+ guid +"',"+ ttl +")", function(err, rows){
 
-            if(err){
+            if (err) {
                 console.log(err);
                 message = err.message;
                 index = message.indexOf(':');
                 message = message.substring(index + 1);
-            }else{
+            } else {
                 console.log(rows);
                 isError = false;
                 message = 'Enter your new password to reset!!';
@@ -176,9 +184,9 @@ function authController() {
 
             req.flash('homeMessage', message);
 
-            if(isError){
+            if (isError) {
                 res.redirect('/');
-            }else{
+            } else {
                 res.redirect('/reset-form?guid='+_guid);
             }
 
@@ -186,31 +194,36 @@ function authController() {
 
     };
 
+    // POST: /reset
     this.postResetComplete = function(req, res){
         var resetPasswordInfo = new ResetPasswordInfo(req.body);
 
          connection.pool.query(queries.updatePassword, [resetPasswordInfo.newHasingPass, resetPasswordInfo.guid], function(err, rows) {
-                    if(err){
-                        console.log(err);
-                    }else{
-                        req.flash('loginMessage', 'Password has been reset successful!!');
-                        res.redirect('/login');
-                    }
+            if (err) {
+                console.log(err);
+            } else {
+                req.flash('loginMessage', 'Password has been reset successful!!');
+                res.redirect('/login');
+            }
         });
 
     };
 
+    // GET: /reset-form
     this.getResetForm = function(req, res){
         res.render('auth/reset-form', {
             message: req.flash('resetMessage'), title: 'Reset-form', guid: req.query.guid
         });
     };
 
+
+    // GET: /change-password
     this.getChangePassword = function (req, res) {
         res.render('auth/change-password', { title: 'Change password', message: req.flash('changePass'), 
             username: req.user.username, id: req.user.id });
     };
 
+    // POST: /change-password
     this.postChangePassword = function (req, res) {
         var user = new PassModification(req.body);
         
@@ -230,6 +243,7 @@ function authController() {
         });
     };
 
+    
     this.serializeUser = function(user, done) {
         done(null, user.id);
     };

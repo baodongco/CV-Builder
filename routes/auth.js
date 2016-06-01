@@ -1,6 +1,6 @@
 var authController = require('../controllers/auth-controller');
 var checkLogin = require('../middlewares/check-login');
-var Email = require('../models/email');
+var Email = require('../utilities/email');
 var EmailInfo = require('../models/email-info');
 
 module.exports = {
