@@ -193,7 +193,7 @@ $(function () {
         showButtonPanel: true,
         yearRange: '1999:2016',
         maxDate: new Date(),
-        dateFormat: 'yy/mm/01',
+        dateFormat: 'yy-mm-01',
         onClose: function (dateText, inst) {
             var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
             var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();

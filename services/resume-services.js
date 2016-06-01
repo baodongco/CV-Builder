@@ -1,4 +1,5 @@
 module.exports = {
+    getTemplates: "SELECT id, name FROM template",
 	getResumeById: "SELECT id, userId, templateId, firstName, lastName, email, phone, website,\
         address, sumHeadline, sumContent, photoUrl, publicLink \
         FROM resume WHERE id = ? ",
