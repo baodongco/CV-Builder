@@ -9,7 +9,7 @@ module.exports = {
 		/**
   	 * @return resumes list of current user
   	 */
-  	app.get('resumes', checkLogin, function (req, res) {
+  	app.get('/resumes', checkLogin, function (req, res) {
   		resumeController.getResumes(req,res);
   	});
 
