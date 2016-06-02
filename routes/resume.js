@@ -36,8 +36,18 @@ module.exports = {
       resumeController.updateTemplate(req, res);
     });
 
+    /**
+     * delete a resume
+     * @param  id of resume
+     * @return status code 200
+     */
+    app.delete('/resumes/:id', function (req, res) {
+      resumeController.deleteResume(req, res);
+    })
+
 		app.get('/createresume', function(req,res){
 			resumeController.createResume(req,res);
 		});
+
 	}
 };
