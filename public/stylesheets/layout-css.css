@@ -82,12 +82,8 @@ img.middle{
 }
 .btn {
     font-family: 'Open Sans', Helvetica, sans-serif;
-    
-
-
     letter-spacing: 1px;
     display: inline-block;   
-
     text-align: center;
     white-space: nowrap;
     -ms-touch-action: manipulation;
