@@ -1,29 +1,27 @@
-<% layout('./layouts/main.ejs') -%>
+<% layout('./layouts/auth.ejs') -%>
 
-    <div class="container">
-        <div class="col-sm-6 col-sm-offset-3">
-            <h1><span class="fa fa-sign-in"></span> Reset </h1>
+<div class="auth-form">
+    <h1><span class="fa fa-sign-in"></span> Enter your email </h1>
+    <p class="text-primary">* : Required</p>
 
-            <!-- show any messages that come back with authentication -->
-            <% if (message.length > 0) { %>
-                <div class="alert alert-danger">
-                    <%= message %>
-                </div>
-                <% } %>
-                    <!-- LOGIN FORM -->
-                    <form action="/reset" method="post" role="form" id="resetForm">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" name="email">
-                        </div>
-
-                        <input type="submit" name="Reset" value="Reset" class="btn btn-info">
-                    </form>
-
-                    <hr>
-
-                    <p>Haven't had have an account? <a href="/register">Register</a></p>
-                    <p>Or go <a href="/">home</a>.</p>
+    <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger">
+            <%= message %>
         </div>
-    </div>
-    <script src="/public/javascripts/reset-validation.js"></script>
+    <% } %>
+    <!-- RESET FORM -->
+    <form action="/reset" method="post" role="form" id="resetForm">
+        <div class="form-group">
+            <label>Email *</label>
+            <input type="text" class="form-control" name="email">
+        </div>
+
+        <input type="submit" name="Reset" value="Reset" class="btn btn-info">
+    </form>
+
+    <hr>
+    <p><a href="/">Back to home</a></p>
+</div>
+
+<script src="/public/javascripts/reset-validation.js"></script>

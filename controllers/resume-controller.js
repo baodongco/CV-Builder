@@ -12,6 +12,9 @@ var projectModel       = require('../models/project');
 var skillModel         = require('../models/skill');
 
 function resumeController() {
+    this.createResume=function(req, res) {
+      res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
+    }
     this.insertResume = function(req, res) {
         var resume = new Resume(req.body);
         resume.templateId = 1;
@@ -97,8 +100,83 @@ function resumeController() {
                 }
             });
         }
-
     };
+
+    /**
+     * render view resume page
+     * @param id of resume
+     */
+    this.getPreview = function (req, res) {                
+        connection.pool.query(sql.getTemplates, function (err, temp_rows) {
+            if(err) {
+                throw err.stack
+            } else {
+                connection.pool.query("SELECT id FROM resume WHERE id = ?", req.params.id, function (err, res_rows) {
+                    if (err) {
+                    throw err.stack;
+                    } else {
+                        console.log('res_rows', res_rows);
+                        if (!res_rows[0].id) {
+                            res.status(404).send('File not found');
+                        } else {
+                            var can = false;
+                            if (req.user && req.user.id == res_rows[0].id) {
+                                can = true;
+                            }
+                            res.render('resume/preview',{ 
+                                title: 'View resume',
+                                resumeId: res_rows[0].id, 
+                                templates: temp_rows,
+                                canEdit: can,
+                                req: req
+                            });
+                        }
+                    }
+                });
+                
+            }
+        });               
+    };
+
+    /**
+     * @param  rId id of resume
+     * @param  tId id of template
+     * @return code {success| error}
+     */
+    this.updateTemplate = function (req, res) {
+        if ( req.params.rId && req.params.tId && req.user) {
+            connection.pool.query("select id from resume where id = ? and userId = ? ",
+                [req.params.rId, req.user.id], 
+                function (err , row) { 
+                    if (err) {
+                        res.status(400).send("User cannot edit resume");
+                        throw err;
+                    } else if (row[0].id) {
+                        console.log('row', row);
+                        connection.pool.query("UPDATE resume SET templateId = ? WHERE id = ?",
+                            [req.params.tId, req.params.rId],
+                            function (err, result) {
+                                if (err) {
+                                    res.status(400).send("Item not updated");
+                                    throw err;
+                                } else {
+                                    console.log('update', result);
+                                    res.status(200).send("Item updated");
+                                }
+                            }
+                        );
+                    }
+                });
+        } else {
+            res.status(400).send("Please log in");
+        }
+    }
+
+/*
+==============================================================================================
+  Helper functions
+==============================================================================================
+ */
 
     /**
      * @param  res response
@@ -119,6 +197,8 @@ function resumeController() {
                         throw err.stack;
                     } else {
                         res.setHeader("content-type", "application/pdf");
+                        res.setHeader("content-disposition","inline; filename=resume.pdf");
+                        
                         data.pipe(res);
                     }
                 });
@@ -149,8 +229,7 @@ function resumeController() {
     var getResumeDataById = function (id, callback) {
       connection.pool.query("CALL udsp_getAllResumeData(?)", id, function (err, rows) {
         if (err) {
-          console.log(err);
-
+          throw err;
         } else {
             if (rows[0][0]){
                 // resume
@@ -198,9 +277,7 @@ function resumeController() {
         };
       });
     };
-    this.createResume=function(req, res) {
-      res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
-    }
+    
 };
 
 module.exports = new resumeController();

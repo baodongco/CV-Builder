@@ -25,7 +25,7 @@ h6 {
   font-weight: 700;
 }
 a {
-  color: #2d7788;
+  color: #f47c03;
   -webkit-transition: all 0.4s ease-in-out;
   -moz-transition: all 0.4s ease-in-out;
   -ms-transition: all 0.4s ease-in-out;
@@ -33,7 +33,7 @@ a {
 }
 a:hover {
   text-decoration: underline;
-  color: #1a454f;
+  color: #a85502;
 }
 a:focus {
   text-decoration: none;
@@ -45,7 +45,7 @@ ul {
   list-style: none;
 }
 .wrapper {
-  background: #42A8C0;
+  background: #FDA246;
   margin: 0 auto;
   position: relative;
   -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
@@ -53,7 +53,7 @@ ul {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 .sidebar-wrapper {
-  background: #42A8C0;
+  background: #FDA246;
   position: absolute;
   right: 0;
   width: 300px;
@@ -162,7 +162,7 @@ ul {
   text-transform: uppercase;
   font-size: 20px;
   font-weight: 500;
-  color: #2d7788;
+  color: #f47c03;
   position: relative;
   margin-top: 0;
   margin-bottom: 20px;
@@ -181,7 +181,7 @@ ul {
   -moz-background-clip: padding;
   -webkit-background-clip: padding-box;
   background-clip: padding-box;
-  background: #2d7788;
+  background: #f47c03;
   text-align: center;
   padding-top: 8px;
   font-size: 16px;
