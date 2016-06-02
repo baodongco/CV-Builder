@@ -236,6 +236,32 @@ function resumeController() {
         }
     }
 
+    this.deleteResume = function (req, res) {
+        if (req.user) {
+            connection.pool.query("SELECT id FROM resume WHERE id = ? and userId = ?",
+                [req.params.id, req.user.id], function (err, row) {
+                    if (err) {
+                        throw err;
+                        res.status(401).send('Unauthorized');
+                    } else {
+                        if (row[0].id) {
+                            connection.pool.query("CALL udsp_deleteResume(?)", req.params.id ,function (err, result) {
+                                if (err) {
+                                    throw err;
+                                    res.status(503).send('Unable to delete resume');
+                                } else {
+                                    res.status(200).send('Resume deleted');
+                                }
+                            });
+                        }  
+                    }
+                }
+            )
+        } else {
+            res.status(401).send('Unauthorized');
+        }
+    }
+
 /*
 ==============================================================================================
   Helper functions

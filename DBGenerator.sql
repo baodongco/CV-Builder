@@ -230,8 +230,8 @@ BEGIN
 END; $$
 DELIMITER ;
 
+-- User defined store procedure getAllResumeData
 DELIMITER $$
--- Insert user defined store procedure getAllResumeData
 CREATE PROCEDURE udsp_getAllResumeData( IN _resId INT)
 BEGIN   
   SELECT * FROM resume WHERE id = _resID;
@@ -245,5 +245,17 @@ BEGIN
   SELECT * FROM project WHERE resId = _resID;
   
   SELECT * FROM skill WHERE resId = _resID;
-END; $$
-DELIMITER;
+END;
+$$ DELIMITER;
+-- User define store procedure deleteResume
+DELIMITER $$
+CREATE PROCEDURE udsp_deleteResume(IN _resId INT)
+BEGIN
+  DELETE FROM skill WHERE resId = _resId;
+  DELETE FROM education WHERE resId = _resId;
+  DELETE FROM experience WHERE resId = _resId;
+  DELETE FROM certification WHERE resId = _resId;
+  DELETE FROM project WHERE resId = _resId;
+  DELETE FROM resume WHERE id = _resId;
+END;
+$$ DELIMITER;
