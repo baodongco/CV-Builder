@@ -1,0 +1,57 @@
+<% layout('./layouts/main.ejs') -%>
+<div class="container">
+	<div class="panel panel-info">
+  	<!-- Default panel contents -->
+  		<div class="panel-heading">Your resumes</div>
+  		<% if (resumes.length == 0 ) {%>
+  		<div class="panel-body">
+		    <p>You have no resume. <a href="/createresume">Create your first resume!</a></p>
+  		</div>
+  		<% } %>
+	  	<!-- Table -->
+	  	<table class="table">
+	    	<thead>
+	    		<tr>
+	    			<th>#</th>
+	    			<th>Resume title</th>
+	    			<th>Privacy</th>
+	    			<th>Actions</th>
+	    		</tr>
+	    	</thead>
+	    	<tbody>
+	    		<% for (var i = 0; i < resumes.length; i++) { %>
+	    			<tr>
+	    				<td><%= i+1 %></td>
+	    				<td><%= resumes[i].title %></td>
+	    				<td><%= resumes[i].public?"Public":"Private" %></td>
+	    				<td>
+	    					<a href="/resumes/<%= resumes[i].id %>/preview" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-eye-open"></span> Preview</a>
+	    					<a href="/resumes/<%= resumes[i].id %>?type=pdf" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-download-alt"></span>Download</a>
+	    					<a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+	    					<button data-id="<%= resumes[i].id %>" class="btn btn-sm btn-danger del-res">
+	    						<span class="glyphicon glyphicon-remove"></span>Delete
+	    					</button>
+	    				</td>
+	    			</tr>
+	    		<% }; %>
+	    	</tbody>
+	  	</table>
+	</div>
+</div>
+<script type="text/javascript">
+$(function () {
+	$('.del-res').click(function () {
+		var self = $(this).parents('tr');
+		$.ajax({
+			url: "/resumes/"+ $(this).data('id'),
+			method: "DELETE",
+			success: function () {
+				self.fadeOut(300, function () {
+					self.remove();
+				});
+			}
+		});
+	});
+});
+
+</script>

@@ -12,59 +12,129 @@ var projectModel       = require('../models/project');
 var skillModel         = require('../models/skill');
 
 function resumeController() {
+
     this.createResume=function(req, res) {
       res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
     }
-    this.insertResume = function(req, res) {
+
+    this.insertResume = function(req, res) {        
         var resume = new Resume(req.body);
-        console.log(req.body);
-        console.log(resume);
+        resume.userId = req.user.id;
+        resume.templateId = 1;
+        console.log(req.body.education);
         // insert resume
         connection.pool.query(sql.insertResume, resume, function(err, rows) {
             if(err) console.log(err);
             // insert sections
-            if (req.body.education != null) {
-                req.body.education.forEach(function(item) {
+            req.body.education.forEach(function(item) {                
+                if (checkObject(item)) {
+                    console.log('education hit');  
+                    console.log(item);                  
                     item.resId = rows.insertId;
-                    console.log(item);
-                    var education = new educationModel(item);
-                    connection.pool.query(sql.insertEducation, education);
-                });
-            }
+                    insertItem(item, 'education');                        
+                }
+            });
 
-            if (req.body.experience != null) {
-                req.body.experience.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var experience = new experienceModel(item);
-                    connection.pool.query(sql.insertExperience, experience);
-                });
-            }
+            // req.body.experience.forEach(function(item) {
+            //     if (checkObject(item)) {
+            //         req.body.experience.forEach(function(item) {
+            //             item.resId = rows.insertId;
+            //             var experience = new experienceModel(item);
+            //             connection.pool.query(sql.insertExperience, experience);
+            //         });
+            //     }
+            // });
 
-            if (req.body.certification != null) {
-                req.body.certification.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var certification = new certificationModel(item);
-                    connection.pool.query(sql.insertCertification, certification);
-                });
-            }
+            // req.body.certification.forEach(function(item) {
+            //     if (checkObject(item)) {
+            //         req.body.certification.forEach(function(item) {
+            //             item.resId = rows.insertId;
+            //             var certification = new certificationModel(item);
+            //             connection.pool.query(sql.insertCertification, certification);
+            //         });
+            //     }
+            // });
 
-            if (req.body.project != null) {
-                req.body.project.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var project = new projectModel(item);
-                    connection.pool.query(sql.insertProject, project);
-                });
-            }
+            // req.body.project.forEach(function(item) {
+            //     if (checkObject(item)) {
+            //         req.body.project.forEach(function(item) {
+            //             item.resId = rows.insertId;
+            //             var project = new projectModel(item);
+            //             connection.pool.query(sql.insertProject, project);
+            //         });
+            //     }
+            // });
 
-            if (req.body.skill != null) {
-                req.body.skill.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var skill = new skillModel(item);
-                    connection.pool.query(sql.insertSkill, skill);
-                });
-            }
+            // req.body.skill.forEach(function(item) {
+            //     if (checkObject(item)) {
+            //         req.body.skill.forEach(function(item) {
+            //             item.resId = rows.insertId;
+            //             var skill = new skillModel(item);
+            //             connection.pool.query(sql.insertSkill, skill);
+            //         });
+            //     }
+            // });
+
+            //return resume Id
+            res.redirect('/resumes/' + rows.insertId + '/preview');
         });
     };
+
+    this.updateResume = function(req,res) {
+        var resume = new Resume(req.body.resume);
+        var query = connection.pool.query(sql.updateResume, [resume,resume.id]);
+
+        //handle education items
+        req.body.education.forEach(function(item){
+            if (item.hasOwnProperty('id')) {
+                updateEducation(item);
+            } else {
+                insertEducation(item);
+            }
+        })
+
+        console.log(query);
+    };    
+
+    function insertItem(item, table) {        
+        connection.pool.query('INSERT INTO ' + table + ' SET ?', item);
+    };
+
+    function updateItem(item, table) {
+        item.resId = rows.insertId;                    
+        var education = new educationModel(item);
+        connection.pool.query('UPDATE ' + table + '  SET ?? WHERE id = ?', [item, item.id]);
+    };
+
+    function checkObject(obj){        
+        for(var key in obj){            
+            if (obj[key] == '') {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    /**
+     * get all rsumes of user
+     * 
+     */
+    this.getResumes = function (req, res) {
+        if (req.user) {
+            connection.pool.query("SELECT userId, id, title, public FROM resume WHERE userId =? ",
+                req.user.id, function (err, rows) {
+                    if(err) {
+                        throw err.stack;
+                    } else {
+                        console.log('reuses', rows);
+                        res.render('resume/all', { title: "My resumes", resumes: rows, req: req});
+                    }
+                }
+            )
+        } else {
+            res.redirect('/login');
+        }
+    }
 
     /**
      * @param  req
@@ -94,12 +164,99 @@ function resumeController() {
     };
 
     /**
-     * @param  resumeId id of resume
-     * @param  templateId id of template
+     * render view resume page
+     * @param id of resume
+     */
+    this.getPreview = function (req, res) {                
+        connection.pool.query(sql.getTemplates, function (err, temp_rows) {
+            if(err) {
+                throw err.stack
+            } else {
+                connection.pool.query("SELECT id, userId FROM resume WHERE id = ?", req.params.id, function (err, res_rows) {
+                    if (err) {
+                    throw err.stack;
+                    } else {
+                        console.log('res_rows', res_rows);
+                        if (!res_rows[0].id) {
+                            res.status(404).send('File not found');
+                        } else {
+                            var can = false;
+                            if (req.user && req.user.id == res_rows[0].userId) {
+                                can = true;
+                            }
+                            res.render('resume/preview',{ 
+                                title: 'View resume',
+                                resumeId: res_rows[0].id, 
+                                templates: temp_rows,
+                                canEdit: can,
+                                req: req
+                            });
+                        }
+                    }
+                });
+                
+            }
+        });               
+    };
+
+    /**
+     * @param  rId id of resume
+     * @param  tId id of template
      * @return code {success| error}
      */
     this.updateTemplate = function (req, res) {
-      
+        if ( req.params.rId && req.params.tId && req.user) {
+            connection.pool.query("select id from resume where id = ? and userId = ? ",
+                [req.params.rId, req.user.id], 
+                function (err , row) { 
+                    if (err) {
+                        res.status(400).send("User cannot edit resume");
+                        throw err;
+                    } else if (row[0].id) {
+                        console.log('row', row);
+                        connection.pool.query("UPDATE resume SET templateId = ? WHERE id = ?",
+                            [req.params.tId, req.params.rId],
+                            function (err, result) {
+                                if (err) {
+                                    res.status(400).send("Item not updated");
+                                    throw err;
+                                } else {
+                                    console.log('update', result);
+                                    res.status(200).send("Item updated");
+                                }
+                            }
+                        );
+                    }
+                });
+        } else {
+            res.status(400).send("Please log in");
+        }
+    }
+
+    this.deleteResume = function (req, res) {
+        if (req.user) {
+            connection.pool.query("SELECT id FROM resume WHERE id = ? and userId = ?",
+                [req.params.id, req.user.id], function (err, row) {
+                    if (err) {
+                        throw err;
+                        res.status(401).send('Unauthorized');
+                    } else {
+                        if (row[0].id) {
+                            connection.pool.query("CALL udsp_deleteResume(?)", req.params.id ,function (err, result) {
+                                if (err) {
+                                    throw err;
+                                    res.status(503).send('Unable to delete resume');
+                                } else {
+                                    res.status(200).send('Resume deleted');
+                                }
+                            });
+                        }  
+                    }
+                }
+            )
+        } else {
+            res.status(401).send('Unauthorized');
+        }
     }
 
 /*
@@ -127,6 +284,8 @@ function resumeController() {
                         throw err.stack;
                     } else {
                         res.setHeader("content-type", "application/pdf");
+                        res.setHeader("content-disposition","inline; filename=resume.pdf");
+                        
                         data.pipe(res);
                     }
                 });
@@ -157,8 +316,7 @@ function resumeController() {
     var getResumeDataById = function (id, callback) {
       connection.pool.query("CALL udsp_getAllResumeData(?)", id, function (err, rows) {
         if (err) {
-          console.log(err);
-
+          throw err;
         } else {
             if (rows[0][0]){
                 // resume

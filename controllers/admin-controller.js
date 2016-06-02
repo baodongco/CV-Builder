@@ -4,7 +4,8 @@ var query = require('../services/user-services');
 function adminController() {
     this.getIndex = function (req, res) {
         connection.pool.query(query.getAllUsers, function (err, users) {
-            res.render('admin/index', {title: 'Admin page', users: users, message: req.flash('adminMessage')});
+            console.log(req.user.id);
+            res.render('admin/index', {title: 'Admin page', loginId: req.user.id, users: users, message: req.flash('adminMessage')});
         });
     };
     

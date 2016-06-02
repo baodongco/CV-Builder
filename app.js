@@ -9,7 +9,8 @@ var passport     = require('passport');
 var flash        = require('connect-flash');
 var session      = require('express-session');
 var url          = require('url');
-var elogger = require('express-logger');
+var elogger      = require('express-logger');
+var fs           = require('fs');
 
 var home = require('./routes/home');
 var auth = require('./routes/auth');
@@ -41,7 +42,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // Write dev log and log files.
 app.use(logger('dev'));
-app.use(elogger({path: __dirname + "/logfile.txt"}));
+app.use(elogger({path: __dirname + "/logs/server-log.log"}));
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -72,13 +73,20 @@ app.use(function(req, res, next) {
 
 // development error handler
 // will print stacktrace
+var log = fs.createWriteStream(__dirname + '/logs/debug.log', {flags: 'w'});
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('error', {
-          message: err.message,
-          error: err
-        });
+
+        log.write(new Date() + ' : ');
+        log.write(err.message + '\n');
+        log.write('Status: ' + err.status + '\n');
+        log.write(err.stack + '\n');
+        log.write('-----\n');
+        if (err.status == 404)
+            res.render('404');
+        else
+            res.render('500');
     });
 }
 
