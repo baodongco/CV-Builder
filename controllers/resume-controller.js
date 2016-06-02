@@ -154,7 +154,7 @@ function resumeController() {
             if(err) {
                 throw err.stack
             } else {
-                connection.pool.query("SELECT id FROM resume WHERE id = ?", req.params.id, function (err, res_rows) {
+                connection.pool.query("SELECT id, userId FROM resume WHERE id = ?", req.params.id, function (err, res_rows) {
                     if (err) {
                     throw err.stack;
                     } else {
@@ -163,7 +163,7 @@ function resumeController() {
                             res.status(404).send('File not found');
                         } else {
                             var can = false;
-                            if (req.user && req.user.id == res_rows[0].id) {
+                            if (req.user && req.user.id == res_rows[0].userId) {
                                 can = true;
                             }
                             res.render('resume/preview',{ 

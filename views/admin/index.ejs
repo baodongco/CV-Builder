@@ -20,18 +20,22 @@
                 <td>true</td>
             <% } %>
 
-            <% if (!user.isDisabled) { %>
-                <td>
-                    <a href="#" data-id="<%= user.id %>" class="disable btn btn-danger">
-                        Disable
-                    </a>
-                </td>
+            <% if (loginId != user.id) {%>
+                <% if (!user.isDisabled) { %>
+                    <td>
+                        <a href="#" data-id="<%= user.id %>" class="disable btn btn-danger">
+                            Disable
+                        </a>
+                    </td>
+                <% } else { %>
+                    <td>
+                        <a href="#" data-id="<%= user.id %>" class="enable btn btn-success">
+                            Enable
+                        </a>
+                    </td>
+                <% } %>
             <% } else { %>
-                <td>
-                    <a href="#" data-id="<%= user.id %>" class="enable btn btn-success">
-                        Enable
-                    </a>
-                </td>
+                <td></td>
             <% } %>
         </tr>
     <% }) %>

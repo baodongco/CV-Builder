@@ -2,4 +2,5 @@
 .vscode/
 logfile.txt
 jsconfig.json
-npm-debug.log
+logs/debug.log
+logs/server-log.log
