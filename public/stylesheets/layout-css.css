@@ -77,11 +77,12 @@ img.middle{
             margin-top: 20px;
     margin-bottom: 20px;   
         font-weight: 600;  
-            min-width: 88px;   
+            min-width: 88px;
+            text-transform: uppercase;   
 }
 .btn {
     font-family: 'Open Sans', Helvetica, sans-serif;
-    text-transform: uppercase;
+    
 
 
     letter-spacing: 1px;
