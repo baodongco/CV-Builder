@@ -532,7 +532,7 @@ $(function () {
             $('#' + id).removeClass('hasDatepicker');
 
             if (id.startsWith('educationDetails')) {
-                name = 'education[' + cloneIndexEdu + '][details]';
+                name = 'education[' + cloneIndexEdu + '][detail]';
                 $('#detailsEducation-' + cloneIndexEdu).empty();
                 $('#detailsEducation-' + cloneIndexEdu).append('<textarea class="editor" name="' + name + '" id="' + id + '" placeholder="Add a few details about this educational qualification..."></textarea>');
                 CKEDITOR.replace(name);

@@ -21,18 +21,17 @@ function resumeController() {
         var resume = new Resume(req.body);
         resume.userId = req.user.id;
         resume.templateId = 1;
-        console.log(resume);
+        console.log(req.body.education);
         // insert resume
         connection.pool.query(sql.insertResume, resume, function(err, rows) {
             if(err) console.log(err);
             // insert sections
             req.body.education.forEach(function(item) {                
                 if (checkObject(item)) {
-                    console.log('education hit');
-                    req.body.education.forEach(function(item) {
-                        item.resId = rows.insertId;
-                        insertItem(item, 'education');                        
-                    });
+                    console.log('education hit');  
+                    console.log(item);                  
+                    item.resId = rows.insertId;
+                    insertItem(item, 'education');                        
                 }
             });
 
@@ -107,10 +106,8 @@ function resumeController() {
         connection.pool.query('UPDATE ' + table + '  SET ?? WHERE id = ?', [item, item.id]);
     };
 
-    function checkObject(obj){
-        console.log(obj);
-        for(var key in obj){
-            console.log(obj[key]);
+    function checkObject(obj){        
+        for(var key in obj){            
             if (obj[key] == '') {
                 return false;
             }
