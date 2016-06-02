@@ -73,17 +73,20 @@ img.middle{
         font-size: 20px;
         padding: 6px 12px;
         line-height: 1.42857143;
-        border-radius: 4px;     
+        border-radius: 4px;
+            margin-top: 20px;
+    margin-bottom: 20px;   
+        font-weight: 600;  
+            min-width: 88px;   
 }
 .btn {
     font-family: 'Open Sans', Helvetica, sans-serif;
     text-transform: uppercase;
-    min-width: 88px;
-    font-weight: 600;
+
+
     letter-spacing: 1px;
     display: inline-block;   
-    margin-top: 20px;
-    margin-bottom: 20px;   
+
     text-align: center;
     white-space: nowrap;
     -ms-touch-action: manipulation;

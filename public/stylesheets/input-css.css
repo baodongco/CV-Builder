@@ -6,6 +6,27 @@ ul.skill-progress {
     padding-bottom:10px;
     padding-left: 55px
 }
+ul.skill-lprogress {
+    list-style-type: none;
+    margin:0 auto;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+ul.skill-lprogress li {
+    float:left;
+    position:relative;
+    width:15px;
+    height:15px;
+    border:1px solid #fff;
+    border-radius:50px;
+    margin-left:10px;
+    border-left:1px solid #111; border-top:1px solid #111; border-right:1px solid #333; border-bottom:1px solid #333;
+    background:#000;
+}
+ul.skill-lprogress li{
+    cursor: pointer
+}
+ul.skill-lprogress li:first-child { margin-left:0;}
 ul#lprogress {
     padding-left: inherit
 }
