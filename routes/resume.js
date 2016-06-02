@@ -1,16 +1,15 @@
 var resumeController = require('../controllers/resume-controller');
-var getId = require('../middlewares/get-user-id')
 var checkLogin = require('../middlewares/check-login')
 
 module.exports = {
 	configure: function (app) {
-		app.post('/createresume', checkLogin, getId, function (req, res) {
-			resumeController.insertResume(req, res);
+		app.post('/createresume', checkLogin, function (req, res) {                          
+			    resumeController.insertResume(req, res);
 		});
 		/**
   	 * @return resumes list of current user
   	 */
-  	app.get('resumes', function (req, res) {
+  	app.get('resumes', checkLogin, function (req, res) {
   		resumeController.getResumes(req,res);
   	});
 

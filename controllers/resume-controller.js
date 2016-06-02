@@ -12,66 +12,109 @@ var projectModel       = require('../models/project');
 var skillModel         = require('../models/skill');
 
 function resumeController() {
+
     this.createResume=function(req, res) {
       res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
     }
-    this.insertResume = function(req, res) {
+
+    this.insertResume = function(req, res) {        
         var resume = new Resume(req.body);
+        resume.userId = req.user.id;
         resume.templateId = 1;
         console.log(resume);
         // insert resume
         connection.pool.query(sql.insertResume, resume, function(err, rows) {
             if(err) console.log(err);
             // insert sections
-            if (checkArray(req.body.education)) {
-                console.log('education hit');
-                req.body.education.forEach(function(item) {
-                    item.resId = rows.insertId;                    
-                    var education = new educationModel(item);
-                    connection.pool.query(sql.insertEducation, education);
-                });
-            }
+            req.body.education.forEach(function(item) {                
+                if (checkObject(item)) {
+                    console.log('education hit');
+                    req.body.education.forEach(function(item) {
+                        item.resId = rows.insertId;
+                        insertItem(item, 'education');                        
+                    });
+                }
+            });
 
-            if (req.body.experience != null) {
-                req.body.experience.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var experience = new experienceModel(item);
-                    connection.pool.query(sql.insertExperience, experience);
-                });
-            }
+            // req.body.experience.forEach(function(item) {
+            //     if (checkObject(item)) {
+            //         req.body.experience.forEach(function(item) {
+            //             item.resId = rows.insertId;
+            //             var experience = new experienceModel(item);
+            //             connection.pool.query(sql.insertExperience, experience);
+            //         });
+            //     }
+            // });
 
-            if (req.body.certification != null) {
-                req.body.certification.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var certification = new certificationModel(item);
-                    connection.pool.query(sql.insertCertification, certification);
-                });
-            }
+            // req.body.certification.forEach(function(item) {
+            //     if (checkObject(item)) {
+            //         req.body.certification.forEach(function(item) {
+            //             item.resId = rows.insertId;
+            //             var certification = new certificationModel(item);
+            //             connection.pool.query(sql.insertCertification, certification);
+            //         });
+            //     }
+            // });
 
-            if (req.body.project != null) {
-                req.body.project.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var project = new projectModel(item);
-                    connection.pool.query(sql.insertProject, project);
-                });
-            }
+            // req.body.project.forEach(function(item) {
+            //     if (checkObject(item)) {
+            //         req.body.project.forEach(function(item) {
+            //             item.resId = rows.insertId;
+            //             var project = new projectModel(item);
+            //             connection.pool.query(sql.insertProject, project);
+            //         });
+            //     }
+            // });
 
-            if (req.body.skill != null) {
-                req.body.skill.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var skill = new skillModel(item);
-                    connection.pool.query(sql.insertSkill, skill);
-                });
-            }
+            // req.body.skill.forEach(function(item) {
+            //     if (checkObject(item)) {
+            //         req.body.skill.forEach(function(item) {
+            //             item.resId = rows.insertId;
+            //             var skill = new skillModel(item);
+            //             connection.pool.query(sql.insertSkill, skill);
+            //         });
+            //     }
+            // });
+
+            //return resume Id
+            res.redirect('/resumes/' + rows.insertId + '/preview');
         });
     };
 
-    this.checkArray = function(array){
-        array.foreach(function(item){
-            if (item == '') {
+    this.updateResume = function(req,res) {
+        var resume = new Resume(req.body.resume);
+        var query = connection.pool.query(sql.updateResume, [resume,resume.id]);
+
+        //handle education items
+        req.body.education.forEach(function(item){
+            if (item.hasOwnProperty('id')) {
+                updateEducation(item);
+            } else {
+                insertEducation(item);
+            }
+        })
+
+        console.log(query);
+    };    
+
+    function insertItem(item, table) {        
+        connection.pool.query('INSERT INTO ' + table + ' SET ?', item);
+    };
+
+    function updateItem(item, table) {
+        item.resId = rows.insertId;                    
+        var education = new educationModel(item);
+        connection.pool.query('UPDATE ' + table + '  SET ?? WHERE id = ?', [item, item.id]);
+    };
+
+    function checkObject(obj){
+        console.log(obj);
+        for(var key in obj){
+            console.log(obj[key]);
+            if (obj[key] == '') {
                 return false;
             }
-        });
+        }
         return true;
     };
 
