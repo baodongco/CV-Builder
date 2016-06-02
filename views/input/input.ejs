@@ -7,7 +7,6 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
     <script src="/public/javascripts/input/resume-validator.js"></script>
     <link rel="stylesheet" href="/public/stylesheets/input-css.css">
-    <form action="createresume" method="GET" id="resumeForm">
     <ul class="nav nav-tabs">
         <li class="active"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
         <li><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
@@ -17,9 +16,16 @@
         <li><a href="#certification" data-toggle="tab"><span class="glyphicon glyphicon-cog"> Certification</span></a></li>
         <li><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
     </ul>
+<<<<<<< HEAD
     
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active form-style-5" id="contact">
+=======
+
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane active form-style-5" id="contact">
+            <form action="createresume" method="POST" id="resumeForm">
+>>>>>>> 4fa86da44efa25739fadc8dbc13ff482aabe7c3d
                 <fieldset>
                     <legend><span class="number">1</span> Contact Information</legend>
                     <label for="firstName"><span><sup>*</sup>First Name: </span>
@@ -43,8 +49,8 @@
                 </fieldset>
                 <button class="btn pull-left">Save</button>
                 <button class="btn pull-right" type="button">Continue</button>
-            </div>
-            <div class="tab-pane form-style-5" id="summary">
+        </div>
+        <div class="tab-pane form-style-5" id="summary">
                 <fieldset>
                     <legend><span class="number">2</span>Summary</legend>
                     <label for="sumHeadline"><span>Header </span>
@@ -56,8 +62,8 @@
                 </fieldset>
                 <button class="btn npull-left">Save</button>
                 <button class="btn pull-right" type="button">Continue</button>
-            </div>
-            <div class="tab-pane form-style-5" id="experience">
+        </div>
+        <div class="tab-pane form-style-5" id="experience">
                 <fieldset id="field-experience">
                     <legend><span class="number">3</span>Experience</legend>
                     <label for="experience[0][company]"><span>Company </span>
@@ -85,8 +91,8 @@
                     <button class="btn pull-left">Save</button>
                     <button class="btn pull-right">Save and Continue</button>
                 </div>
-            </div>
-            <div class="tab-pane form-style-5" id="project">
+        </div>
+        <div class="tab-pane form-style-5" id="project">
                 <fieldset id="field-project">
                     <legend><span class="number">4</span>Project</legend>
                     <label for="project[0][title]"><span>Project title </span>
@@ -111,43 +117,43 @@
                     <button class="btn pull-left">Save</button>
                     <button class="btn pull-right">Save and Continue</button>
                 </div>
-            </div>
-            <div class="tab-pane form-style-5" id="skills">
-                <fieldset id="field-skill">
-                    <legend><span class="number">5</span>Skill</legend>
-                    <label for="txtSkillName"><span>Skill Name </span>
+        </div>
+        <div class="tab-pane form-style-5" id="skills">
+            <fieldset id="field-skill">
+                <legend><span class="number">5</span>Skill</legend>
+                <label for="txtSkillName"><span>Skill Name </span>
                     <input class="<fo></fo>rm-control" id="txtSkillName" name="txtSkillName">
                 </label>
-                    <label for=""><span>Level</span></label>
-                    <ul id="progress" class="nav skill-progress">
-                        <li id="ball0">
-                            <div id="layer0" class="ball"></div>
-                            <div id="layer12" class="pulse"></div>
-                        </li>
-                        <li id="ball1">
-                            <div id="layer1" class="ball"></div>
-                            <div id="layer7" class="pulse"></div>
-                        </li>
-                        <li id="ball2">
-                            <div id="layer2" class="ball"></div>
-                            <div id="layer8" class="pulse"></div>
-                        </li>
-                        <li id="ball3">
-                            <div id="layer3" class="ball"></div>
-                            <div id="layer9" class="pulse"></div>
-                        </li>
-                        <li id="ball4">
-                            <div id="layer4" class="ball"></div>
-                            <div id="layer10" class="pulse"></div>
-                        </li>
-                        <li id="ball5">
-                            <div id="layer5" class="ball"></div>
-                            <div id="layer11" class="pulse"></div>
-                        </li>
-                        <label id="lblLevel" style="color:blue;margin-left:200px">Not Applicable</label>
-                    </ul>
+                <label for=""><span>Level</span></label>
+                <ul id="progress" class="nav skill-progress">
+                    <li id="ball0">
+                        <div id="layer0" class="ball"></div>
+                        <div id="layer12" class="pulse"></div>
+                    </li>
+                    <li id="ball1">
+                        <div id="layer1" class="ball"></div>
+                        <div id="layer7" class="pulse"></div>
+                    </li>
+                    <li id="ball2">
+                        <div id="layer2" class="ball"></div>
+                        <div id="layer8" class="pulse"></div>
+                    </li>
+                    <li id="ball3">
+                        <div id="layer3" class="ball"></div>
+                        <div id="layer9" class="pulse"></div>
+                    </li>
+                    <li id="ball4">
+                        <div id="layer4" class="ball"></div>
+                        <div id="layer10" class="pulse"></div>
+                    </li>
+                    <li id="ball5">
+                        <div id="layer5" class="ball"></div>
+                        <div id="layer11" class="pulse"></div>
+                    </li>
+                    <label id="lblLevel" style="color:blue;margin-left:200px">Not Applicable</label>
+                </ul>
 
-                    <label for="txtExperience"><span>Experience</span>
+                <label for="txtExperience"><span>Experience</span>
                     <select id="ddlExperience" class="form-control">
                         <option value="0 month">0 month</option>
                         <option value="1-3 months">1-3 months</option>
@@ -157,7 +163,7 @@
                         <option value=">5 years">>5 years</option>
                     </select>
                 </label>
-                    <label><span>Last Year Used</span>
+                <label><span>Last Year Used</span>
                     <select id="ddlLYU" class="form-control">
                         <option value="2016">2016</option>
                         <option value="2015">2015</option>
@@ -175,27 +181,27 @@
                         <option value="2003">2003</option>
                     </select>
                 </label>
-                </fieldset>
-                <div>
-                    <button class="btn btn-primary" type="button" id="btnAddSkill">Add skill</button>
-                    <table id="tblSkills" class="table">
-                        <thead>
-                            <tr>
-                                <th>Skill name</th>
-                                <th>Level</th>
-                                <th>Experience</th>
-                                <th>Last year used</th>
-                                <th id="action">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <button class="btn pull-left">Save</button>
-                <button class="btn pull-right" type="button">Continue</button>
+            </fieldset>
+            <div>
+                <button class="btn btn-primary" type="button" id="btnAddSkill">Add skill</button>
+                <table id="tblSkills" class="table">
+                    <thead>
+                        <tr>
+                            <th>Skill name</th>
+                            <th>Level</th>
+                            <th>Experience</th>
+                            <th>Last year used</th>
+                            <th id="action">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
-            <div class="tab-pane form-style-5" id="certification">
+            <button class="btn pull-left">Save</button>
+            <button class="btn pull-right" type="button">Continue</button>
+        </div>
+        <div class="tab-pane form-style-5" id="certification">
                 <fieldset id="field-certification">
                     <legend><span class="number">6</span>Certification</legend>
                     <label for="certification[0][title]"><span>Certification</span>
@@ -220,8 +226,13 @@
                     <button class="btn pull-left">Save</button>
                     <button class="btn pull-right" type="button">Continue</button>
                 </div>
+<<<<<<< HEAD
             </div>
             <div class="tab-pane form-style-5" id="education">
+=======
+        </div>
+        <div class="tab-pane form-style-5" id="education">
+>>>>>>> 4fa86da44efa25739fadc8dbc13ff482aabe7c3d
                 <fieldset id="field-education">
                     <legend><span class="number">7</span>Education</legend>
                     <label for="education[0][institute]"><span>Institute </span>
@@ -248,7 +259,7 @@
                     </div>
                     <button class="btn pull-left">Save</button>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
     <script src="/public/javascripts/input/input.js"></script>
