@@ -9,7 +9,7 @@ $(document).ready(function(){
         
         messages: {
             email: {
-                required: "Enter your username.",
+                required: "Enter your email.",
                 email: "Invalid format email address."                
             }
         }

@@ -1,41 +1,44 @@
-<% layout('./layouts/main.ejs') -%>
+<% layout('./layouts/auth.ejs') -%>
 
-    <div class="container">
-        <div class="col-sm-6 col-sm-offset-3">
-            <h1><span class="fa fa-sign-in"></span> Login </h1>
+<div class="auth-form">
+    <h1><span class="fa fa-sign-in"></span> Login </h1>
+    <p class="text-primary">* : Required</p>
 
-            <!-- show any messages that come back with authentication -->
-            <% if (message.length > 0) { %>
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-                    <%= message %>
-                </div>
-                <% } %>
-                    <!-- LOGIN FORM -->
-                    <form action="/login" method="post" role="form" id="loginForm">
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input type="text" class="form-control" name="username">
-                        </div>
+            <%= message %>
+        </div>
+    <% } %>
 
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password">
-                        </div>
+    <!-- LOGIN FORM -->
+    <form action="/login" method="post" role="form" id="loginForm">
+        <div class="form-group">
+            <label>Username *</label>
+            <input type="text" class="form-control" name="username">
+        </div>
+
+        <div class="form-group">
+            <label>Password *</label>
+            <input type="password" class="form-control" name="password">
+        </div>
 
         <div class="form-group">
             <input type="checkbox" name="remember"> Remember me
         </div>
 
-        <input type="submit" name="Login" value="Login" class="btn btn-default">
+        <div class="form-group">
+            <input type="submit" name="Login" value="Login" class="btn btn-success">
+        </div>
+        <u><a href="/reset">Forgot password?</a></u>
     </form>
 
-                    <hr>
+    <hr>
+    <p>Don't have an account? <b><a href="/register">Sign up</a></b></p>
+    <p><a href="/">Back to home</a></p>
+</div>
 
-                    <p>Haven't had have an account? <a href="/register">Register</a></p>
-                    <p>Or go <a href="/">home</a>.</p>
-        </div>
-    </div>
-    <script src="/public/javascripts/login-validation.js"></script>
+<script src="/public/javascripts/login-validation.js"></script>

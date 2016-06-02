@@ -1,3 +1,6 @@
 .idea/
 .vscode/
 logfile.txt
+jsconfig.json
+logs/debug.log
+logs/server-log.log

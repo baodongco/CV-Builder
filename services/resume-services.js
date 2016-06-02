@@ -1,4 +1,5 @@
 module.exports = {
+    getTemplates: "SELECT id, name FROM template",
 	getResumeById: "SELECT id, userId, templateId, firstName, lastName, email, phone, website,\
         address, sumHeadline, sumContent, photoUrl, publicLink \
         FROM resume WHERE id = ? ",
@@ -19,5 +20,6 @@ module.exports = {
     insertExperience: "INSERT INTO experience SET ?",  
     insertCertification: "INSERT INTO certification SET ?",  
     insertProject: "INSERT INTO project SET ?",  
-    insertSkill: "INSERT INTO skill SET ?"      
+    insertSkill: "INSERT INTO skill SET ?", 
+    updateResume: "UPDATE resume SET ?? WHERE id = ?"    
 };

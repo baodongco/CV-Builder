@@ -12,6 +12,9 @@ $(document).ready(function () {
             skillName:{
                 required:true,
             },
+            "education[][institute]": {
+                required:true
+            }
         },
 
         messages: {
