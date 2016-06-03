@@ -49,7 +49,7 @@ function resumeController() {
                     console.log('certification hit');
                     console.log(item);
                     item.resId = rows.insertId;                    
-                    insertItem(item, 'certifiaction');
+                    insertItem(item, 'certification');
                 }
             });
 
@@ -74,7 +74,7 @@ function resumeController() {
             }
 
             //return resume Id
-            res.redirect('/resumes/' + rows.insertId + '/preview');
+            res.redirect('/resumes/preview/' + rows.insertId);
         });
     };
 
