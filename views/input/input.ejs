@@ -7,7 +7,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
     <script src="/public/javascripts/input/resume-validator.js"></script>
     <link rel="stylesheet" href="/public/stylesheets/input-css.css">
-    <form action="createresume" method="POST" id="resumeForm">
+    <form action="create" method="POST" id="resumeForm">
         <ul class="nav nav-tabs">
             <li class="active" id="licontact"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
             <li id="lisummary"><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
@@ -116,6 +116,7 @@
             </div>
             <div class="tab-pane form-style-5" id="skills">
                 <fieldset id="field-skill">
+                    <input type="hidden" id="skillHiddenIndex" value="-1">
                     <legend><span class="number">5</span>Skill</legend>
                     <label for="txtSkillName"><span>Skill Name </span>
                     <input class="form-control" id="txtSkillName">
