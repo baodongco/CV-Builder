@@ -246,7 +246,7 @@ BEGIN
   
   SELECT * FROM skill WHERE resId = _resID;
 END;
-$$ DELIMITER ;
+$$ DELIMITER;
 -- User define store procedure deleteResume
 DELIMITER $$
 CREATE PROCEDURE udsp_deleteResume(IN _resId INT)
