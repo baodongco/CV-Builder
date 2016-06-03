@@ -1,0 +1,23 @@
+<%for(var i=0;i<resume.educations.length;i++)
+                {%>
+                    <fieldset id="field-education">
+                        <legend><span class="number">7</span>Education</legend>
+                        <label for="education[0][institute]"><span>Institute </span>
+                    <input type="text" name="education[<%=i%>][institute]"  id="txtEduInstitute-<%=i%>" value="<%=resume.educations[i].institute %>" class="form-control" placeholder="e.g. Harvard University">
+                </label>
+                        <label for="education[0][degree]"><span>Degree </span>
+                    <input type="text" name="education[<%=i%>][degree]" id="txtEduDegree-<%=i%>" value="<%=resume.educations[i].degree %>" class="form-control" placeholder="e.g. Bachelor of Information Technology">
+                </label>
+                        <label for=""><span>From Date </span>
+                    <input name="education[<%=i%>][startTime]" id="educationFromDate-<%=i%>" value="<%=resume.educations[i].startTime %>" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                </label>
+                        <label for="educationFromDate"><span>To Date </span>
+                    <input name="education[<%=i%>][endTime]" id="educationToDate-<%=i%>" value="<%=resume.educations[i].endTime %>" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
+                </label>
+                        <label for="education[<%=i%>][detail]"><span>Details </span>
+                    <div id="detailsEducation">
+                        <textarea class="editor" name="education[<%=i%>][detail]" id="educationDetails-<%=i%>" placeholder="Add a few details about this educational qualification..."><%=resume.educations[i].detail %></textarea>
+                    </div>
+                </label>
+                    </fieldset>
+                    <%}%>
