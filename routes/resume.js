@@ -45,7 +45,7 @@ module.exports = {
       resumeController.deleteResume(req, res);
     })
 
-		app.get('/createresume', function(req,res){
+		app.get('/createresume', checkLogin, function(req,res){
 			resumeController.createResume(req,res);
 		});
 
