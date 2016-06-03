@@ -28,4 +28,16 @@ $(function () {
             $('[data-toggle="popover"]').popover('hide');
         }
     });
+    $('.prv-res').click(function () {
+        var id =$(this).data('id');
+        $.ajax({
+            url: '/resumes/privacy?status=false&id='+ id,
+            success: function (data) {
+                alert(data.publicLink);
+            },
+            error: function (data) {
+                alert(data);
+            }
+        })
+    })
 });

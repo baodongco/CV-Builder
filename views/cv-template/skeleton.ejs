@@ -100,8 +100,8 @@
                     <span class="project-title">
                         <a href="<%= resume.projects[i].url || "#" %>"><%= resume.projects[i].title %></a>
                     </span>
-                    <div class="project-detail"><%= resume.projects[i].detail %></div>
-                    <span class="project-tagline">Time: <%= resume.projects[i].startTime %> - <%= resume.projects[i].endTime %></span>                  
+                    <div class="project-detail"><%- resume.projects[i].detail %></div>
+                    <span class="project-tagline">Time: <%= resume.projects[i].startTime.getMonth() %> - <%= resume.projects[i].endTime.getMonth() %></span>                  
                 </div><!--//item-->
                 <% } %>               
                 
@@ -122,7 +122,8 @@
                         </div><!--//level-bar--> 
                         <p class="text-small">
                             <% if (resume.skills[i].experience) { %>Experiences: <%= resume.skills[i].experience %><br /><% } %> 
-                            <% if (resume.skills[i].lastUsed) { %>Last used: <%= resume.skills[i].lastUsed %><% } %>
+                            <% if (resume.skills[i].lastUsed) { %>
+                                Last used: <%= (resume.skills[i].lastUsed.getMonth() + 1) +"/"+ resume.skills[i].lastUsed.getFullYear() %><% } %>
                         </p>                                
                     </div><!--//item-->   
                 <% } %>             
