@@ -13,21 +13,21 @@ module.exports = {
          * create new resume
          * @param  req.body.[data]
          */
-    		app.post('/resumes/create', checkLogin, function (req, res) {                          
-    			    resumeController.insertResume(req, res);
-    		});
-    		/**
+		app.post('/resumes/create', checkLogin, function (req, res) {                          
+			    resumeController.insertResume(req, res);
+		});
+		/**
       	 * @return resumes list of current user
       	 */
       	app.get('/resumes', checkLogin, function (req, res) {
       		resumeController.getResumes(req,res);
       	});
 
-    		/**
-    		 * @param  id of resume
-    		 * @param  req.type {html|pdf}
-    		 * @return resume file base on type
-    		 */
+		/**
+		 * @param  id of resume
+		 * @param  req.type {html|pdf}
+		 * @return resume file base on type
+		 */
         app.get('/resumes/:id', function (req, res) {
             resumeController.getResume(req, res);
         });
