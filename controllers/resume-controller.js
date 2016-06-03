@@ -159,7 +159,7 @@ function resumeController() {
      * render view resume page
      * @param id of resume
      */
-    this.getPreview = function (req, res) {                
+    this.getPreviewResume = function (req, res) {                
         connection.pool.query(sql.getTemplates, function (err, temp_rows) {
             if(err) {
                 throw err.stack
@@ -171,16 +171,11 @@ function resumeController() {
                         console.log('res_rows', res_rows);
                         if (!res_rows[0].id) {
                             res.status(404).send('File not found');
-                        } else {
-                            var can = false;
-                            if (req.user && req.user.id == res_rows[0].userId) {
-                                can = true;
-                            }
+                        } else if (req.user.id == res_rows[0].userId) {                           
                             res.render('resume/preview',{ 
                                 title: 'View resume',
                                 resumeId: res_rows[0].id, 
                                 templates: temp_rows,
-                                canEdit: can,
                                 req: req
                             });
                         }
@@ -196,7 +191,7 @@ function resumeController() {
      * @param  tId id of template
      * @return code {success| error}
      */
-    this.updateTemplate = function (req, res) {
+    this.postEditFieldResume = function (req, res) {
         if ( req.params.rId && req.params.tId && req.user) {
             connection.pool.query("select id from resume where id = ? and userId = ? ",
                 [req.params.rId, req.user.id], 
