@@ -118,20 +118,16 @@ function resumeController() {
      * 
      */
     this.getResumes = function (req, res) {
-        if (req.user) {
-            connection.pool.query("SELECT userId, id, title, public FROM resume WHERE userId =? ",
-                req.user.id, function (err, rows) {
-                    if(err) {
-                        throw err.stack;
-                    } else {
-                        console.log('reuses', rows);
-                        res.render('resume/all', { title: "My resumes", resumes: rows, req: req});
-                    }
+        connection.pool.query("SELECT userId, id, title, publicLink FROM resume WHERE userId =? ",
+            req.user.id, function (err, rows) {
+                if(err) {
+                    throw err.stack;
+                } else {
+                    console.log('reuses', rows);
+                    res.render('resume/all', { title: "My resumes", resumes: rows, req: req});
                 }
-            )
-        } else {
-            res.redirect('/login');
-        }
+            }
+        )
     }
 
     /**

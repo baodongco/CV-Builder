@@ -9,7 +9,7 @@
   		</div>
   		<% } %>
 	  	<!-- Table -->
-	  	<table class="table">
+	  	<table class="table table-responsive">
 	    	<thead>
 	    		<tr>
 	    			<th>#</th>
@@ -23,14 +23,27 @@
 	    			<tr>
 	    				<td><%= i+1 %></td>
 	    				<td><%= resumes[i].title %></td>
-	    				<td><%= resumes[i].public?"Public":"Private" %></td>
+	    				<td><%= resumes[i].publicLink?"Public":"Private" %></td>
 	    				<td>
-	    					<a href="/resumes/<%= resumes[i].id %>/preview" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-eye-open"></span> Preview</a>
-	    					<a href="/resumes/<%= resumes[i].id %>?type=pdf" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-download-alt"></span>Download</a>
-	    					<a href="#" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
-	    					<button data-id="<%= resumes[i].id %>" class="btn btn-sm btn-danger del-res">
+	    					<div class="btn-group btn-group-xs">
+	    					<a href="/resumes/<%= resumes[i].id %>/preview" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> Preview</a>
+	    					<a href="/resumes/<%= resumes[i].id %>?type=pdf" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span>Download</a>
+	    					<% if (resumes[i].publicLink) { %>
+	    					<button data-id="<%= resumes[i].id %>" class="btn btn-default prv-res">
+	    						<span class="glyphicon glyphicon-lock"></span>Lock
+	    					</button>
+	    					<% } else{ %> 
+	    					<button data-id="<%= resumes[i].id %>" class="btn btn-default pub-res">
+	    						<span class="glyphicon glyphicon-globe"></span>Public
+	    					</button>
+	    					<% }; %>
+	    					
+	    					<a href="#" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span>Edit</a>
+	    					<button data-id="<%= resumes[i].id %>" class="btn btn-danger del-res">
 	    						<span class="glyphicon glyphicon-remove"></span>Delete
 	    					</button>
+
+	    					</div>
 	    				</td>
 	    			</tr>
 	    		<% }; %>
