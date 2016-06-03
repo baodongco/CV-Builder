@@ -21,7 +21,7 @@ function resumeController() {
         var resume = new Resume(req.body);
         resume.userId = req.user.id;
         resume.templateId = 1;
-        console.log(req.body.education);
+        console.log(req.body);
         // insert resume
         connection.pool.query(sql.insertResume, resume, function(err, rows) {
             if(err) console.log(err);
@@ -35,45 +35,41 @@ function resumeController() {
                 }
             });
 
-            // req.body.experience.forEach(function(item) {
-            //     if (checkObject(item)) {
-            //         req.body.experience.forEach(function(item) {
-            //             item.resId = rows.insertId;
-            //             var experience = new experienceModel(item);
-            //             connection.pool.query(sql.insertExperience, experience);
-            //         });
-            //     }
-            // });
+            req.body.experience.forEach(function(item) {
+                if (checkObject(item)) {
+                    console.log('experience hit');
+                    console.log(item);
+                    item.resId = rows.insertId;                    
+                    insertItem(item, 'experience');
+                }
+            });
 
-            // req.body.certification.forEach(function(item) {
-            //     if (checkObject(item)) {
-            //         req.body.certification.forEach(function(item) {
-            //             item.resId = rows.insertId;
-            //             var certification = new certificationModel(item);
-            //             connection.pool.query(sql.insertCertification, certification);
-            //         });
-            //     }
-            // });
+            req.body.certification.forEach(function(item) {
+                if (checkObject(item)) {
+                    console.log('certification hit');
+                    console.log(item);
+                    item.resId = rows.insertId;                    
+                    insertItem(item, 'certifiaction');
+                }
+            });
 
-            // req.body.project.forEach(function(item) {
-            //     if (checkObject(item)) {
-            //         req.body.project.forEach(function(item) {
-            //             item.resId = rows.insertId;
-            //             var project = new projectModel(item);
-            //             connection.pool.query(sql.insertProject, project);
-            //         });
-            //     }
-            // });
+            req.body.project.forEach(function(item) {
+                if (checkObject(item)) {
+                    console.log('project hit');
+                    console.log(item);
+                    item.resId = rows.insertId;                    
+                    insertItem(item, 'project');
+                }
+            });
 
-            // req.body.skill.forEach(function(item) {
-            //     if (checkObject(item)) {
-            //         req.body.skill.forEach(function(item) {
-            //             item.resId = rows.insertId;
-            //             var skill = new skillModel(item);
-            //             connection.pool.query(sql.insertSkill, skill);
-            //         });
-            //     }
-            // });
+            req.body.skill.forEach(function(item) {
+                if (checkObject(item)) {
+                    console.log('skill hit');
+                    console.log(item);
+                    item.resId = rows.insertId;                    
+                    insertItem(item, 'skill');
+                }
+            });
 
             //return resume Id
             res.redirect('/resumes/' + rows.insertId + '/preview');
@@ -82,28 +78,28 @@ function resumeController() {
 
     this.updateResume = function(req,res) {
         var resume = new Resume(req.body.resume);
-        var query = connection.pool.query(sql.updateResume, [resume,resume.id]);
-
+        var resId = resume.id;
+        delete resume.id;
+        var query = connection.pool.query("UPDATE resume SET ?? WHERE id = ?", [resume, resume.id]);
+        console.log(query);
         //handle education items
         req.body.education.forEach(function(item){
             if (item.hasOwnProperty('id')) {
-                updateEducation(item);
+                updateItem(item, 'education');
             } else {
-                insertEducation(item);
+                insertItem(item, 'education');
             }
         })
-
-        console.log(query);
     };    
 
     function insertItem(item, table) {        
         connection.pool.query('INSERT INTO ' + table + ' SET ?', item);
     };
 
-    function updateItem(item, table) {
-        item.resId = rows.insertId;                    
-        var education = new educationModel(item);
-        connection.pool.query('UPDATE ' + table + '  SET ?? WHERE id = ?', [item, item.id]);
+    function updateItem(item, table) {               
+        var id = item.id;
+        delete item.id;
+        connection.pool.query('UPDATE ' + table + '  SET ?? WHERE id = ?', [item, id]);
     };
 
     function checkObject(obj){        
@@ -120,20 +116,16 @@ function resumeController() {
      * 
      */
     this.getResumes = function (req, res) {
-        if (req.user) {
-            connection.pool.query("SELECT userId, id, title, public FROM resume WHERE userId =? ",
-                req.user.id, function (err, rows) {
-                    if(err) {
-                        throw err.stack;
-                    } else {
-                        console.log('reuses', rows);
-                        res.render('resume/all', { title: "My resumes", resumes: rows, req: req});
-                    }
+        connection.pool.query("SELECT userId, id, title, publicLink FROM resume WHERE userId =? ",
+            req.user.id, function (err, rows) {
+                if(err) {
+                    throw err.stack;
+                } else {
+                    console.log('reuses', rows);
+                    res.render('resume/all', { title: "My resumes", resumes: rows, req: req});
                 }
-            )
-        } else {
-            res.redirect('/login');
-        }
+            }
+        )
     }
 
     /**
