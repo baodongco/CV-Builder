@@ -171,7 +171,7 @@ function resumeController() {
                     throw err.stack;
                     } else {
                         console.log('res_rows', res_rows);
-                        if (!res_rows[0].id) {
+                        if (!res_rows.length) {
                             res.status(404).send('File not found');
                         } else if (req.user.id == res_rows[0].userId) {                           
                             res.render('resume/preview',{ 
@@ -189,36 +189,46 @@ function resumeController() {
     };
 
     /**
-     * @param  rId id of resume
-     * @param  tId id of template
-     * @return code {success| error}
+     * edit a single row value in resume
+     * @param  table : name of table contain resume's data (RESPEC)
+     * @param  id: row id to update
+     * @param  field: column to update
+     * @param  value: new value
+     * @return status code
      */
     this.postEditFieldResume = function (req, res) {
-        if ( req.params.rId && req.params.tId && req.user) {
-            connection.pool.query("select id from resume where id = ? and userId = ? ",
-                [req.params.rId, req.user.id], 
-                function (err , row) { 
-                    if (err) {
-                        res.status(400).send("User cannot edit resume");
-                        throw err;
-                    } else if (row[0].id) {
-                        console.log('row', row);
-                        connection.pool.query("UPDATE resume SET templateId = ? WHERE id = ?",
-                            [req.params.tId, req.params.rId],
-                            function (err, result) {
-                                if (err) {
-                                    res.status(400).send("Item not updated");
-                                    throw err;
-                                } else {
-                                    console.log('update', result);
-                                    res.status(200).send("Item updated");
-                                }
+        console.log(req.body);
+        var tables = ['resume', 'education', 'skill', 'project', 'experience', 'certification'];
+        if ( tables.indexOf(req.body.table) != -1 ) {
+            if (req.body.table == 'resume') {
+                var query = sql.checkResumeEditable;
+                var params = [req.body.id, req.user.id];  
+            } else {
+                var query = sql.checkResumeDataEditable;
+                var params = [req.body.table, req.body.id, req.user.id];
+            } 
+            connection.pool.query(query, params, function (err , row) { 
+                if (err) {
+                    res.status(400).send("You cannot edit resume");
+                    throw err;
+                } else if (row.length) {
+                    console.log('row', row);
+                    connection.pool.query("UPDATE ?? SET ?? = ? WHERE id = ?",
+                        [req.body.table, req.body.field, req.body.value, req.body.id],
+                        function (err, result) {
+                            if (err) {
+                                res.status(400).send("Item not updated");
+                                throw err;
+                            } else {
+                                console.log('update', result);
+                                res.status(200).send("Item updated");
                             }
-                        );
-                    }
-                });
+                        }
+                    );
+                }
+            });
         } else {
-            res.status(400).send("Please log in");
+            res.status(403).send("Bad request");
         }
     }
 

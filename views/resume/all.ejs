@@ -22,14 +22,14 @@
 	    		<% for (var i = 0; i < resumes.length; i++) { %>
 	    			<tr>
 	    				<td><%= i+1 %></td>
-	    				<td><%= resumes[i].title %></td>
+	    				<td><a href="/resumes/preview/<%= resumes[i].id%>"><%= resumes[i].title %></a></td>
 	    				<td><% if (resumes[i].publicLink) { %>
 	    					Public
-	    					<button data-toggle="popover" title="Share link" class="btn btn-link btn-xs">
+	    					<button data-toggle="popover" data-id="<%=i%>" title="Share link" class="btn btn-link btn-xs">
 	    						<span class="glyphicon glyphicon-link"></span>
 	    					</button>
-	    					<div class="hidden">
-	    						<input type="text" value="<%= resumes[i].publickLink %>"
+	    					<div id="pop-content-<%=i%>" class="hidden">
+	    						<input type="text" value="<%= resumes[i].publicLink %>">
 	    					</div>
 	    					<% } else { %>
 	    						Private
@@ -49,7 +49,7 @@
 	    					</button>
 	    					<% }; %>
 	    					
-	    					<a href="/resumes/<%= resumes[i].id %>/edit" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
+	    					<a href="/resumes/edit/<%= resumes[i].id %>" class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
 	    					<button data-id="<%= resumes[i].id %>" class="btn btn-danger del-res">
 	    						<span class="glyphicon glyphicon-remove"></span>Delete
 	    					</button>
@@ -62,38 +62,5 @@
 	  	</table>
 	  	<% } %>
 	</div>
+	<script src="/public/javascripts/resumes/index.js"></script>
 </div>
-<script type="text/javascript">
-$(function () {
-	$('.del-res').click(function () {
-		var self = $(this).parents('tr');
-		$.ajax({
-			url: "/resumes/"+ $(this).data('id'),
-			method: "DELETE",
-			success: function () {
-				self.fadeOut(300, function () {
-					self.remove();
-				});
-			}
-		});
-	});
-	$('[data-toggle=popover]').each(function () {
-		var self = $(this);
-		self.popover({
-			content: function () {
-				return $('pop-content-'+self.data('id')).html();
-			},
-			html: true
-		})
-	});
-	$('body').on('click', function (e) {
-        //did not click a popover toggle, or icon in popover toggle, or popover
-        if ($(e.target).data('toggle') !== 'popover'
-            && $(e.target).parents('[data-toggle="popover"]').length === 0
-            && $(e.target).parents('.popover.in').length === 0) { 
-            $('[data-toggle="popover"]').popover('hide');
-        }
-    });
-});
-
-</script>

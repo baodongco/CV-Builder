@@ -35,7 +35,7 @@ module.exports = {
          * get resume preview
          * @param  id resume
          */
-        app.get('/resumes/preview/:id', function(req, res) {
+        app.get('/resumes/preview/:id', checkLogin, function(req, res) {
             resumeController.getPreviewResume(req, res);
         });
         /**
@@ -72,7 +72,7 @@ module.exports = {
          * @param  value: new value
          * @return status code
          */
-        app.post('/resumes/edit-field', function (req, res) {
+        app.post('/resumes/edit-field', checkLogin, function (req, res) {
           resumeController.postEditFieldResume(req,res);
         })
         /**

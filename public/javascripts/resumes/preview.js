@@ -41,9 +41,14 @@
 			$(this).addClass('selected');
 			$('img[data-id='+$(this).data('id')+']').addClass('selected');
 			$.ajax({
-				url: '/resumes/'+ $('#resume-preview-container').data('id') +
-					'/templates/' + $(this).data('id'),
-				method: 'GET',
+				url: '/resumes/edit-field',
+				method: 'POST',
+				data: {
+					table: "resume",
+					id: $('#resume-preview-container').data('id'),
+					field: "templateId",
+					value: $(this).data('id')
+				},
 				success: function () {
 					$('#resume-view-port').attr('src',$('#resume-view-port').attr('src'));
 				}
