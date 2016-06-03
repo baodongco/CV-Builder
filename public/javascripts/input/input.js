@@ -7,6 +7,13 @@ $(function () {
     var lastYearUsed = $('#ddlLYU');
     var tblSkills = $('#tblSkills tbody');
     var lblLevel = $('#lblLevel');
+    $('a.btn').click(function(){
+        var name = this.name;
+        var parent=$(this).parents('div.tab-pane');
+        $('#li'+parent.attr('id')).removeClass('active');
+        $('#li'+name).addClass('active');
+    });
+    
     $('#progress').removeClass('running');
     $('#ball0').addClass('running');
     $('#progress li').hover(function () {
@@ -87,10 +94,10 @@ $(function () {
     $('#btnAddSkill').click(function () {
         var hiddenField = '';
         var tdHtml = '<tr id="' + rowCount + '"><td>' + txtSkillName.val() + '</td>';
-        tdHtml += '<td><ul id="lprogress' + rowCount + '" class="nav skill-lprogress"><li id="lball0' + rowCount + '"><div id="llayer0" class="ball"></div><div id="llayer12" class="pulse"></div></li><li id="lball1' + rowCount + '"><div id="layer1" class="ball"></div><div id="layer7" class="pulse"></div></li><li id="lball2' + rowCount + '"><div id="layer2" class="ball"></div><div id="llayer8" class="pulse"></div></li><li id="lball3' + rowCount + '"><div id="layer3" class="ball"></div><div id="layer9" class="pulse"></div></li><li id="lball4' + rowCount + '"><div id="layer4" class="ball"></div><div id="layer10" class="pulse"></div></li><li id="lball5' + rowCount + '"><div id="layer5" class="ball"></div><div id="llayer11" class="pulse"></div></li></ul>' + lblLevel.text() + '</td>';
+        tdHtml += '<td class="text-center"><ul id="lprogress' + rowCount + '" class="nav skill-lprogress"><li id="lball0' + rowCount + '"><div id="llayer0" class="ball"></div><div id="llayer12" class="pulse"></div></li><li id="lball1' + rowCount + '"><div id="layer1" class="ball"></div><div id="layer7" class="pulse"></div></li><li id="lball2' + rowCount + '"><div id="layer2" class="ball"></div><div id="llayer8" class="pulse"></div></li><li id="lball3' + rowCount + '"><div id="layer3" class="ball"></div><div id="layer9" class="pulse"></div></li><li id="lball4' + rowCount + '"><div id="layer4" class="ball"></div><div id="layer10" class="pulse"></div></li><li id="lball5' + rowCount + '"><div id="layer5" class="ball"></div><div id="llayer11" class="pulse"></div></li></ul><span style="color:blue">' + lblLevel.text() + '</span></td>';
         tdHtml += '<td>' + experience.val() + '</td>';
         tdHtml += '<td>' + lastYearUsed.val() + '</td>';
-        tdHtml += '<td><button type="button" class="btnSkillDetail" id="btnEditSkill-' + rowCount + '">Edit</button><button type="button" class="btnDeleteSkill" id="btnDeleteSkill-' + rowCount + '">Delete</button></tr>';
+        tdHtml += '<td><button type="button" class="btn-primary btnSkillDetail" id="btnEditSkill-' + rowCount + '">Edit</button><button type="button" class="btn-primary btnDeleteSkill" id="btnDeleteSkill-' + rowCount + '">Delete</button></tr>';
         tblSkills.append(tdHtml);
         $('#lprogress' + rowCount + ' li').removeClass('running').queue(function (next) {
             for (var i = 0; i <= level; i++) {
@@ -262,7 +269,7 @@ $(function () {
             $('#' + id).removeClass('hasDatepicker');
 
             if (id.startsWith('detailsExperience')) {
-                name = 'project[' + cloneIndexExp + '][detail]';
+                name = 'experience[' + cloneIndexExp + '][detail]';
                 $('#detailsExperience-' + cloneIndexExp).empty();
                 $('#detailsExperience-' + cloneIndexExp).append('<textarea class="editor" name="' + name + '" id="' + id + '" placeholder="Add a few details about this educational qualification..."></textarea>');
                 CKEDITOR.replace(name);
@@ -328,6 +335,9 @@ $(function () {
                 var name = this.name || "";
                 if (id.startsWith('projectTitle')) {
                     this.name = 'project[' + cloneIndexPro + '][title]';
+                }
+                if (id.startsWith('projectUrl')) {
+                    this.name = 'project[' + cloneIndexPro + '][url]';
                 }
                 if (id.startsWith('projectTo') || id.startsWith('projectFr')) {
                     this.id = id + '-' + cloneIndexPro;
@@ -414,13 +424,13 @@ $(function () {
                 }
                 if (id.startsWith('certificationDate')) {
                     this.id = id + '-' + cloneIndexCert;
-                    this.name = 'certification[' + cloneCert + '][date]';
+                    this.name = 'certification[' + cloneIndexCert + '][date]';
                 }
                 if (id.startsWith('detailsCertification'))
                     this.id = id + '-' + cloneIndexCert;
             })
-            .on('click', 'btnAddMoreCetification', cloneExp)
-            .on('click', 'button.remove', removeExp);
+            .on('click', 'btnAddMoreCetification', cloneCert)
+            .on('click', 'button.remove', removeCert);
 
         $("#field-certification" + cloneIndexCert).find("*").each(function () {
             var id = this.id || '';
@@ -451,7 +461,7 @@ $(function () {
         });
 
         $('#certificationDate-' + cloneIndexCert).val('');
-        cloneIndexExp++;
+        cloneIndexCert++;
 
 
     }
