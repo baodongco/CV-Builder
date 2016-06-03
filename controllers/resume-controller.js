@@ -62,14 +62,16 @@ function resumeController() {
                 }
             });
 
-            req.body.skill.forEach(function(item) {
-                if (checkObject(item)) {
-                    console.log('skill hit');
-                    console.log(item);
-                    item.resId = rows.insertId;                    
-                    insertItem(item, 'skill');
-                }
-            });
+            if (req.body.hasOwnProperty('skill')) {
+                req.body.skill.forEach(function(item) {
+                    if (checkObject(item)) {
+                        console.log('skill hit');
+                        console.log(item);
+                        item.resId = rows.insertId;                    
+                        insertItem(item, 'skill');
+                    }
+                });
+            }
 
             //return resume Id
             res.redirect('/resumes/' + rows.insertId + '/preview');
