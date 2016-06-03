@@ -16,7 +16,7 @@ var home = require('./routes/home');
 var auth = require('./routes/auth');
 var admin = require('./routes/admin');
 var resume = require('./routes/resume');
-var preview = require('./routes/preview');
+
 var connection = require('./connection');
 
 var app = express();
@@ -56,7 +56,6 @@ home.configure(app);
 auth.configure(app, passport);
 admin.configure(app);
 resume.configure(app);
-preview.configure(app);
 
 // catch 404 and forward to error handler
 app.get('/404', function (req, res) {

@@ -7,41 +7,41 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
     <script src="/public/javascripts/input/resume-validator.js"></script>
     <link rel="stylesheet" href="/public/stylesheets/input-css.css">
-    <form action="createresume" method="POST" id="resumeForm">
+    <form action="create" method="POST" id="resumeForm">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
-            <li><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
-            <li><a href="#experience" data-toggle="tab"><span class="glyphicon glyphicon-heart-empty"> Experience</span></a></li>
-            <li><a href="#project" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download"> Project</span></a></li>
-            <li><a href="#skills" data-toggle="tab"><span class="glyphicon glyphicon-star"> Skills</span></a></li>
-            <li><a href="#certification" data-toggle="tab"><span class="glyphicon glyphicon-cog"> Certification</span></a></li>
-            <li><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
+            <li class="active" id="licontact"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
+            <li id="lisummary"><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
+            <li id="liexperience"><a href="#experience" data-toggle="tab"><span class="glyphicon glyphicon-heart-empty"> Experience</span></a></li>
+            <li id="liproject"><a href="#project" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download"> Project</span></a></li>
+            <li id="liskills"><a href="#skills" data-toggle="tab"><span class="glyphicon glyphicon-star"> Skills</span></a></li>
+            <li id="licertification"><a href="#certification" data-toggle="tab"><span class="glyphicon glyphicon-cog"> Certification</span></a></li>
+            <li id="lieducation"><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active form-style-5" id="contact">
                 <fieldset>
                     <legend><span class="number">1</span> Contact Information</legend>
                     <label for="firstName"><span><sup>*</sup>First Name: </span>
-                    <input type="text" class="text-danger" name="firstName" placeholder="First Name">
+                    <input type="text" class="text-danger form-control" name="firstName" placeholder="First Name">
                 </label>
                     <label for="lastName"><span>Last Name: </span>
-                    <input type="text" name="lastName" placeholder="Last Name ">
+                    <input type="text" name="lastName" class="form-control" placeholder="Last Name ">
                 </label>
                     <label for="email"><span><sup>*</sup>Email: </span>
-                    <input type="email" class="text-danger"  name="email" placeholder="Your Email">
+                    <input type="email" class="text-danger form-control"  name="email" placeholder="Your Email">
                 </label>
                     <label for="phone"><span>Phone: </span>
-                    <input type="text" name="phone" placeholder="Phone">
+                    <input type="text" name="phone" class="form-control" placeholder="Phone">
                 </label>
                     <label for="url1"><span>Website: </span>
-                    <input type="url" name="website" placeholder="e.g:www.abc.com">
+                    <input type="url" name="website" class="form-control" placeholder="e.g:www.abc.com">
                 </label>
                     <label for="address"><span>Address </span>
-                    <textarea class="editor" name="address" placeholder="Address"></textarea>
+                    <textarea class="editor" name="address" class="form-control" placeholder="Address"></textarea>
                 </label>
                 </fieldset>
                 <button class="btn pull-left">Save</button>
-                <button class="btn pull-right" type="button">Continue</button>
+                <a href="#summary" name="summary" data-toggle="tab" class="btn pull-right">Continue</a>
             </div>
             <div class="tab-pane form-style-5" id="summary">
                 <fieldset>
@@ -54,7 +54,7 @@
                 </label>
                 </fieldset>
                 <button class="btn npull-left">Save</button>
-                <button class="btn pull-right" type="button">Continue</button>
+                <a href="#experience" name="experience" data-toggle="tab" class="btn pull-right">Continue</a>
             </div>
             <div class="tab-pane form-style-5" id="experience">
                 <fieldset id="field-experience">
@@ -66,14 +66,14 @@
                     <input class="form-control" type="text"  id="experienceDesignation" name="experience[0][designation]" placeholder="e.g. Software Engineer">
                 </label>
                     <label for="experienceFromDate"><span>From Date </span>
-                    <input name="experience[0][startTime]" id="experienceFromDate" readonly class="form-control date-picker" />
+                    <input name="experience[0][startTime]" id="experienceFromDate" readonly placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                     <label for="experienceToDate"><span>To Date </span>
-                    <input name="experience[0][endTime]" id="experienceToDate" readonly class="form-control date-picker" />
+                    <input name="experience[0][endTime]" id="experienceToDate" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
                 </label>
                     <label for="experience[0][detail]"><span>Details </span>
                     <div id="detailsExperience">
-                        <textarea class="form-control editor" id="projectDetails" name="experience[0][detail]"></textarea>
+                        <textarea class="form-control editor" id="experienceDetail" name="experience[0][detail]"></textarea>
                     </div>                   
                 </label>
                 </fieldset>
@@ -82,7 +82,7 @@
                         <button class="btn btn-primary" type="button" id="btnAddMoreExperience">Add another</button>
                     </div>
                     <button class="btn pull-left">Save</button>
-                    <button class="btn pull-right">Save and Continue</button>
+                    <a href="#project" name="project" data-toggle="tab" class="btn pull-right">Continue</a>
                 </div>
             </div>
             <div class="tab-pane form-style-5" id="project">
@@ -90,12 +90,15 @@
                     <legend><span class="number">4</span>Project</legend>
                     <label for="project[0][title]"><span>Project title </span>
                     <input class="form-control" name="project[0][title]" id="projectTitle" type="text">
-                </label>
+                        </label>
                     <label for="projectFromDate"><span>From Date </span>
-                    <input name="project[0][startTime]" id="projectFromDate" readonly class="form-control date-picker" />
+                    <input name="project[0][url]" id="projectUrl"  type="url" placeholder="Url of project" class="form-control" />
+                    </label>
+                    <label for="projectFromDate"><span>From Date </span>
+                    <input name="project[0][startTime]" id="projectFromDate" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                     <label for="projectToDate"><span>To Date </span>
-                    <input name="project[0][endTime]" id="projectToDate" readonly class="form-control date-picker" />
+                    <input name="project[0][endTime]" id="projectToDate" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                     <label for="project[0][detail]"><span>Details </span>
                     <div id="detailsProject">
@@ -108,14 +111,19 @@
                         <button class="btn btn-primary" type="button" id="btnAddMoreProject">Add another</button>
                     </div>
                     <button class="btn pull-left">Save</button>
-                    <button class="btn pull-right">Save and Continue</button>
+                    <a href="#skills" name="skills" data-toggle="tab" class="btn pull-right">Continue</a>
                 </div>
             </div>
             <div class="tab-pane form-style-5" id="skills">
                 <fieldset id="field-skill">
+                    <input type="hidden" id="skillHiddenIndex" value="-1">
                     <legend><span class="number">5</span>Skill</legend>
                     <label for="txtSkillName"><span>Skill Name </span>
+<<<<<<< HEAD
                     <input class="form-control" id="txtSkillName" name="txtSkillName">
+=======
+                    <input class="form-control" id="txtSkillName">
+>>>>>>> 620f04ec60d80cc6ba3e565e8ccea6a16fbacf1f
                 </label>
                     <label for=""><span>Level</span></label>
                     <ul id="progress" class="nav skill-progress">
@@ -143,7 +151,7 @@
                             <div id="layer5" class="ball"></div>
                             <div id="layer11" class="pulse"></div>
                         </li>
-                        <label id="lblLevel" style="color:blue;margin-left:200px">Not Applicable</label>
+                        <label id="lblLevel" style="color:blue;margin-left:200px">N/A</label>
                     </ul>
 
                     <label for="txtExperience"><span>Experience</span>
@@ -175,12 +183,12 @@
                     </select>
                 </label>
                 </fieldset>
-                <div>
+                <div class="table-responsive" style="min-height:300px;border">
                     <button class="btn btn-primary" type="button" id="btnAddSkill">Add skill</button>
-                    <table id="tblSkills" class="table">
+                    <table id="tblSkills" class="table  table-hover">
                         <thead>
                             <tr>
-                                <th>Skill name</th>
+                                <th>Skill's name</th>
                                 <th>Level</th>
                                 <th>Experience</th>
                                 <th>Last year used</th>
@@ -192,7 +200,7 @@
                     </table>
                 </div>
                 <button class="btn pull-left">Save</button>
-                <button class="btn pull-right" type="button">Continue</button>
+                <a href="#certification" name="certification" data-toggle="tab" class="btn pull-right">Continue</a>
             </div>
             <div class="tab-pane form-style-5" id="certification">
                 <fieldset id="field-certification">
@@ -204,7 +212,7 @@
                     <input type="text" name="certification[0][authority]" id="certificationAuthority" class="form-control" placeholder="Name of the organization issuing the certificate">
                 </label>
                     <label for="certificationDate"><span>Date </span>
-                    <input name="certification[0][date]" id="certificationDate" readonly class="form-control date-picker" />
+                    <input name="certification[0][date]" id="certificationDate" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                     <label for="certification[0][detail]"><span>Details </span>
                     <div id="detailsCertification">
@@ -217,7 +225,7 @@
                         <button class="btn btn-primary" type="button" id="btnAddMoreCetification">Add another</button>
                     </div>
                     <button class="btn pull-left">Save</button>
-                    <button class="btn pull-right" type="button">Continue</button>
+                    <a href="#education" name="education" data-toggle="tab" class="btn pull-right">Continue</a>
                 </div>
             </div>
             <div class="tab-pane form-style-5" id="education">
@@ -229,11 +237,19 @@
                     <label for="txtEduDegree"><span>Degree </span>
                     <input type="text" name="education[0][degree]" id="txtEduDegree" class="form-control" placeholder="e.g. Bachelor of Information Technology">
                 </label>
+<<<<<<< HEAD
                     <label for="educationFromDate"><span>From Date </span>
                     <input name="education[0][startTime]" id="educationFromDate" readonly class="form-control date-picker" />
                 </label>
                     <label for="educationFromDate"><span>To Date </span>
                     <input name="education[0][endTime]" id="educationDetails" readonly class="form-control date-picker" />
+=======
+                    <label for=""><span>From Date </span>
+                    <input name="education[0][startTime]" id="educationFromDate" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                </label>
+                    <label for="educationFromDate"><span>To Date </span>
+                    <input name="education[0][endTime]" id="educationToDate" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
+>>>>>>> 620f04ec60d80cc6ba3e565e8ccea6a16fbacf1f
                 </label>
                     <label for="educationDetails"><span>Details </span>
                     <div id="detailsEducation">

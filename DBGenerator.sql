@@ -40,9 +40,9 @@ CREATE TABLE resume (
 CREATE TABLE skill (
   id int PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(100),
-  expertise int,
+  expertise VARCHAR(100),
   experience VARCHAR(100),
-  lastUsed DATE,
+  lastUsed VARCHAR(4),
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
 );
@@ -188,8 +188,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE SP_RESET_PASSWORD_COMPLETE(IN guid VARCHAR(50), IN ttl INT)
 BEGIN
-
-  
+   
   DECLARE created_time TIMESTAMP;
 
   DECLARE created_time_milis BIGINT;
@@ -198,6 +197,12 @@ BEGIN
   DECLARE distance_time_milis BIGINT;
 
   DECLARE status_code INT;
+
+  DECLARE uuid VARCHAR(50);
+
+  DECLARE message varchar(500);
+  DECLARE usr VARCHAR(50);
+  DECLARE mail VARCHAR(50);
 
   SET status_code = 200;
 
@@ -215,9 +220,16 @@ BEGIN
       SET MESSAGE_TEXT = 'The link is no longer valid !';
 
   ELSEIF (distance_time_milis > ttl_milis) THEN
+      
+      SELECT UUID() INTO uuid;
+      UPDATE `user` SET resetPassCode = uuid WHERE resetPassCode = guid;
+      SELECT username INTO usr FROM `user` WHERE resetPassCode = uuid;  
+      SELECT email INTO mail FROM `user` WHERE resetPassCode = uuid;
+
+      SELECT CONCAT(uuid ,':',usr, ':',mail) INTO message;
 
       SIGNAL SQLSTATE '49000'
-      SET MESSAGE_TEXT = 'Expired link to reset your password!!';
+      SET MESSAGE_TEXT = message;
 
   ELSE
 
@@ -245,8 +257,13 @@ BEGIN
   SELECT * FROM project WHERE resId = _resID;
   
   SELECT * FROM skill WHERE resId = _resID;
+<<<<<<< HEAD
 END;
 $$ DELIMITER;
+=======
+END; $$
+DELIMITER ;
+>>>>>>> 620f04ec60d80cc6ba3e565e8ccea6a16fbacf1f
 -- User define store procedure deleteResume
 DELIMITER $$
 CREATE PROCEDURE udsp_deleteResume(IN _resId INT)
@@ -257,5 +274,5 @@ BEGIN
   DELETE FROM certification WHERE resId = _resId;
   DELETE FROM project WHERE resId = _resId;
   DELETE FROM resume WHERE id = _resId;
-END;
-$$ DELIMITER ;
+END; $$
+DELIMITER ;

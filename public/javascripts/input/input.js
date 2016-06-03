@@ -1,4 +1,5 @@
 $(function () {
+
     //JS Skill
     var txtSkillName = $('#txtSkillName');
     var level = 0;
@@ -6,6 +7,13 @@ $(function () {
     var lastYearUsed = $('#ddlLYU');
     var tblSkills = $('#tblSkills tbody');
     var lblLevel = $('#lblLevel');
+    $('a.btn').click(function () {
+        var name = this.name;
+        var parent = $(this).parents('div.tab-pane');
+        $('#li' + parent.attr('id')).removeClass('active');
+        $('#li' + name).addClass('active');
+    });
+
     $('#progress').removeClass('running');
     $('#ball0').addClass('running');
     $('#progress li').hover(function () {
@@ -79,6 +87,7 @@ $(function () {
         });
         return false;
     });
+<<<<<<< HEAD
     var rowCount = $('#tblSkills >tbody >tr').length;
     $('#btnAddSkill').click(function () {
         var hiddenField = '';
@@ -102,56 +111,113 @@ $(function () {
         hiddenField += '<input type="hidden" id="skillLastUsed-' + rowCount + '" name="skill[' + rowCount + '][lastUsed]" value="' + lastYearUsed.val() + '">';
 
         $('#field-skill').append(hiddenField);
+=======
+
+
+
+    var rowCount = $('#tblSkills >tbody >tr').length;
+    $('#btnAddSkill').click(function () {
+        var check = $('#skillHiddenIndex').val();
+        if (check == -1) {
+            var hiddenField = '';
+            var tdHtml = '<tr id="' + rowCount + '"><td><span id="spSkillName-' + rowCount + '">' + txtSkillName.val() + '</td>';
+                tdHtml += '<td class="text-center"><ul id="lprogress' + rowCount + '" class="nav skill-lprogress"><li id="lball0' + rowCount + '"><div id="llayer0" class="ball"></div><div id="llayer12" class="pulse"></div></li><li id="lball1' + rowCount + '"><div id="layer1" class="ball"></div><div id="layer7" class="pulse"></div></li><li id="lball2' + rowCount + '"><div id="layer2" class="ball"></div><div id="llayer8" class="pulse"></div></li><li id="lball3' + rowCount + '"><div id="layer3" class="ball"></div><div id="layer9" class="pulse"></div></li><li id="lball4' + rowCount + '"><div id="layer4" class="ball"></div><div id="layer10" class="pulse"></div></li><li id="lball5' + rowCount + '"><div id="layer5" class="ball"></div><div id="llayer11" class="pulse"></div></li></ul><span id="spExpertise-'+rowCount+'" style="color:blue">' + lblLevel.text() + '</span></td>';
+            tdHtml += '<td><span id="spExperience-' + rowCount + '">' + experience.val() + '</span></td>';
+            tdHtml += '<td><span id="spLastYearUsed-' + rowCount + '">' + lastYearUsed.val() + '</td>';
+            tdHtml += '<td><button type="button" class="btn-primary btnSkillEdit" id="btnEditSkill-' + rowCount + '">Edit</button><button type="button" class="btn-primary btnDeleteSkill" id="btnDeleteSkill-' + rowCount + '">Delete</button></tr>';
+            tblSkills.append(tdHtml);
+            $('#lprogress' + rowCount + ' li').removeClass('running').queue(function (next) {
+                for (var i = 0; i <= level; i++) {
+                    $('#lball' + i + rowCount).addClass('running');
+                }
+                next();
+            });
+            $('#progress li').removeClass('running').queue();
+            $('#ball0').addClass('running');
+            hiddenField += '<input type="hidden" id="skillName-' + rowCount + '" name="skill[' + rowCount + '][name]" value="' + txtSkillName.val() + '">';
+            hiddenField += '<input type="hidden" id="skillExpertise-' + rowCount + '" name="skill[' + rowCount + '][expertise]" value="' + lblLevel.text() + '">';
+            hiddenField += '<input type="hidden" id="skillExperience-' + rowCount + '" name="skill[' + rowCount + '][experience]" value="' + experience.val() + '">';
+            hiddenField += '<input type="hidden" id="skillLastUsed-' + rowCount + '" name="skill[' + rowCount + '][lastUsed]" value="' + lastYearUsed.val() + '">';
+            $('#field-skill').append(hiddenField);
+            rowCount++;
+        }
+        else {
+            $('#spSkillName-' + check).text(txtSkillName.val());
+            $('#spExperience-' + check).text(experience.val());
+            $('#spLastYearUsed-' + check).text(lastYearUsed.val());
+            $('#spExpertise-'+check).text(lblLevel.text());
+            $('#lprogress' + check + ' li').removeClass('running').queue(function (next) {
+                for (var i = 0; i <= level; i++) {
+                    $('#lball' + i + check).addClass('running');
+                }
+                next();
+            });
+            $('#skillName-' + check).val(txtSkillName.val());
+            $('#skillLastUsed-' + check).val(lastYearUsed.val());
+            $('#skillExperience-' + check).val(experience.val());
+            $('#skillExpertise-' + check).val(lblLevel.text());
+            $('#skillHiddenIndex').val('-1');
+            $('#progress li').removeClass('running').queue();
+            $('#ball0').addClass('running');
+        }
+>>>>>>> 620f04ec60d80cc6ba3e565e8ccea6a16fbacf1f
         experience.val("0 month");
         lastYearUsed.val("2016");
         txtSkillName.val('');
         lblLevel.text('N/A');
         level = 0;
+    });
+    $('#tblSkills').on('click', '.btnDeleteSkill', function () {
+        var row = $(this).parents('tr');
+        var id = row.attr('id');
+        console.log(id);
+        $('#skillName-' + id).remove();
+        $('#skillExpertise-' + id).remove();
+        $('#skillExperience-' + id).remove();
+        $('#skillLastUsed-' + id).remove();
+        row.remove();
+        if (rowCount > 0)
+            rowCount--;
+        $('#skillHiddenIndex').val('-1');
+
+    });
+    $('#tblSkills').on('click', '.btnSkillEdit', function () {
+        var row = $(this).parents('tr');
+        var id = row.attr('id');
+        var skillExpertise = $('#skillExpertise-' + id).val();
+        $('#skillHiddenIndex').val(id);
+        txtSkillName.val($('#skillName-' + id).val());
+        experience.val($('#skillExperience-' + id).val());
+        lblLevel.text(skillExpertise);
+        if (skillExpertise == 'N/A') {
+            level = 0;
+        }
+        if (skillExpertise == 'Beginner') {
+            level = 1;
+        }
+        if (skillExpertise == 'Basic') {
+            level = 2;
+        }
+        if (skillExpertise == 'Intermediate') {
+            level = 3;
+        }
+        if (skillExpertise == 'Advance') {
+            level = 4;
+        }
+        if (skillExpertise == 'Expert') {
+            level = 5;
+        }
+        $('#progress li').removeClass('running').queue(function (next) {
+            for (var i = 0; i <= level; i++) {
+                $('#ball' + i).addClass('running');
+            }
+            next();
+        });
+        lastYearUsed.val($('#skillLastUsed-' + id).val());
         txtSkillName.focus();
         rowCount++;
     });
     //End JS skill
-
-
-    // $("#experienceFromDate, #experienceToDate").datepicker({
-    //     changeMonth: true,
-    //     changeYear: true,
-    //     showButtonPanel: true,
-    //     yearRange: '1999:2016',
-    //     maxDate: new Date(),
-    //     dateFormat: 'yy/mm/01',
-    //     onClose: function (dateText, inst) {
-    //         var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-    //         var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-    //         $(this).datepicker('setDate', new Date(year, month, 1));
-    //     },
-    //     // beforeShow: function (input, inst) {
-    //     //     if ((datestr = $(this).val()).length > 0) {
-    //     //         year = datestr.substring(datestr.length - 4, datestr.length);
-    //     //         month = jQuery.inArray(datestr.substring(0, datestr.length - 5), $(this).datepicker('option', 'monthNames'));
-    //     //         $(this).datepicker('option', 'defaultDate', new Date(year, month, 1));
-    //     //         $(this).datepicker('setDate', new Date(year, month, 1));
-    //     //     }
-    //     //     var other = this.id == "experienceFromDate" ? "#experienceToDate" : "#experienceFromDate";
-    //     //     var option = this.id == "experienceFromDate" ? "maxDate" : "minDate";
-    //     //     if ((selectedDate = $(other).val()).length > 0) {
-    //     //         year = selectedDate.substring(selectedDate.length - 4, selectedDate.length);
-    //     //         month = jQuery.inArray(selectedDate.substring(0, selectedDate.length - 5), $(this).datepicker('option', 'monthNames'));
-    //     //         $(this).datepicker("option", option, new Date(year, month, 1));
-    //     //     }
-    //     // },
-    //     beforeShow: function customRange(input) {
-    //         if (input.id == 'experienceFromDate') {
-    //             return {
-    //                 maxDate: jQuery('#experienceToDate').datepicker("getDate")
-    //             };
-    //         } else if (input.id == 'experienceToDate') {
-    //             return {
-    //                 minDate: jQuery('#experienceFromDate').datepicker("getDate")
-    //             };
-    //         }
-    //     }
-    // });
 
     $("#experienceFromDate").datepicker({
         changeMonth: true,
@@ -250,6 +316,7 @@ $(function () {
             .attr("id", "field-experience" + cloneIndexExp)
             .addClass("clonedExpInput")
             .find("*")
+            .val("")
             .each(function () {
                 var id = this.id || "";
                 var name = this.name || "";
@@ -281,8 +348,8 @@ $(function () {
             $(this).remove('legend');
             $('#' + id).removeClass('hasDatepicker');
 
-            if (id.startsWith('projectDetails')) {
-                name = 'project[' + cloneIndexExp + '][details]';
+            if (id.startsWith('detailsExperience')) {
+                name = 'experience[' + cloneIndexExp + '][detail]';
                 $('#detailsExperience-' + cloneIndexExp).empty();
                 $('#detailsExperience-' + cloneIndexExp).append('<textarea class="editor" name="' + name + '" id="' + id + '" placeholder="Add a few details about this educational qualification..."></textarea>');
                 CKEDITOR.replace(name);
@@ -342,11 +409,15 @@ $(function () {
             .attr("id", "field-project" + cloneIndexPro)
             .addClass("clonedProInput")
             .find("*")
+            .val("")
             .each(function () {
                 var id = this.id || "";
                 var name = this.name || "";
                 if (id.startsWith('projectTitle')) {
                     this.name = 'project[' + cloneIndexPro + '][title]';
+                }
+                if (id.startsWith('projectUrl')) {
+                    this.name = 'project[' + cloneIndexPro + '][url]';
                 }
                 if (id.startsWith('projectTo') || id.startsWith('projectFr')) {
                     this.id = id + '-' + cloneIndexPro;
@@ -419,6 +490,7 @@ $(function () {
             .attr("id", "field-certification" + cloneIndexCert)
             .addClass("clonedCertInput")
             .find("*")
+            .val("")
             .each(function () {
                 var id = this.id || "";
                 var name = this.name || "";
@@ -432,13 +504,13 @@ $(function () {
                 }
                 if (id.startsWith('certificationDate')) {
                     this.id = id + '-' + cloneIndexCert;
-                    this.name = 'certification[' + cloneCert + '][date]';
+                    this.name = 'certification[' + cloneIndexCert + '][date]';
                 }
                 if (id.startsWith('detailsCertification'))
                     this.id = id + '-' + cloneIndexCert;
             })
-            .on('click', 'btnAddMoreCetification', cloneExp)
-            .on('click', 'button.remove', removeExp);
+            .on('click', 'btnAddMoreCetification', cloneCert)
+            .on('click', 'button.remove', removeCert);
 
         $("#field-certification" + cloneIndexCert).find("*").each(function () {
             var id = this.id || '';
@@ -447,7 +519,7 @@ $(function () {
             $('#' + id).removeClass('hasDatepicker');
 
             if (id.startsWith('detailsCertification')) {
-                name = 'certification[' + cloneIndexCert + '][details]';
+                name = 'certification[' + cloneIndexCert + '][detail]';
                 $('#detailsCertification-' + cloneIndexCert).empty();
                 $('#detailsCertification-' + cloneIndexCert).append('<textarea class="editor" name="' + name + '" id="' + id + '" placeholder="Add a few details about this educational qualification..."></textarea>');
                 CKEDITOR.replace(name);
@@ -469,7 +541,7 @@ $(function () {
         });
 
         $('#certificationDate-' + cloneIndexCert).val('');
-        cloneIndexExp++;
+        cloneIndexCert++;
 
 
     }
@@ -491,6 +563,7 @@ $(function () {
             .attr("id", "field-education" + cloneIndexEdu)
             .addClass("clonedEduInput")
             .find("*")
+            .val("")
             .each(function () {
                 var id = this.id || "";
                 var name = this.name || "";
@@ -523,7 +596,7 @@ $(function () {
             $('#' + id).removeClass('hasDatepicker');
 
             if (id.startsWith('educationDetails')) {
-                name = 'education[' + cloneIndexEdu + '][details]';
+                name = 'education[' + cloneIndexEdu + '][detail]';
                 $('#detailsEducation-' + cloneIndexEdu).empty();
                 $('#detailsEducation-' + cloneIndexEdu).append('<textarea class="editor" name="' + name + '" id="' + id + '" placeholder="Add a few details about this educational qualification..."></textarea>');
                 CKEDITOR.replace(name);
