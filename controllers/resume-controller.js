@@ -12,8 +12,13 @@ var projectModel       = require('../models/project');
 var skillModel         = require('../models/skill');
 
 function resumeController() {
+    this.getEditResume  = function(req, res) {
+        getResumeDataById(req.params.id, function(resume) {
+            res.render('', resume);
+        });
+    }
 
-    this.createResume=function(req, res) {
+    this.createResume = function(req, res) {
       res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
     }
 
@@ -114,7 +119,7 @@ function resumeController() {
     };
 
     /**
-     * get all rsumes of user
+     * get all resumes of user
      * 
      */
     this.getResumes = function (req, res) {
