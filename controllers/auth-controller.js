@@ -159,12 +159,14 @@ function authController() {
     
     // GET: /reset
     this.getResetComplete = function(req, res){
-        var guid = req.query.guid;
+       var guid = req.query.guid;
         var ttl = activeUserSettings['ttl'];
         var isError = true;
         var index = 0;
         var message = '';
         var _guid = '';
+        var sqlState = '';
+        var uuid = '';    
 
         connection.pool.query("CALL SP_RESET_PASSWORD_COMPLETE('"+ guid +"',"+ ttl +")", function(err, rows){
 
@@ -173,6 +175,7 @@ function authController() {
                 message = err.message;
                 index = message.indexOf(':');
                 message = message.substring(index + 1);
+                sqlState = err.sqlState;
             } else {
                 console.log(rows);
                 isError = false;
@@ -181,6 +184,22 @@ function authController() {
             }
 
             console.log(message);
+            console.log(sqlState);
+
+            var compare = sqlState.localeCompare('49000');
+            console.log("=================="+compare);
+
+            if(compare == 0){
+                var msg = message.split(':');
+                
+                 // send email for reset password
+                var emailInfo = new EmailInfo(msg[1], msg[2], msg[0]);
+                var email = new Email(emailInfo);
+                email.sendEmailResetPassword();
+
+                // 
+                message = 'Expired link to reset your password!!\n. Your new activate link has been sent to your email address. Please check again!!';
+            }
 
             req.flash('homeMessage', message);
 
@@ -190,8 +209,8 @@ function authController() {
                 res.redirect('/reset-form?guid='+_guid);
             }
 
+            console.log(message);
         });
-
     };
 
     // POST: /reset
