@@ -6,7 +6,7 @@ module.exports = {
         /**
          * get create resume view
          */
-        app.get('/resumes/create', function(req,res){
+        app.get('/resumes/create', checkLogin, function(req,res){
           resumeController.createResume(req,res);
         });
         /**
