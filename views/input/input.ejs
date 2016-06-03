@@ -7,19 +7,18 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
     <script src="/public/javascripts/input/resume-validator.js"></script>
     <link rel="stylesheet" href="/public/stylesheets/input-css.css">
-    <ul class="nav nav-tabs">
-        <li class="active"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
-        <li><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
-        <li><a href="#experience" data-toggle="tab"><span class="glyphicon glyphicon-heart-empty"> Experience</span></a></li>
-        <li><a href="#project" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download"> Project</span></a></li>
-        <li><a href="#skills" data-toggle="tab"><span class="glyphicon glyphicon-star"> Skills</span></a></li>
-        <li><a href="#certification" data-toggle="tab"><span class="glyphicon glyphicon-cog"> Certification</span></a></li>
-        <li><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
-    </ul>
-
-    <div id="myTabContent" class="tab-content">
-        <div class="tab-pane active form-style-5" id="contact">
-            <form action="createresume" method="POST" id="resumeForm">
+    <form action="createresume" method="POST" id="resumeForm">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
+            <li><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
+            <li><a href="#experience" data-toggle="tab"><span class="glyphicon glyphicon-heart-empty"> Experience</span></a></li>
+            <li><a href="#project" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download"> Project</span></a></li>
+            <li><a href="#skills" data-toggle="tab"><span class="glyphicon glyphicon-star"> Skills</span></a></li>
+            <li><a href="#certification" data-toggle="tab"><span class="glyphicon glyphicon-cog"> Certification</span></a></li>
+            <li><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active form-style-5" id="contact">
                 <fieldset>
                     <legend><span class="number">1</span> Contact Information</legend>
                     <label for="firstName"><span><sup>*</sup>First Name: </span>
@@ -43,8 +42,8 @@
                 </fieldset>
                 <button class="btn pull-left">Save</button>
                 <button class="btn pull-right" type="button">Continue</button>
-        </div>
-        <div class="tab-pane form-style-5" id="summary">
+            </div>
+            <div class="tab-pane form-style-5" id="summary">
                 <fieldset>
                     <legend><span class="number">2</span>Summary</legend>
                     <label for="sumHeadline"><span>Header </span>
@@ -56,8 +55,8 @@
                 </fieldset>
                 <button class="btn npull-left">Save</button>
                 <button class="btn pull-right" type="button">Continue</button>
-        </div>
-        <div class="tab-pane form-style-5" id="experience">
+            </div>
+            <div class="tab-pane form-style-5" id="experience">
                 <fieldset id="field-experience">
                     <legend><span class="number">3</span>Experience</legend>
                     <label for="experience[0][company]"><span>Company </span>
@@ -67,14 +66,14 @@
                     <input class="form-control" type="text"  id="experienceDesignation" name="experience[0][designation]" placeholder="e.g. Software Engineer">
                 </label>
                     <label for="experienceFromDate"><span>From Date </span>
-                    <input name="experience[0][startTime]" id="experienceFromDate" readonly class="form-control date-picker" />
+                    <input name="experience[0][startTime]" id="experienceFromDate" readonly placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                     <label for="experienceToDate"><span>To Date </span>
-                    <input name="experience[0][endTime]" id="experienceToDate" readonly class="form-control date-picker" />
+                    <input name="experience[0][endTime]" id="experienceToDate" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
                 </label>
                     <label for="experience[0][detail]"><span>Details </span>
                     <div id="detailsExperience">
-                        <textarea class="form-control editor" id="projectDetails" name="experience[0][detail]"></textarea>
+                        <textarea class="form-control editor" id="experienceDetail" name="experience[0][detail]"></textarea>
                     </div>                   
                 </label>
                 </fieldset>
@@ -85,18 +84,18 @@
                     <button class="btn pull-left">Save</button>
                     <button class="btn pull-right">Save and Continue</button>
                 </div>
-        </div>
-        <div class="tab-pane form-style-5" id="project">
+            </div>
+            <div class="tab-pane form-style-5" id="project">
                 <fieldset id="field-project">
                     <legend><span class="number">4</span>Project</legend>
                     <label for="project[0][title]"><span>Project title </span>
                     <input class="form-control" name="project[0][title]" id="projectTitle" type="text">
                 </label>
                     <label for="projectFromDate"><span>From Date </span>
-                    <input name="project[0][startTime]" id="projectFromDate" readonly class="form-control date-picker" />
+                    <input name="project[0][startTime]" id="projectFromDate" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                     <label for="projectToDate"><span>To Date </span>
-                    <input name="project[0][endTime]" id="projectToDate" readonly class="form-control date-picker" />
+                    <input name="project[0][endTime]" id="projectToDate" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                     <label for="project[0][detail]"><span>Details </span>
                     <div id="detailsProject">
@@ -111,43 +110,43 @@
                     <button class="btn pull-left">Save</button>
                     <button class="btn pull-right">Save and Continue</button>
                 </div>
-        </div>
-        <div class="tab-pane form-style-5" id="skills">
-            <fieldset id="field-skill">
-                <legend><span class="number">5</span>Skill</legend>
-                <label for="txtSkillName"><span>Skill Name </span>
-                    <input class="<fo></fo>rm-control" id="txtSkillName" name="txtSkillName">
+            </div>
+            <div class="tab-pane form-style-5" id="skills">
+                <fieldset id="field-skill">
+                    <legend><span class="number">5</span>Skill</legend>
+                    <label for="txtSkillName"><span>Skill Name </span>
+                    <input class="form-control" id="txtSkillName">
                 </label>
-                <label for=""><span>Level</span></label>
-                <ul id="progress" class="nav skill-progress">
-                    <li id="ball0">
-                        <div id="layer0" class="ball"></div>
-                        <div id="layer12" class="pulse"></div>
-                    </li>
-                    <li id="ball1">
-                        <div id="layer1" class="ball"></div>
-                        <div id="layer7" class="pulse"></div>
-                    </li>
-                    <li id="ball2">
-                        <div id="layer2" class="ball"></div>
-                        <div id="layer8" class="pulse"></div>
-                    </li>
-                    <li id="ball3">
-                        <div id="layer3" class="ball"></div>
-                        <div id="layer9" class="pulse"></div>
-                    </li>
-                    <li id="ball4">
-                        <div id="layer4" class="ball"></div>
-                        <div id="layer10" class="pulse"></div>
-                    </li>
-                    <li id="ball5">
-                        <div id="layer5" class="ball"></div>
-                        <div id="layer11" class="pulse"></div>
-                    </li>
-                    <label id="lblLevel" style="color:blue;margin-left:200px">Not Applicable</label>
-                </ul>
+                    <label for=""><span>Level</span></label>
+                    <ul id="progress" class="nav skill-progress">
+                        <li id="ball0">
+                            <div id="layer0" class="ball"></div>
+                            <div id="layer12" class="pulse"></div>
+                        </li>
+                        <li id="ball1">
+                            <div id="layer1" class="ball"></div>
+                            <div id="layer7" class="pulse"></div>
+                        </li>
+                        <li id="ball2">
+                            <div id="layer2" class="ball"></div>
+                            <div id="layer8" class="pulse"></div>
+                        </li>
+                        <li id="ball3">
+                            <div id="layer3" class="ball"></div>
+                            <div id="layer9" class="pulse"></div>
+                        </li>
+                        <li id="ball4">
+                            <div id="layer4" class="ball"></div>
+                            <div id="layer10" class="pulse"></div>
+                        </li>
+                        <li id="ball5">
+                            <div id="layer5" class="ball"></div>
+                            <div id="layer11" class="pulse"></div>
+                        </li>
+                        <label id="lblLevel" style="color:blue;margin-left:200px">Not Applicable</label>
+                    </ul>
 
-                <label for="txtExperience"><span>Experience</span>
+                    <label for="txtExperience"><span>Experience</span>
                     <select id="ddlExperience" class="form-control">
                         <option value="0 month">0 month</option>
                         <option value="1-3 months">1-3 months</option>
@@ -157,7 +156,7 @@
                         <option value=">5 years">>5 years</option>
                     </select>
                 </label>
-                <label><span>Last Year Used</span>
+                    <label><span>Last Year Used</span>
                     <select id="ddlLYU" class="form-control">
                         <option value="2016">2016</option>
                         <option value="2015">2015</option>
@@ -175,27 +174,27 @@
                         <option value="2003">2003</option>
                     </select>
                 </label>
-            </fieldset>
-            <div>
-                <button class="btn btn-primary" type="button" id="btnAddSkill">Add skill</button>
-                <table id="tblSkills" class="table">
-                    <thead>
-                        <tr>
-                            <th>Skill name</th>
-                            <th>Level</th>
-                            <th>Experience</th>
-                            <th>Last year used</th>
-                            <th id="action">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+                </fieldset>
+                <div>
+                    <button class="btn btn-primary" type="button" id="btnAddSkill">Add skill</button>
+                    <table id="tblSkills" class="table">
+                        <thead>
+                            <tr>
+                                <th>Skill name</th>
+                                <th>Level</th>
+                                <th>Experience</th>
+                                <th>Last year used</th>
+                                <th id="action">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn pull-left">Save</button>
+                <button class="btn pull-right" type="button">Continue</button>
             </div>
-            <button class="btn pull-left">Save</button>
-            <button class="btn pull-right" type="button">Continue</button>
-        </div>
-        <div class="tab-pane form-style-5" id="certification">
+            <div class="tab-pane form-style-5" id="certification">
                 <fieldset id="field-certification">
                     <legend><span class="number">6</span>Certification</legend>
                     <label for="certification[0][title]"><span>Certification</span>
@@ -205,7 +204,7 @@
                     <input type="text" name="certification[0][authority]" id="certificationAuthority" class="form-control" placeholder="Name of the organization issuing the certificate">
                 </label>
                     <label for="certificationDate"><span>Date </span>
-                    <input name="certification[0][date]" id="certificationDate" readonly class="form-control date-picker" />
+                    <input name="certification[0][date]" id="certificationDate" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                     <label for="certification[0][detail]"><span>Details </span>
                     <div id="detailsCertification">
@@ -220,8 +219,8 @@
                     <button class="btn pull-left">Save</button>
                     <button class="btn pull-right" type="button">Continue</button>
                 </div>
-        </div>
-        <div class="tab-pane form-style-5" id="education">
+            </div>
+            <div class="tab-pane form-style-5" id="education">
                 <fieldset id="field-education">
                     <legend><span class="number">7</span>Education</legend>
                     <label for="education[0][institute]"><span>Institute </span>
@@ -231,10 +230,10 @@
                     <input type="text" name="education[0][degree]" id="txtEduDegree" class="form-control" placeholder="e.g. Bachelor of Information Technology">
                 </label>
                     <label for=""><span>From Date </span>
-                    <input name="education[0][startTime]" id="educationFromDate" readonly class="form-control date-picker" />
+                    <input name="education[0][startTime]" id="educationFromDate" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                     <label for="educationFromDate"><span>To Date </span>
-                    <input name="education[0][endTime]" id="educationToDate" readonly class="form-control date-picker" />
+                    <input name="education[0][endTime]" id="educationToDate" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
                 </label>
                     <label for="education[0][detail]"><span>Details </span>
                     <div id="detailsEducation">
@@ -248,7 +247,8 @@
                     </div>
                     <button class="btn pull-left">Save</button>
                 </div>
-            </form>
+
+            </div>
         </div>
-    </div>
+    </form>
     <script src="/public/javascripts/input/input.js"></script>

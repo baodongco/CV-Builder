@@ -246,7 +246,7 @@ BEGIN
   
   SELECT * FROM skill WHERE resId = _resID;
 END;
-$$ DELIMITER;
+$$ DELIMITER ;
 -- User define store procedure deleteResume
 DELIMITER $$
 CREATE PROCEDURE udsp_deleteResume(IN _resId INT)
@@ -258,4 +258,4 @@ BEGIN
   DELETE FROM project WHERE resId = _resId;
   DELETE FROM resume WHERE id = _resId;
 END;
-$$ DELIMITER;
+$$ DELIMITER ;
