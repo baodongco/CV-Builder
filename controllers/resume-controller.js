@@ -12,8 +12,13 @@ var projectModel       = require('../models/project');
 var skillModel         = require('../models/skill');
 
 function resumeController() {
+    this.getEditResume  = function(req, res) {
+        getResumeDataById(req.params.id, function(resume) {
+            res.render('', resume);
+        });
+    }
 
-    this.createResume=function(req, res) {
+    this.createResume = function(req, res) {
       res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
     }
 
@@ -49,7 +54,7 @@ function resumeController() {
                     console.log('certification hit');
                     console.log(item);
                     item.resId = rows.insertId;                    
-                    insertItem(item, 'certifiaction');
+                    insertItem(item, 'certification');
                 }
             });
 
@@ -62,17 +67,19 @@ function resumeController() {
                 }
             });
 
-            req.body.skill.forEach(function(item) {
-                if (checkObject(item)) {
-                    console.log('skill hit');
-                    console.log(item);
-                    item.resId = rows.insertId;                    
-                    insertItem(item, 'skill');
-                }
-            });
+            if (req.body.hasOwnProperty('skill')) {
+                req.body.skill.forEach(function(item) {
+                    if (checkObject(item)) {
+                        console.log('skill hit');
+                        console.log(item);
+                        item.resId = rows.insertId;                    
+                        insertItem(item, 'skill');
+                    }
+                });
+            }
 
             //return resume Id
-            res.redirect('/resumes/' + rows.insertId + '/preview');
+            res.redirect('/resumes/preview/' + rows.insertId);
         });
     };
 
@@ -112,7 +119,7 @@ function resumeController() {
     };
 
     /**
-     * get all rsumes of user
+     * get all resumes of user
      * 
      */
     this.getResumes = function (req, res) {
@@ -159,7 +166,7 @@ function resumeController() {
      * render view resume page
      * @param id of resume
      */
-    this.getPreview = function (req, res) {                
+    this.getPreviewResume = function (req, res) {                
         connection.pool.query(sql.getTemplates, function (err, temp_rows) {
             if(err) {
                 throw err.stack

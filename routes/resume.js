@@ -6,7 +6,7 @@ module.exports = {
         /**
          * get create resume view
          */
-        app.get('/resumes/create', function(req,res){
+        app.get('/resumes/create', checkLogin, function(req,res){
           resumeController.createResume(req,res);
         });
         /**
@@ -50,7 +50,7 @@ module.exports = {
          * get edit resuem view
          * @param  id resume
          */
-        app.get('/resumes/edit/:id', function (req, res) {
+        app.get('/resumes/edit/:id', checkLogin, function (req, res) {
             resumeController.getEditResume(req,res);
         })
 

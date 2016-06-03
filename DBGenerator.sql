@@ -40,9 +40,9 @@ CREATE TABLE resume (
 CREATE TABLE skill (
   id int PRIMARY KEY AUTO_INCREMENT,
   name VARCHAR(100),
-  expertise int,
+  expertise VARCHAR(100),
   experience VARCHAR(100),
-  lastUsed DATE,
+  lastUsed VARCHAR(4),
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
 );
