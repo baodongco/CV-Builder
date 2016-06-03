@@ -17,13 +17,17 @@ var auth = require('./routes/auth');
 var admin = require('./routes/admin');
 var resume = require('./routes/resume');
 var preview = require('./routes/preview');
-var connection = require('./connection');
+var connection = require('./DAL/connection');
+var iocRegister = require('./DAL/ioc-register');
 
 var app = express();
 
 //Initialize mysql connection.
 connection.init();
 connection.pool.connect();
+
+// Register services
+iocRegister.register();
 
 // Setup view engine
 app.engine('ejs', engine);

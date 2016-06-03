@@ -1,7 +1,7 @@
 /*
 references: https://www.npmjs.com/package/html-pdf
 */
-var connection    = require('../connection');
+var connection    = require('../DAL/connection');
 var sql       = require('../services/resume-services');
 // import models
 var Resume         = require('../models/resume');

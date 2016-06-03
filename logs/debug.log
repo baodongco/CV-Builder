@@ -1,0 +1,14 @@
+Fri Jun 03 2016 21:24:15 GMT+0700 (ICT) : Not Found
+Status: 404
+Error: Not Found
+    at /Users/dienbui/Documents/GIT/CV-Builder/app.js:70:15
+    at Layer.handle [as handle_request] (/Users/dienbui/Documents/GIT/CV-Builder/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/dienbui/Documents/GIT/CV-Builder/node_modules/express/lib/router/index.js:312:13)
+    at /Users/dienbui/Documents/GIT/CV-Builder/node_modules/express/lib/router/index.js:280:7
+    at Function.process_params (/Users/dienbui/Documents/GIT/CV-Builder/node_modules/express/lib/router/index.js:330:12)
+    at next (/Users/dienbui/Documents/GIT/CV-Builder/node_modules/express/lib/router/index.js:271:10)
+    at cookieParser (/Users/dienbui/Documents/GIT/CV-Builder/node_modules/cookie-parser/index.js:48:5)
+    at Layer.handle [as handle_request] (/Users/dienbui/Documents/GIT/CV-Builder/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/dienbui/Documents/GIT/CV-Builder/node_modules/express/lib/router/index.js:312:13)
+    at /Users/dienbui/Documents/GIT/CV-Builder/node_modules/express/lib/router/index.js:280:7
+-----
