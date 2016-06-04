@@ -7,10 +7,7 @@
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Responsive HTML5 Resume/CV Template for Developers">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">    
-    <link rel="shortcut icon" href="favicon.ico">  
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <!-- Global CSS -->
     <link rel="stylesheet" href="/public/stylesheets/template-css/nonresponsive-bootstrap.css">  
@@ -29,7 +26,7 @@
     <div class="wrapper">
         <div class="sidebar-wrapper">
             <div class="profile-container">
-                <% if (resume.photoUrl) { %><img class="profile" src="<%= resume.photoUrl || "images/no-photo.png" %>" alt="Profile picture" /><% } %>
+                <% if (resume.photoUrl) { %><img class="profile" src="<%= resume.photoUrl || "/public/images/no-photo.png" %>" alt="Profile picture" /><% } %>
                 <h1 class="name"><%= resume.firstName || ""%> <%= resume.lastName || "" %></h1>
                 <h3 class="tagline"><%- resume.sumHeadline || ""%></h3>
             </div><!--//profile-container-->
@@ -42,25 +39,18 @@
                     <% if (resume.address) { %><li class="address"><i class="fa fa-map-marker"></i><%= resume.address %></li> <% } %>
                 </ul>
             </div><!--//contact-container-->
-            <% if (resume.educations) { %>
+            <% if (resume.educations.length) { %>
             <div class="education-container container-block">
                 <h2 class="container-block-title">Education</h2>
                 <% for (var i = 0 ; i < resume.educations.length ; i++) { %>
                 <div class="item">
                     <h4 class="degree"><%= resume.educations[i].degree %></h4>
                     <h5 class="meta"><%= resume.educations[i].institute %></h5>
-                    <div class="time"><%= resume.educations[i].startMonth %> - <%= resume.educations[i].endMonth %></div>
+                    <div class="time"><%= resume.educations[i].startTime.toLocaleDateString() %> - <%= resume.educations[i].endTime.toLocaleDateString() %></div>
                     <div class="edu-detail"><%- resume.educations[i].detail %></div>
                 </div><!--//item-->
                 <% } %>                
             </div><!--//education-container-->
-            <% } if (resume.languages) { %>
-            <div class="languages-container container-block">
-                <h2 class="container-block-title">Languages</h2>
-                <ul class="list-unstyled interests-list">
-                    <li><%= resume.languages[i].name %> <span class="lang-desc"> <%= resume.languages[i].proficiency %> </span></li>
-                </ul>
-            </div><!--//languages-->
             <% } %>          
             
         </div><!--//sidebar-wrapper-->
@@ -73,7 +63,7 @@
                     <%- resume.sumContent %>
                 </div><!--//summary-->
             </section><!--//section-->
-            <% if (resume.experiences) { %>
+            <% if (resume.experiences.length) { %>
             <section class="section experiences-section">
                 <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiences</h2>                
                 <% for (var i=0; i < resume.experiences.length; i++) { %>
@@ -81,7 +71,7 @@
                     <div class="meta">
                         <div class="upper-row">
                             <h3 class="job-title"><%= resume.experiences[i].designation %></h3>
-                            <div class="time"><%= resume.experiences[i].startMonth %> - <%= resume.experiences[i].endtMonth %></div>
+                            <div class="time"><%= resume.experiences[i].startTime.toLocaleDateString() %> - <%= resume.experiences[i].endTime.toLocaleDateString() %></div>
                         </div><!--//upper-row-->
                         <div class="company"><%= resume.experiences[i].company %></div>
                     </div><!--//meta-->
@@ -92,7 +82,7 @@
                 <% } %>
             </section><!--//section-->
             <% } %>
-            <% if (resume.projects) { %>
+            <% if (resume.projects.length) { %>
             <section class="section projects-section">
                 <h2 class="section-title"><i class="fa fa-archive"></i>Projects</h2>
                 <% for(var i=0; i<resume.projects.length; i++) {%>
@@ -100,14 +90,15 @@
                     <span class="project-title">
                         <a href="<%= resume.projects[i].url || "#" %>"><%= resume.projects[i].title %></a>
                     </span>
-                    <div class="project-detail"><%= resume.projects[i].detail %></div>
-                    <span class="project-tagline">Time: <%= resume.projects[i].startTime %> - <%= resume.projects[i].endTime %></span>                  
+                    <div class="project-detail"><%- resume.projects[i].detail %></div>
+                    <span class="project-tagline">Time: <%= resume.projects[i].startTime.getMonth() + 1 %>/<%= resume.projects[i].startTime.getFullYear() %> - 
+                    <%= resume.projects[i].endTime.getMonth() +1 %>/<%= resume.projects[i].endTime.getFullYear()%></span>                  
                 </div><!--//item-->
                 <% } %>               
                 
             </section><!--//section-->
             <% } %>
-            <% if (resume.skills) { %>
+            <% if (resume.skills.length) { %>
             <section class="skills-section section">
                 <h2 class="section-title"><i class="fa fa-rocket"></i>Skills &amp; Proficiency</h2>
                 <div class="skillset">
@@ -117,12 +108,13 @@
                         <% if (resume.skills[i].name) { %><h3 class="level-title"><%= resume.skills[i].name %></h3><% } %>
                         <span></span>
                         <div class="level-bar">
-                            <div class="level-bar-inner" data-level="<%= resume.skills[i].expertise * 20 %>%"><%= resume.skills[i].expertise %>
+                            <div class="level-bar-inner" data-level="<%= resume.skills[i].expertise %>">
                             </div>                                                                  
                         </div><!--//level-bar--> 
                         <p class="text-small">
                             <% if (resume.skills[i].experience) { %>Experiences: <%= resume.skills[i].experience %><br /><% } %> 
-                            <% if (resume.skills[i].lastUsed) { %>Last used: <%= resume.skills[i].lastUsed %><% } %>
+                            <% if (resume.skills[i].lastUsed) { %>
+                                Last used: <%= resume.skills[i].lastUsed.getFullYear() %><% } %>
                         </p>                                
                     </div><!--//item-->   
                 <% } %>             

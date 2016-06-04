@@ -7,8 +7,8 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
     <script src="/public/javascripts/input/resume-validator.js"></script>
     <link rel="stylesheet" href="/public/stylesheets/input-css.css">
-    <form action="create" method="POST" id="resumeForm">
-        <ul class="nav nav-tabs">
+    <form action="create" method="POST" id="resumeForm">                    
+        <ul class="nav nav-tabs col-lg-2">
             <li class="active" id="licontact"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
             <li id="lisummary"><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
             <li id="liexperience"><a href="#experience" data-toggle="tab"><span class="glyphicon glyphicon-heart-empty"> Experience</span></a></li>
@@ -16,32 +16,34 @@
             <li id="liskills"><a href="#skills" data-toggle="tab"><span class="glyphicon glyphicon-star"> Skills</span></a></li>
             <li id="licertification"><a href="#certification" data-toggle="tab"><span class="glyphicon glyphicon-cog"> Certification</span></a></li>
             <li id="lieducation"><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
-        </ul>
+        </ul>            
         <div id="myTabContent" class="tab-content">
-            <div class="tab-pane active form-style-5" id="contact">
-                <fieldset>
-                    <legend><span class="number">1</span> Contact Information</legend>
-                    <label for="firstName"><span><sup>*</sup>First Name: </span>
-                    <input type="text" class="text-danger form-control" name="firstName" placeholder="First Name">
-                </label>
-                    <label for="lastName"><span>Last Name: </span>
-                    <input type="text" name="lastName" class="form-control" placeholder="Last Name ">
-                </label>
-                    <label for="email"><span><sup>*</sup>Email: </span>
-                    <input type="email" class="text-danger form-control"  name="email" placeholder="Your Email">
-                </label>
-                    <label for="phone"><span>Phone: </span>
-                    <input type="text" name="phone" class="form-control" placeholder="Phone">
-                </label>
-                    <label for="url1"><span>Website: </span>
-                    <input type="url" name="website" class="form-control" placeholder="e.g:www.abc.com">
-                </label>
-                    <label for="address"><span>Address </span>
-                    <textarea class="editor" name="address" class="form-control" placeholder="Address"></textarea>
-                </label>
-                </fieldset>
-                <button class="btn pull-left">Save</button>
-                <a href="#summary" name="summary" data-toggle="tab" class="btn pull-right">Continue</a>
+            <div class="tab-pane active form-style-5 panel panel-default" id="contact">
+                <div class="panel-body">                
+                    <fieldset>
+                        <legend><span class="number">1</span> Contact Information</legend>
+                        <label for="firstName"><span><sup>*</sup>First Name: </span>
+                        <input type="text" class="text-danger form-control" name="firstName" placeholder="First Name">
+                    </label>
+                        <label for="lastName"><span>Last Name: </span>
+                        <input type="text" name="lastName" class="form-control" placeholder="Last Name ">
+                    </label>
+                        <label for="email"><span><sup>*</sup>Email: </span>
+                        <input type="email" class="text-danger form-control"  name="email" placeholder="Your Email">
+                    </label>
+                        <label for="phone"><span>Phone: </span>
+                        <input type="text" name="phone" class="form-control" placeholder="Phone">
+                    </label>
+                        <label for="url1"><span>Website: </span>
+                        <input type="url" name="website" class="form-control" placeholder="e.g:www.abc.com">
+                    </label>
+                        <label for="address"><span>Address </span>
+                        <textarea class="editor" name="address" class="form-control" placeholder="Address"></textarea>
+                    </label>
+                    </fieldset>
+                    <button class="btn pull-left">Save</button>
+                    <a href="#summary" name="summary" data-toggle="tab" class="btn pull-right">Continue</a>
+                </div>
             </div>
             <div class="tab-pane form-style-5" id="summary">
                 <fieldset>
@@ -119,7 +121,7 @@
                     <input type="hidden" id="skillHiddenIndex" value="-1">
                     <legend><span class="number">5</span>Skill</legend>
                     <label for="txtSkillName"><span>Skill Name </span>
-
+                    <input class="form-control" id="txtSkillName">
                 </label>
                     <label for=""><span>Level</span></label>
                     <ul id="progress" class="nav skill-progress">

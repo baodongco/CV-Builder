@@ -13,13 +13,22 @@ var skillModel         = require('../models/skill');
 
 function resumeController() {
     this.getEditResume  = function(req, res) {
-        getResumeDataById(req.params.id, function(resume) {
-            res.render('', resume);
+        var userId = req.user.id;
+        var resId = req.params.id;
+        connection.pool.query('SELECT EXISTS(SELECT 1 FROM resume WHERE id = ? AND userId = ?)', [resid, userId], function(rows){            
+            console.log(rows);
+            // if (rows) {
+            //     getResumeDataById(req.params.id, function(resume) {
+            //             res.render('', resume);
+            //         });    
+            // } else {
+            //     res.redirect('/');
+            // }            
         });
     }
 
     this.createResume = function(req, res) {
-      res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
+        res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
     }
 
     this.insertResume = function(req, res) {        
@@ -186,7 +195,7 @@ function resumeController() {
                     throw err.stack;
                     } else {
                         console.log('res_rows', res_rows);
-                        if (!res_rows.length) {
+                        if (!res_rows.length || req.user.id != res_rows[0].userId) {
                             res.status(404).send('File not found');
                         } else if (req.user.id == res_rows[0].userId) {                           
                             res.render('resume/preview',{ 
@@ -204,7 +213,7 @@ function resumeController() {
     };
 
     /**
-     * edit a single row value in resume
+     * edit a single value in resume
      * @param  table : name of table contain resume's data (RESPEC)
      * @param  id: row id to update
      * @param  field: column to update
@@ -215,7 +224,7 @@ function resumeController() {
         console.log(req.body);
         var tables = ['resume', 'education', 'skill', 'project', 'experience', 'certification'];
         if ( tables.indexOf(req.body.table) != -1 ) {
-            if (req.body.table == 'resume') {
+            if (req.body.table == 'resume' || req.body.field == 'publicLink') {
                 var query = sql.checkResumeEditable;
                 var params = [req.body.id, req.user.id];  
             } else {
@@ -247,30 +256,66 @@ function resumeController() {
         }
     }
 
-    this.deleteResume = function (req, res) {
-        if (req.user) {
-            connection.pool.query("SELECT id FROM resume WHERE id = ? and userId = ?",
-                [req.params.id, req.user.id], function (err, row) {
-                    if (err) {
-                        throw err;
-                        res.status(401).send('Unauthorized');
+    /**
+     * set resume as public or private
+     * @param  id resume
+     * @param  status
+     * @return code and ?generated url
+     */
+    this.getPrivacyResume = function (req, res) {
+        console.log('here');
+        var Guid = require('guid');
+        // generate url /resumes/id/token if status=true
+        var publicLink = req.body.status? "/resumes/"+req.params.id+"/" + Guid.create() : null;
+
+        connection.pool.query("SELECT id, publicLink FROM resume WHERE id = ? and userId = ?",
+            [req.params.id, req.user.id], function (err, row) {
+                if (err) {
+                    throw err;
+                    res.status(401).send('Unauthorized');
+                } else if (row[0].id) {
+                    // if status = true but publiclink exists. refuse it
+                    if (row[0].publicLink && req.body.status) {
+                        res.status(403).send("Resume's already been public");
                     } else {
-                        if (row[0].id) {
-                            connection.pool.query("CALL udsp_deleteResume(?)", req.params.id ,function (err, result) {
-                                if (err) {
-                                    throw err;
-                                    res.status(503).send('Unable to delete resume');
-                                } else {
-                                    res.status(200).send('Resume deleted');
-                                }
-                            });
-                        }  
+                        connection.pool.query(updatePublicLink, [publicLink, req.params.id], function (err, result) {
+                            if (err) {
+                                throw err;
+                                res.status(503).send('Unable to update resume');
+                            } else {
+                                res.status(200).send({publicLink: publicLink});
+                            }
+                        });
                     }
                 }
-            )
-        } else {
-            res.status(401).send('Unauthorized');
-        }
+            }
+        );
+    };
+
+    /**
+     * delete resume and related data
+     * @param  id resume
+     */
+    this.deleteResume = function (req, res) {
+        connection.pool.query("SELECT id FROM resume WHERE id = ? and userId = ?",
+            [req.params.id, req.user.id], function (err, row) {
+                if (err) {
+                    throw err;
+                    res.status(401).send('Unauthorized');
+                } else {
+                    if (row[0] && row[0].id) {
+                        connection.pool.query("CALL udsp_deleteResume(?)", req.params.id ,function (err, result) {
+                            if (err) {
+                                throw err;
+                                res.status(503).send('Unable to delete resume');
+                            } else {
+                                res.status(200).send('Resume deleted');
+                            }
+                        });
+                    }  
+                }
+            }
+        );
     }
 
 /*
@@ -355,7 +400,7 @@ function resumeController() {
                 for (var i = 0; i < rows[3].length; i++) {
                     expertiences[i] = new experienceModel(rows[3][i]);
                 }
-                resume.expertiences = expertiences;
+                resume.experiences = expertiences;
 
                 // projects
                 var projects = [];
