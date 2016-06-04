@@ -1,0 +1,331 @@
+<% layout('./layouts/main.ejs') -%>
+    <link href="/public/stylesheets/bootstrap.vertical-tabs.min.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <script src="/public/javascripts/input/resume-validator.js"></script>
+    <link rel="stylesheet" href="/public/stylesheets/input-css.css">
+    <form action="/resumes/create" method="POST" id="resumeForm">
+        <input type="hidden" name="resume[id]" value="<%=resume.id%>">
+        <ul class="nav nav-tabs">
+            <li class="active" id="licontact"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
+            <li id="lisummary"><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
+            <li id="liexperience"><a href="#experience" data-toggle="tab"><span class="glyphicon glyphicon-heart-empty"> Experience</span></a></li>
+            <li id="liproject"><a href="#project" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download"> Project</span></a></li>
+            <li id="liskills"><a href="#skills" data-toggle="tab"><span class="glyphicon glyphicon-star"> Skills</span></a></li>
+            <li id="licertification"><a href="#certification" data-toggle="tab"><span class="glyphicon glyphicon-cog"> Certification</span></a></li>
+            <li id="lieducation"><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane active form-style-5" id="contact">
+                <fieldset>
+                    <legend><span class="number">1</span> Contact Information</legend>
+                    <label for="firstName"><span><sup>*</sup>First Name: </span>
+                    <input type="text" class="text-danger form-control" name="firstName" value="<%=resume.firstName%>" placeholder="First Name">
+                </label>
+                    <label for="lastName"><span>Last Name: </span>
+                    <input type="text" name="lastName" class="form-control"value="<%=resume.lastName%>" placeholder="Last Name ">
+                </label>
+                    <label for="email"><span><sup>*</sup>Email: </span>
+                    <input type="email" class="text-danger form-control" value="<%=resume.email%>"  name="email" placeholder="Your Email">
+                </label>
+                    <label for="phone"><span>Phone: </span>
+                    <input type="text" name="phone" class="form-control"value="<%=resume.phone%>" placeholder="Phone">
+                </label>
+                    <label for="url1"><span>Website: </span>
+                    <input type="url" name="website" class="form-control" value="<%=resume.website%>" placeholder="e.g:www.abc.com">
+                </label>
+                    <label for="address"><span>Address </span>
+                    <textarea class="editor" name="address" class="form-control" placeholder="Address"><%=resume.address%></textarea>
+                </label>
+                </fieldset>
+                <button class="btn pull-left">Save</button>
+                <a href="#summary" name="summary" data-toggle="tab" class="btn pull-right">Continue</a>
+            </div>
+            <div class="tab-pane form-style-5" id="summary">
+                <fieldset>
+                    <legend><span class="number">2</span>Summary</legend>
+                    <label for="sumHeadline"><span>Header </span>
+                    <input class="form-control" name="sumHeadline"value="<%=resume.sumHeadline%>" type="text">
+                </label>
+                    <label for="sumContent"><span>Proffessor Summary: </span>
+                    <textarea class="editor" name="sumContent" placeholder="Add a short summary about yourself"><%=resume.sumContent%></textarea>
+                </label>
+                </fieldset>
+                <button class="btn npull-left">Save</button>
+                <a href="#experience" name="experience" data-toggle="tab" class="btn pull-right">Continue</a>
+            </div>
+            <div class="tab-pane form-style-5" id="experience">
+                <input type="hidden" id="experienceLength" value="<%=resume.expertiences[resume.expertiences.length-1].id%>">
+                <%for(var i=0;i<resume.expertiences.length;i++)
+            {%>
+                    <input type="hidden" name="experience[<%=resume.expertiences[i].id%>][id]" value="<%=resume.expertiences[i].id%>">
+                    <fieldset id="field-experience-<%=i%>" class="clonedExpInput">
+                        <legend><span class="number">3</span>Experience</legend>
+                        <label for="experience[<%=i%>][company]"><span>Company </span>
+                    <input class="form-control" type="text" id="experienceCompany-<%=i%>" value="<%=resume.expertiences[i].company%>" name="experience[<%=resume.expertiences[i].id%>][company]" placeholder="e.g. Harvey Nash Vietnam">
+                </label>
+                        <label for="experience[0][designation]"><span>Designation </span>
+                    <input class="form-control" type="text"  id="experienceDesignation-<%=i%>" name="experience[<%=resume.expertiences[i].id%>][designation]"  value="<%=resume.expertiences[i].designation%>" placeholder="e.g. Software Engineer">
+                </label>
+                        <label for="experienceFromDate"><span>From Date </span>
+                    <input name="experience[<%=resume.expertiences[i].id%>][startTime]" id="experienceFromDate-<%=i%>" value="<%=resume.expertiences[i].startTime%>" readonly placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                </label>
+                        <label for="experienceToDate"><span>To Date </span>
+                    <input name="experience[<%=resume.expertiences[i].id%>][endTime]" id="experienceToDate-<%=i%>" value="<%=resume.expertiences[i].endTime%>" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
+                </label>
+                        <label for="experience[0][detail]"><span>Details </span>
+                    <div id="detailsExperience-<%=i%>">
+                        <textarea class="form-control editor" id="experienceDetail-<%=i%>" name="experience[<%=resume.expertiences[i].id%>][detail]"><%=resume.expertiences[i].detail%></textarea>
+                    </div>
+                </label>
+                    </fieldset>
+                    <%}%>
+                        <div id="groupBtnExperience">
+                            <div>
+                                <button class="btn btn-primary" type="button" id="btnAddMoreExperience">Add another</button>
+                            </div>
+                            <button class="btn pull-left">Save</button>
+                            <a href="#project" name="project" data-toggle="tab" class="btn pull-right">Continue</a>
+                        </div>
+            </div>
+            <div class="tab-pane form-style-5" id="project">
+                <input type="hidden" id="projectLength" value="<%=resume.projects[resume.projects.length-1].id%>">
+                <%for(var i=0;i<resume.projects.length;i++)
+        {%>
+                    <input type="hidden" name="project[<%=resume.projects[i].id%>][id]" value="<%=resume.projects[i].id%>">
+                    <fieldset id="field-project-<%=i%>">
+                        <legend><span class="number">4</span>Project</legend>
+                        <label for="project[0][title]"><span>Project title </span>
+                    <input class="form-control" name="project[<%=resume.projects[i].id%>][title]" value="<%=resume.projects[i].title%>" id="projectTitle-<%=i%>" type="text">
+                </label>
+                        <label for="projectFromDate"><span>Url </span>
+                    <input name="project[<%=resume.projects[i].id%>][url]" id="projectUrl-<%=i%>" value="<%=resume.projects[i].url%>" type="url" placeholder="Url of project" class="form-control" />
+                </label>
+                        <label for="projectFromDate"><span>From Date </span>
+                    <input name="project[<%=resume.projects[i].id%>][startTime]" id="projectFromDate-<%=i%>" value="<%=resume.projects[i].startTime%>" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                </label>
+                        <label for="projectToDate"><span>To Date </span>
+                    <input name="project[<%=resume.projects[i].id%>][endTime]" id="projectToDate-<%=i%>" value="<%=resume.projects[i].endTime%>" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                </label>
+                        <label for="projectDetail"><span>Details </span>
+                    <div id="detailsProject-<%=i%>">
+                        <textarea class="form-control editor" id="projectDetail-<%=i%>" name="project[<%=resume.projects[i].id%>][detail]"> <%=resume.projects[i].detail%></textarea>
+                    </div>
+                </label>
+                    </fieldset>
+                    <%}%>
+                        <div id="groupBtnProject">
+                            <div>
+                                <button class="btn btn-primary" type="button" id="btnAddMoreProject">Add another</button>
+                            </div>
+                            <button class="btn pull-left">Save</button>
+                            <a href="#skills" name="skills" data-toggle="tab" class="btn pull-right">Continue</a>
+                        </div>
+            </div>
+            <div class="tab-pane form-style-5" id="skills">
+                <fieldset id="field-skill">
+                    <input type="hidden" id="skillHiddenIndex" value="-1">
+                    <%for(var i=0;i<resume.skills.length;i++)
+                    {%>
+                        <input type="hidden" name="skill[<%=resume.skills[i].id%>][id]" value="<%=resume.skills[i].id%>">
+                        <input type="hidden" id="skillName-<%=i%>" name="skill[<%=resume.skills[i].id%>][name]" value="<%=resume.skills[i].name%>">
+                        <input type="hidden" id="skillExpertise-<%=i%>" name="skill[<%=resume.skills[i].id%>][expertise]" value="<%=resume.skills[i].expertise%>">
+                        <input type="hidden" id="skillExperience-<%=i%>" name="skill[<%=resume.skills[i].id%>][experience]" value="<%=resume.skills[i].experience%>">
+                        <input type="hidden" id="skillLastUsed-<%=i%>" name="skill[<%=resume.skills[i].id%>][lastUsed]" value="<%=resume.skills[i].lastUsed%>">
+                        <%}%>
+                            <legend><span class="number">5</span>Skill</legend>
+                            <label for="txtSkillName"><span>Skill Name </span>
+                    <input class="form-control" id="txtSkillName">
+                </label>
+                            <label for=""><span>Level</span></label>
+                            <ul id="progress" class="nav skill-progress">
+                                <li id="ball0">
+                                    <div id="layer0" class="ball"></div>
+                                    <div id="layer12" class="pulse"></div>
+                                </li>
+                                <li id="ball1">
+                                    <div id="layer1" class="ball"></div>
+                                    <div id="layer7" class="pulse"></div>
+                                </li>
+                                <li id="ball2">
+                                    <div id="layer2" class="ball"></div>
+                                    <div id="layer8" class="pulse"></div>
+                                </li>
+                                <li id="ball3">
+                                    <div id="layer3" class="ball"></div>
+                                    <div id="layer9" class="pulse"></div>
+                                </li>
+                                <li id="ball4">
+                                    <div id="layer4" class="ball"></div>
+                                    <div id="layer10" class="pulse"></div>
+                                </li>
+                                <li id="ball5">
+                                    <div id="layer5" class="ball"></div>
+                                    <div id="layer11" class="pulse"></div>
+                                </li>
+                                <label id="lblLevel" style="color:blue;margin-left:200px">N/A</label>
+                            </ul>
+
+                            <label for="txtExperience"><span>Experience</span>
+                    <select id="ddlExperience" class="form-control">
+                        <option value="0 month">0 month</option>
+                        <option value="1-3 months">1-3 months</option>
+                        <option value="4-12 months">4-12 months</option>
+                        <option value="1-3 years">1-3 years</option>
+                        <option value="3-5 years">3-5 years</option>
+                        <option value=">5 years">>5 years</option>
+                    </select>
+                </label>
+                            <label><span>Last Year Used</span>
+                    <select id="ddlLYU" class="form-control">
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                        <option value="2014">2014</option>
+                        <option value="2013">2013</option>
+                        <option value="2012">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
+                        <option value="2009">2009</option>
+                        <option value="2008">2008</option>
+                        <option value="2007">2007</option>
+                        <option value="2006">2006</option>
+                        <option value="2005">2005</option>
+                        <option value="2004">2004</option>
+                        <option value="2003">2003</option>
+                    </select>
+                </label>
+                </fieldset>
+                <div class="table-responsive" style="min-height:300px;border">
+                    <button class="btn btn-primary" type="button" id="btnAddSkill">Add skill</button>
+                    <table id="tblSkills" class="table  table-hover">
+                        <thead>
+                            <tr>
+                                <th>Skill's name</th>
+                                <th>Level</th>
+                                <th>Experience</th>
+                                <th>Last year used</th>
+                                <th id="action">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%for(var i=0;i<resume.skills.length;i++)
+                            {%>
+
+                                <tr id="<%=resume.skills[i].id%>">
+                                    <td><span id="spSkillName-<%=resume.skills[i].id%>"><%=resume.skills[i].name%></span></td>
+                                    <td class="text-center">
+                                        <ul id="lprogress" class="nav skill-lprogress">
+                                            <li id="lball0">
+                                                <div id="layer0" class="ball"></div>
+                                                <div id="layer12" class="pulse"></div>
+                                            </li>
+                                            <li id="lball1">
+                                                <div id="layer1" class="ball"></div>
+                                                <div id="layer7" class="pulse"></div>
+                                            </li>
+                                            <li id="lball2">
+                                                <div id="layer2" class="ball"></div>
+                                                <div id="layer8" class="pulse"></div>
+                                            </li>
+                                            <li id="lball3">
+                                                <div id="layer3" class="ball"></div>
+                                                <div id="layer9" class="pulse"></div>
+                                            </li>
+                                            <li id="lball4">
+                                                <div id="layer4" class="ball"></div>
+                                                <div id="layer10" class="pulse"></div>
+                                            </li>
+                                            <li id="lball5">
+                                                <div id="layer5" class="ball"></div>
+                                                <div id="layer11" class="pulse"></div>
+                                            </li>
+                                            <label style="color:blue;"><%=resume.skills[i].expertise%></label>
+                                        </ul>
+                                    </td>
+                                    <td><span><%=resume.skills[i].experience %></span></td>
+                                    <td><span><%=resume.skills[i].lastUsed %></span></td>
+                                    <td><button type="button" class="btn-primary btnSkillEdit" id="btnEditSkill-<%=resume.skills[i].id%>">Edit</button>
+                                        <button type="button" class="btn-primary btnDeleteSkill" id="btnDeleteSkill-<%=resume.skills[i].id%>">Remove</button>
+                                </tr>
+                                </td>
+                                </tr>
+
+                                <%}%>
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn pull-left">Save</button>
+                <a href="#certification" name="certification" data-toggle="tab" class="btn pull-right">Continue</a>
+            </div>
+            <div class="tab-pane form-style-5" id="certification">
+                <input type="hidden" id="certificationLength" value="<%=resume.certifications[resume.certifications.length-1].id%>">
+
+                <%for(var i=0;i<resume.certifications.length;i++)
+                {%>
+                    <input type="hidden" name="certification[<%=resume.certifications[i].id%>][id]" value="<%=resume.certifications[i].id%>">
+                    <fieldset id="field-certification-<%=i%>">
+                        <legend><span class="number">6</span>Certification</legend>
+                        <label for="certification[<%=i%>][title]"><span>Certification</span>
+                    <input type="text" name="certification[<%=resume.certifications[i].id%>][title]" value="<%=resume.certifications[i].title%>" id="certificationTitle-<%=i%>" class="form-control" placeholder="Name of certification">
+                </label>
+                        <label for="certification[0][authority]"><span>Certification authority </span>
+                    <input type="text" name="certification[<%=resume.certifications[i].id%>][authority]" value="<%=resume.certifications[i].authority%>" id="certificationAuthority-<%=i%>" class="form-control" placeholder="Name of the organization issuing the certificate">
+                </label>
+                        <label for="certificationDate"><span>Date </span>
+                    <input name="certification[<%=resume.certifications[i].id%>][date]" id="certificationDate-<%=i%>" value="<%=resume.certifications[i].date%>" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                </label>
+                        <label for="certification[<%=i%>][detail]"><span>Details </span>
+                    <div id="detailsCertification-<%=i%>">
+                        <textarea class="form-control editor" id="certificationDetail-<%=i%>"name="certification[<%=resume.certifications[i].id%>][detail]"><%=resume.certifications[i].detail%></textarea>
+                    </div>
+                </label>
+                    </fieldset>
+                    <%}%>
+                        <div id="groupBtnCertification">
+                            <div>
+                                <button class="btn btn-primary" type="button" id="btnAddMoreCetification">Add another</button>
+                            </div>
+                            <button class="btn pull-left">Save</button>
+                            <a href="#education" name="education" data-toggle="tab" class="btn pull-right">Continue</a>
+                        </div>
+            </div>
+            <div class="tab-pane form-style-5" id="education">
+                <input type="hidden" id="educationLength" value="<%=resume.educations[resume.educations.length-1].id%>">
+                <%for(var i=0;i<resume.educations.length;i++)
+                {%>
+                    <input type="hidden" name="education[<%=resume.educations[i].id%>][id]" value="<%=resume.educations[i].id%>">
+                    <fieldset id="field-education-<%=i%>">
+                        <legend><span class="number">7</span>Education</legend>
+                        <label for="education[0][institute]"><span>Institute </span>
+                    <input type="text" name="education[<%=resume.educations[i].id%>][institute]"  id="txtEduInstitute-<%=i%>" value="<%=resume.educations[i].institute %>" class="form-control" placeholder="e.g. Harvard University">
+                </label>
+                        <label for="education[0][degree]"><span>Degree </span>
+                    <input type="text" name="education[<%=resume.educations[i].id%>][degree]" id="txtEduDegree-<%=i%>" value="<%=resume.educations[i].degree %>" class="form-control" placeholder="e.g. Bachelor of Information Technology">
+                </label>
+                        <label for=""><span>From Date </span>
+                    <input name="education[<%=resume.educations[i].id%>][startTime]" id="educationFromDate-<%=i%>" value="<%=resume.educations[i].startTime %>" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                </label>
+                        <label for="educationFromDate"><span>To Date </span>
+                    <input name="education[<%=resume.educations[i].id%>][endTime]" id="educationToDate-<%=i%>" value="<%=resume.educations[i].endTime %>" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
+                </label>
+                        <label for="education[<%=i%>][detail]"><span>Details </span>
+                    <div id="detailsEducation-<%=i%>">
+                        <textarea class="editor" name="education[<%=resume.educations[i].id%>][detail]" id="educationDetails-<%=i%>" placeholder="Add a few details about this educational qualification..."><%=resume.educations[i].detail %></textarea>
+                    </div>
+                </label>
+                    </fieldset>
+                    <%}%>
+                        <div id="groupBtnEducation">
+                            <div>
+                                <button class="btn btn-primary" type="button" id="btnAddMoreEducation">Add another</button>
+                            </div>
+                            <button class="btn pull-left">Save</button>
+                        </div>
+
+            </div>
+        </div>
+    </form>
+    <script src="/public/javascripts/input/input.js"></script>

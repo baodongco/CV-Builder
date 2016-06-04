@@ -1,6 +1,8 @@
  var bcrypt = require('bcrypt-nodejs');
+ var di = require('di4js');
+ var config = require('config');
 
-var connection = require('../connection');
+var connection = require('../DAL/connection');
 var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
 var LoginUser = require('../models/login-user');
@@ -8,7 +10,6 @@ var PassModification = require('../models/password-modification');
 var ResetPasswordInfo = require('../models/reset-password-info');
 var Email = require('../utilities/email');
 var EmailInfo = require('../models/email-info');
-var config = require('config');
 var activeUserSettings = config.get('cv-builder.active-user');
 
 function authController() {
@@ -24,21 +25,24 @@ function authController() {
         var newUser = new RegisterUser(req.body);
 
         // Check if username already exists.
-        connection.pool.query(queries.checkUserByEmail, newUser.email, function(err, rows) {
-            if (rows.length) {
+        di.resolve('userservice').checkUserByEmail(newUser.email, function (users) {
+            if (users.length) {
                 req.flash('signupMessage', 'Email is already taken.');
                 res.redirect('/register');
+
             } else {
                 // Check if email already exists.
-                connection.pool.query(queries.checkUserByUsername, newUser.username, function(err, rows) {
-                    if (rows.length) {
+                di.resolve('userservice').checkUserByUsername(newUser.username, function (eusers) {
+                    if (eusers.length) {
                         req.flash('signupMessage', 'Username is already taken.');
                         res.redirect('/register');
+
                     } else {
-                        connection.pool.query(queries.registerUser, newUser, function(err, rows) {
+                        di.resolve('userservice').addNewUser(newUser, function () {
                             req.flash('homeMessage', 'Check your email for activation link.');
                             res.redirect('/');
                         });
+
                         // send email
                         var emailInfo = new EmailInfo(newUser.username, newUser.email, newUser.activationCode);
                         var email = new Email(emailInfo);
@@ -61,18 +65,20 @@ function authController() {
     this.postLogin = function(req, done) {
         var loginUser = new LoginUser(req.body);
 
-        connection.pool.query(queries.login, loginUser.username, function(err, rows) {
-            if (!rows.length)
-                return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled'));
+        di.resolve('userservice').login(loginUser.username, function (users) {
+            if (!users.length)
+                return done(null, false, req.flash('loginMessage', 'Username not found'));
             // Wrong password
-            else if (!bcrypt.compareSync(loginUser.password, rows[0].password))
+            else if (users[0].isDisabled)
+                return done(null, false, req.flash('loginMessage', 'Your account is disabled. Contact admin for information'));
+            else if (!bcrypt.compareSync(loginUser.password, users[0].password))
                 return done(null, false, req.flash('loginMessage', 'Wrong password!!!'));
             // Account not activated
-            else if (rows[0].activationCode)
+            else if (users[0].activationCode)
                 return done(null, false, req.flash('loginMessage', 'Your account is not activated. Check your email for activation link.'));
 
             // Successful
-            return done(null, rows[0]);
+            return done(null, users[0]);
         });
     };
 

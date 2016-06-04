@@ -10,7 +10,7 @@ CREATE TABLE user (
   role varchar(10) DEFAULT 'user',
   activationCode varchar(50),
   resetPassCode varchar(50),
-  codeStartDate TIMESTAMP,
+  codeStartDate TIMESTAMP NOT NULL DEFAULT NOW(),
   isDisabled tinyint(1) DEFAULT 0
 );
 

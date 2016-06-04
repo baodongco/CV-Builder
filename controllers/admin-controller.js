@@ -1,22 +1,20 @@
-var connection = require('../connection');
-var query = require('../services/user-services');
+var di = require('di4js');
 
 function adminController() {
     this.getIndex = function (req, res) {
-        connection.pool.query(query.getAllUsers, function (err, users) {
-            console.log(req.user.id);
-            res.render('admin/index', {title: 'Admin page', loginId: req.user.id, users: users, message: req.flash('adminMessage')});
+        di.resolve('userservice').getAllUsers(function (users) {
+            res.render('admin/index', {title: 'Admin page', loginId: req.user.id, users: users, message: req.flash('adminMessage')}); 
         });
     };
     
     this.disableUser = function (req, res) {
-        connection.pool.query(query.disableUser, req.params.id, function (err, result) {
+        di.resolve('userservice').disableUser(req.params.id, function () {
             res.redirect('/admin');
         });
     };
 
     this.enableUser = function (req, res) {
-        connection.pool.query(query.enableUser, req.params.id, function (err, result) {
+        di.resolve('userservice').enableUser(req.params.id, function () {
             res.redirect('/admin');
         });
     }

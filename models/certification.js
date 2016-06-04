@@ -1,4 +1,5 @@
 function certificationModel(certification) {
+	this.id=certification.id,
 	this.resId = certification.resId,
 	this.title = certification.title,
 	this.authority = certification.authority,

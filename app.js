@@ -16,14 +16,17 @@ var home = require('./routes/home');
 var auth = require('./routes/auth');
 var admin = require('./routes/admin');
 var resume = require('./routes/resume');
-
-var connection = require('./connection');
+var connection = require('./DAL/connection');
+var iocRegister = require('./DAL/ioc-register');
 
 var app = express();
 
 //Initialize mysql connection.
 connection.init();
 connection.pool.connect();
+
+// Register services
+iocRegister.register();
 
 // Setup view engine
 app.engine('ejs', engine);
@@ -75,17 +78,18 @@ app.use(function(req, res, next) {
 var log = fs.createWriteStream(__dirname + '/logs/debug.log', {flags: 'w'});
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
+        // res.status(err.status || 500);
 
-        log.write(new Date() + ' : ');
-        log.write(err.message + '\n');
-        log.write('Status: ' + err.status + '\n');
-        log.write(err.stack + '\n');
-        log.write('-----\n');
-        if (err.status == 404)
-            res.render('404');
-        else
-            res.render('500');
+        // log.write(new Date() + ' : ');
+        // log.write(err.message + '\n');
+        // log.write('Status: ' + err.status + '\n');
+        // log.write(err.stack + '\n');
+        // log.write('-----\n');
+        // if (err.status == 404)
+        //     res.render('404');
+        // else
+        //     res.render('500');
+        res.render('error', { message: err.message, status: err.status, stack: err.stack});
     });
 }
 
