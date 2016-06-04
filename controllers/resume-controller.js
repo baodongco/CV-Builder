@@ -12,68 +12,147 @@ var projectModel       = require('../models/project');
 var skillModel         = require('../models/skill');
 
 function resumeController() {
-    this.createResume=function(req, res) {
-      res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
+    this.getEditResume  = function(req, res) {
+        var userId = req.user.id;
+        var resId = req.params.id;
+        connection.pool.query('SELECT EXISTS(SELECT 1 FROM resume WHERE id = ? AND userId = ?)', [resid, userId], function(rows){            
+            console.log(rows);
+            // if (rows) {
+            //     getResumeDataById(req.params.id, function(resume) {
+            //             res.render('', resume);
+            //         });    
+            // } else {
+            //     res.redirect('/');
+            // }            
+        });
     }
-    this.insertResume = function(req, res) {
+
+    this.createResume = function(req, res) {
+        res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
+    }
+
+    this.insertResume = function(req, res) {        
         var resume = new Resume(req.body);
+        resume.userId = req.user.id;
         resume.templateId = 1;
-        console.log(resume);
+        console.log(req.body);
         // insert resume
         connection.pool.query(sql.insertResume, resume, function(err, rows) {
             if(err) console.log(err);
             // insert sections
-            if (checkArray(req.body.education)) {
-                console.log('education hit');
-                req.body.education.forEach(function(item) {
+            req.body.education.forEach(function(item) {                
+                if (checkObject(item)) {
+                    console.log('education hit');  
+                    console.log(item);                  
+                    item.resId = rows.insertId;
+                    insertItem(item, 'education');                        
+                }
+            });
+
+            req.body.experience.forEach(function(item) {
+                if (checkObject(item)) {
+                    console.log('experience hit');
+                    console.log(item);
                     item.resId = rows.insertId;                    
-                    var education = new educationModel(item);
-                    connection.pool.query(sql.insertEducation, education);
-                });
-            }
+                    insertItem(item, 'experience');
+                }
+            });
 
-            if (req.body.experience != null) {
-                req.body.experience.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var experience = new experienceModel(item);
-                    connection.pool.query(sql.insertExperience, experience);
-                });
-            }
+            req.body.certification.forEach(function(item) {
+                if (checkObject(item)) {
+                    console.log('certification hit');
+                    console.log(item);
+                    item.resId = rows.insertId;                    
+                    insertItem(item, 'certification');
+                }
+            });
 
-            if (req.body.certification != null) {
-                req.body.certification.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var certification = new certificationModel(item);
-                    connection.pool.query(sql.insertCertification, certification);
-                });
-            }
+            req.body.project.forEach(function(item) {
+                if (checkObject(item)) {
+                    console.log('project hit');
+                    console.log(item);
+                    item.resId = rows.insertId;                    
+                    insertItem(item, 'project');
+                }
+            });
 
-            if (req.body.project != null) {
-                req.body.project.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var project = new projectModel(item);
-                    connection.pool.query(sql.insertProject, project);
-                });
-            }
-
-            if (req.body.skill != null) {
+            if (req.body.hasOwnProperty('skill')) {
                 req.body.skill.forEach(function(item) {
-                    item.resId = rows.insertId;
-                    var skill = new skillModel(item);
-                    connection.pool.query(sql.insertSkill, skill);
+                    if (checkObject(item)) {
+                        console.log('skill hit');
+                        console.log(item);
+                        item.resId = rows.insertId;                    
+                        insertItem(item, 'skill');
+                    }
                 });
             }
+
+            //return resume Id
+            res.redirect('/resumes/preview/' + rows.insertId);
         });
     };
 
-    this.checkArray = function(array){
-        array.foreach(function(item){
-            if (item == '') {
+    this.updateResume = function(req,res) {
+        var resume = new Resume(req.body.resume);
+        var resId = resume.id;
+        delete resume.id;
+        var query = connection.pool.query("UPDATE resume SET ?? WHERE id = ?", [resume, resume.id]);
+        console.log(query);
+        //handle education items
+        req.body.education.forEach(function(item){
+            if (item.hasOwnProperty('id')) {
+                if (chekcObject(item)) {
+                    updateItem(item, 'education');                    
+                } else {
+                    deleteItem(item, 'education');
+                }
+            } else {
+                if (checkObject(item)) {
+                    insertItem(item, 'education');                    
+                }
+            }
+        })
+    };    
+
+    function insertItem(item, table) {        
+        connection.pool.query('INSERT INTO ' + table + ' SET ?', item);
+    };
+
+    function updateItem(item, table) {               
+        var id = item.id;
+        delete item.id;
+        connection.pool.query('UPDATE ' + table + ' SET ?? WHERE id = ?', [item, id]);
+    };
+
+    function deleteItem(item, table) {
+        connection.pool.query('DELETE ' + table + ' WHERE id = ', item.id);
+    }
+
+    function checkObject(obj){        
+        for(var key in obj){            
+            if (obj[key] == '') {
                 return false;
             }
-        });
+        }
         return true;
     };
+
+    /**
+     * get all resumes of user
+     * 
+     */
+    this.getResumes = function (req, res) {
+        connection.pool.query("SELECT userId, id, title, publicLink FROM resume WHERE userId =? ",
+            req.user.id, function (err, rows) {
+                if(err) {
+                    throw err.stack;
+                } else {
+                    console.log('reuses', rows);
+                    res.render('resume/all', { title: "My resumes", resumes: rows, req: req});
+                }
+            }
+        )
+    }
 
     /**
      * @param  req
@@ -106,7 +185,7 @@ function resumeController() {
      * render view resume page
      * @param id of resume
      */
-    this.getPreview = function (req, res) {                
+    this.getPreviewResume = function (req, res) {                
         connection.pool.query(sql.getTemplates, function (err, temp_rows) {
             if(err) {
                 throw err.stack
@@ -116,18 +195,13 @@ function resumeController() {
                     throw err.stack;
                     } else {
                         console.log('res_rows', res_rows);
-                        if (!res_rows[0].id) {
+                        if (!res_rows.length || req.user.id != res_rows[0].userId) {
                             res.status(404).send('File not found');
-                        } else {
-                            var can = false;
-                            if (req.user && req.user.id == res_rows[0].userId) {
-                                can = true;
-                            }
+                        } else if (req.user.id == res_rows[0].userId) {                           
                             res.render('resume/preview',{ 
                                 title: 'View resume',
                                 resumeId: res_rows[0].id, 
                                 templates: temp_rows,
-                                canEdit: can,
                                 req: req
                             });
                         }
@@ -139,37 +213,109 @@ function resumeController() {
     };
 
     /**
-     * @param  rId id of resume
-     * @param  tId id of template
-     * @return code {success| error}
+     * edit a single value in resume
+     * @param  table : name of table contain resume's data (RESPEC)
+     * @param  id: row id to update
+     * @param  field: column to update
+     * @param  value: new value
+     * @return status code
      */
-    this.updateTemplate = function (req, res) {
-        if ( req.params.rId && req.params.tId && req.user) {
-            connection.pool.query("select id from resume where id = ? and userId = ? ",
-                [req.params.rId, req.user.id], 
-                function (err , row) { 
-                    if (err) {
-                        res.status(400).send("User cannot edit resume");
-                        throw err;
-                    } else if (row[0].id) {
-                        console.log('row', row);
-                        connection.pool.query("UPDATE resume SET templateId = ? WHERE id = ?",
-                            [req.params.tId, req.params.rId],
-                            function (err, result) {
-                                if (err) {
-                                    res.status(400).send("Item not updated");
-                                    throw err;
-                                } else {
-                                    console.log('update', result);
-                                    res.status(200).send("Item updated");
-                                }
+    this.postEditFieldResume = function (req, res) {
+        console.log(req.body);
+        var tables = ['resume', 'education', 'skill', 'project', 'experience', 'certification'];
+        if ( tables.indexOf(req.body.table) != -1 ) {
+            if (req.body.table == 'resume' || req.body.field == 'publicLink') {
+                var query = sql.checkResumeEditable;
+                var params = [req.body.id, req.user.id];  
+            } else {
+                var query = sql.checkResumeDataEditable;
+                var params = [req.body.table, req.body.id, req.user.id];
+            } 
+            connection.pool.query(query, params, function (err , row) { 
+                if (err) {
+                    res.status(400).send("You cannot edit resume");
+                    throw err;
+                } else if (row.length) {
+                    console.log('row', row);
+                    connection.pool.query("UPDATE ?? SET ?? = ? WHERE id = ?",
+                        [req.body.table, req.body.field, req.body.value, req.body.id],
+                        function (err, result) {
+                            if (err) {
+                                res.status(400).send("Item not updated");
+                                throw err;
+                            } else {
+                                console.log('update', result);
+                                res.status(200).send("Item updated");
                             }
-                        );
-                    }
-                });
+                        }
+                    );
+                }
+            });
         } else {
-            res.status(400).send("Please log in");
+            res.status(403).send("Bad request");
         }
+    }
+
+    /**
+     * set resume as public or private
+     * @param  id resume
+     * @param  status
+     * @return code and ?generated url
+     */
+    this.getPrivacyResume = function (req, res) {
+        console.log('here');
+        var Guid = require('guid');
+        // generate url /resumes/id/token if status=true
+        var publicLink = req.body.status? "/resumes/"+req.params.id+"/" + Guid.create() : null;
+
+        connection.pool.query("SELECT id, publicLink FROM resume WHERE id = ? and userId = ?",
+            [req.params.id, req.user.id], function (err, row) {
+                if (err) {
+                    throw err;
+                    res.status(401).send('Unauthorized');
+                } else if (row[0].id) {
+                    // if status = true but publiclink exists. refuse it
+                    if (row[0].publicLink && req.body.status) {
+                        res.status(403).send("Resume's already been public");
+                    } else {
+                        connection.pool.query(updatePublicLink, [publicLink, req.params.id], function (err, result) {
+                            if (err) {
+                                throw err;
+                                res.status(503).send('Unable to update resume');
+                            } else {
+                                res.status(200).send({publicLink: publicLink});
+                            }
+                        });
+                    }
+                }
+            }
+        );
+    };
+
+    /**
+     * delete resume and related data
+     * @param  id resume
+     */
+    this.deleteResume = function (req, res) {
+        connection.pool.query("SELECT id FROM resume WHERE id = ? and userId = ?",
+            [req.params.id, req.user.id], function (err, row) {
+                if (err) {
+                    throw err;
+                    res.status(401).send('Unauthorized');
+                } else {
+                    if (row[0] && row[0].id) {
+                        connection.pool.query("CALL udsp_deleteResume(?)", req.params.id ,function (err, result) {
+                            if (err) {
+                                throw err;
+                                res.status(503).send('Unable to delete resume');
+                            } else {
+                                res.status(200).send('Resume deleted');
+                            }
+                        });
+                    }  
+                }
+            }
+        );
     }
 
 /*
@@ -254,7 +400,7 @@ function resumeController() {
                 for (var i = 0; i < rows[3].length; i++) {
                     expertiences[i] = new experienceModel(rows[3][i]);
                 }
-                resume.expertiences = expertiences;
+                resume.experiences = expertiences;
 
                 // projects
                 var projects = [];

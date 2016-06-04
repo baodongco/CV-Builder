@@ -1,44 +1,91 @@
 var resumeController = require('../controllers/resume-controller');
-var getId = require('../middlewares/get-user-id')
 var checkLogin = require('../middlewares/check-login')
 
 module.exports = {
 	configure: function (app) {
-		app.post('/createresume', checkLogin, getId, function (req, res) {
-			resumeController.insertResume(req, res);
+        /**
+         * get create resume view
+         */
+        app.get('/resumes/create', checkLogin, function(req,res){
+          resumeController.createResume(req,res);
+        });
+        /**
+         * create new resume
+         * @param  req.body.[data]
+         */
+		app.post('/resumes/create', checkLogin, function (req, res) {                          
+			    resumeController.insertResume(req, res);
 		});
 		/**
-  	 * @return resumes list of current user
-  	 */
-  	app.get('resumes', function (req, res) {
-  		resumeController.getResumes(req,res);
-  	});
+      	 * @return resumes list of current user
+      	 */
+      	app.get('/resumes', checkLogin, function (req, res) {
+      		resumeController.getResumes(req,res);
+      	});
+        /**
+         * get resume preview
+         * @param  id resume
+         */
+        app.get('/resumes/preview/:id', checkLogin, function(req, res) {
+            resumeController.getPreviewResume(req, res);
+        });
+        /**
+         * get publi view of resume
+         * @param  id resume
+         * @param  token
+         */
+        app.get('/resumes/public/:id/:token', function (req, res) {
+            resumeController.getPublicResume(req, res);
+        });
+        /**
+         * get edit resuem view
+         * @param  id resume
+         */
+        app.get('/resumes/edit/:id', checkLogin, function (req, res) {
+            resumeController.getEditResume(req,res);
+        })
 
-		/**
-		 * @param  id of resume
-		 * @param  req.type {html|pdf}
-		 * @return resume file base on type
-		 */
-    app.get('/resumes/:id', function (req, res) {
-        resumeController.getResume(req, res);
-    });
+        /**
+         * update a resume
+         * @param  id of resume
+         * @param  body data
+         * @return status code
+         */
+        app.post('/resumes/edit/:id', function (req, res) {
+          resumeController.postEditResume(req, res);
+        });
 
-    app.get('/resumes/:id/preview', function(req, res) {
-        resumeController.getPreview(req, res);
-    }); 
+        /**
+         * edit a single row value in resume
+         * @param  table : name of table contain resume's data
+         * @param  id: row id to update
+         * @param  field: column to update
+         * @param  value: new value
+         * @return status code
+         */
+        app.post('/resumes/edit-field', checkLogin, function (req, res) {
+          resumeController.postEditFieldResume(req,res);
+        });
 
-    /**
-     * change template for a resume
-     * @param  iRd resume Id
-     * @param  tId template Id
-     * @return status code
-     */
-    app.get('/resumes/:rId/templates/:tId', function (req, res) {
-      resumeController.updateTemplate(req, res);
-    });
+        app.get('/resumes/privacy/:id', function (req, res) {
+           resumeController.getPrivacyResume(req, res); 
+        });
+        /**
+         * @param  id of resume
+         * @param  req.type {html|pdf}
+         * @return resume file base on type
+         */
+        app.get('/resumes/:id', checkLogin, function (req, res) {
+            resumeController.getResume(req, res);
+        });
 
-		app.get('/createresume', function(req,res){
-			resumeController.createResume(req,res);
-		});
+        /**
+         * delete a resume
+         * @param  id of resume
+         * @return status code
+         */
+        app.delete('/resumes/:id', checkLogin, function (req, res) {
+          resumeController.deleteResume(req, res);
+        })
 	}
 };
