@@ -92,9 +92,15 @@ function resumeController() {
         //handle education items
         req.body.education.forEach(function(item){
             if (item.hasOwnProperty('id')) {
-                updateItem(item, 'education');
+                if (chekcObject(item)) {
+                    updateItem(item, 'education');                    
+                } else {
+                    deleteItem(item, 'education');
+                }
             } else {
-                insertItem(item, 'education');
+                if (checkObject(item)) {
+                    insertItem(item, 'education');                    
+                }
             }
         })
     };    
@@ -106,8 +112,12 @@ function resumeController() {
     function updateItem(item, table) {               
         var id = item.id;
         delete item.id;
-        connection.pool.query('UPDATE ' + table + '  SET ?? WHERE id = ?', [item, id]);
+        connection.pool.query('UPDATE ' + table + ' SET ?? WHERE id = ?', [item, id]);
     };
+
+    function deleteItem(item, table) {
+        connection.pool.query('DELETE ' + table + ' WHERE id = ', item.id);
+    }
 
     function checkObject(obj){        
         for(var key in obj){            

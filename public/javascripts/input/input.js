@@ -87,33 +87,6 @@ $(function () {
         });
         return false;
     });
-<<<<<<< HEAD
-    var rowCount = $('#tblSkills >tbody >tr').length;
-    $('#btnAddSkill').click(function () {
-        var hiddenField = '';
-        var tdHtml = '<tr><td>' + txtSkillName.val() + '</td>';
-        tdHtml += '<td><ul id="lprogress' + rowCount + '" class="nav skill-lprogress"><li id="lball0' + rowCount + '"><div id="llayer0" class="ball"></div><div id="llayer12" class="pulse"></div></li><li id="lball1' + rowCount + '"><div id="layer1" class="ball"></div><div id="layer7" class="pulse"></div></li><li id="lball2' + rowCount + '"><div id="layer2" class="ball"></div><div id="llayer8" class="pulse"></div></li><li id="lball3' + rowCount + '"><div id="layer3" class="ball"></div><div id="layer9" class="pulse"></div></li><li id="lball4' + rowCount + '"><div id="layer4" class="ball"></div><div id="layer10" class="pulse"></div></li><li id="lball5' + rowCount + '"><div id="layer5" class="ball"></div><div id="llayer11" class="pulse"></div></li></ul>' + lblLevel.text() + '</td>';
-        tdHtml += '<td>' + experience.val() + '</td>';
-        tdHtml += '<td>' + lastYearUsed.val() + '</td>';
-        tdHtml += '<td><button type="button" id="btnEditSkill-' + rowCount + '">Edit</button><button type="button" id="btnDeleteSkill-' + rowCount + '">Delete</button>';
-        tblSkills.append(tdHtml);
-        $('#lprogress' + rowCount + ' li').removeClass('running').queue(function (next) {
-            for (var i = 0; i <= level; i++) {
-                $('#lball' + i + rowCount).addClass('running');
-            }
-            next();
-        });
-        $('#progress li').removeClass('running').queue();
-        $('#ball0').addClass('running');
-        hiddenField += '<input type="hidden" id="skillName-' + rowCount + '" name="skill[' + rowCount + '][name]" value="' + txtSkillName.val() + '">';
-        hiddenField += '<input type="hidden" id="skillExpertise-' + rowCount + '" name="skill[' + rowCount + '][expertise]" value="' + lblLevel.text() + '">';
-        hiddenField += '<input type="hidden" id="skillExperience-' + rowCount + '" name="skill[' + rowCount + '][experience]" value="' + experience.val() + '">';
-        hiddenField += '<input type="hidden" id="skillLastUsed-' + rowCount + '" name="skill[' + rowCount + '][lastUsed]" value="' + lastYearUsed.val() + '">';
-
-        $('#field-skill').append(hiddenField);
-=======
-
-
 
     var rowCount = $('#tblSkills >tbody >tr').length;
     $('#btnAddSkill').click(function () {
@@ -160,7 +133,7 @@ $(function () {
             $('#progress li').removeClass('running').queue();
             $('#ball0').addClass('running');
         }
->>>>>>> 620f04ec60d80cc6ba3e565e8ccea6a16fbacf1f
+
         experience.val("0 month");
         lastYearUsed.val("2016");
         txtSkillName.val('');
