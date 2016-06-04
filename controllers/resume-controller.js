@@ -13,13 +13,22 @@ var skillModel         = require('../models/skill');
 
 function resumeController() {
     this.getEditResume  = function(req, res) {
-        getResumeDataById(req.params.id, function(resume) {
-            res.render('', resume);
+        var userId = req.user.id;
+        var resId = req.params.id;
+        connection.pool.query('SELECT EXISTS(SELECT 1 FROM resume WHERE id = ? AND userId = ?)', [resid, userId], function(rows){            
+            console.log(rows);
+            // if (rows) {
+            //     getResumeDataById(req.params.id, function(resume) {
+            //             res.render('', resume);
+            //         });    
+            // } else {
+            //     res.redirect('/');
+            // }            
         });
     }
 
     this.createResume = function(req, res) {
-      res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
+        res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
     }
 
     this.insertResume = function(req, res) {        
