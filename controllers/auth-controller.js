@@ -90,18 +90,35 @@ function authController() {
         var isError = true;
         var index = 0;
         var message = '';
+        var sqlState = '';
     
         connection.pool.query("CALL SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")",function(err, rows){
-            // console.log("SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")");
             if (err){
-                // console.log(err);
+                console.log(err);
                 message = err.message;
                 index = message.indexOf(':');
                 message = message.substring(index + 1);
+                sqlState = err.sqlState;
             } else {
                 message = 'Your account has been activated. Please enjoy!!';
                 isError = false;
             }
+
+            var compare = sqlState.localeCompare('46000');
+            console.log("==================" + compare);
+
+            if(compare == 0){
+                var msg = message.split(':');
+                
+                 // send email for reset password
+                var emailInfo = new EmailInfo(msg[1], msg[2], msg[0]);
+                var email = new Email(emailInfo);
+                email.sendEmailResetPassword();
+
+                // 
+                message = 'Expired link to active your account!!\n. Your new activate link has been sent to your email address. Please check again!!';
+            }
+
     
             if (isError) {
                 req.flash('homeMessage', message);
@@ -159,7 +176,7 @@ function authController() {
     
     // GET: /reset
     this.getResetComplete = function(req, res){
-       var guid = req.query.guid;
+        var guid = req.query.guid;
         var ttl = activeUserSettings['ttl'];
         var isError = true;
         var index = 0;
@@ -198,7 +215,7 @@ function authController() {
                 email.sendEmailResetPassword();
 
                 // 
-                message = 'Expired link to reset your password!!\n. Your new activate link has been sent to your email address. Please check again!!';
+                message = 'Expired link to reset your password!!\n. Your new reset link has been sent to your email address. Please check again!!';
             }
 
             req.flash('homeMessage', message);

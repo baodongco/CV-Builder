@@ -105,35 +105,50 @@ BEGIN
 	
 	DECLARE created_time TIMESTAMP;
 
-	DECLARE created_time_milis BIGINT;
-	DECLARE now_time_milis BIGINT;
-	DECLARE ttl_milis BIGINT;
-	DECLARE distance_time_milis BIGINT;
+  DECLARE created_time_milis BIGINT;
+  DECLARE now_time_milis BIGINT;
+  DECLARE ttl_milis BIGINT;
+  DECLARE distance_time_milis BIGINT;
 
-	SET ttl_milis = ttl * 60;
-	SELECT unix_timestamp(now()) INTO now_time_milis;
+  DECLARE now_time TIMESTAMP;
 
-	SELECT codeStartDate INTO created_time FROM `user` WHERE activationCode = activation_code;
-	SELECT unix_timestamp(created_time) INTO created_time_milis;
+  DECLARE message VARCHAR(500);
+  DECLARE uuid VARCHAR(50);
 
-	SET distance_time_milis = now_time_milis - created_time_milis;
+  DECLARE usr VARCHAR(50);
+  DECLARE mail VARCHAR(50);
 
-	IF (created_time IS NULL) THEN
-		
-			SIGNAL SQLSTATE '45000'
-			SET MESSAGE_TEXT = 'The link is no longer valid!!';
+  SET ttl_milis = ttl * 60;
+  SELECT unix_timestamp(now()) INTO now_time_milis;
+  SELECT NOW() INTO now_time;
 
-	ELSEIF (distance_time_milis > ttl_milis) THEN
+  SELECT codeStartDate INTO created_time FROM `user` WHERE activationCode = activation_code;
+  SELECT unix_timestamp(created_time) INTO created_time_milis;
 
-			SIGNAL SQLSTATE '46000'
-			SET MESSAGE_TEXT = 'Expired link to activate your account!!';
+  SET distance_time_milis = now_time_milis - created_time_milis;
 
-	ELSE
-		
-			UPDATE `user` SET activationCode = NULL
-			WHERE activationCode = activation_code;
-	
-	END IF;
+  IF (created_time IS NULL) THEN
+    
+      SIGNAL SQLSTATE '45000'
+      SET MESSAGE_TEXT = 'The link is no longer valid!!';
+
+  ELSEIF (distance_time_milis > ttl_milis) THEN
+      
+      SELECT UUID() INTO uuid;
+      UPDATE `user` SET activationCode = uuid, codeStartDate = now_time WHERE activationCode = activation_code;
+      SELECT username, email INTO usr, mail FROM `user` WHERE activationCode = uuid;
+      
+      SELECT CONCAT(uuid, ":", usr, ":", mail) INTO message;
+
+      SIGNAL SQLSTATE '46000'
+      SET MESSAGE_TEXT = message;
+
+  ELSE
+    
+      UPDATE `user` SET activationCode = NULL
+      WHERE activationCode = activation_code;
+  
+  END IF;
 
 
 END; $$
@@ -227,8 +242,7 @@ BEGIN
       
       SELECT UUID() INTO uuid;
       UPDATE `user` SET resetPassCode = uuid, codeStartDate = now_time WHERE resetPassCode = guid;
-      SELECT username INTO usr FROM `user` WHERE resetPassCode = uuid;  
-      SELECT email INTO mail FROM `user` WHERE resetPassCode = uuid;
+      SELECT username, email INTO usr, mail FROM `user` WHERE resetPassCode = uuid;
 
       SELECT CONCAT(uuid ,':',usr, ':',mail) INTO message;
 
