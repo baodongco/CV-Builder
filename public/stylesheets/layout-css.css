@@ -3,8 +3,10 @@ body {
     font-size: 14px;
     line-height: 1.428571429;
     color: #333;
-    background-color: #fff;
+    background-color: #f9f9f9;
+    /*background-image: url("./background.png");*/
 }
+
 .navbar{
     background-color:black;
     border-radius: 0;
@@ -161,8 +163,8 @@ img.hover:hover {
 #sub-layout2{
     background-color:silver;
 }
-footer {
-    background: #414B5B;
+#footer {
+    background: #1d92af;
     padding-top: 47px;
     padding-bottom: 35px;
     -webkit-font-smoothing: antialiased;
@@ -181,8 +183,8 @@ footer .menu ul li{
 footer .menu ul{
     list-style-type:none;
 }
-footer .menu ul li a {
-    color: #ccc;
+#footer .menu ul li a {
+    color: #fff;
     padding: 15px 10px;
     font-weight: 500;
     -webkit-transition: color 0.2s linear;
@@ -194,8 +196,8 @@ footer .menu ul li a {
 footer .footer-border {
     border-color: #576375;
 }
-footer .copyright {
-    color: #B5C5CF;
+#footer .copyright {
+    color: #eee;
     font-size: 14px;
     font-weight: 500;
     margin-top: 10px;

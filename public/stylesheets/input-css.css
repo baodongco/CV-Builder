@@ -1,5 +1,4 @@
 
-
 ul.skill-progress {
     list-style-type: none;
     margin:0 auto;
@@ -127,20 +126,22 @@ ul.skill-progress li:first-child { margin-left:0;}
 .nav-tabs li a {
     margin-right: 0;
     border: 2px;
-    background-color: #1abc9c;
+    background-color: #2bb9dd;
 }
 
 .nav-tabs li a:hover {
-    background-color: #1abc9c; }
+    background-color: #1d92af; }
 .nav-tabs .glyphicon {
-    color: #fff; }
+    color: #fff; 
+    font-size: 17px;
+}
 .nav-tabs .active .glyphicon {
     color: #fff; }
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
     border: 2px; 
-    background-color: #12876f;
+    background-color: #1d92af;
 }
 .tab-content {
      }
@@ -220,14 +221,14 @@ ul.skill-progress li:first-child { margin-left:0;}
     height:35px;
 }
 .form-style-5 .number {
-    background: #1abc9c;
+    background: #2bb9dd;
     color: #fff;
     height: 30px;
     width: 30px;
     display: inline-block;
-    font-size: 0.8em;
+    font-size: 1em;
     margin-right: 4px;    
-    line-height: 30px;
+    line-height: 29px;
     text-align: center;
     text-shadow: 0 1px 0 rgba(255,255,255,0.2);
     border-radius: 15px 15px 15px 0px;

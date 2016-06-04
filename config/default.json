@@ -14,14 +14,14 @@
 {
   "cv-builder": {
     "deploy":{
-      "port" : 80
+      "port" : 3000
     },
     "db": {
       "connectionPool": 10,
       "host": "localhost",
       "dbName": "CVBuilder",
       "user": "root",
-      "pass": "root"
+      "pass": "3120"
     },
     "email": {
       "from": "no-reply@admin.com",
