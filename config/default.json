@@ -14,7 +14,7 @@
 {
   "cv-builder": {
     "deploy":{
-      "port" : 80
+      "port" : 3000
     },
     "db": {
       "connectionPool": 10,
