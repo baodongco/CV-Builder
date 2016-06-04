@@ -284,7 +284,7 @@ function resumeController() {
                     throw err;
                     res.status(401).send('Unauthorized');
                 } else {
-                    if (row[0].id) {
+                    if (row[0] && row[0].id) {
                         connection.pool.query("CALL udsp_deleteResume(?)", req.params.id ,function (err, result) {
                             if (err) {
                                 throw err;
@@ -381,7 +381,7 @@ function resumeController() {
                 for (var i = 0; i < rows[3].length; i++) {
                     expertiences[i] = new experienceModel(rows[3][i]);
                 }
-                resume.expertiences = expertiences;
+                resume.experiences = expertiences;
 
                 // projects
                 var projects = [];

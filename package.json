@@ -19,6 +19,7 @@
     "express-logger": "0.0.3",
     "express-mailer": "^0.3.0",
     "express-session": "^1.13.0",
+    "font-awesome": "^4.6.3",
     "fs": "0.0.2",
     "guid": "0.0.12",
     "gulp": "^3.9.1",
