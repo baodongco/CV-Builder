@@ -13,6 +13,9 @@
 
 {
   "cv-builder": {
+    "deploy":{
+      "port" : 80
+    },
     "db": {
       "connectionPool": 10,
       "host": "localhost",
