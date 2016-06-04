@@ -16,7 +16,6 @@ var home = require('./routes/home');
 var auth = require('./routes/auth');
 var admin = require('./routes/admin');
 var resume = require('./routes/resume');
-var preview = require('./routes/preview');
 var connection = require('./DAL/connection');
 var iocRegister = require('./DAL/ioc-register');
 
