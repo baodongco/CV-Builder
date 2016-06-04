@@ -1,4 +1,5 @@
 function projectModel(project) {
+	this.id=project.id,
 	this.resId = project.resId,
 	this.title = project.title,
 	this.url = project.url,

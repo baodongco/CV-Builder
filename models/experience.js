@@ -1,4 +1,5 @@
 function experienceModel(experience) {
+	this.id=experience.id,
 	this.resId = experience.resId;
 	this.company = experience.company;
 	this.designation = experience.designation;

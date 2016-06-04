@@ -1,4 +1,5 @@
 function skillModel(skill) {
+	this.id=skill.id,
 	this.resId = skill.resId,
 	this.name = skill.name,
 	this.expertise = skill.expertise,

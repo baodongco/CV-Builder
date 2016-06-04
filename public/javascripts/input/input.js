@@ -192,7 +192,7 @@ $(function () {
     });
     //End JS skill
 
-    $("#experienceFromDate").datepicker({
+    $("#experienceFromDate-0").datepicker({
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
@@ -207,13 +207,13 @@ $(function () {
 
         onSelect: function (selected) {
 
-            $("#experienceToDate").datepicker("option", "minDate", selected);
+            $("#experienceToDate-0").datepicker("option", "minDate", selected);
 
         }
 
     });
 
-    $("#experienceToDate").datepicker({
+    $("#experienceToDate-0").datepicker({
 
         changeMonth: true,
         changeYear: true,
@@ -228,13 +228,13 @@ $(function () {
         },
         onSelect: function (selected) {
 
-            $("#experienceFromDate").datepicker("option", "maxDate", selected);
+            $("#experienceFromDate-0").datepicker("option", "maxDate", selected);
 
         }
 
     });
 
-    $("#educationFromDate, #educationToDate").datepicker({
+    $("#educationFromDate-0, #educationToDate-0").datepicker({
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
@@ -253,8 +253,8 @@ $(function () {
                 $(this).datepicker('option', 'defaultDate', new Date(year, month, 1));
                 $(this).datepicker('setDate', new Date(year, month, 1));
             }
-            var other = this.id == "educationFromDate" ? "#educationToDate" : "#educationFromDate";
-            var option = this.id == "educationFromDate" ? "maxDate" : "minDate";
+            var other = this.id == "educationFromDate-0" ? "#educationToDate-0" : "#educationFromDate-0";
+            var option = this.id == "educationFromDate-0" ? "maxDate" : "minDate";
             if ((selectedDate = $(other).val()).length > 0) {
                 year = selectedDate.substring(selectedDate.length - 4, selectedDate.length);
                 month = jQuery.inArray(selectedDate.substring(0, selectedDate.length - 5), $(this).datepicker('option', 'monthNames'));
@@ -262,7 +262,7 @@ $(function () {
             }
         },
     });
-    $("#projectFromDate, #projectToDate").datepicker({
+    $("#projectFromDate-0, #projectToDate-0").datepicker({
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,
@@ -278,15 +278,21 @@ $(function () {
     });
 
     CKEDITOR.replaceAll();
-    CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '180') });
+    CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '220') });
 
 
     //Clone experience
-    var cloneIndexExp = $("#field-experience").length;
+    var cloneIndexExp = $('#experienceLength').val();
+    if(isNaN(cloneIndexExp)||cloneIndexExp==-1){
+        cloneIndexExp=1;
+    }
+    else
+        cloneIndexExp++;
+        
     function cloneExp() {
-        $("#field-experience").clone()
+        $("#field-experience-0").clone()
             .insertBefore("#groupBtnExperience")
-            .attr("id", "field-experience" + cloneIndexExp)
+            .attr("id", "field-experience-" + cloneIndexExp)
             .addClass("clonedExpInput")
             .find("*")
             .val("")
@@ -295,27 +301,23 @@ $(function () {
                 var name = this.name || "";
                 if (id.startsWith('experienceCompany')) {
                     this.name = 'experience[' + cloneIndexExp + '][company]';
-                    this.id = id + '-' + cloneIndexExp;
+                    this.id = id.slice(0,-1) + cloneIndexExp;
                 }
                 if (id.startsWith('experienceDesignation')) {
                     this.name = 'experience[' + cloneIndexExp + '][designation]';
-                    this.id = id + '-' + cloneIndexExp;
-                }
-                if (id.startsWith('dateEdu')) {
-                    this.id = id + '-' + cloneIndexExp;
-                    this.name = name + '-' + cloneIndexExp;
+                    this.id = id.slice(0,-1) + cloneIndexExp;
                 }
                 if (id.startsWith('experienceTo') || id.startsWith('experienceFr')) {
-                    this.id = id + '-' + cloneIndexExp;
+                    this.id = id.slice(0,-1) + cloneIndexExp;
                     this.name = [name.slice(0, 11), cloneIndexExp, name.slice(12)].join('');;
                 }
                 if (id.startsWith('detailsEx'))
-                    this.id = id + '-' + cloneIndexExp;
+                    this.id = id.slice(0,-1) + cloneIndexExp;
             })
             .on('click', 'btnAddMoreExperience', cloneExp)
             .on('click', 'button.remove', removeExp);
 
-        $("#field-experience" + cloneIndexExp).find("*").each(function () {
+        $("#field-experience-" + cloneIndexExp).find("*").each(function () {
             var id = this.id || '';
             var name = this.name || '';
             $(this).remove('legend');
@@ -323,10 +325,11 @@ $(function () {
 
             if (id.startsWith('detailsExperience')) {
                 name = 'experience[' + cloneIndexExp + '][detail]';
-                $('#detailsExperience-' + cloneIndexExp).empty();
-                $('#detailsExperience-' + cloneIndexExp).append('<textarea class="editor" name="' + name + '" id="' + id + '" placeholder="Add a few details about this educational qualification..."></textarea>');
+                id='experienceDetail-'+cloneIndexExp;
+                $(this).empty();
+                $(this).append('<textarea class="editor" name="' + name + '" id="' + id + '" placeholder="Add a few details about this educational qualification..."></textarea>');
                 CKEDITOR.replace(name);
-                CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '180') });
+                CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '220') });
             }
             $("#experienceFromDate-" + cloneIndexExp + ", #experienceToDate-" + cloneIndexExp).datepicker({
                 changeMonth: true,
@@ -375,11 +378,16 @@ $(function () {
     //End clone experience
 
     //Clone Project
-    var cloneIndexPro = $("#field-project").length;
+    var cloneIndexPro = $("#projectLength").val();
+    if(isNaN(cloneIndexPro)||cloneIndexPro==-1){
+        cloneIndexPro=1;
+    }
+    else
+        cloneIndexPro+=1;
     function clonePro() {
-        $("#field-project").clone()
+        $("#field-project-0").clone()
             .insertBefore("#groupBtnProject")
-            .attr("id", "field-project" + cloneIndexPro)
+            .attr("id", "field-project-" + cloneIndexPro)
             .addClass("clonedProInput")
             .find("*")
             .val("")
@@ -393,15 +401,15 @@ $(function () {
                     this.name = 'project[' + cloneIndexPro + '][url]';
                 }
                 if (id.startsWith('projectTo') || id.startsWith('projectFr')) {
-                    this.id = id + '-' + cloneIndexPro;
+                    this.id = id.slice(0,-1)  + cloneIndexPro;
                     this.name = [name.slice(0, 8), cloneIndexPro, name.slice(9)].join('');
                 }
                 if (id.startsWith('detailsProject'))
-                    this.id = id + '-' + cloneIndexPro;
+                    this.id = id.slice(0,-1)  + cloneIndexPro;
             })
             .on('click', 'btnAddMoreProject', clonePro)
             .on('click', 'button.remove', removePro);
-        $("#field-project" + cloneIndexPro).find("*").each(function () {
+        $("#field-project-" + cloneIndexPro).find("*").each(function () {
             var id = this.id || '';
             var name = this.name || '';
             $('#' + id).removeClass('hasDatepicker');
@@ -411,7 +419,7 @@ $(function () {
                 $('#detailsProject-' + cloneIndexPro).empty();
                 $('#detailsProject-' + cloneIndexPro).append('<textarea class="editor" name="' + name + '" id="' + id + '"></textarea>');
                 CKEDITOR.replace(name);
-                CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '180') });
+                CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '220') });
             }
             $("#projectFromDate-" + cloneIndexPro + ", #projectToDate-" + cloneIndexPro).datepicker({
                 changeMonth: true,
@@ -446,7 +454,7 @@ $(function () {
         $('#projectToDate-' + cloneIndexPro).val('');
         cloneIndexPro++;
     }
-    $('#field-project').remove('legend');
+    $('#field-project-'+cloneIndexPro).remove('legend');
     function removePro() {
         $(this).parents(".clonedProInput").remove();
     }
@@ -456,11 +464,16 @@ $(function () {
     //End clone project
 
     //Clone certification
-    var cloneIndexCert = $("#field-certification").length;
+    var cloneIndexCert = $("#certificationLength").val();
+    if(isNaN(cloneIndexCert)||cloneIndexCert==-1){
+        cloneIndexCert=1;
+    }
+    else
+        cloneIndexCert+=1;
     function cloneCert() {
-        $("#field-certification").clone()
+        $("#field-certification-0").clone()
             .insertBefore("#groupBtnCertification")
-            .attr("id", "field-certification" + cloneIndexCert)
+            .attr("id", "field-certification-" + cloneIndexCert)
             .addClass("clonedCertInput")
             .find("*")
             .val("")
@@ -469,23 +482,23 @@ $(function () {
                 var name = this.name || "";
                 if (id.startsWith('certificationTitle')) {
                     this.name = 'certification[' + cloneIndexCert + '][title]';
-                    this.id = id + '-' + cloneIndexCert;
+                    this.id = id.slice(0,-1) + cloneIndexCert;
                 }
                 if (id.startsWith('certificationAuthority')) {
                     this.name = 'certification[' + cloneIndexCert + '][authority]';
-                    this.id = id + '-' + cloneIndexCert;
+                    this.id = id.slice(0,-1) + cloneIndexCert;
                 }
                 if (id.startsWith('certificationDate')) {
-                    this.id = id + '-' + cloneIndexCert;
+                    this.id = id.slice(0,-1) + cloneIndexCert;
                     this.name = 'certification[' + cloneIndexCert + '][date]';
                 }
                 if (id.startsWith('detailsCertification'))
-                    this.id = id + '-' + cloneIndexCert;
+                    this.id = id.slice(0,-1) + cloneIndexCert;
             })
             .on('click', 'btnAddMoreCetification', cloneCert)
             .on('click', 'button.remove', removeCert);
 
-        $("#field-certification" + cloneIndexCert).find("*").each(function () {
+        $("#field-certification-" + cloneIndexCert).find("*").each(function () {
             var id = this.id || '';
             var name = this.name || '';
             $(this).remove('legend');
@@ -496,7 +509,7 @@ $(function () {
                 $('#detailsCertification-' + cloneIndexCert).empty();
                 $('#detailsCertification-' + cloneIndexCert).append('<textarea class="editor" name="' + name + '" id="' + id + '" placeholder="Add a few details about this educational qualification..."></textarea>');
                 CKEDITOR.replace(name);
-                CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '180') });
+                CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '220') });
             }
             $("#certificationDate-" + cloneIndexCert).datepicker({
                 changeMonth: true,
@@ -512,8 +525,6 @@ $(function () {
                 },
             });
         });
-
-        $('#certificationDate-' + cloneIndexCert).val('');
         cloneIndexCert++;
 
 
@@ -529,11 +540,16 @@ $(function () {
     //End clone experience
 
     //clone Education
-    var cloneIndexEdu = $("#field-education").length;
+    var cloneIndexEdu = $("#educationLength").val();
+    if(isNaN(cloneIndexEdu)||cloneIndexEdu==-1){
+        cloneIndexEdu=1;
+    }
+    else
+        cloneIndexEdu++;
     function cloneEdu() {
-        $("#field-education").clone()
+        $("#field-education-0").clone()
             .insertBefore("#groupBtnEducation")
-            .attr("id", "field-education" + cloneIndexEdu)
+            .attr("id", "field-education-" + cloneIndexEdu)
             .addClass("clonedEduInput")
             .find("*")
             .val("")
@@ -542,27 +558,23 @@ $(function () {
                 var name = this.name || "";
                 if (id.startsWith('txtEduInstitute')) {
                     this.name = 'education[' + cloneIndexEdu + '][institute]';
-                    this.id = id + '-' + cloneIndexEdu;
+                    this.id = id.slice(0,-1) + cloneIndexEdu;
                 }
                 if (id.startsWith('txtEduDegree')) {
                     this.name = 'education[' + cloneIndexEdu + '][degree]';
-                    this.id = id + '-' + cloneIndexEdu;
-                }
-                if (id.startsWith('dateEdu')) {
-                    this.id = id + '-' + cloneIndexEdu;
-                    this.name = name + '-' + cloneIndexEdu;
+                    this.id = id.slice(0,-1) + cloneIndexEdu;
                 }
                 if (id.startsWith('educationTo') || id.startsWith('educationFr')) {
-                    this.id = id + '-' + cloneIndexEdu;
+                    this.id = id.slice(0,-1) + cloneIndexEdu;
                     this.name = [name.slice(0, 10), cloneIndexEdu, name.slice(11)].join('');;
                 }
                 if (id.startsWith('detailsE'))
-                    this.id = id + '-' + cloneIndexEdu;
+                    this.id = id.slice(0,-1) + cloneIndexEdu;
             })
             .on('click', 'btnAddMoreEducation', cloneEdu)
             .on('click', 'button.remove', removeEdu);
-        $("#field-education" + cloneIndexEdu).append('<hr>');
-        $("#field-education" + cloneIndexEdu).find("*").each(function () {
+        $("#field-education-" + cloneIndexEdu).append('<hr>');
+        $("#field-education-" + cloneIndexEdu).find("*").each(function () {
             var id = this.id || '';
             var name = this.name || '';
             $(this).remove('legend');
@@ -573,7 +585,7 @@ $(function () {
                 $('#detailsEducation-' + cloneIndexEdu).empty();
                 $('#detailsEducation-' + cloneIndexEdu).append('<textarea class="editor" name="' + name + '" id="' + id + '" placeholder="Add a few details about this educational qualification..."></textarea>');
                 CKEDITOR.replace(name);
-                CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '180') });
+                CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '220') });
             }
             $("#educationFromDate-" + cloneIndexEdu + ", #educationToDate-" + cloneIndexEdu).datepicker({
                 changeMonth: true,
@@ -604,9 +616,6 @@ $(function () {
                 },
             });
         });
-
-        $('#educationFromDate-' + cloneIndexEdu).val('');
-        $('#educationToDate-' + cloneIndexEdu).val('');
         cloneIndexEdu++;
 
 
@@ -619,7 +628,7 @@ $(function () {
     $("button.remove").on("click", removeEdu);
     //End clone Education
 
-    $("#certificationDate").datepicker({
+    $("#certificationDate-0").datepicker({
         changeMonth: true,
         changeYear: true,
         showButtonPanel: true,

@@ -15,7 +15,7 @@ function resumeController() {
     this.getEditResume = function (req, res) {
         getResumeDataById(req.params.id, function (resume) {
             console.log(resume);
-            res.render('input/input1', { title: "Edit", req: req, resume: resume, message: req.flash('Input1') });
+            res.render('input/edit', { title: "Edit", req: req, resume: resume, message: req.flash('Input1') });
         });
     };
 
