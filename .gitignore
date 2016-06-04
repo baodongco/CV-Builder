@@ -4,3 +4,4 @@ logfile.txt
 jsconfig.json
 logs/debug.log
 logs/server-log.log
+node_modules/
