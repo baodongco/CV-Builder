@@ -9,7 +9,7 @@ module.exports = {
         });    
         
         app.get('/admin/user/disable/:id', function (req, res) {
-            adminController.disableUser(req, res); 
+            adminController.disableUser(req, res);
         });
 
         app.get('/admin/user/enable/:id', function (req, res) {

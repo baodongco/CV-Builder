@@ -10,7 +10,7 @@ CREATE TABLE user (
   role varchar(10) DEFAULT 'user',
   activationCode varchar(50),
   resetPassCode varchar(50),
-  codeStartDate TIMESTAMP,
+  codeStartDate TIMESTAMP NOT NULL DEFAULT NOW(),
   isDisabled tinyint(1) DEFAULT 0
 );
 
@@ -105,35 +105,50 @@ BEGIN
 	
 	DECLARE created_time TIMESTAMP;
 
-	DECLARE created_time_milis BIGINT;
-	DECLARE now_time_milis BIGINT;
-	DECLARE ttl_milis BIGINT;
-	DECLARE distance_time_milis BIGINT;
+  DECLARE created_time_milis BIGINT;
+  DECLARE now_time_milis BIGINT;
+  DECLARE ttl_milis BIGINT;
+  DECLARE distance_time_milis BIGINT;
 
-	SET ttl_milis = ttl * 60;
-	SELECT unix_timestamp(now()) INTO now_time_milis;
+  DECLARE now_time TIMESTAMP;
 
-	SELECT codeStartDate INTO created_time FROM `user` WHERE activationCode = activation_code;
-	SELECT unix_timestamp(created_time) INTO created_time_milis;
+  DECLARE message VARCHAR(500);
+  DECLARE uuid VARCHAR(50);
 
-	SET distance_time_milis = now_time_milis - created_time_milis;
+  DECLARE usr VARCHAR(50);
+  DECLARE mail VARCHAR(50);
 
-	IF (created_time IS NULL) THEN
-		
-			SIGNAL SQLSTATE '45000'
-			SET MESSAGE_TEXT = 'Already activated!!';
+  SET ttl_milis = ttl * 60;
+  SELECT unix_timestamp(now()) INTO now_time_milis;
+  SELECT NOW() INTO now_time;
 
-	ELSEIF (distance_time_milis > ttl_milis) THEN
+  SELECT codeStartDate INTO created_time FROM `user` WHERE activationCode = activation_code;
+  SELECT unix_timestamp(created_time) INTO created_time_milis;
 
-			SIGNAL SQLSTATE '46000'
-			SET MESSAGE_TEXT = 'Expired link to activate your account!!';
+  SET distance_time_milis = now_time_milis - created_time_milis;
 
-	ELSE
-		
-			UPDATE `user` SET activationCode = NULL
-			WHERE activationCode = activation_code;
-	
-	END IF;
+  IF (created_time IS NULL) THEN
+    
+      SIGNAL SQLSTATE '45000'
+      SET MESSAGE_TEXT = 'The link is no longer valid!!';
+
+  ELSEIF (distance_time_milis > ttl_milis) THEN
+      
+      SELECT UUID() INTO uuid;
+      UPDATE `user` SET activationCode = uuid, codeStartDate = now_time WHERE activationCode = activation_code;
+      SELECT username, email INTO usr, mail FROM `user` WHERE activationCode = uuid;
+      
+      SELECT CONCAT(uuid, ":", usr, ":", mail) INTO message;
+
+      SIGNAL SQLSTATE '46000'
+      SET MESSAGE_TEXT = message;
+
+  ELSE
+    
+      UPDATE `user` SET activationCode = NULL
+      WHERE activationCode = activation_code;
+  
+  END IF;
 
 
 END; $$
@@ -188,8 +203,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE SP_RESET_PASSWORD_COMPLETE(IN guid VARCHAR(50), IN ttl INT)
 BEGIN
-
-  
+   
   DECLARE created_time TIMESTAMP;
 
   DECLARE created_time_milis BIGINT;
@@ -199,7 +213,17 @@ BEGIN
 
   DECLARE status_code INT;
 
+  DECLARE uuid VARCHAR(50);
+
+  DECLARE message varchar(500);
+  DECLARE usr VARCHAR(50);
+  DECLARE mail VARCHAR(50);
+
+  DECLARE now_time TIMESTAMP;
+
   SET status_code = 200;
+
+  SELECT NOW() INTO now_time;
 
   SET ttl_milis = ttl * 60;
   SELECT unix_timestamp(now()) INTO now_time_milis;
@@ -215,9 +239,15 @@ BEGIN
       SET MESSAGE_TEXT = 'The link is no longer valid !';
 
   ELSEIF (distance_time_milis > ttl_milis) THEN
+      
+      SELECT UUID() INTO uuid;
+      UPDATE `user` SET resetPassCode = uuid, codeStartDate = now_time WHERE resetPassCode = guid;
+      SELECT username, email INTO usr, mail FROM `user` WHERE resetPassCode = uuid;
+
+      SELECT CONCAT(uuid ,':',usr, ':',mail) INTO message;
 
       SIGNAL SQLSTATE '49000'
-      SET MESSAGE_TEXT = 'Expired link to reset your password!!';
+      SET MESSAGE_TEXT = message;
 
   ELSE
 
@@ -232,8 +262,9 @@ DELIMITER ;
 
 -- User defined store procedure getAllResumeData
 DELIMITER $$
-CREATE PROCEDURE udsp_getAllResumeData( IN _resId INT)
-BEGIN   
+CREATE PROCEDURE udsp_getAllResumeData(IN _resId INT)
+BEGIN
+   
   SELECT * FROM resume WHERE id = _resID;
 
   SELECT * FROM certification where resId = _resID;
@@ -245,17 +276,21 @@ BEGIN
   SELECT * FROM project WHERE resId = _resID;
   
   SELECT * FROM skill WHERE resId = _resID;
-END;
-$$ DELIMITER ;
+
+END; $$
+DELIMITER ;
+
 -- User define store procedure deleteResume
 DELIMITER $$
 CREATE PROCEDURE udsp_deleteResume(IN _resId INT)
 BEGIN
+   
   DELETE FROM skill WHERE resId = _resId;
   DELETE FROM education WHERE resId = _resId;
   DELETE FROM experience WHERE resId = _resId;
   DELETE FROM certification WHERE resId = _resId;
   DELETE FROM project WHERE resId = _resId;
   DELETE FROM resume WHERE id = _resId;
-END;
-$$ DELIMITER ;
+
+END; $$
+DELIMITER ;

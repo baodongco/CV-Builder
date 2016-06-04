@@ -88,8 +88,6 @@ $(function () {
         return false;
     });
 
-
-
     var rowCount = $('#tblSkills >tbody >tr').length;
     $('#btnAddSkill').click(function () {
         var check = $('#skillHiddenIndex').val();
@@ -135,6 +133,7 @@ $(function () {
             $('#progress li').removeClass('running').queue();
             $('#ball0').addClass('running');
         }
+
         experience.val("0 month");
         lastYearUsed.val("2016");
         txtSkillName.val('');
@@ -189,6 +188,7 @@ $(function () {
         });
         lastYearUsed.val($('#skillLastUsed-' + id).val());
         txtSkillName.focus();
+        rowCount++;
     });
     //End JS skill
 

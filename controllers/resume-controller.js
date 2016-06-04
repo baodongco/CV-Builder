@@ -1,8 +1,13 @@
 /*
 references: https://www.npmjs.com/package/html-pdf
 */
+<<<<<<< HEAD
 var connection = require('../connection');
 var sql = require('../services/resume-services');
+=======
+var connection    = require('../DAL/connection');
+var sql       = require('../services/resume-services');
+>>>>>>> 8143befe3557bcd6ad9001db3fe23b2e1e1e0911
 // import models
 var Resume = require('../models/resume');
 var certificationModel = require('../models/certification');
@@ -12,16 +17,37 @@ var projectModel = require('../models/project');
 var skillModel = require('../models/skill');
 
 function resumeController() {
+<<<<<<< HEAD
     this.getEditResume = function (req, res) {
         getResumeDataById(req.params.id, function (resume) {
             console.log(resume);
             res.render('input/edit', { title: "Edit", req: req, resume: resume, message: req.flash('Input1') });
+=======
+    this.getEditResume  = function(req, res) {
+        var userId = req.user.id;
+        var resId = req.params.id;
+        connection.pool.query('SELECT EXISTS(SELECT 1 FROM resume WHERE id = ? AND userId = ?)', [resid, userId], function(rows){            
+            console.log(rows);
+            // if (rows) {
+            //     getResumeDataById(req.params.id, function(resume) {
+            //             res.render('', resume);
+            //         });    
+            // } else {
+            //     res.redirect('/');
+            // }            
+>>>>>>> 8143befe3557bcd6ad9001db3fe23b2e1e1e0911
         });
     };
 
+<<<<<<< HEAD
     this.createResume = function (req, res) {
         res.render('input/input', { title: 'Input', req: req, message: req.flash('Input') });
     };
+=======
+    this.createResume = function(req, res) {
+        res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
+    }
+>>>>>>> 8143befe3557bcd6ad9001db3fe23b2e1e1e0911
 
     this.insertResume = function (req, res) {
         var resume = new Resume(req.body);
@@ -93,9 +119,15 @@ function resumeController() {
         //handle education items
         req.body.education.forEach(function (item) {
             if (item.hasOwnProperty('id')) {
-                updateItem(item, 'education');
+                if (chekcObject(item)) {
+                    updateItem(item, 'education');                    
+                } else {
+                    deleteItem(item, 'education');
+                }
             } else {
-                insertItem(item, 'education');
+                if (checkObject(item)) {
+                    insertItem(item, 'education');                    
+                }
             }
         })
     };
@@ -107,11 +139,20 @@ function resumeController() {
     function updateItem(item, table) {
         var id = item.id;
         delete item.id;
-        connection.pool.query('UPDATE ' + table + '  SET ?? WHERE id = ?', [item, id]);
+        connection.pool.query('UPDATE ' + table + ' SET ?? WHERE id = ?', [item, id]);
     };
 
+<<<<<<< HEAD
     function checkObject(obj) {
         for (var key in obj) {
+=======
+    function deleteItem(item, table) {
+        connection.pool.query('DELETE ' + table + ' WHERE id = ', item.id);
+    }
+
+    function checkObject(obj){        
+        for(var key in obj){            
+>>>>>>> 8143befe3557bcd6ad9001db3fe23b2e1e1e0911
             if (obj[key] == '') {
                 return false;
             }
@@ -177,18 +218,22 @@ function resumeController() {
                         throw err.stack;
                     } else {
                         console.log('res_rows', res_rows);
-                        if (!res_rows[0].id) {
+                        if (!res_rows.length || req.user.id != res_rows[0].userId) {
                             res.status(404).send('File not found');
+<<<<<<< HEAD
                         } else {
                             var can = false;
                             if (req.user && req.user.id == res_rows[0].userId) {
                                 can = true;
                             }
                             res.render('resume/preview', {
+=======
+                        } else if (req.user.id == res_rows[0].userId) {                           
+                            res.render('resume/preview',{ 
+>>>>>>> 8143befe3557bcd6ad9001db3fe23b2e1e1e0911
                                 title: 'View resume',
                                 resumeId: res_rows[0].id,
                                 templates: temp_rows,
-                                canEdit: can,
                                 req: req
                             });
                         }
@@ -200,10 +245,14 @@ function resumeController() {
     };
 
     /**
-     * @param  rId id of resume
-     * @param  tId id of template
-     * @return code {success| error}
+     * edit a single value in resume
+     * @param  table : name of table contain resume's data (RESPEC)
+     * @param  id: row id to update
+     * @param  field: column to update
+     * @param  value: new value
+     * @return status code
      */
+<<<<<<< HEAD
     this.updateTemplate = function (req, res) {
         if (req.params.rId && req.params.tId && req.user) {
             connection.pool.query("select id from resume where id = ? and userId = ? ",
@@ -224,23 +273,67 @@ function resumeController() {
                                     console.log('update', result);
                                     res.status(200).send("Item updated");
                                 }
+=======
+    this.postEditFieldResume = function (req, res) {
+        console.log(req.body);
+        var tables = ['resume', 'education', 'skill', 'project', 'experience', 'certification'];
+        if ( tables.indexOf(req.body.table) != -1 ) {
+            if (req.body.table == 'resume' || req.body.field == 'publicLink') {
+                var query = sql.checkResumeEditable;
+                var params = [req.body.id, req.user.id];  
+            } else {
+                var query = sql.checkResumeDataEditable;
+                var params = [req.body.table, req.body.id, req.user.id];
+            } 
+            connection.pool.query(query, params, function (err , row) { 
+                if (err) {
+                    res.status(400).send("You cannot edit resume");
+                    throw err;
+                } else if (row.length) {
+                    console.log('row', row);
+                    connection.pool.query("UPDATE ?? SET ?? = ? WHERE id = ?",
+                        [req.body.table, req.body.field, req.body.value, req.body.id],
+                        function (err, result) {
+                            if (err) {
+                                res.status(400).send("Item not updated");
+                                throw err;
+                            } else {
+                                console.log('update', result);
+                                res.status(200).send("Item updated");
+>>>>>>> 8143befe3557bcd6ad9001db3fe23b2e1e1e0911
                             }
-                        );
-                    }
-                });
+                        }
+                    );
+                }
+            });
         } else {
-            res.status(400).send("Please log in");
+            res.status(403).send("Bad request");
         }
     }
 
-    this.deleteResume = function (req, res) {
-        if (req.user) {
-            connection.pool.query("SELECT id FROM resume WHERE id = ? and userId = ?",
-                [req.params.id, req.user.id], function (err, row) {
-                    if (err) {
-                        throw err;
-                        res.status(401).send('Unauthorized');
+    /**
+     * set resume as public or private
+     * @param  id resume
+     * @param  status
+     * @return code and ?generated url
+     */
+    this.getPrivacyResume = function (req, res) {
+        console.log('here');
+        var Guid = require('guid');
+        // generate url /resumes/id/token if status=true
+        var publicLink = req.body.status? "/resumes/"+req.params.id+"/" + Guid.create() : null;
+
+        connection.pool.query("SELECT id, publicLink FROM resume WHERE id = ? and userId = ?",
+            [req.params.id, req.user.id], function (err, row) {
+                if (err) {
+                    throw err;
+                    res.status(401).send('Unauthorized');
+                } else if (row[0].id) {
+                    // if status = true but publiclink exists. refuse it
+                    if (row[0].publicLink && req.body.status) {
+                        res.status(403).send("Resume's already been public");
                     } else {
+<<<<<<< HEAD
                         if (row[0].id) {
                             connection.pool.query("CALL udsp_deleteResume(?)", req.params.id, function (err, result) {
                                 if (err) {
@@ -251,12 +344,46 @@ function resumeController() {
                                 }
                             });
                         }
+=======
+                        connection.pool.query(updatePublicLink, [publicLink, req.params.id], function (err, result) {
+                            if (err) {
+                                throw err;
+                                res.status(503).send('Unable to update resume');
+                            } else {
+                                res.status(200).send({publicLink: publicLink});
+                            }
+                        });
+>>>>>>> 8143befe3557bcd6ad9001db3fe23b2e1e1e0911
                     }
                 }
-            )
-        } else {
-            res.status(401).send('Unauthorized');
-        }
+            }
+        );
+    };
+
+    /**
+     * delete resume and related data
+     * @param  id resume
+     */
+    this.deleteResume = function (req, res) {
+        connection.pool.query("SELECT id FROM resume WHERE id = ? and userId = ?",
+            [req.params.id, req.user.id], function (err, row) {
+                if (err) {
+                    throw err;
+                    res.status(401).send('Unauthorized');
+                } else {
+                    if (row[0] && row[0].id) {
+                        connection.pool.query("CALL udsp_deleteResume(?)", req.params.id ,function (err, result) {
+                            if (err) {
+                                throw err;
+                                res.status(503).send('Unable to delete resume');
+                            } else {
+                                res.status(200).send('Resume deleted');
+                            }
+                        });
+                    }  
+                }
+            }
+        );
     }
 
     /*
@@ -336,12 +463,21 @@ function resumeController() {
                     }
                     resume.educations = educations;
 
+<<<<<<< HEAD
                     //expertiences
                     var expertiences = [];
                     for (var i = 0; i < rows[3].length; i++) {
                         expertiences[i] = new experienceModel(rows[3][i]);
                     }
                     resume.expertiences = expertiences;
+=======
+                //expertiences
+                var expertiences = [];
+                for (var i = 0; i < rows[3].length; i++) {
+                    expertiences[i] = new experienceModel(rows[3][i]);
+                }
+                resume.experiences = expertiences;
+>>>>>>> 8143befe3557bcd6ad9001db3fe23b2e1e1e0911
 
                     // projects
                     var projects = [];

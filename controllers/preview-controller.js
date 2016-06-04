@@ -1,4 +1,4 @@
-var connection    = require('../connection');
+var connection    = require('../DAL/connection');
 var sql       = require('../services/resume-services');
 
 function previewController() {

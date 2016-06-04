@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var mailer = require('express-mailer');
 var config = require('config');
+var ip = require('ip');
 
 app.set('views', __dirname + '/../views/mail-templates');
 app.set('view engine', 'ejs');
@@ -37,7 +38,7 @@ Email.prototype.sendEmail = function() {
 		to: this.mailTo,
 		subject: '[Gaiz Team] Acivation account',
 		receiver: this.name,
-		activateLink: 'http://localhost:3000/activate?guid=' + this.activationCode
+		activateLink: ip.address() + '/activate?guid=' + this.activationCode
 	}, function(err) {
 		if (err) {
 			console.log(err);
@@ -54,7 +55,7 @@ Email.prototype.sendEmailResetPassword = function() {
 		to: this.mailTo,
 		subject: '[Gaiz Team] Acivation account',
 		receiver: this.name,
-		resetLink: 'http://localhost:3000/reset-complete?guid=' + this.activationCode
+		resetLink: ip.address() + '/reset-complete?guid=' + this.activationCode
 	}, function(err) {
 		if (err) {
 			console.log(err);

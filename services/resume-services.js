@@ -21,5 +21,8 @@ module.exports = {
     insertCertification: "INSERT INTO certification SET ?",  
     insertProject: "INSERT INTO project SET ?",  
     insertSkill: "INSERT INTO skill SET ?", 
-    updateResume: "UPDATE resume SET ?? WHERE id = ?"    
+    updateResume: "UPDATE resume SET ? WHERE id = ?",
+    checkResumeDataEditable: "SELECT T.id FROM ? AS T, resume AS R where T.id = ? AND T.resId = R.id AND R.userId = ? ",
+    checkResumeEditable: "SELECT id FROM resume WHERE id = ? AND userId = ?",
+    updatePublicLink: "UPDATE resume SET publicLink = ? WHERE id = ? and publicLink == NULL"
 };

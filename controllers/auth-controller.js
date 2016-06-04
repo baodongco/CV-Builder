@@ -1,6 +1,8 @@
  var bcrypt = require('bcrypt-nodejs');
+ var di = require('di4js');
+ var config = require('config');
 
-var connection = require('../connection');
+var connection = require('../DAL/connection');
 var queries = require('../services/user-services');
 var RegisterUser = require('../models/register-user');
 var LoginUser = require('../models/login-user');
@@ -8,7 +10,6 @@ var PassModification = require('../models/password-modification');
 var ResetPasswordInfo = require('../models/reset-password-info');
 var Email = require('../utilities/email');
 var EmailInfo = require('../models/email-info');
-var config = require('config');
 var activeUserSettings = config.get('cv-builder.active-user');
 
 function authController() {
@@ -24,21 +25,24 @@ function authController() {
         var newUser = new RegisterUser(req.body);
 
         // Check if username already exists.
-        connection.pool.query(queries.checkUserByEmail, newUser.email, function(err, rows) {
-            if (rows.length) {
+        di.resolve('userservice').checkUserByEmail(newUser.email, function (users) {
+            if (users.length) {
                 req.flash('signupMessage', 'Email is already taken.');
                 res.redirect('/register');
+
             } else {
                 // Check if email already exists.
-                connection.pool.query(queries.checkUserByUsername, newUser.username, function(err, rows) {
-                    if (rows.length) {
+                di.resolve('userservice').checkUserByUsername(newUser.username, function (eusers) {
+                    if (eusers.length) {
                         req.flash('signupMessage', 'Username is already taken.');
                         res.redirect('/register');
+
                     } else {
-                        connection.pool.query(queries.registerUser, newUser, function(err, rows) {
+                        di.resolve('userservice').addNewUser(newUser, function () {
                             req.flash('homeMessage', 'Check your email for activation link.');
                             res.redirect('/');
                         });
+
                         // send email
                         var emailInfo = new EmailInfo(newUser.username, newUser.email, newUser.activationCode);
                         var email = new Email(emailInfo);
@@ -61,18 +65,20 @@ function authController() {
     this.postLogin = function(req, done) {
         var loginUser = new LoginUser(req.body);
 
-        connection.pool.query(queries.login, loginUser.username, function(err, rows) {
-            if (!rows.length)
-                return done(null, false, req.flash('loginMessage', 'Username not found or this account is disabled'));
+        di.resolve('userservice').login(loginUser.username, function (users) {
+            if (!users.length)
+                return done(null, false, req.flash('loginMessage', 'Username not found'));
             // Wrong password
-            else if (!bcrypt.compareSync(loginUser.password, rows[0].password))
+            else if (users[0].isDisabled)
+                return done(null, false, req.flash('loginMessage', 'Your account is disabled. Contact admin for information'));
+            else if (!bcrypt.compareSync(loginUser.password, users[0].password))
                 return done(null, false, req.flash('loginMessage', 'Wrong password!!!'));
             // Account not activated
-            else if (rows[0].activationCode)
+            else if (users[0].activationCode)
                 return done(null, false, req.flash('loginMessage', 'Your account is not activated. Check your email for activation link.'));
 
             // Successful
-            return done(null, rows[0]);
+            return done(null, users[0]);
         });
     };
 
@@ -90,18 +96,35 @@ function authController() {
         var isError = true;
         var index = 0;
         var message = '';
+        var sqlState = '';
     
         connection.pool.query("CALL SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")",function(err, rows){
-            // console.log("SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")");
             if (err){
-                // console.log(err);
+                console.log(err);
                 message = err.message;
                 index = message.indexOf(':');
                 message = message.substring(index + 1);
+                sqlState = err.sqlState;
             } else {
                 message = 'Your account has been activated. Please enjoy!!';
                 isError = false;
             }
+
+            var compare = sqlState.localeCompare('46000');
+            console.log("==================" + compare);
+
+            if(compare == 0){
+                var msg = message.split(':');
+                
+                 // send email for reset password
+                var emailInfo = new EmailInfo(msg[1], msg[2], msg[0]);
+                var email = new Email(emailInfo);
+                email.sendEmailResetPassword();
+
+                // 
+                message = 'Expired link to active your account!!\n. Your new activate link has been sent to your email address. Please check again!!';
+            }
+
     
             if (isError) {
                 req.flash('homeMessage', message);
@@ -165,6 +188,8 @@ function authController() {
         var index = 0;
         var message = '';
         var _guid = '';
+        var sqlState = '';
+        var uuid = '';    
 
         connection.pool.query("CALL SP_RESET_PASSWORD_COMPLETE('"+ guid +"',"+ ttl +")", function(err, rows){
 
@@ -173,6 +198,7 @@ function authController() {
                 message = err.message;
                 index = message.indexOf(':');
                 message = message.substring(index + 1);
+                sqlState = err.sqlState;
             } else {
                 console.log(rows);
                 isError = false;
@@ -181,6 +207,22 @@ function authController() {
             }
 
             console.log(message);
+            console.log(sqlState);
+
+            var compare = sqlState.localeCompare('49000');
+            console.log("=================="+compare);
+
+            if(compare == 0){
+                var msg = message.split(':');
+                
+                 // send email for reset password
+                var emailInfo = new EmailInfo(msg[1], msg[2], msg[0]);
+                var email = new Email(emailInfo);
+                email.sendEmailResetPassword();
+
+                // 
+                message = 'Expired link to reset your password!!\n. Your new reset link has been sent to your email address. Please check again!!';
+            }
 
             req.flash('homeMessage', message);
 
@@ -190,8 +232,8 @@ function authController() {
                 res.redirect('/reset-form?guid='+_guid);
             }
 
+            console.log(message);
         });
-
     };
 
     // POST: /reset

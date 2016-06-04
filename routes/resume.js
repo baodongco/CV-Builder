@@ -13,29 +13,20 @@ module.exports = {
          * create new resume
          * @param  req.body.[data]
          */
-    		app.post('/resumes/create', checkLogin, function (req, res) {                          
-    			    resumeController.insertResume(req, res);
-    		});
-    		/**
+		app.post('/resumes/create', checkLogin, function (req, res) {                          
+			    resumeController.insertResume(req, res);
+		});
+		/**
       	 * @return resumes list of current user
       	 */
       	app.get('/resumes', checkLogin, function (req, res) {
       		resumeController.getResumes(req,res);
       	});
-
-    		/**
-    		 * @param  id of resume
-    		 * @param  req.type {html|pdf}
-    		 * @return resume file base on type
-    		 */
-        app.get('/resumes/:id', function (req, res) {
-            resumeController.getResume(req, res);
-        });
         /**
          * get resume preview
          * @param  id resume
          */
-        app.get('/resumes/preview/:id', function(req, res) {
+        app.get('/resumes/preview/:id', checkLogin, function(req, res) {
             resumeController.getPreviewResume(req, res);
         });
         /**
@@ -72,15 +63,28 @@ module.exports = {
          * @param  value: new value
          * @return status code
          */
-        app.post('/resumes/edit-field', function (req, res) {
+        app.post('/resumes/edit-field', checkLogin, function (req, res) {
           resumeController.postEditFieldResume(req,res);
-        })
+        });
+
+        app.get('/resumes/privacy/:id', function (req, res) {
+           resumeController.getPrivacyResume(req, res); 
+        });
+        /**
+         * @param  id of resume
+         * @param  req.type {html|pdf}
+         * @return resume file base on type
+         */
+        app.get('/resumes/:id', checkLogin, function (req, res) {
+            resumeController.getResume(req, res);
+        });
+
         /**
          * delete a resume
          * @param  id of resume
          * @return status code
          */
-        app.delete('/resumes/:id', function (req, res) {
+        app.delete('/resumes/:id', checkLogin, function (req, res) {
           resumeController.deleteResume(req, res);
         })
 	}
