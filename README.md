@@ -10,6 +10,15 @@
 $ npm start
 ```
 
-- To login as admin type username : admin, password : Admin1234
+-   To login as admin type username : admin, password : Admin1234
  
 ## Run unit testing
+-   Install mocha
+```
+$ npm install -g mocha
+```
+
+-   Run test on specific test file
+```
+$ mocha tests/<filename.js>
+```
