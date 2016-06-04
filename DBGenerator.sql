@@ -121,7 +121,7 @@ BEGIN
 	IF (created_time IS NULL) THEN
 		
 			SIGNAL SQLSTATE '45000'
-			SET MESSAGE_TEXT = 'Already activated!!';
+			SET MESSAGE_TEXT = 'The link is no longer valid!!';
 
 	ELSEIF (distance_time_milis > ttl_milis) THEN
 
@@ -204,7 +204,11 @@ BEGIN
   DECLARE usr VARCHAR(50);
   DECLARE mail VARCHAR(50);
 
+  DECLARE now_time TIMESTAMP;
+
   SET status_code = 200;
+
+  SELECT NOW() INTO now_time;
 
   SET ttl_milis = ttl * 60;
   SELECT unix_timestamp(now()) INTO now_time_milis;
@@ -222,7 +226,7 @@ BEGIN
   ELSEIF (distance_time_milis > ttl_milis) THEN
       
       SELECT UUID() INTO uuid;
-      UPDATE `user` SET resetPassCode = uuid WHERE resetPassCode = guid;
+      UPDATE `user` SET resetPassCode = uuid, codeStartDate = now_time WHERE resetPassCode = guid;
       SELECT username INTO usr FROM `user` WHERE resetPassCode = uuid;  
       SELECT email INTO mail FROM `user` WHERE resetPassCode = uuid;
 
