@@ -1,3 +1,11 @@
+ul#progress {
+    float: left;
+    
+}
+
+ul#progress label {
+    float: left;
+}
 
 ul.skill-progress {
     list-style-type: none;
@@ -33,26 +41,24 @@ ul#lprogress {
 ul.skill-progress li {
     float:left;
     position:relative;
-    width:15px;
-    height:15px;
+    width:10px;
+    height:10px;
     border:1px solid #fff;
     border-radius:50px;
-    margin-left:10px;
-    border-left:1px solid #111; border-top:1px solid #111; border-right:1px solid #333; border-bottom:1px solid #333;
-    background:#000;
+    margin-right:20px;
+    border-left:1px solid #bbb; border-top:1px solid #bbb; border-right:1px solid #bbb; border-bottom:1px solid #bbb;
+    background:#bbb;
 }
 ul.skill-progress li{
     cursor: pointer
 }
-ul.skill-progress li:first-child { margin-left:0;}
 
 .running .ball {
-    background-color:#2187e7;
-    background-image: -moz-linear-gradient(90deg, #2187e7 25%, #a0eaff);
-    background-image: -webkit-linear-gradient(90deg, #2187e7 25%, #a0eaff);
-
-    width:15px;
-    height:15px;
+    background-color: #1d92af;    
+    margin-left: -4px;
+    margin-top: -4px;
+    width:16px;
+    height:16px;
     border-radius:50px;
     -moz-transform:scale(0);
     -webkit-transform:scale(0);
@@ -68,15 +74,21 @@ ul.skill-progress li:first-child { margin-left:0;}
     border: 1px solid #00c6ff;
     box-shadow: 0 0 5px #00c6ff;
     position:absolute;
-    top:-1px;
-    left:-1px;
+    /*top:-1px;
+    left:-1px;*/
     -moz-transform:scale(0);
     -webkit-transform:scale(0);
 
-    -webkit-animation:pulse 0.5s ease-out;
+    
     -moz-animation:pulse 0.5s ease-out;
 }
 
+#lblLevel {
+    color:#1d92af;
+    margin-top: 10px;
+    margin-left: 200px;
+    line-height: 25px;
+}
 /*#layer1 { -moz-animation-delay:0.5s; -webkit-animation-delay:0.5s; }
 #layer2 { -moz-animation-delay:1s; -webkit-animation-delay:1s; }
 #layer3 { -moz-animation-delay:1.5s; -webkit-animation-delay:1.5s; }
