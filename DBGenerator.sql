@@ -98,6 +98,10 @@ INSERT INTO user(username, email, password, role) VALUES (
   'super'
 );
 
+INSERT INTO template(name) VALUES (
+  'default'
+);
+
 -- Store Procedure: activate account
 DELIMITER $$
 CREATE PROCEDURE SP_ACTIVATE_ACCOUNT(IN activation_code varchar(50), IN ttl INT)
