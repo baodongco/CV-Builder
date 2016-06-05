@@ -7,7 +7,10 @@
         <th>Email</th>
         <th>Role</th>
         <th>Activated</th>
-        <th>Enable/Disable user</th>
+        <th>Enable/Disable account</th>
+        <% if (loginId == 1) {%>
+            <th>Promote/demote account</th>
+        <% } %>
     </tr>
     <% users.forEach(function (user) { %>
         <tr>
@@ -32,6 +35,20 @@
                         <a href="#" data-id="<%= user.id %>" class="enable btn btn-success">
                             Enable
                         </a>
+                    </td>
+                <% } %>
+            <% } else { %>
+                <td></td>
+            <% } %>
+
+            <% if (loginId == 1 && user.role != 'super') {%>
+                <% if (user.role == 'user') { %>
+                    <td>
+                        <a href="/admin/user/promote/<%= user.id %>" class="btn btn-success"> Promote </a>
+                    </td>
+                <% } else { %>
+                    <td>
+                        <a href="/admin/user/demote/<%= user.id %>" class="btn btn-danger"> Demote </a>
                     </td>
                 <% } %>
             <% } else { %>
