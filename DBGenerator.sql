@@ -51,8 +51,8 @@ CREATE TABLE project (
   id int PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(200),
   url VARCHAR(300),
-  startTime DATE,
-  endTime DATE,
+  startTime VARCHAR(10),
+  endTime VARCHAR(10),
   detail TEXT,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
@@ -62,7 +62,7 @@ CREATE TABLE certification (
   id int PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(100),
   authority VARCHAR(100),
-  date DATE,
+  date VARCHAR(10),
   detail TEXT,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
@@ -72,8 +72,8 @@ CREATE TABLE experience (
   id int PRIMARY KEY AUTO_INCREMENT,
   company VARCHAR(50),
   designation VARCHAR(100),
-  startTime DATE,
-  endTime DATE,
+  startTime VARCHAR(10),
+  endTime VARCHAR(10),
   detail TEXT,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
@@ -83,8 +83,8 @@ CREATE TABLE education (
   id int PRIMARY KEY AUTO_INCREMENT,
   institute VARCHAR(100),
   degree VARCHAR(100),
-  startTime DATE,
-  endTime DATE,
+  startTime VARCHAR(10),
+  endTime VARCHAR(10),
   detail TEXT,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
@@ -96,6 +96,10 @@ INSERT INTO user(username, email, password, role) VALUES (
   'admin@admin.com',
   '$2a$08$Tbv4/2.0JQCJ0iK2IkMF3e1PQn4V/u6CmZr2f.d4ysEp0.qX5BdfC',
   'super'
+);
+
+INSERT INTO template(name) VALUES (
+  'default'
 );
 
 -- Store Procedure: activate account
