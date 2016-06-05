@@ -17,6 +17,18 @@ function adminController() {
         di.resolve('userservice').enableUser(req.params.id, function () {
             res.redirect('/admin');
         });
+    };
+    
+    this.promoteAdmin = function (req, res) {
+        di.resolve('userservice').promoteAdmin(req.params.id, function () {
+            res.redirect('/admin');
+        });
+    };
+    
+    this.demoteAdmin = function (req, res) {
+        di.resolve('userservice').demoteAdmin(req.params.id, function () {
+            res.redirect('/admin');
+        });
     }
 }
 

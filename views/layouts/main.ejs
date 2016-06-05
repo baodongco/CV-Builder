@@ -33,7 +33,9 @@
                 <ul class="nav navbar-nav">
                     
                 <% if (req.isAuthenticated()) { %>
-                    <li><a href="/admin">Go to admin page</a></li>
+                    <% if (req.user.role != 'user') { %>
+                        <li><a href="/admin">Go to admin page</a></li>
+                    <% } %>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             <img src="" alt="">
