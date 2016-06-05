@@ -1,5 +1,6 @@
 <% layout('./layouts/main.ejs') -%>
-    <link href="/public/stylesheets/bootstrap.vertical-tabs.min.css" rel="stylesheet">
+    <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
@@ -7,6 +8,7 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
     <script src="/public/javascripts/input/resume-validator.js"></script>
     <link rel="stylesheet" href="/public/stylesheets/input-css.css">
+    <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js"></script>
     <form action="/resumes/create" method="POST" id="resumeForm">
         <input type="hidden" name="resume[id]" value="<%=resume.id%>">
         <ul class="nav nav-tabs">
@@ -17,6 +19,8 @@
             <li id="liskills"><a href="#skills" data-toggle="tab"><span class="glyphicon glyphicon-star"> Skills</span></a></li>
             <li id="licertification"><a href="#certification" data-toggle="tab"><span class="glyphicon glyphicon-cog"> Certification</span></a></li>
             <li id="lieducation"><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
+            <li id="liphoto"><a href="#photo" data-toggle="tab"><span class="glyphicon glyphicon-camera"> Photo</span></a></li>
+
         </ul>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane active form-style-5" id="contact">
@@ -58,29 +62,31 @@
                 <a href="#experience" name="experience" data-toggle="tab" class="btn pull-right">Continue</a>
             </div>
             <div class="tab-pane form-style-5" id="experience">
-                <input type="hidden" id="experienceLength" value="<%=resume.expertiences[resume.expertiences.length-1].id%>">
-                <%for(var i=0;i<resume.expertiences.length;i++)
+                <input type="hidden" id="experienceLength" value="<%=resume.experiences[resume.experiences.length-1].id%>">
+                <legend><span class="number">3</span>Experience</legend>
+                <%for(var i=0;i<resume.experiences.length;i++)
             {%>
-                    <input type="hidden" name="experience[<%=resume.expertiences[i].id%>][id]" value="<%=resume.expertiences[i].id%>">
+                    <input type="hidden" name="experience[<%=resume.experiences[i].id%>][id]" value="<%=resume.experiences[i].id%>">
                     <fieldset id="field-experience-<%=i%>" class="clonedExpInput">
-                        <legend><span class="number">3</span>Experience</legend>
+
                         <label for="experience[<%=i%>][company]"><span>Company </span>
-                    <input class="form-control" type="text" id="experienceCompany-<%=i%>" value="<%=resume.expertiences[i].company%>" name="experience[<%=resume.expertiences[i].id%>][company]" placeholder="e.g. Harvey Nash Vietnam">
+                    <input class="form-control" type="text" id="experienceCompany-<%=i%>" value="<%=resume.experiences[i].company%>" name="experience[<%=resume.experiences[i].id%>][company]" placeholder="e.g. Harvey Nash Vietnam">
                 </label>
                         <label for="experience[0][designation]"><span>Designation </span>
-                    <input class="form-control" type="text"  id="experienceDesignation-<%=i%>" name="experience[<%=resume.expertiences[i].id%>][designation]"  value="<%=resume.expertiences[i].designation%>" placeholder="e.g. Software Engineer">
+                    <input class="form-control" type="text"  id="experienceDesignation-<%=i%>" name="experience[<%=resume.experiences[i].id%>][designation]"  value="<%=resume.experiences[i].designation%>" placeholder="e.g. Software Engineer">
                 </label>
                         <label for="experienceFromDate"><span>From Date </span>
-                    <input name="experience[<%=resume.expertiences[i].id%>][startTime]" id="experienceFromDate-<%=i%>" value="<%=resume.expertiences[i].startTime%>" readonly placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                    <input name="experience[<%=resume.experiences[i].id%>][startTime]" id="experienceFromDate-<%=i%>" value="<%=resume.experiences[i].startTime%>" readonly placeholder="e.g. 2016/05/01" class="form-control date-picker" />
                 </label>
                         <label for="experienceToDate"><span>To Date </span>
-                    <input name="experience[<%=resume.expertiences[i].id%>][endTime]" id="experienceToDate-<%=i%>" value="<%=resume.expertiences[i].endTime%>" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
+                    <input name="experience[<%=resume.experiences[i].id%>][endTime]" id="experienceToDate-<%=i%>" value="<%=resume.experiences[i].endTime%>" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
                 </label>
                         <label for="experience[0][detail]"><span>Details </span>
                     <div id="detailsExperience-<%=i%>">
-                        <textarea class="form-control editor" id="experienceDetail-<%=i%>" name="experience[<%=resume.expertiences[i].id%>][detail]"><%=resume.expertiences[i].detail%></textarea>
+                        <textarea class="form-control editor" id="experienceDetail-<%=i%>" name="experience[<%=resume.experiences[i].id%>][detail]"><%=resume.experiences[i].detail%></textarea>
                     </div>
                 </label>
+                        <hr>
                     </fieldset>
                     <%}%>
                         <div id="groupBtnExperience">
@@ -128,6 +134,7 @@
             <div class="tab-pane form-style-5" id="skills">
                 <fieldset id="field-skill">
                     <input type="hidden" id="skillHiddenIndex" value="-1">
+                    <input type="hidden" id="skillsLength" value="<%=resume.skills.length%>">
                     <%for(var i=0;i<resume.skills.length;i++)
                     {%>
                         <input type="hidden" name="skill[<%=resume.skills[i].id%>][id]" value="<%=resume.skills[i].id%>">
@@ -214,35 +221,34 @@
                             <%for(var i=0;i<resume.skills.length;i++)
                             {%>
 
-                                <tr id="<%=resume.skills[i].id%>">
+                                <tr id="<%=i%>">
                                     <td><span id="spSkillName-<%=resume.skills[i].id%>"><%=resume.skills[i].name%></span></td>
                                     <td class="text-center">
-                                        <ul id="lprogress" class="nav skill-lprogress">
-                                            <li id="lball0">
+                                        <ul id="lprogress<%=i%>" class="nav skill-lprogress">
+                                            <li id="lball0<%=i%>">
                                                 <div id="layer0" class="ball"></div>
                                                 <div id="layer12" class="pulse"></div>
                                             </li>
-                                            <li id="lball1">
+                                            <li id="lball1<%=i%>">
                                                 <div id="layer1" class="ball"></div>
                                                 <div id="layer7" class="pulse"></div>
                                             </li>
-                                            <li id="lball2">
+                                            <li id="lball2<%=i%>">
                                                 <div id="layer2" class="ball"></div>
                                                 <div id="layer8" class="pulse"></div>
                                             </li>
-                                            <li id="lball3">
+                                            <li id="lball3<%=i%>">
                                                 <div id="layer3" class="ball"></div>
                                                 <div id="layer9" class="pulse"></div>
                                             </li>
-                                            <li id="lball4">
+                                            <li id="lball4<%=i%>">
                                                 <div id="layer4" class="ball"></div>
                                                 <div id="layer10" class="pulse"></div>
                                             </li>
-                                            <li id="lball5">
+                                            <li id="lball5<%=i%>">
                                                 <div id="layer5" class="ball"></div>
                                                 <div id="layer11" class="pulse"></div>
                                             </li>
-                                            <label style="color:blue;"><%=resume.skills[i].expertise%></label>
                                         </ul>
                                     </td>
                                     <td><span><%=resume.skills[i].experience %></span></td>
@@ -324,8 +330,34 @@
                             </div>
                             <button class="btn pull-left">Save</button>
                         </div>
-
+            </div>
+            <div class="tab-pane form-style-5" id="photo">
+                <form style="width: 250px">
+                    <fieldset id="image-holder">
+                        <legend>Add Photo</legend>
+                        <div id="fileuploader">Upload</div>
+                        <img src="<%=%>" alt="">
+                        <input type="hidden" id="myImage">
+                    </fieldset>
             </div>
         </div>
-    </form>
-    <script src="/public/javascripts/input/input.js"></script>
+        </form>
+        <div class="modal fade" id="modalRemoveSkill" role="dialog" style="z-index: 99999" data-id="">
+            <div class="modal-dialog modal-sm">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title"><strong>Confirmation</strong></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" id="btnConfirmRemove">Yes</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><strong>Cancel</strong></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/public/javascripts/input/input.js"></script>

@@ -43,7 +43,7 @@ CREATE TABLE skill (
   name VARCHAR(100),
   expertise VARCHAR(100),
   experience VARCHAR(100),
-  lastUsed VARCHAR(4),
+  lastUsed DATE,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
 );
@@ -97,6 +97,10 @@ INSERT INTO user(username, email, password, role) VALUES (
   'admin@admin.com',
   '$2a$08$Tbv4/2.0JQCJ0iK2IkMF3e1PQn4V/u6CmZr2f.d4ysEp0.qX5BdfC',
   'super'
+);
+
+INSERT INTO template(name) VALUES (
+  'default'
 );
 
 -- Store Procedure: activate account
@@ -268,15 +272,15 @@ BEGIN
    
   SELECT * FROM resume WHERE id = _resID;
 
-  SELECT * FROM certification where resId = _resID;
+  SELECT * FROM certification WHERE resId = _resID ORDER BY date DESC;
 
-  SELECT * FROM education WHERE resId = _resID;
+  SELECT * FROM education WHERE resId = _resID ORDER BY endTime DESC;
 
-  SELECT * FROM experience WHERE resId = _resID;
+  SELECT * FROM experience WHERE resId = _resID ORDER BY endTime DESC;
 
-  SELECT * FROM project WHERE resId = _resID;
+  SELECT * FROM project WHERE resId = _resID ORDER BY endTime DESC;
   
-  SELECT * FROM skill WHERE resId = _resID;
+  SELECT * FROM skill WHERE resId = _resID ORDER BY lastUsed DESC;
 
 END; $$
 DELIMITER ;

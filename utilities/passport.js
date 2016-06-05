@@ -1,5 +1,8 @@
+var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var LocalStrategy   = require('passport-local').Strategy;
+var config = require('config');
 
+var dbSettings = config.get('cv-builder.googleAuth');
 var auth = require('../controllers/auth-controller');
 
 module.exports = function (passport) {
