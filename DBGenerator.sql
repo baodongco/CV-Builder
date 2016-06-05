@@ -20,7 +20,8 @@ CREATE TABLE template (
 );
 
 CREATE TABLE resume (
-  id int PRIMARY KEY AUTO_INCREMENT,  
+  id int PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(20) NOT NULL,
   firstName VARCHAR(100) NOT NULL,
   lastName VARCHAR(100),
   email VARCHAR(100) NOT NULL,
