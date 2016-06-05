@@ -26,11 +26,14 @@ $(function () {
 		var self = $(this);
 		self.popover({
 			content: function () {
-				return $('#pop-content-'+self.data('id')).html();
+				return $('#pop-content-'+self.parents('tr').data('res-id')).html();
 			},
 			html: true
 		})
 	});
+
+    $('.prv-res').popover({ content: "Current link will be removed!", trigger: "hover", placement: "top" });
+    $('.pub-res').popover({ content: "Send your resume through a link.", trigger: "hover", placement: "top" });
 	$('body').on('click', function (e) {
         //did not click a popover toggle, or icon in popover toggle, or popover
         if ($(e.target).data('toggle') !== 'popover'
@@ -39,16 +42,69 @@ $(function () {
             $('[data-toggle="popover"]').popover('hide');
         }
     });
-    $('.prv-res').click(function () {
-        var id =$(this).data('id');
+    $('body').on('click', '.prv-res', function () {
+        var row = $(this).parents('tr');
+        var id = row.data('res-id');
         $.ajax({
-            url: '/resumes/privacy?status=false&id='+ id,
+            url: '/resumes/edit-field',
+            method: 'POST',
+            data: {
+                id: id,
+                table: 'resume',
+                field: 'publicLink',
+                value: 'false'
+            },
             success: function (data) {
-                alert(data.publicLink);
+                row.find('td:nth-child(3)').fadeOut('slow', function() { $(this).text('Private').fadeIn('slow') });
+                row.find('.prv-res').addClass('pub-res btn-success').removeClass('prv-res btn-warning')
+                .fadeOut('slow', function (){ 
+                    $(this).html('<span class="glyphicon glyphicon-globe"></span> Public').fadeIn();
+                    $(this).attr('data-content',"Send your resume through a link."); 
+
+                });
             },
             error: function (data) {
-                alert(data);
+                alert(data.message);
+            }
+        });
+    });
+    $('body').on('click', '.pub-res', function () {
+        var row = $(this).parents('tr');
+        var id = row.data('res-id');
+        $.ajax({
+            url: '/resumes/edit-field',
+            method: 'POST',
+            data: {
+                id: id,
+                table: 'resume',
+                field: 'publicLink',
+                value: 'true'
+            },
+            success: function (data) {
+                row.find('td:nth-child(3)').fadeOut('slow', function() {
+                    $(this).html('Public <button data-toggle="popover" title="Share link" class="btn btn-link btn-xs">\
+                                <span class="glyphicon glyphicon-link"></span>\
+                            </button>\
+                            <div id="pop-content-'+id+'" class="hidden">\
+                                <input type="text" value="'+ data.value +'">\
+                            </div>').fadeIn('slow');
+                    $('button',this).popover({
+                        content: function () {
+                            return $('#pop-content-'+id).html();
+                        },
+                        html: true
+                    });
+                });
+                row.find('.pub-res').addClass('prv-res btn-warning')
+                .removeClass('pub-res btn-success')
+                .fadeOut('slow', function (){
+                    $(this).html('<span class="glyphicon glyphicon-lock"></span> Private').fadeIn();
+                    $(this).attr('data-content',"Current link will be removed!"); 
+                });
+            },
+            error: function (data) {
+                alert(data.message);
             }
         })
-    })
+    });
 });

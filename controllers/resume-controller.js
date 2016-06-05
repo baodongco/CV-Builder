@@ -1,8 +1,14 @@
 /*
 references: https://www.npmjs.com/package/html-pdf
 */
-var connection    = require('../DAL/connection');
-var sql       = require('../services/resume-services');
+var multer = require('multer');
+var fs = require('fs');
+var imgName = "";
+var path = require('path');
+var jimp = require('jimp');
+
+var connection = require('../DAL/connection');
+var sql = require('../services/resume-services');
 // import models
 var Resume = require('../models/resume');
 var certificationModel = require('../models/certification');
@@ -11,25 +17,100 @@ var experienceModel = require('../models/experience');
 var projectModel = require('../models/project');
 var skillModel = require('../models/skill');
 
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './public/photo');
+    },
+    filename: function (req, file, callback) {
+        imgName = '1' + '_' + Date.now() + '.jpg';
+        callback(null, imgName);
+    }
+});
+var upload = multer({ storage: storage, limits: { fileSize: 5000000 } }).single('userPhoto');
+
 function resumeController() {
-    this.getEditResume  = function(req, res) {
+    this.getEditResume = function (req, res) {
         var userId = req.user.id;
         var resId = req.params.id;
-        connection.pool.query('SELECT EXISTS(SELECT 1 FROM resume WHERE id = ? AND userId = ?)', [resid, userId], function(rows){            
-            console.log(rows);
-            // if (rows) {
-            //     getResumeDataById(req.params.id, function(resume) {
-            //             res.render('', resume);
-            //         });    
-            // } else {
-            //     res.redirect('/');
-            // }
+        getResumeDataById(req.params.id, function (resume) {
+            console.log('Load resume \n' + resume);
+            imgName = resume.photoUrl;
+            console.log(imgName);
+            res.render('input/edit', { title: 'Edit', req: req, message: req.flash('Edit'), resume: resume });
         });
+        // connection.pool.query('SELECT EXISTS(SELECT 1 FROM resume WHERE id = ? AND userId = ?)', [resId, userId], function(rows){            
+        //     console.log(rows);
+        //     res.render('input/edit',{title:'Edit',req:req,message:req.flash('Edit'),resume:rows});
+        //     // if (rows) {
+        //     //     getResumeDataById(req.params.id, function(resume) {
+        //     //             res.render('', resume);
+        //     //         });    
+        //     // } else {
+        //     //     res.redirect('/');
+        //     // }
+        // });
     };
 
-    this.createResume = function(req, res) {
-        res.render('input/input',{title:'Input', req: req, message: req.flash('Input') });
+    this.createResume = function (req, res) {
+        res.render('input/input', { title: 'Input', req: req, message: req.flash('Input') });
     }
+
+
+    this.loadPhoto = function (req, res) {
+        console.log('loadPhoto hit');
+        //imgName = "1_1465075044475.jpg";
+
+        if (imgName != "") {
+            console.log(imgName);
+            var stats = fs.statSync("./public/photo/" + imgName);
+            var fileSizeInBytes = stats["size"];
+            res.status(200).send(JSON.stringify({ i128: imgName, size: fileSizeInBytes }))
+        }
+        else {
+            res.status(200).send(null);
+        }
+    }
+
+    this.uploadPhoto = function (req, res) {
+        if (req.body.op != "delete") {
+            upload(req, res, function (err) {
+                if (err) {
+                    if (err.code == "LIMIT_FILE_SIZE") {
+                        req.flash('uploadMessage', 'File too large, choose another plz!');
+                        res.redirect('/photo');
+                    }
+                    return res.end("Error loading file.");
+                }
+                var imgName2 = '1' + imgName;
+                var imgName3 = '2' + imgName;
+
+                jimp.read(path.normalize("./public/photo/" + imgName), function (err, imgName) {
+                    if (err) throw err;
+                    imgName.scaleToFit(400, 600)            // resize 
+                        .quality(60)                 // set JPEG quality          
+                        .write("./public/photo/" + imgName2); // save 
+                });
+                jimp.read(path.normalize("./public/photo/" + imgName), function (err, imgName) {
+                    if (err) throw err;
+                    imgName.scaleToFit(200, 300)            // resize 
+                        .quality(60)                 // set JPEG quality 
+                        .write("./public/photo/" + imgName3); // save 
+                });
+                res.status(200).send(JSON.stringify({ i128: imgName }));
+                console.log(req);
+
+            });
+        }
+        else {
+            res.json({ ok: true });
+            fs.unlinkSync("./public/photo/" + req.body.nameImg);
+            var nameImg2 = "./public/photo/" + '1' + req.body.nameImg;
+            var nameImg3 = "./public/photo/" + '2' + req.body.nameImg;
+            fs.unlinkSync(nameImg2);
+            fs.unlinkSync(nameImg3);
+        }
+    }
+
 
     this.insertResume = function (req, res) {
         var resume = new Resume(req.body);
@@ -102,13 +183,13 @@ function resumeController() {
         req.body.education.forEach(function (item) {
             if (item.hasOwnProperty('id')) {
                 if (chekcObject(item)) {
-                    updateItem(item, 'education');                    
+                    updateItem(item, 'education');
                 } else {
                     deleteItem(item, 'education');
                 }
             } else {
                 if (checkObject(item)) {
-                    insertItem(item, 'education');                    
+                    insertItem(item, 'education');
                 }
             }
         })
@@ -128,8 +209,8 @@ function resumeController() {
         connection.pool.query('DELETE ' + table + ' WHERE id = ', item.id);
     }
 
-    function checkObject(obj){        
-        for(var key in obj){
+    function checkObject(obj) {
+        for (var key in obj) {
             if (obj[key] == '') {
                 return false;
             }
@@ -197,8 +278,8 @@ function resumeController() {
                         console.log('res_rows', res_rows);
                         if (!res_rows.length || req.user.id != res_rows[0].userId) {
                             res.status(404).send('File not found');
-                        } else if (req.user.id == res_rows[0].userId) {                           
-                            res.render('resume/preview',{
+                        } else if (req.user.id == res_rows[0].userId) {
+                            res.render('resume/preview', {
                                 title: 'View resume',
                                 resumeId: res_rows[0].id,
                                 templates: temp_rows,
@@ -230,12 +311,12 @@ function resumeController() {
                     value = Guid.create();
                 }
                 var query = sql.checkResumeEditable;
-                var params = [req.body.id, req.user.id];  
+                var params = [req.body.id, req.user.id];
             } else {
                 var query = sql.checkResumeDataEditable;
                 var params = [req.body.table, req.body.id, req.user.id];
-            } 
-            connection.pool.query(query, params, function (err , row) { 
+            }
+            connection.pool.query(query, params, function (err, row) {
                 if (err) {
                     res.status(400).send("You cannot edit resume");
                     throw err;
@@ -270,7 +351,7 @@ function resumeController() {
         console.log('here');
         var Guid = require('guid');
         // generate url /resumes/id/token if status=true
-        var publicLink = req.body.status? "/resumes/"+req.params.id+"/" + Guid.create() : null;
+        var publicLink = req.body.status ? "/resumes/" + req.params.id + "/" + Guid.create() : null;
 
         connection.pool.query("SELECT id, publicLink FROM resume WHERE id = ? and userId = ?",
             [req.params.id, req.user.id], function (err, row) {
@@ -287,7 +368,7 @@ function resumeController() {
                                 throw err;
                                 res.status(503).send('Unable to update resume');
                             } else {
-                                res.status(200).send({publicLink: publicLink});
+                                res.status(200).send({ publicLink: publicLink });
                             }
                         });
                     }
@@ -308,7 +389,7 @@ function resumeController() {
                     res.status(401).send('Unauthorized');
                 } else {
                     if (row[0] && row[0].id) {
-                        connection.pool.query("CALL udsp_deleteResume(?)", req.params.id ,function (err, result) {
+                        connection.pool.query("CALL udsp_deleteResume(?)", req.params.id, function (err, result) {
                             if (err) {
                                 throw err;
                                 res.status(503).send('Unable to delete resume');
@@ -316,7 +397,7 @@ function resumeController() {
                                 res.status(200).send('Resume deleted');
                             }
                         });
-                    }  
+                    }
                 }
             }
         );
@@ -399,19 +480,19 @@ function resumeController() {
                     }
                     resume.educations = educations;
 
-                //expertiences
-                var expertiences = [];
-                for (var i = 0; i < rows[3].length; i++) {
-                    expertiences[i] = new experienceModel(rows[3][i]);
-                }
-                resume.experiences = expertiences;
+                    //expertiences
+                    var expertiences = [];
+                    for (var i = 0; i < rows[3].length; i++) {
+                        expertiences[i] = new experienceModel(rows[3][i]);
+                    }
+                    resume.experiences = expertiences;
 
                     // projects
                     var projects = [];
                     for (var i = 0; i < rows[4].length; i++) {
                         projects[i] = new projectModel(rows[4][i]);
                     };
-                    resume.projects = projects; projects
+                    resume.projects = projects;
 
                     // skills
                     var skills = [];

@@ -46,8 +46,8 @@
                 <div class="item">
                     <h4 class="degree"><%= resume.educations[i].degree %></h4>
                     <h5 class="meta"><%= resume.educations[i].institute %></h5>
-                    <div class="time"><%= resume.educations[i].startTime.toLocaleDateString() %> - <%= resume.educations[i].endTime.toLocaleDateString() %></div>
-                    <div class="edu-detail"><%- resume.educations[i].detail %></div>
+                    <% if (resume.educations[i].startTime) {%><div class="time"><%= resume.educations[i].startTime.toLocaleDateString() %> - <%= resume.educations[i].endTime.toLocaleDateString() %></div><%}%>
+                    <% if (resume.educations[i].endTime) {%><div class="edu-detail"><%- resume.educations[i].detail %></div><%}%>
                 </div><!--//item-->
                 <% } %>                
             </div><!--//education-container-->
@@ -70,8 +70,10 @@
                 <div class="item">
                     <div class="meta">
                         <div class="upper-row">
-                            <h3 class="job-title"><%= resume.experiences[i].designation %></h3>
-                            <div class="time"><%= resume.experiences[i].startTime.toLocaleDateString() %> - <%= resume.experiences[i].endTime.toLocaleDateString() %></div>
+                            <%if (resume.experiences[i].designation) {%><h3 class="job-title"><%= resume.experiences[i].designation %></h3><%}%>
+                            <%if (resume.experiences[i].startTime || resume.experiences[i].endTime ) {%>
+                            <div class="time"><%= resume.experiences[i].startTime.toLocaleDateString() || '' %> - <%= resume.experiences[i].endTime.toLocaleDateString() || '' %></div>
+                            <% } %>
                         </div><!--//upper-row-->
                         <div class="company"><%= resume.experiences[i].company %></div>
                     </div><!--//meta-->
@@ -91,8 +93,9 @@
                         <a href="<%= resume.projects[i].url || "#" %>"><%= resume.projects[i].title %></a>
                     </span>
                     <div class="project-detail"><%- resume.projects[i].detail %></div>
-                    <span class="project-tagline">Time: <%= resume.projects[i].startTime.getMonth() + 1 %>/<%= resume.projects[i].startTime.getFullYear() %> - 
-                    <%= resume.projects[i].endTime.getMonth() +1 %>/<%= resume.projects[i].endTime.getFullYear()%></span>                  
+                    <span class="project-tagline">
+                        Time: <% if (resume.projects[i].startTime) {%><%= resume.projects[i].startTime.getMonth() + 1 %>/<%= resume.projects[i].startTime.getFullYear() %><% } %> - 
+                        <% if (resume.projects[i].endtTime) {%><%= resume.projects[i].endTime.getMonth() +1 %>/<%= resume.projects[i].endTime.getFullYear()%><%}%></span>                  
                 </div><!--//item-->
                 <% } %>               
                 
