@@ -1,0 +1,46 @@
+/*
+ The app's settings file
+ Usage:
+
+    var config = require('config');
+    var dbSettings = config.get('cv-builder.db');
+
+    // access key to get your value
+
+    var host = dbSettings['host']
+    ...
+*/
+
+{
+  "cv-builder": {
+    "deploy": {
+      "port" : 3000
+    },
+    "db": {
+      "connectionPool": 10,
+      "host": "g8r9w9tmspbwmsyo.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+      "dbName": "tgy7twsf54blryd4",
+      "user": "biqwvv2a67izust7",
+      "pass": "th77alwztzxsl9em"
+    },
+    "email": {
+      "from": "no-reply@admin.com",
+      "host": "smtp.gmail.com",
+      "port": 465,
+      "secureConnection": true,
+      "transportMethod": "SMTP",
+      "auth": {
+        "user": "gaizteam@gmail.com",
+        "pass": "Gaizteam1234"
+      }
+    },
+    "active-user": {
+      "ttl": 1
+    },
+    "googleAuth": {
+      "clientID"      : "909731084442-01am8pga1qu34rnlppli06d4ol79cqgh.apps.googleusercontent.com",
+      "clientSecret"  : "a5_9dj9KaawfRAF1SCiDbnQS",
+      "callBackUrl" : "https://gaiz-cv-builder.herokuapp.com/auth/google/callback"
+    }
+  }
+}
