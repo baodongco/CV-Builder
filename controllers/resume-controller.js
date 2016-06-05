@@ -224,7 +224,11 @@ function resumeController() {
         console.log(req.body);
         var tables = ['resume', 'education', 'skill', 'project', 'experience', 'certification'];
         if ( tables.indexOf(req.body.table) != -1 ) {
-            if (req.body.table == 'resume' || req.body.field == 'publicLink') {
+            var value = req.body.value;
+            if (req.body.table == 'resume') {
+                if(req.body.field == 'publicLink' && req.body.value) {
+                    value = Guid.create();
+                }
                 var query = sql.checkResumeEditable;
                 var params = [req.body.id, req.user.id];  
             } else {
@@ -238,14 +242,14 @@ function resumeController() {
                 } else if (row.length) {
                     console.log('row', row);
                     connection.pool.query("UPDATE ?? SET ?? = ? WHERE id = ?",
-                        [req.body.table, req.body.field, req.body.value, req.body.id],
+                        [req.body.table, req.body.field, value, req.body.id],
                         function (err, result) {
                             if (err) {
                                 res.status(400).send("Item not updated");
                                 throw err;
                             } else {
                                 console.log('update', result);
-                                res.status(200).send("Item updated");
+                                res.status(200).send({value: value, message:"Item updated"});
                             }
                         }
                     );
