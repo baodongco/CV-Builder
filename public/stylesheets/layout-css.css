@@ -72,6 +72,10 @@ img.middle{
     border-color: #2bb9dd;
 }
 
+.btn.btn-primary:hover {
+    background-color: #1d92af;
+}
+
 .btn-layout{
         font-size: 20px;
         padding: 6px 12px;

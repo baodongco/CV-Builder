@@ -315,7 +315,7 @@ ul.skill-progress li{
 }
 .btn-primary{
     vertical-align: middle;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 
 #tblSkills{
@@ -323,9 +323,9 @@ ul.skill-progress li{
 }
 
 .btnSave{
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
 
 .btnContinue{
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }
