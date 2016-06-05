@@ -14,19 +14,6 @@ module.exports = function (passport) {
         })
     );
 
-    passport.use(new GoogleStrategy({
-            clientID: dbSettings['clientID'],
-            clientSecret: dbSettings['clientSecret'],
-            callbackURL: dbSettings['callBackUrl']
-        },
-        function(accessToken, refreshToken, profile, done) {
-            var user = {id: profile.id, username: 'dienbui', email: 'dienbui11@gmail.com'}
-            // User.findOrCreate({ googleId: profile.id }, function (err, user) {
-                return done(err, user);
-            // });
-        }
-    ));
-
     passport.serializeUser(function(user, done) {
         auth.serializeUser(user, done);
     });
