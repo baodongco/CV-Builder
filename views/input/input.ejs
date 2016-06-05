@@ -20,7 +20,7 @@
                 <li id="lieducation"><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
             </ul>            
         </div>  
-        <div id="myTabContent" class="tab-content col-sm-6">
+        <div id="myTabContent" class="tab-content col-sm-7">
             <div class="tab-pane active form-style-5 panel panel-default col-sm-12" id="contact">
                 <div class="panel-body">                
                     <fieldset>
@@ -44,8 +44,8 @@
                             <input type="text" name="address" class="form-control"></textarea>
                         </label>
                     </fieldset>
-                    <button class="btn pull-left">Save</button>
-                    <a href="#summary" name="summary" data-toggle="tab" class="btn pull-right">Continue</a>
+                    <button class="btn btn-primary pull-left btnSave">Save</button>
+                    <a href="#summary" name="summary" data-toggle="tab" class="btn btn-primary pull-right btnContinue">Continue</a>
                 </div>
             </div>
             <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="summary">
@@ -59,8 +59,8 @@
                             <textarea class="editor" name="sumContent" placeholder="Add a short summary about yourself"></textarea>
                         </label>
                     </fieldset>
-                    <button class="btn npull-left">Save</button>
-                    <a href="#experience" name="experience" data-toggle="tab" class="btn pull-right">Continue</a>
+                    <button class="btn btn-primary pull-left btnSave">Save</button>
+                    <a href="#experience" name="experience" data-toggle="tab" class="btn btn-primary pull-right btnContinue">Continue</a>
                 </div>
             </div>
 
@@ -75,10 +75,10 @@
                             <input class="form-control" type="text"  id="experienceDesignation" name="experience[0][designation]" placeholder="e.g. Software Engineer">
                         </label>
                         <label for="experienceFromDate"><span>From Date </span>
-                            <input name="experience[0][startTime]" id="experienceFromDate-0" readonly placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                            <input name="experience[0][startTime]" id="experienceFromDate-0" readonly placeholder="e.g. 2016/04" class="form-control date-picker" type="text" />
                         </label>
                         <label for="experienceToDate-0"><span>To Date </span>
-                            <input name="experience[0][endTime]" id="experienceToDate-0" readonly placeholder="e.g. 2016/06/01" class="form-control date-picker" />
+                            <input name="experience[0][endTime]" id="experienceToDate-0" readonly placeholder="e.g. 2016/05" class="form-control date-picker" type="text" />
                         </label>
                         <label for="experience[0][detail]"><span>Details </span>
                             <div id="detailsExperience">
@@ -90,8 +90,8 @@
                         <div>
                             <button class="btn btn-primary" type="button" id="btnAddMoreExperience">Add another</button>
                         </div>
-                        <button class="btn pull-left">Save</button>
-                        <a href="#project" name="project" data-toggle="tab" class="btn pull-right">Continue</a>
+                        <button class="btn btn-primary pull-left btnSave">Save</button>
+                        <a href="#project" name="project" data-toggle="tab" class="btn btn-primary pull-right btnContinue">Continue</a>
                     </div>
                 </div>
             </div>
@@ -107,10 +107,10 @@
                             <input name="project[0][url]" id="projectUrl"  type="url" placeholder="Url of project" class="form-control" />
                         </label>
                         <label for="projectFromDate"><span>From Date </span>
-                            <input name="project[0][startTime]" id="projectFromDate-0" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                            <input name="project[0][startTime]" id="projectFromDate-0" readonly  placeholder="e.g. 2016/04" class="form-control date-picker" type="text"/>
                         </label>
                         <label for="projectToDate"><span>To Date </span>
-                            <input name="project[0][endTime]" id="projectToDate-0" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                            <input name="project[0][endTime]" id="projectToDate-0" readonly  placeholder="e.g. 2016/05" class="form-control date-picker" type="text" />
                         </label>
                         <label for="project[0][detail]"><span>Details </span>
                             <div id="detailsProject">
@@ -122,8 +122,8 @@
                         <div>
                             <button class="btn btn-primary" type="button" id="btnAddMoreProject">Add another</button>
                         </div>
-                        <button class="btn pull-left">Save</button>
-                        <a href="#skills" name="skills" data-toggle="tab" class="btn pull-right">Continue</a>
+                        <button class="btn btn-primary pull-left btnSave">Save</button>
+                        <a href="#skills" name="skills" data-toggle="tab" class="btn btn-primary pull-right btnContinue">Continue</a>
                     </div>
                 </div>
             </div>
@@ -194,8 +194,8 @@
                             </select>
                         </label>
                     </fieldset>
-                    <div class="table-responsive" style="min-height:300px;border">
-                        <button class="btn btn-primary" type="button" id="btnAddSkill">Add skill</button>
+                    <button class="btn btn-primary" type="button" id="btnAddSkill">Add skill</button>
+                    <div class="table-responsive" style="min-height:300px;margin-left: 10px;margin-right: 10px;">
                         <table id="tblSkills" class="table  table-hover">
                             <thead>
                                 <tr>
@@ -210,8 +210,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <button class="btn pull-left">Save</button>
-                    <a href="#certification" name="certification" data-toggle="tab" class="btn pull-right">Continue</a>
+                    <button class="btn btn-primary pull-left btnSave">Save</button>
+                    <a href="#certification" name="certification" data-toggle="tab" class="btn btn-primary pull-right btnContinue">Continue</a>
                 </div>
             </div>
             <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="certification">
@@ -225,7 +225,7 @@
                             <input type="text" name="certification[0][authority]" id="certificationAuthority" class="form-control" placeholder="Name of the organization issuing the certificate">
                         </label>
                         <label for="certificationDate"><span>Date </span>
-                            <input name="certification[0][date]" id="certificationDate-0" readonly  placeholder="e.g. 2016/05/01" class="form-control date-picker" />
+                            <input name="certification[0][date]" id="certificationDate-0" readonly  placeholder="e.g. 2016/05" class="form-control date-picker" type="text" />
                         </label>
                         <label for="certification[0][detail]"><span>Details </span>
                             <div id="detailsCertification">
@@ -237,8 +237,8 @@
                         <div>
                             <button class="btn btn-primary" type="button" id="btnAddMoreCetification">Add another</button>
                         </div>
-                        <button class="btn pull-left">Save</button>
-                        <a href="#education" name="education" data-toggle="tab" class="btn pull-right">Continue</a>
+                        <button class="btn btn-primary pull-left btnSave">Save</button>
+                        <a href="#education" name="education" data-toggle="tab" class="btn btn-primary pull-right btnContinue">Continue</a>
                     </div>
                 </div>
             </div>
@@ -263,7 +263,7 @@
                     <div>
                         <button class="btn btn-primary" type="button" id="btnAddMoreEducation">Add another</button>
                     </div>
-                    <button class="btn pull-left">Save</button>
+                    <button class="btn btn-primary pull-left btnSave">Save</button>
                 </div>
             </div>
         </div>

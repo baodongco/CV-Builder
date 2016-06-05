@@ -1,3 +1,21 @@
+.navbar .navbar-brand{
+    color:white;
+}
+
+.navbar a{
+    color:white;
+}
+
+.nav > li > a:hover{
+    color:white;
+    background-color:#2bb9dd;
+    cursor:pointer;
+}
+
+.nav .open > a{
+    background-color:#2bb9dd;    
+}
+
 ul#progress {
     float: left;
     
@@ -23,13 +41,13 @@ ul.skill-lprogress {
 ul.skill-lprogress li {
     float:left;
     position:relative;
-    width:15px;
-    height:15px;
+    width:10px;
+    height:10px;
     border:1px solid #fff;
     border-radius:50px;
-    margin-left:10px;
-    border-left:1px solid #111; border-top:1px solid #111; border-right:1px solid #333; border-bottom:1px solid #333;
-    background:#000;
+    margin-right:20px;
+    border-left:1px solid #bbb; border-top:1px solid #bbb; border-right:1px solid #bbb; border-bottom:1px solid #bbb;
+    background:#bbb;
 }
 ul.skill-lprogress li{
     cursor: pointer
@@ -281,8 +299,17 @@ ul.skill-progress li{
 }
 .btn-primary{
     vertical-align: middle;
+    margin-left: 10px;
 }
 
 #tblSkills{
-    min-height: 300px
+    min-height: 300px;
+}
+
+.btnSave{
+    margin-left: 10px;
+}
+
+.btnContinue{
+    margin-right: 10px;
 }
