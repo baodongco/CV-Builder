@@ -39,5 +39,17 @@ module.exports = function (repo) {
         repo.update('isDisabled', 0, id, function () {
             callback();
         });
-    }
+    };
+
+    this.promoteAdmin = function (id, callback) {
+        repo.update('role', 'admin', id, function () {
+            callback();
+        });
+    };
+
+    this.demoteAdmin = function (id, callback) {
+        repo.update('role', 'user', id, function () {
+            callback();
+        });
+    };
 };

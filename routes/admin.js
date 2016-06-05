@@ -15,5 +15,13 @@ module.exports = {
         app.get('/admin/user/enable/:id', function (req, res) {
             adminController.enableUser(req, res);
         });
+
+        app.get('/admin/user/promote/:id', function (req, res) {
+            adminController.promoteAdmin(req, res);
+        });
+
+        app.get('/admin/user/demote/:id', function (req, res) {
+            adminController.demoteAdmin(req, res);
+        });
     }
 };
