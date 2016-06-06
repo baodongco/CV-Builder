@@ -447,7 +447,7 @@ function resumeController() {
             } else if (resume) {
                 var pdf = require('html-pdf');
                 var options = require('../config/cv-pdf.js');
-                options.base = req.headers.origin;
+                options.base = 'http://' + req.headers.host;
                 pdf.create(html, options).toStream(function (err, data) {
                     if (err) {
                         throw err.stack;
