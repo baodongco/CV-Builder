@@ -23,7 +23,7 @@
                 <td>true</td>
             <% } %>
 
-            <% if (loginId != user.id) {%>
+            <% if (loginId != user.id && user.id != 1) {%>
                 <% if (!user.isDisabled) { %>
                     <td>
                         <a href="#" data-id="<%= user.id %>" class="disable btn btn-danger">
@@ -41,18 +41,18 @@
                 <td></td>
             <% } %>
 
-            <% if (loginId == 1 && user.role != 'super') {%>
+            <% if (loginId == 1) {%>
                 <% if (user.role == 'user') { %>
                     <td>
                         <a href="/admin/user/promote/<%= user.id %>" class="btn btn-success"> Promote </a>
                     </td>
+                <% } else if (user.role == 'super') {%>
+                    <td></td>
                 <% } else { %>
                     <td>
                         <a href="/admin/user/demote/<%= user.id %>" class="btn btn-danger"> Demote </a>
                     </td>
                 <% } %>
-            <% } else { %>
-                <td></td>
             <% } %>
         </tr>
     <% }) %>
