@@ -97,9 +97,10 @@ function authController() {
         var index = 0;
         var message = '';
         var sqlState = '';
-    
-        connection.pool.query("CALL SP_ACTIVATE_ACCOUNT('"+ activationCode +"'," + ttl +")",function(err, rows){
-            if (err){
+
+
+        di.resolve('userservice').getActivateUser(activationCode, ttl, function(err, rows){
+              if (err){
                 console.log(err);
                 message = err.message;
                 index = message.indexOf(':');
@@ -117,7 +118,7 @@ function authController() {
                 var msg = message.split(':');
                 
                  // send email for reset password
-                var emailInfo = new EmailInfo(msg[1], msg[2], msg[0]);
+                var emailInfo = new EmailInfo(msg[1].trim(), msg[2].trim(), msg[0].trim());
                 var email = new Email(emailInfo);
                 email.sendEmailResetPassword();
 
@@ -147,7 +148,8 @@ function authController() {
     // POST /reset
     this.postReset = function(req, res){
         var email_address = req.body.email;
-        connection.pool.query("CALL SP_RESET_PASSWORD('"+ email_address +"')",function(err, rows){
+
+         di.resolve('userservice').postReset(email_address, function(err, rows){
             console.log("SP_RESET_PASSWORD('"+ email_address +"')");
             var index = 0;
             var message = '';
@@ -176,7 +178,7 @@ function authController() {
             console.log(message);
             req.flash('homeMessage', message);
             res.redirect('/');
-        });
+         });
     };
 
     
@@ -191,7 +193,7 @@ function authController() {
         var sqlState = '';
         var uuid = '';    
 
-        connection.pool.query("CALL SP_RESET_PASSWORD_COMPLETE('"+ guid +"',"+ ttl +")", function(err, rows){
+         di.resolve('userservice').getResetComplete(guid, ttl, function(err, rows){
 
             if (err) {
                 console.log(err);
@@ -216,7 +218,7 @@ function authController() {
                 var msg = message.split(':');
                 
                  // send email for reset password
-                var emailInfo = new EmailInfo(msg[1], msg[2], msg[0]);
+                var emailInfo = new EmailInfo(msg[1].trim(), msg[2].trim(), msg[0].trim());
                 var email = new Email(emailInfo);
                 email.sendEmailResetPassword();
 
@@ -233,22 +235,21 @@ function authController() {
             }
 
             console.log(message);
-        });
+         });
     };
 
     // POST: /reset
     this.postResetComplete = function(req, res){
         var resetPasswordInfo = new ResetPasswordInfo(req.body);
 
-         connection.pool.query(queries.updatePassword, [resetPasswordInfo.newHasingPass, resetPasswordInfo.guid], function(err, rows) {
-            if (err) {
+         di.resolve('userservice').postResetComplete(resetPasswordInfo.newHasingPass, resetPasswordInfo.guid, function(err, rows){
+             if (err) {
                 console.log(err);
             } else {
                 req.flash('loginMessage', 'Password has been reset successful!!');
                 res.redirect('/login');
             }
-        });
-
+         });
     };
 
     // GET: /reset-form
@@ -268,9 +269,9 @@ function authController() {
     // POST: /change-password
     this.postChangePassword = function (req, res) {
         var user = new PassModification(req.body);
-        
-        connection.pool.query(queries.getUserById, user.id, function(err, rows) {
-            if (!bcrypt.compareSync(user.oldPass, rows[0].password)) {
+
+        di.resolve('userservice').postChangePassword(user.id, function(err, rows){
+              if (!bcrypt.compareSync(user.oldPass, rows[0].password)) {
                 req.flash('changePass', 'Old password is incorrect');
                 res.redirect('/change_password');
             } else if (user.oldPass == user.newPass) {
@@ -281,7 +282,7 @@ function authController() {
                     req.flash('homeMessage', 'Password updated successfully');
                     res.redirect('/');
                 });
-            }        
+            }  
         });
     };
 

@@ -57,5 +57,35 @@ module.exports = function (repo) {
         repo.getCVsByUserId(id, function (resumes) {
             callback(resumes);
         })
-    }
+    };
+
+    this.getActivateUser = function(activationCode, ttl, callback){
+        repo.activate(activationCode, ttl, function(err, rows){
+            callback(err, rows);
+        });
+    };
+
+    this.postReset = function(email_address, callback){
+        repo.validateReset(email_address, function(err, rows){
+            callback(err, rows);
+        });
+    };
+
+    this.getResetComplete = function(guid, ttl, callback){
+        repo.resetComplete(guid, ttl, function(err, rows){
+            callback(err, rows);
+        });
+    };
+
+    this.postResetComplete = function(newHasingPass, guid, callback){
+        repo.resetPassComplete(newHasingPass, guid, function(err, rows){
+            callback(err, rows);
+        });
+    };
+
+    this.postChangePassword = function(id, callback){
+        repo.changePassword(id, function(err, rows){
+            callback(err, rows);
+        });
+    };
 };
