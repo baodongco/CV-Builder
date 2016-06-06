@@ -93,7 +93,8 @@ $(function () {
                             return $('#pop-content-'+id).html();
                         },
                         html: true
-                    });
+                    }).popover('toggle');
+
                 });
                 row.find('.pub-res').addClass('prv-res btn-warning')
                 .removeClass('pub-res btn-success')
@@ -101,6 +102,7 @@ $(function () {
                     $(this).html('<span class="glyphicon glyphicon-lock"></span> Private').fadeIn();
                     $(this).attr('data-content',"Current link will be removed!"); 
                 });
+
             },
             error: function (data) {
                 alert(data.message);

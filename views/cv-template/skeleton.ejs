@@ -46,8 +46,8 @@
                 <div class="item">
                     <h4 class="degree"><%= resume.educations[i].degree %></h4>
                     <h5 class="meta"><%= resume.educations[i].institute %></h5>
-                    <% if (resume.educations[i].startTime) {%><div class="time"><%= resume.educations[i].startTime.toLocaleDateString() %> - <%= resume.educations[i].endTime.toLocaleDateString() %></div><%}%>
-                    <% if (resume.educations[i].endTime) {%><div class="edu-detail"><%- resume.educations[i].detail %></div><%}%>
+                    <div class="time"><% if (resume.educations[i].startTime != null) {%><%= resume.educations[i].startTime.toLocaleDateString() %> <% } if (resume.educations[i].endTime != null) {%>- <%= resume.educations[i].endTime.toLocaleDateString() %><%}%></div>
+                    <% if (resume.educations[i].detail) {%><div class="edu-detail"><%- resume.educations[i].detail %></div><%}%>
                 </div><!--//item-->
                 <% } %>                
             </div><!--//education-container-->
@@ -63,6 +63,29 @@
                     <%- resume.sumContent %>
                 </div><!--//summary-->
             </section><!--//section-->
+
+            <% if (resume.certifications.length) { %>
+            <section class="section certification-section">
+                <h2 class="section-title"><i class="fa fa-graduation-cap"></i>Certifications</h2>                
+                <% for (var i=0; i < resume.certifications.length; i++) { %>
+                <div class="item">
+                    <div class="meta">
+                        <div class="upper-row">
+                            <%if (resume.certifications[i].title) {%><h3 class="job-title"><%= resume.certifications[i].title %></h3><%}%>
+                            <%if (resume.certifications[i].date ) {%>
+                            <div class="time"><%= resume.certifications[i].date.toLocaleDateString() %></div>
+                            <% } %>
+                        </div><!--//upper-row-->
+                        <div class="company"><%= resume.certifications[i].authority %></div>
+                    </div><!--//meta-->
+                    <div class="details">
+                        <%- resume.certifications[i].details %>
+                    </div><!--//details-->
+                </div><!--//item-->
+                <% } %>
+            </section><!--//section-->
+            <% } %>
+
             <% if (resume.experiences.length) { %>
             <section class="section experiences-section">
                 <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiences</h2>                
@@ -94,8 +117,8 @@
                     </span>
                     <div class="project-detail"><%- resume.projects[i].detail %></div>
                     <span class="project-tagline">
-                        Time: <% if (resume.projects[i].startTime) {%><%= resume.projects[i].startTime.getMonth() + 1 %>/<%= resume.projects[i].startTime.getFullYear() %><% } %> - 
-                        <% if (resume.projects[i].endtTime) {%><%= resume.projects[i].endTime.getMonth() +1 %>/<%= resume.projects[i].endTime.getFullYear()%><%}%></span>                  
+                        Time: <% if (resume.projects[i].startTime) {%><%= resume.projects[i].startTime.getMonth() + 1 %>/<%= resume.projects[i].startTime.getFullYear() %><% } %><% if (resume.projects[i].endtTime) {%> - 
+                        <%= resume.projects[i].endTime.getMonth() +1 %>/<%= resume.projects[i].endTime.getFullYear()%><%}%></span>                  
                 </div><!--//item-->
                 <% } %>               
                 
@@ -136,9 +159,9 @@
     </footer><!--//footer-->
  
     <!-- Javascript -->          
-    <script type="text/javascript" src="/public/javascripts/template/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="/public/javascripts/template/bootstrap.min.js"></script>    
+    <script type="text/javascript" src="/public/javascripts/template-js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/public/javascripts/template-js/bootstrap.min.js"></script>    
     <!-- custom js -->
-    <script type="text/javascript" src="/public/javascripts/template/main-min.js"></script>            
+    <script type="text/javascript" src="/public/javascripts/template-js/main-min.js"></script>            
 </body>
 </html> 
