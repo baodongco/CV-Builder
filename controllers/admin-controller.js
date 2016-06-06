@@ -29,6 +29,12 @@ function adminController() {
         di.resolve('userservice').demoteAdmin(req.params.id, function () {
             res.redirect('/admin');
         });
+    };
+    
+    this.listAllCVOfAUser = function (req, res) {
+        di.resolve('userservice').getAllCVOfAUser(req.params.id, function (resumes) {
+            res.render('admin/resume', { title: 'List of CV', resumes: resumes, loginUsername: req.user.username, user: req.params.name });
+        });
     }
 }
 
