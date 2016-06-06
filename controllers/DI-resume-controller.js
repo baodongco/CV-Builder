@@ -1,10 +1,12 @@
 var di = require('di4js');
-var resumeModel = require('../models/resume')
 
 function resumeController() {
 	this.insertResume = function (req, res) {		
-		di.resolve('cvservice').insertResume(req.body, function (insertId) {
-			res.redirect('/preview/' + insertId);
+		req.body.userId = req.user.id;
+		di.resolve('cvService').insertResume(req.body, function (insertId) {
+			res.redirect('/resumes/preview/' + insertId);
 		});
 	};
 }
+
+module.exports = new resumeController();

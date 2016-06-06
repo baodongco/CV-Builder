@@ -3,12 +3,12 @@ var UserService = require('../DAL/services/user-service');
 var UserRepo = require('../DAL/repositories/user-repository');
 
 var CVService = require('../DAL/services/cv-service');
-var resRepo = require('../DAL/reositories/cv-repository');
-var eduRepo = require('../DAL/reositories/education-repository');
-var expRepo = require('../DAL/reositories/experience-repository');
-var cerRepo = require('../DAL/reositories/certification-repository');
-var proRepo = require('../DAL/reositories/project-repository');
-var skiRepo = require('../DAL/reositories/skill-repository');
+var resRepo = require('../DAL/repositories/cv-repository');
+var eduRepo = require('../DAL/repositories/education-repository');
+var expRepo = require('../DAL/repositories/experience-repository');
+var cerRepo = require('../DAL/repositories/certification-repository');
+var proRepo = require('../DAL/repositories/project-repository');
+var skiRepo = require('../DAL/repositories/skill-repository');
 
 function ioc() {
     this.register = function () {
@@ -22,7 +22,7 @@ function ioc() {
         di.autowired(false).register('proRepo').as(proRepo);
         di.autowired(false).register('skiRepo').as(skiRepo);        
         di.autowired(false).register('cvService').as(CVService).withConstructor()
-        												.param().ref('cvrepo')
+        												.param().ref('resRepo')
         												.param().ref('eduRepo')
         												.param().ref('expRepo')
         												.param().ref('cerRepo')
