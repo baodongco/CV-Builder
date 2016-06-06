@@ -16,6 +16,7 @@ var educationModel = require('../models/education');
 var experienceModel = require('../models/experience');
 var projectModel = require('../models/project');
 var skillModel = require('../models/skill');
+var mysql      = require('mysql');
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -108,12 +109,12 @@ function resumeController() {
             });
         }
         else {
-            res.json({ ok: true });
             fs.unlinkSync("./public/photo/" + req.body.nameImg);
             var nameImg2 = "./public/photo/" + '1' + req.body.nameImg;
             var nameImg3 = "./public/photo/" + '2' + req.body.nameImg;
             fs.unlinkSync(nameImg2);
             fs.unlinkSync(nameImg3);
+            nameImg = "";
         }
     }
 
@@ -179,10 +180,15 @@ function resumeController() {
     };
 
     this.updateResume = function (req, res) {
-        var resume = new Resume(req.body.resume);
+        console.log(req.body);
+        var resume = new Resume(req.body);
         var resId = resume.id;
+        resume.userId = req.user.id;
         delete resume.id;
-        var query = connection.pool.query("UPDATE resume SET ?? WHERE id = ?", [resume, resume.id]);
+        console.log(resume);
+        sql = mysql.format("UPDATE resume SET ? WHERE id = " + resId, resume);
+        console.log('query: ' + sql);
+        var query = connection.pool.query("UPDATE resume SET ? WHERE id = " + resId, resume);
         console.log(query);
         //handle education items
         req.body.education.forEach(function (item) {

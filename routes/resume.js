@@ -59,8 +59,9 @@ module.exports = {
      * @param  body data
      * @return status code
      */
-     app.post('/resumes/edit/:id', function (req, res) {
-      resumeController.postEditResume(req, res);
+     app.post('/resumes/edit', function (req, res) {
+        console.log('route hit');
+      resumeController.updateResume(req, res);
   });
 
     /**
