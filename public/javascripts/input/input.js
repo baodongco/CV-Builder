@@ -149,54 +149,60 @@ $(function () {
     var rowCount = $('#tblSkills >tbody >tr').length;
     $('#btnAddSkill').click(function () {
         var check = $('#skillHiddenIndex').val();
-        if (check == -1) {
-            var hiddenField = '';
-            var tdHtml = '<tr id="' + rowCount + '"><td><span id="spSkillName-' + rowCount + '">' + txtSkillName.val() + '</td>';
-            tdHtml += '<td class="text-center"><ul id="lprogress' + rowCount + '" class="nav skill-lprogress"><li id="lball0' + rowCount + '"><div id="llayer0" class="ball"></div><div id="llayer12" class="pulse"></div></li><li id="lball1' + rowCount + '"><div id="layer1" class="ball"></div><div id="layer7" class="pulse"></div></li><li id="lball2' + rowCount + '"><div id="layer2" class="ball"></div><div id="llayer8" class="pulse"></div></li><li id="lball3' + rowCount + '"><div id="layer3" class="ball"></div><div id="layer9" class="pulse"></div></li><li id="lball4' + rowCount + '"><div id="layer4" class="ball"></div><div id="layer10" class="pulse"></div></li><li id="lball5' + rowCount + '"><div id="layer5" class="ball"></div><div id="llayer11" class="pulse"></div></li></ul></td>';
-            tdHtml += '<td><span id="spExperience-' + rowCount + '">' + experience.val() + '</span></td>';
-            tdHtml += '<td><span id="spLastYearUsed-' + rowCount + '">' + lastYearUsed.val() + '</td>';
-            tdHtml += '<td><button type="button" class="btn-primary btnSkillEdit" id="btnEditSkill-' + rowCount + '">Edit</button><button type="button" class="btn-primary btnDeleteSkill" id="btnDeleteSkill-' + rowCount + '">Delete</button></tr>';
-            tblSkills.append(tdHtml);
-            $('#lprogress' + rowCount + ' li').removeClass('running').queue(function (next) {
-                for (var i = 0; i <= level; i++) {
-                    $('#lball' + i + rowCount).addClass('running');
-                }
-                next();
-            });
-            $('#progress li').removeClass('running').queue();
-            $('#ball0').addClass('running');
-            hiddenField += '<input type="hidden" id="skillName-' + rowCount + '" name="skill[' + rowCount + '][name]" value="' + txtSkillName.val() + '">';
-            hiddenField += '<input type="hidden" id="skillExpertise-' + rowCount + '" name="skill[' + rowCount + '][expertise]" value="' + lblLevel.text() + '">';
-            hiddenField += '<input type="hidden" id="skillExperience-' + rowCount + '" name="skill[' + rowCount + '][experience]" value="' + experience.val() + '">';
-            hiddenField += '<input type="hidden" id="skillLastUsed-' + rowCount + '" name="skill[' + rowCount + '][lastUsed]" value="' + lastYearUsed.val() + '">';
-            $('#field-skill').append(hiddenField);
-            rowCount++;
-        }
-        else {
-            $('#spSkillName-' + check).text(txtSkillName.val());
-            $('#spExperience-' + check).text(experience.val());
-            $('#spLastYearUsed-' + check).text(lastYearUsed.val());
-            $('#spExpertise-' + check).text(lblLevel.text());
-            $('#lprogress' + check + ' li').removeClass('running').queue(function (next) {
-                for (var i = 0; i <= level; i++) {
-                    $('#lball' + i + check).addClass('running');
-                }
-                next();
-            });
-            $('#skillName-' + check).val(txtSkillName.val());
-            $('#skillLastUsed-' + check).val(lastYearUsed.val());
-            $('#skillExperience-' + check).val(experience.val());
-            $('#skillExpertise-' + check).val(lblLevel.text());
-            $('#skillHiddenIndex').val('-1');
-            $('#progress li').removeClass('running').queue();
-            $('#ball0').addClass('running');
-        }
+        if (txtSkillName.val().trim().length>0){
+            if (check == -1) {
+                var hiddenField = '';
+                var tdHtml = '<tr id="' + rowCount + '"><td><span id="spSkillName-' + rowCount + '">' + txtSkillName.val() + '</td>';
+                tdHtml += '<td class="text-center"><ul id="lprogress' + rowCount + '" class="nav skill-lprogress"><li id="lball0' + rowCount + '"><div id="llayer0" class="ball"></div><div id="llayer12" class="pulse"></div></li><li id="lball1' + rowCount + '"><div id="layer1" class="ball"></div><div id="layer7" class="pulse"></div></li><li id="lball2' + rowCount + '"><div id="layer2" class="ball"></div><div id="llayer8" class="pulse"></div></li><li id="lball3' + rowCount + '"><div id="layer3" class="ball"></div><div id="layer9" class="pulse"></div></li><li id="lball4' + rowCount + '"><div id="layer4" class="ball"></div><div id="layer10" class="pulse"></div></li><li id="lball5' + rowCount + '"><div id="layer5" class="ball"></div><div id="llayer11" class="pulse"></div></li></ul></td>';
+                tdHtml += '<td><span id="spExperience-' + rowCount + '">' + experience.val() + '</span></td>';
+                tdHtml += '<td><span id="spLastYearUsed-' + rowCount + '">' + lastYearUsed.val() + '</td>';
+                tdHtml += '<td><button type="button" class="btn-primary btnSkillEdit" id="btnEditSkill-' + rowCount + '">Edit</button><button type="button" class="btn-primary btnDeleteSkill" id="btnDeleteSkill-' + rowCount + '">Delete</button></tr>';
+                tblSkills.append(tdHtml);
+                $('#lprogress' + rowCount + ' li').removeClass('running').queue(function (next) {
+                    for (var i = 0; i <= level; i++) {
+                        $('#lball' + i + rowCount).addClass('running');
+                    }
+                    next();
+                });
+                $('#progress li').removeClass('running').queue();
+                $('#ball0').addClass('running');
+                hiddenField += '<input type="hidden" id="skillName-' + rowCount + '" name="skill[' + rowCount + '][name]" value="' + txtSkillName.val() + '">';
+                hiddenField += '<input type="hidden" id="skillExpertise-' + rowCount + '" name="skill[' + rowCount + '][expertise]" value="' + lblLevel.text() + '">';
+                hiddenField += '<input type="hidden" id="skillExperience-' + rowCount + '" name="skill[' + rowCount + '][experience]" value="' + experience.val() + '">';
+                hiddenField += '<input type="hidden" id="skillLastUsed-' + rowCount + '" name="skill[' + rowCount + '][lastUsed]" value="' + lastYearUsed.val() + '">';
+                $('#field-skill').append(hiddenField);
+                rowCount++;
+            }
+            else {
+                $('#spSkillName-' + check).text(txtSkillName.val());
+                $('#spExperience-' + check).text(experience.val());
+                $('#spLastYearUsed-' + check).text(lastYearUsed.val());
+                $('#spExpertise-' + check).text(lblLevel.text());
+                $('#lprogress' + check + ' li').removeClass('running').queue(function (next) {
+                    for (var i = 0; i <= level; i++) {
+                        $('#lball' + i + check).addClass('running');
+                    }
+                    next();
+                });
+                $('#skillName-' + check).val(txtSkillName.val());
+                $('#skillLastUsed-' + check).val(lastYearUsed.val());
+                $('#skillExperience-' + check).val(experience.val());
+                $('#skillExpertise-' + check).val(lblLevel.text());
+                $('#skillHiddenIndex').val('-1');
+                $('#progress li').removeClass('running').queue();
+                $('#ball0').addClass('running');
+            }
 
-        experience.val("0 month");
-        lastYearUsed.val("2016");
-        txtSkillName.val('');
-        lblLevel.text('N/A');
-        level = 0;
+            experience.val("0 month");
+            lastYearUsed.val("2016");
+            txtSkillName.val('');
+            lblLevel.text('N/A');
+            level = 0;
+        }
+        else{
+            $('#modalSkillNotNull').modal('show');
+            txtSkillName.focus();
+        }
     });
     var rowRemove = '';
     $('#tblSkills').on('click', '.btnDeleteSkill', function () {
