@@ -758,7 +758,7 @@ $(function () {
 
         deleteCallback: function (data, pd) {
             //console.log(typeof(data));
-            //console.log(data[0]);
+            console.log(data);
 
             if (typeof (data) == "object") {
 

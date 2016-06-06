@@ -10,9 +10,9 @@
     <script src="/public/javascripts/input/resume-validator.js"></script>
     <link rel="stylesheet" href="/public/stylesheets/input-css.css">
     <script src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js"></script>
-    <form action="/resumes/create" method="POST" id="resumeForm">
+    <form action="/resumes/edit" method="POST" id="resumeForm">
         <%if(resume.id!=null){%>
-            <input type="hidden" name="resume[id]" value="<%=resume.id%>">
+            <input type="hidden" name="id" value="<%=resume.id%>">
             <%}%>
                 <div class="row">
                     <div class="col-sm-3 col-sm-offset-1">
