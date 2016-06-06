@@ -25,7 +25,7 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 	                    console.log('experience hit');
 	                    console.log(item);
 	                    item.resId = resId;
-	                    expuRepo.create(item);
+	                    expRepo.create(item);
 	                }
 	            });				
 			}
@@ -58,7 +58,8 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 	                    console.log('skill hit');
 	                    console.log(item);
 	                    item.resId = resId;
-	                    expuRepo.create(item);
+	                    item.lastUsed = item.lastUsed + '-01-01' ;
+	                    skiRepo.create(item);
 	                }
 	            });				
 			}

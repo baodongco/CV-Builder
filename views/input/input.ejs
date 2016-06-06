@@ -1,9 +1,7 @@
 <% layout('./layouts/main.ejs') -%>
 
     <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet">
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="//cdn.ckeditor.com/4.4.3/basic/ckeditor.js"></script>
-    <script src="//cdn.ckeditor.com/4.4.3/basic/adapters/jquery.js"></script>
+    <script src="https://cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -15,7 +13,7 @@
         <div class="row">
             <div class="col-sm-3 col-sm-offset-1">
                 <ul class="nav nav-tabs col-sm-12">
-                <li class="active" id="lititle"><a href="#title" data-toggle="tab"><span class="glyphicon glyphicon-phone"> Title</span></a></li>
+                    <li class="active" id="lititle"><a href="#title" data-toggle="tab"><span class="glyphicon glyphicon-phone"> Title</span></a></li>
                     <li id="licontact"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
                     <li id="lisummary"><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
                     <li id="liexperience"><a href="#experience" data-toggle="tab"><span class="glyphicon glyphicon-heart-empty"> Experience</span></a></li>
@@ -27,16 +25,16 @@
                 </ul>
             </div>
             <div id="myTabContent" class="tab-content col-sm-7">
-            <div class="tab-pane active form-style-5 panel panel-default col-sm-12" id="title">
-                <div class="panel-body">
-                    <fieldset>                        
-                        <label for="title"><span><sup>*</sup>Title: </span>
+                <div class="tab-pane active form-style-5 panel panel-default col-sm-12" id="title">
+                    <div class="panel-body">
+                        <fieldset>
+                            <label for="title"><span><sup>*</sup>Title: </span>
                             <input type="text" class="form-control" name="title">
-                        </label>                        
-                        <a href="#summary" name="summary" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
-                    </fieldset>
+                        </label>
+                            <a href="#summary" name="summary" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
+                        </fieldset>
+                    </div>
                 </div>
-            </div> 
                 <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="contact">
                     <div class="panel-body">
                         <fieldset>
@@ -44,40 +42,40 @@
                             <label for="firstName"><span><sup>*</sup>First Name: </span>
                             <input type="text" class="form-control" name="firstName">
                         </label>
-                        <label for="lastName"><span>Last Name: </span>
+                            <label for="lastName"><span>Last Name: </span>
                             <input type="text" name="lastName" class="form-control">
                         </label>
-                        <label for="email"><span><sup>*</sup>Email: </span>
+                            <label for="email"><span><sup>*</sup>Email: </span>
                             <input type="email" class="text-danger form-control"  name="email">
                         </label>
-                        <label for="phone"><span>Phone: </span>
+                            <label for="phone"><span>Phone: </span>
                             <input type="text" name="phone" class="form-control">
                         </label>
-                        <label for="url1"><span>Website: </span>
+                            <label for="url1"><span>Website: </span>
                             <input type="url" name="website" class="form-control" placeholder="e.g:www.abc.com">
                         </label>
-                        <label for="address"><span>Address </span>
+                            <label for="address"><span>Address </span>
                             <input type="text" name="address" class="form-control"></textarea>
                         </label>
-                    </fieldset>
-                    <button class="btn btn-primary pull-right btnSave">Save</button>
-                    <a href="#summary" name="summary" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
+                        </fieldset>
+                        <button class="btn btn-primary pull-right btnSave">Save</button>
+                        <a href="#summary" name="summary" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
+                    </div>
                 </div>
-            </div>
 
-            <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="summary">
-                <div class="panel-body">
-                    <fieldset>
-                        <legend><span class="number">2</span>Summary</legend>
-                        <label for="sumHeadline"><span>Header </span>
+                <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="summary">
+                    <div class="panel-body">
+                        <fieldset>
+                            <legend><span class="number">2</span>Summary</legend>
+                            <label for="sumHeadline"><span>Header </span>
                             <input class="form-control" name="sumHeadline" type="text">
                         </label>
-                        <label for="sumContent"><span>Summary: </span>
+                            <label for="sumContent"><span>Summary: </span>
                             <textarea class="editor" name="sumContent" placeholder="Add a short summary about yourself"></textarea>
                         </label>
-                    </fieldset>
-                    <button class="btn btn-primary pull-right btnSave">Save</button>
-                    <a href="#experience" name="experience" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a></div>
+                        </fieldset>
+                        <button class="btn btn-primary pull-right btnSave">Save</button>
+                        <a href="#experience" name="experience" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a></div>
                 </div>
 
                 <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="experience">
@@ -101,12 +99,12 @@
                                 <textarea class="form-control editor" id="experienceDetail-0" name="experience[0][detail]"></textarea>
                             </div>                   
                         </label>
-                            <button class="btn btn-primary pull-right removeExperience" id="btnDelExperience-0" type="button">Remove</button>
+                            <button class="btn btn-danger pull-right removeExperience" id="btnDelExperience-0" type="button">Remove</button>
                         </fieldset>
                         <div id="groupBtnExperience">
                             <div>
                                 <button class="btn btn-success" type="button" id="btnAddMoreExperience">Add another</button>
-                            </div>                            
+                            </div>
                         </div>
                         <button class="btn btn-primary pull-right btnSave">Save</button>
                         <a href="#project" name="project" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
@@ -134,11 +132,11 @@
                                 <textarea class="form-control editor" name="project[0][detail]"></textarea>
                             </div>                   
                         </label>
-                            <button class="btn btn-primary pull-right removeProject" type="button" id="btnDelProject-0">Remove</button>
+                            <button class="btn btn-danger pull-right removeProject" type="button" id="btnDelProject-0">Remove</button>
                         </fieldset>
                         <div id="groupBtnProject">
                             <div>
-                                <button class="btn btn-primary" type="button" id="btnAddMoreProject">Add another</button>
+                                <button class="btn btn-success" type="button" id="btnAddMoreProject">Add another</button>
                             </div>
                         </div>
                         <button class="btn btn-primary pull-right btnSave">Save</button>
@@ -213,7 +211,7 @@
                                 </select>
                             </label>
                         </fieldset>
-                        <button class="btn btn-primary btnContinue" type="button" id="btnAddSkill">Add skill</button>
+                        <button class="btn btn-success btnContinue" type="button" id="btnAddSkill">Add skill</button>
                         <div class="table-responsive" style="min-height:300px;margin-left: 10px;margin-right: 10px;">
                             <table id="tblSkills" class="table  table-hover">
                                 <thead>
@@ -252,11 +250,11 @@
                                 <textarea class="form-control editor" id="certificationDetail-0" name="certification[0][detail]"></textarea>
                             </div>                   
                         </label>
-                            <button class="btn btn-primary pull-right removeCertification" type="button" id="btnDelCerti-0">Remove</button>
+                            <button class="btn btn-danger pull-right removeCertification" type="button" id="btnDelCerti-0">Remove</button>
                         </fieldset>
                         <div id="groupBtnCertification">
                             <div>
-                                <button class="btn btn-primary" type="button" id="btnAddMoreCetification">Add another</button>
+                                <button class="btn btn-success" type="button" id="btnAddMoreCetification">Add another</button>
                             </div>
                         </div>
                         <button class="btn btn-primary pull-right btnSave">Save</button>
@@ -279,11 +277,11 @@
                             <textarea class="editor" name="education[0][detail]" id="educationDetails-0" placeholder="Add a few details about this educational qualification..."></textarea>
                         </div>                   
                     </label>
-                            <button class="btn btn-primary pull-right removeEducation" type="button" id="btnDelEducation-0">Remove</button>
+                            <button class="btn btn-danger pull-right removeEducation" type="button" id="btnDelEducation-0">Remove</button>
                         </fieldset>
                         <div id="groupBtnEducation">
                             <div>
-                                <button class="btn btn-primary" type="button" id="btnAddMoreEducation-0">Add another</button>
+                                <button class="btn btn-success" type="button" id="btnAddMoreEducation-0">Add another</button>
                             </div>
                             <button class="btn btn-primary pull-right btnSave">Save</button>
                             <a href="#certification" name="certification" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
@@ -291,7 +289,7 @@
                     </div>
                 </div>
 
-                <div class="tab-pane form-style-5 panel panel-default col-sm-12" style="min-height:500px;" id="photo">
+                <div class="tab-pane form-style-5 panel panel-default col-sm-12" style="min-height:440px;" id="photo">
                     <div class="panel-body">
                         <form style="width: 250px">
                             <fieldset id="image-holder">
