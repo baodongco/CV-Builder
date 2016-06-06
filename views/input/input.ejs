@@ -27,6 +27,7 @@
             </div>
             <div id="myTabContent" class="tab-content col-sm-7">
                 <div class="tab-pane active form-style-5 panel panel-default col-sm-12" style="min-height:440px;" id="title">
+
                 <div class="panel-body">
                     <fieldset>                        
                         <label for="title"><span><sup>*</sup>Title: </span>
@@ -96,11 +97,11 @@
                                 <input name="experience[0][endTime]" id="experienceToDate-0" readonly placeholder="e.g. 2016/05" class="form-control date-picker" type="text" />
                             </label>
                             <label for="experience[0][detail]"><span>Details </span>
-                                <div id="detailsExperience-0">
-                                    <textarea class="form-control editor" id="experienceDetail-0" name="experience[0][detail]"></textarea>
-                                </div>                   
-                            </label>
-                            <button class="btn btn-primary pull-right" type="button" id="btnDelExperience">Remove</button>
+                            <div id="detailsExperience-0">
+                                <textarea class="form-control editor" id="experienceDetail-0" name="experience[0][detail]"></textarea>
+                            </div>                   
+                        </label>
+                            <button class="btn btn-primary pull-right removeExperience" id="btnDelExperience-0" type="button">Remove</button>
                         </fieldset>
                         <div id="groupBtnExperience">
                             <div>

@@ -58,7 +58,7 @@ function resumeController() {
 
     this.loadPhoto = function (req, res) {
         console.log('loadPhoto hit');
-        //imgName = "1_1465075044475.jpg";
+        imgName = "";
 
         if (imgName != "") {
             console.log(imgName);

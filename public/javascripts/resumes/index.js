@@ -22,6 +22,7 @@ $(function () {
             }
         }) 
     })
+    $('[data-toggle=tooltip]').tooltip();
 	$('[data-toggle=popover]').each(function () {
 		var self = $(this);
 		self.popover({
