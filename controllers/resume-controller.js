@@ -60,12 +60,18 @@ function resumeController() {
         console.log('loadPhoto hit');
         //imgName = "1_1465075044475.jpg";
 
-        if (imgName != "") {
+        if (imgName !== "") {
+            fs.access("./public/photo/" + imgName, fs.F_OK, function (err) {
+                if(err){
+                    imgName = "";
+                    res.status(200).send(null);
+                } else {
+            
             console.log(imgName);
             var stats = fs.statSync("./public/photo/" + imgName);
             var fileSizeInBytes = stats["size"];
-            res.status(200).send(JSON.stringify({ i128: imgName, size: fileSizeInBytes }))
-        }
+            res.status(200).send(JSON.stringify({ i128: imgName, size: fileSizeInBytes }));
+            }});}
         else {
             res.status(200).send(null);
         }
