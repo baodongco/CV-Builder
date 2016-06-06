@@ -1,3 +1,11 @@
+.navbar {
+    border-radius: 0;
+}
+
+.home-alert {
+    margin-bottom: 0;
+}
+
 form .error {
     color: red;
 }
