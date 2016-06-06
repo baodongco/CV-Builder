@@ -1,6 +1,5 @@
 <% layout('./layouts/main.ejs') -%>
 
-<<<<<<< HEAD
     <link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="//cdn.ckeditor.com/4.4.3/basic/ckeditor.js"></script>
@@ -29,35 +28,6 @@
             </div>
             <div id="myTabContent" class="tab-content col-sm-7">
             <div class="tab-pane active form-style-5 panel panel-default col-sm-12" id="title">
-=======
-<link href="http://hayageek.github.io/jQuery-Upload-File/4.0.10/uploadfile.css" rel="stylesheet">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="https://cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
-<script src="/public/javascripts/input/resume-validator.js"></script>
-<link rel="stylesheet" href="/public/stylesheets/input-css.css">
-<script src="http://hayageek.github.io/jQuery-Upload-File/4.0.10/jquery.uploadfile.min.js"></script>
-<form action="create" method="POST" id="resumeForm">
-    <div class="row">
-        <div class="col-sm-3 col-sm-offset-1">
-            <ul class="nav nav-tabs col-sm-12">
-                <li class="active" id="licontact"><a href="#title" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Title</span></a></li>
-                <li id="licontact"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
-                <li id="lisummary"><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
-                <li id="liexperience"><a href="#experience" data-toggle="tab"><span class="glyphicon glyphicon-heart-empty"> Experience</span></a></li>
-                <li id="liproject"><a href="#project" data-toggle="tab"><span class="glyphicon glyphicon-cloud-download"> Project</span></a></li>
-                <li id="liskills"><a href="#skills" data-toggle="tab"><span class="glyphicon glyphicon-star"> Skills</span></a></li>
-                <li id="licertification"><a href="#certification" data-toggle="tab"><span class="glyphicon glyphicon-cog"> Certification</span></a></li>
-                <li id="lieducation"><a href="#education" data-toggle="tab"><span class="glyphicon glyphicon-education"> Education</span></a></li>
-                <li id="liphoto"><a href="#photo" data-toggle="tab"><span class="glyphicon glyphicon-camera"> Photo</span></a></li>
-            </ul>
-        </div>
-        <div id="myTabContent" class="tab-content col-sm-7">
-            <div class="tab-pane active form-style-5 panel panel-default col-sm-12" id="contact">
->>>>>>> 7539184415ac221ac091b45ae02db1d3a84d6ede
                 <div class="panel-body">
                     <fieldset>                        
                         <label for="title"><span><sup>*</sup>Title: </span>
@@ -66,21 +36,12 @@
                         <a href="#summary" name="summary" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
                     </fieldset>
                 </div>
-<<<<<<< HEAD
             </div> 
                 <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="contact">
                     <div class="panel-body">
                         <fieldset>
                             <legend><span class="number">1</span> Contact Information</legend>
                             <label for="firstName"><span><sup>*</sup>First Name: </span>
-=======
-            </div>                        
-            <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="contact">
-                <div class="panel-body">
-                    <fieldset>
-                        <legend><span class="number">1</span> Contact Information</legend>
-                        <label for="firstName"><span><sup>*</sup>First Name: </span>
->>>>>>> 7539184415ac221ac091b45ae02db1d3a84d6ede
                             <input type="text" class="form-control" name="firstName">
                         </label>
                         <label for="lastName"><span>Last Name: </span>
@@ -136,19 +97,11 @@
                                 <input name="experience[0][endTime]" id="experienceToDate-0" readonly placeholder="e.g. 2016/05" class="form-control date-picker" type="text" />
                             </label>
                             <label for="experience[0][detail]"><span>Details </span>
-<<<<<<< HEAD
                             <div id="detailsExperience-0">
                                 <textarea class="form-control editor" id="experienceDetail-0" name="experience[0][detail]"></textarea>
                             </div>                   
                         </label>
                             <button class="btn btn-primary pull-right removeExperience" id="btnDelExperience-0" type="button">Remove</button>
-=======
-                                <div id="detailsExperience-0">
-                                    <textarea class="form-control editor" id="experienceDetail-0" name="experience[0][detail]"></textarea>
-                                </div>                   
-                            </label>
-                            <button class="btn btn-primary pull-right" type="button" id="btnDelExperience">Remove</button>
->>>>>>> 7539184415ac221ac091b45ae02db1d3a84d6ede
                         </fieldset>
                         <div id="groupBtnExperience">
                             <div>
@@ -177,19 +130,11 @@
                                 <input name="project[0][endTime]" id="projectToDate-0" readonly  placeholder="e.g. 2016/05" class="form-control date-picker" type="text" />
                             </label>
                             <label for="project[0][detail]"><span>Details </span>
-<<<<<<< HEAD
                             <div id="detailsProject-0">
                                 <textarea class="form-control editor" name="project[0][detail]"></textarea>
                             </div>                   
                         </label>
                             <button class="btn btn-primary pull-right removeProject" type="button" id="btnDelProject-0">Remove</button>
-=======
-                                <div id="detailsProject-0">
-                                    <textarea class="form-control editor" name="project[0][detail]"></textarea>
-                                </div>                   
-                            </label>
-                            <button class="btn btn-primary pull-right" type="button" id="btnDelProject">Remove</button>
->>>>>>> 7539184415ac221ac091b45ae02db1d3a84d6ede
                         </fieldset>
                         <div id="groupBtnProject">
                             <div>
@@ -303,19 +248,11 @@
                                 <input name="certification[0][date]" id="certificationDate-0" readonly  placeholder="e.g. 2016/05" class="form-control date-picker" type="text" />
                             </label>
                             <label for="certification[0][detail]"><span>Details </span>
-<<<<<<< HEAD
                             <div id="detailsCertification-0">
                                 <textarea class="form-control editor" id="certificationDetail-0" name="certification[0][detail]"></textarea>
                             </div>                   
                         </label>
                             <button class="btn btn-primary pull-right removeCertification" type="button" id="btnDelCerti-0">Remove</button>
-=======
-                                <div id="detailsCertification-0">
-                                    <textarea class="form-control editor" id="certificationDetail-0" name="certification[0][detail]"></textarea>
-                                </div>                   
-                            </label>
-                            <button class="btn btn-primary pull-right" type="button" id="btnDelCerti">Remove</button>
->>>>>>> 7539184415ac221ac091b45ae02db1d3a84d6ede
                         </fieldset>
                         <div id="groupBtnCertification">
                             <div>
@@ -338,19 +275,11 @@
                                 <input type="text" name="education[0][degree]" id="txtEduDegree-0" class="form-control" placeholder="e.g. Bachelor of Information Technology">
                             </label>
                             <label for="educationDetails"><span>Details </span>
-<<<<<<< HEAD
                         <div id="detailsEducation-0">
                             <textarea class="editor" name="education[0][detail]" id="educationDetails-0" placeholder="Add a few details about this educational qualification..."></textarea>
                         </div>                   
                     </label>
                             <button class="btn btn-primary pull-right removeEducation" type="button" id="btnDelEducation-0">Remove</button>
-=======
-                                <div id="detailsEducation-0">
-                                    <textarea class="editor" name="education[0][detail]" id="educationDetails-0" placeholder="Add a few details about this educational qualification..."></textarea>
-                                </div>                   
-                            </label>
-                            <button class="btn btn-primary pull-right" type="button" id="btnDelEducation">Delete</button>
->>>>>>> 7539184415ac221ac091b45ae02db1d3a84d6ede
                         </fieldset>
                         <div id="groupBtnEducation">
                             <div>

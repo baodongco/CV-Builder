@@ -82,7 +82,7 @@ $(function () {
             },
             success: function (data) {
                 row.find('td:nth-child(3)').fadeOut('slow', function() {
-                    $(this).html('Public <button data-toggle="popover" title="Share link" class="btn btn-link btn-xs">\
+                    $(this).html('Public <button data-toggle="popover" data-placement="right" title="Share link" class="btn btn-link btn-xs">\
                                 <span class="glyphicon glyphicon-link"></span>\
                             </button>\
                             <div id="pop-content-'+id+'" class="hidden">\
@@ -92,8 +92,9 @@ $(function () {
                         content: function () {
                             return $('#pop-content-'+id).html();
                         },
-                        html: true
-                    }).popover('toggle');
+                        html: true,
+                        trigger: 'click'
+                    });
 
                 });
                 row.find('.pub-res').addClass('prv-res btn-warning')
