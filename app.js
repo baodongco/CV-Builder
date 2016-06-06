@@ -67,29 +67,24 @@ app.get('/404', function (req, res) {
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    next(err);
-    // res.redirect('/404.html');
+    debug(err);
+    res.redirect('/404');
+    // next(err);
 });
 
 // error handlers
 
 // development error handler
 // will print stacktrace
-var log = fs.createWriteStream(__dirname + '/logs/debug.log', {flags: 'w'});
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         // res.status(err.status || 500);
-
-        // log.write(new Date() + ' : ');
-        // log.write(err.message + '\n');
-        // log.write('Status: ' + err.status + '\n');
-        // log.write(err.stack + '\n');
-        // log.write('-----\n');
-        // if (err.status == 404)
-        //     res.render('404');
-        // else
-        //     res.render('500');
-        res.render('error', { message: err.message, status: err.status, stack: err.stack});
+        debug(err);
+        if (err.status == 404)
+            res.render('404');
+        else
+            res.render('500');
+        // res.render('error', { message: err.message, status: err.status, stack: err.stack});
     });
 }
 
@@ -97,7 +92,24 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', { message: err.message, status: err.status, stack: err.stack});
+    debug(err);
+    if (err.status == 404)
+        res.render('404');
+    else
+        res.render('500');
+    // res.render('error', { message: err.message, status: err.status, stack: err.stack});
 });
+
+function debug(err) {
+    var stream = fs.createWriteStream(__dirname + '/logs/debug.log', {flags: 'a'});
+    stream.once('open', function(fd) {
+        stream.write(new Date() + ' : ');
+        stream.write(err.message + '\n');
+        stream.write('Status: ' + err.status + '\n');
+        stream.write(err.stack + '\n');
+        stream.write('-----\n');
+        stream.end();
+    });
+}
 
 module.exports = app;
