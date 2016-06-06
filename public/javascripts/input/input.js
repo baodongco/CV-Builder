@@ -1,5 +1,6 @@
 $(function () {
-
+    CKEDITOR.replaceAll();
+    CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '220') });
     //JS Skill
     var txtSkillName = $('#txtSkillName');
     var level = 0;
@@ -203,18 +204,36 @@ $(function () {
         $('#modalRemoveSkill').modal('show');
     });
     $('#btnConfirmRemove').on('click', function () {
-        
-        var id = rowRemove.attr('id');
-        $('#skillName-' + id).remove();
-        $('#skillExpertise-' + id).remove();
-        $('#skillExperience-' + id).remove();
-        $('#skillLastUsed-' + id).remove();
-        rowRemove.remove();
-        if (rowCount > 0)
-            rowCount--;
-        $('#skillHiddenIndex').val('-1');
+        var check = $('#modalRemoveSkill').data('id');
+        if (check.startsWith('btnDelEducation')) {
+            var id = check.slice(-1);
+            $('#field-education-' + id).remove();
+        }
+        else if (check.startsWith('btnDelExp')) {
+            var id = check.slice(-1);
+            $('#field-experience-' + id).remove();
+        }
+        else if (check.startsWith('btnDelPro')) {
+            var id = check.slice(-1);
+            $('#field-project-' + id).remove();
+        }
+        else if (check.startsWith('btnDelCerti')) {
+            var id = check.slice(-1);
+            $('#field-certification-' + id).remove();
+        }
+        else {
+            var id = rowRemove.attr('id');
+            $('#skillName-' + id).remove();
+            $('#skillExpertise-' + id).remove();
+            $('#skillExperience-' + id).remove();
+            $('#skillLastUsed-' + id).remove();
+            rowRemove.remove();
+            if (rowCount > 0)
+                rowCount--;
+            $('#skillHiddenIndex').val('-1');
+        }
         $('#modalRemoveSkill').modal('hide');
-    })
+    });
     $('#tblSkills').on('click', '.btnSkillEdit', function () {
         var row = $(this).parents('tr');
         var id = row.attr('id');
@@ -262,7 +281,7 @@ $(function () {
             showButtonPanel: true,
             yearRange: '1999:2016',
             maxDate: new Date(),
-            dateFormat: 'yy/mm',
+            dateFormat: 'yy-mm-01',
             onClose: function (dateText, inst) {
                 var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -284,7 +303,7 @@ $(function () {
             showButtonPanel: true,
             yearRange: '1999:2016',
             maxDate: new Date(),
-            dateFormat: 'yy/mm',
+            dateFormat: 'yy-mm-01',
             onClose: function (dateText, inst) {
                 var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -338,7 +357,7 @@ $(function () {
             yearRange: '1999:2016',
             showButtonPane: true,
             maxDate: new Date(),
-            dateFormat: 'yy/mm',
+            dateFormat: 'yy-mm-01',
             onClose: function (dateText, inst) {
                 var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -346,9 +365,7 @@ $(function () {
             },
         });
     }
-    CKEDITOR.replaceAll();
 
-    CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '220') });
 
 
     //Clone experience
@@ -379,7 +396,7 @@ $(function () {
                     this.id = id.slice(0, -1) + cloneIndexExp;
                 if (id.startsWith('btnDel')) {
                     this.id = id.slice(0, -1) + cloneIndexExp;
-                    $(this).on('click', removeExp);
+                    $(this).on('click', remove);
                 }
             })
 
@@ -403,7 +420,7 @@ $(function () {
                 showButtonPanel: true,
                 yearRange: '1999:2016',
                 maxDate: new Date(),
-                dateFormat: 'yy/mm',
+                dateFormat: 'yy-mm-01',
                 onClose: function (dateText, inst) {
                     var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                     var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -432,11 +449,7 @@ $(function () {
         cloneIndexExp++;
     }
     //delete expr
-    var removeExp = function () {
-        console.log('aaa');
-        $(this).parents('.clonedExpInput').remove();
-    }
-    $(".removeExperience").on("click", removeExp);
+    $(".removeExperience").on("click", remove);
     $("#btnAddMoreExperience").on("click", cloneExp);
     //End clone experience
 
@@ -466,7 +479,7 @@ $(function () {
                     this.id = id.slice(0, -1) + cloneIndexPro;
                 if (id.startsWith('btnDel')) {
                     this.id = id.slice(0, -1) + cloneIndexPro;
-                    $(this).on('click', removePro);
+                    $(this).on('click', remove);
                 }
             })
         $("#field-project-" + cloneIndexPro).find("*").each(function () {
@@ -487,7 +500,7 @@ $(function () {
                 showButtonPanel: true,
                 yearRange: '1999:2016',
                 maxDate: new Date(),
-                dateFormat: 'yy/mm',
+                dateFormat: 'yy-mm-01',
                 onClose: function (dateText, inst) {
                     var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                     var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -513,12 +526,9 @@ $(function () {
         cloneIndexPro++;
     }
     $('#field-project-' + cloneIndexPro).remove('legend');
-    function removePro() {
-        $(this).parent().remove();
-    }
     $("#btnAddMoreProject").on("click", clonePro);
 
-    $(".removeProject").on("click", removePro);
+    $(".removeProject").on("click", remove);
     //End clone project
 
 
@@ -550,7 +560,7 @@ $(function () {
                     this.id = id.slice(0, -1) + cloneIndexCert;
                 if (id.startsWith('btnDelCerti')) {
                     this.id = id.slice(0, -1) + cloneIndexCert;
-                    $(this).on('click', removeCert);
+                    $(this).on('click', remove);
                 }
             })
 
@@ -573,7 +583,7 @@ $(function () {
                 showButtonPanel: true,
                 yearRange: '1999:2016',
                 maxDate: new Date(),
-                dateFormat: 'yy/mm',
+                dateFormat: 'yy-mm-01',
                 onClose: function (dateText, inst) {
                     var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                     var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -585,14 +595,11 @@ $(function () {
 
 
     }
-    function removeCert() {
-        $(this).parent().remove();
-    }
 
 
     $("#btnAddMoreCetification").on("click", cloneCert);
 
-    $(".removeCertification").on("click", removeCert);
+    $(".removeCertification").on("click", remove);
     //End clone experience
 
     //clone Education
@@ -623,8 +630,8 @@ $(function () {
                     this.id = id.slice(0, -1) + cloneIndexEdu;
                 if (id.startsWith('btnDelEducation')) {
                     this.id = id.slice(0, -1) + cloneIndexEdu;
-                    $(this).data('id','edu'+cloneIndexEdu);
-                    $(this).on('click', removeEdu);
+                    $(this).data('id', 'edu' + cloneIndexEdu);
+                    $(this).on('click', remove);
                 }
             })
         $("#field-education-" + cloneIndexEdu).append('<hr>');
@@ -647,7 +654,7 @@ $(function () {
                 showButtonPanel: true,
                 yearRange: '1999:2016',
                 maxDate: new Date(),
-                dateFormat: 'yy/mm',
+                dateFormat: 'yy-mm-01',
                 onClose: function (dateText, inst) {
                     var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                     var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -674,16 +681,13 @@ $(function () {
 
 
     }
-    function removeEdu() {
-        var id =$(this).data('id');
-        console.log(id);
-        $('#modalRemoveSkill').data("id",id).modal('show');
-        
-        
+    function remove() {
+        var id = this.id;
+        $('#modalRemoveSkill').data("id", id).modal('show');
     }
-    $("#btnAddMoreEducation-0").on("click", cloneEdu);
+    $("#btnAddMoreEducation").on("click", cloneEdu);
 
-    $(".removeEducation").on("click", removeEdu);
+    $(".removeEducation").on("click", remove);
     //End clone Education
 
     for (var i = 0; i < cloneIndexCert; i++) {
@@ -694,7 +698,7 @@ $(function () {
             yearRange: '1999:2016',
             showButtonPane: true,
             maxDate: new Date(),
-            dateFormat: 'yy/mm',
+            dateFormat: 'yy-mm-01',
             onClose: function (dateText, inst) {
                 var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
