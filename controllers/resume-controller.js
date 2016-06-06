@@ -228,7 +228,7 @@ function resumeController() {
                     throw err.stack;
                 } else {
                     console.log('reuses', rows);
-                    res.render('resume/all', { title: "My resumes", resumes: rows, req: req });
+                    res.render('resume/index', { title: "My resumes", resumes: rows, req: req });
                 }
             }
         )
