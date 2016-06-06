@@ -4,7 +4,7 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 	this.insertResume = function (body, callback) {
 		var resume = new resumeModel(body);
 		resume.templateId = 1;
-		resume.userId = body.userId
+		resume.userId = body.userId;		
 		resRepo.create(resume, function (result) {
 			var resId = result.insertId;			
 
@@ -64,7 +64,7 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 	            });				
 			}
 
-			callback(resId);
+			callback(result);
 		});
 	};
 
