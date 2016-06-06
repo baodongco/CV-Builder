@@ -8,10 +8,8 @@ var deploySettings = config.get('cv-builder.deploy');
 var host = ip.address();
 
 if(host == '192.168.56.1'){
-	host = 'localhost:' + deploySettings['port'];
+	host = 'http://localhost:' + deploySettings['port'];
 }
-
-var host = 'http://localhost'
 
 app.set('views', __dirname + '/../views/mail-templates');
 app.set('view engine', 'ejs');
