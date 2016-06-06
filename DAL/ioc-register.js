@@ -10,8 +10,8 @@ function ioc() {
         di.autowired(false).register('userrepo').as(UserRepo);
         di.autowired(false).register('userservice').as(UserService).withConstructor().param().ref('userrepo');
 
-        di.autowired(false).register('cvrepo').as(CVRepo);
-        di.autowired(false).register('cvservice').as(CVService).withConstructor().param().ref('cvrepo');
+        // di.autowired(false).register('cvrepo').as(CVRepo);
+        // di.autowired(false).register('cvservice').as(CVService).withConstructor().param().ref('cvrepo');
     }
 }
 
