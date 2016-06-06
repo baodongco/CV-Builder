@@ -28,5 +28,10 @@ module.exports = function () {
     this.getWithCondition = function (column, value, callback) {
         connection.pool.query('SELECT * FROM user WHERE ' + column + ' = ?', value, 
             function (err, users) { callback(users); });
+    };
+
+    this.getCVsByUserId = function (id, callback) {
+        connection.pool.query('SELECT * FROM resume WHERE userId = ?', id,
+            function (err, resumes) { callback(resumes); });
     }
 };

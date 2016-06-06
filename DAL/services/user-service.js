@@ -52,4 +52,10 @@ module.exports = function (repo) {
             callback();
         });
     };
+    
+    this.getAllCVOfAUser = function (id, callback) {
+        repo.getCVsByUserId(id, function (resumes) {
+            callback(resumes);
+        })
+    }
 };
