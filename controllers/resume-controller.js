@@ -441,7 +441,7 @@ function resumeController() {
      */
     var responsePdf = function (req, res, resume) {
         var ejs = require('ejs');
-        ejs.renderFile('./views/cv-template/skeleton.ejs', { resume: resume }, null, function (err, html) {
+        ejs.renderFile('./views/cv-template/skeleton-'+resume.templateId+'.ejs', { resume: resume }, null, function (err, html) {
             if (err) {
                 throw err.stack;
             } else if (resume) {
@@ -472,7 +472,7 @@ function resumeController() {
      */
     var responseHtml = function (res, resume) {
         if (resume) {
-            res.render('cv-template/skeleton', { resume: resume });
+            res.render('cv-template/skeleton-'+resume.templateId, { resume: resume });
         } else {
             res.headers(404);
             res.send('File not found');
