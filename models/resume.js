@@ -1,5 +1,6 @@
 function resumeModel(body) {
 	this.id = body.id,
+	this.title = body.title,
 	this.userId = body.userId,
 	this.firstName = body.firstName,
 	this.lastName = body.lastName,

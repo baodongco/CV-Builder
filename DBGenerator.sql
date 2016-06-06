@@ -20,7 +20,8 @@ CREATE TABLE template (
 );
 
 CREATE TABLE resume (
-  id int PRIMARY KEY AUTO_INCREMENT,  
+  id int PRIMARY KEY AUTO_INCREMENT,
+  title VARCHAR(20) NOT NULL,
   firstName VARCHAR(100) NOT NULL,
   lastName VARCHAR(100),
   email VARCHAR(100) NOT NULL,
@@ -42,7 +43,7 @@ CREATE TABLE skill (
   name VARCHAR(100),
   expertise VARCHAR(100),
   experience VARCHAR(100),
-  lastUsed VARCHAR(4),
+  lastUsed DATE,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
 );
@@ -51,8 +52,8 @@ CREATE TABLE project (
   id int PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(200),
   url VARCHAR(300),
-  startTime VARCHAR(10),
-  endTime VARCHAR(10),
+  startTime DATE,
+  endTime DATE,
   detail TEXT,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
@@ -62,7 +63,7 @@ CREATE TABLE certification (
   id int PRIMARY KEY AUTO_INCREMENT,
   title VARCHAR(100),
   authority VARCHAR(100),
-  date VARCHAR(10),
+  date DATE,
   detail TEXT,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
@@ -72,8 +73,8 @@ CREATE TABLE experience (
   id int PRIMARY KEY AUTO_INCREMENT,
   company VARCHAR(50),
   designation VARCHAR(100),
-  startTime VARCHAR(10),
-  endTime VARCHAR(10),
+  startTime DATE,
+  endTime DATE,
   detail TEXT,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
@@ -83,8 +84,8 @@ CREATE TABLE education (
   id int PRIMARY KEY AUTO_INCREMENT,
   institute VARCHAR(100),
   degree VARCHAR(100),
-  startTime VARCHAR(10),
-  endTime VARCHAR(10),
+  startTime DATE,
+  endTime DATE,
   detail TEXT,
   resId int,
   FOREIGN KEY (resId) REFERENCES resume(id)
@@ -271,15 +272,15 @@ BEGIN
    
   SELECT * FROM resume WHERE id = _resID;
 
-  SELECT * FROM certification where resId = _resID;
+  SELECT * FROM certification WHERE resId = _resID ORDER BY date DESC;
 
-  SELECT * FROM education WHERE resId = _resID;
+  SELECT * FROM education WHERE resId = _resID ORDER BY endTime DESC;
 
-  SELECT * FROM experience WHERE resId = _resID;
+  SELECT * FROM experience WHERE resId = _resID ORDER BY endTime DESC;
 
-  SELECT * FROM project WHERE resId = _resID;
+  SELECT * FROM project WHERE resId = _resID ORDER BY endTime DESC;
   
-  SELECT * FROM skill WHERE resId = _resID;
+  SELECT * FROM skill WHERE resId = _resID ORDER BY lastUsed DESC;
 
 END; $$
 DELIMITER ;

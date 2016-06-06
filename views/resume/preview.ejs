@@ -24,7 +24,8 @@
 			<div class="panel-heading">				
 			    <div class="panel-title">Resume</div>
 		    	<div class="btn-group">
-			    	<a href="/resumes/<%= resumeId %>?type=pdf" class="btn btn-info"><span title="download" data-toggle="tooltip" class="glyphicon glyphicon-download-alt"> </span></a>
+		    		<a href="/resumes/edit/<%= resumeId %>" class="btn btn-info"><span title="edit" data-toggle="tooltip" class="glyphicon glyphicon-pencil"> </span></a>
+			    	<a href="/resumes/<%= resumeId %>?type=pdf" target="_blank" class="btn btn-info"><span title="download" data-toggle="tooltip" class="glyphicon glyphicon-download-alt"> </span></a>
 			    	<a id="resume-print" href="javascript:void()" class="btn btn-info"> <span title="print" data-toggle="tooltip" class="glyphicon glyphicon-print"> </span></a>
 				</div>
 			</div>
@@ -36,8 +37,4 @@
 		</div>
 	</div>
 </div>
-<<<<<<< HEAD
-<script type="text/javascript" src="/public/javascripts/resume/preview.js"></script>
-=======
 <script type="text/javascript" src="/public/javascripts/resumes/preview.js"></script>
->>>>>>> 8143befe3557bcd6ad9001db3fe23b2e1e1e0911

@@ -111,7 +111,6 @@ function resumeController() {
         }
     }
 
-
     this.insertResume = function (req, res) {
         var resume = new Resume(req.body);
         resume.userId = req.user.id;
@@ -229,7 +228,7 @@ function resumeController() {
                     throw err.stack;
                 } else {
                     console.log('reuses', rows);
-                    res.render('resume/all', { title: "My resumes", resumes: rows, req: req });
+                    res.render('resume/index', { title: "My resumes", resumes: rows, req: req });
                 }
             }
         )
@@ -261,6 +260,26 @@ function resumeController() {
             });
         }
     };
+
+    this.getPublicResume = function (req, res) {
+        connection.pool.query("SELECT id FROM resume WHERE id = ? AND publicLink = ?", [req.params.id, req.params.token], function (err, row) {
+            if (err) {
+                throw err.stack;
+            } else {
+                if (row.length) {
+                    getResumeDataById(req.params.id, function (resume) {
+                        if (resume) {
+                            responseHtml(res, resume);
+                        } else {
+                            res.send('File not found');
+                        }
+                    });
+                } else {
+                    return res.status(404).send('File not found');
+                }
+            }
+        })
+    }
 
     /**
      * render view resume page
@@ -302,10 +321,18 @@ function resumeController() {
      * @return status code
      */
     this.postEditFieldResume = function (req, res) {
-        console.log(req.body);
         var tables = ['resume', 'education', 'skill', 'project', 'experience', 'certification'];
-        if (tables.indexOf(req.body.table) != -1) {
-            if (req.body.table == 'resume' || req.body.field == 'publicLink') {
+        if ( tables.indexOf(req.body.table) != -1 ) {
+            var value = req.body.value;
+            if (req.body.table == 'resume') {
+                if(req.body.field == 'publicLink'){
+                    if (req.body.value == 'true') {
+                        var Guid = require('guid');
+                        value = Guid.create().value;
+                    } else {
+                        value = null;
+                    }
+                } 
                 var query = sql.checkResumeEditable;
                 var params = [req.body.id, req.user.id];
             } else {
@@ -319,14 +346,16 @@ function resumeController() {
                 } else if (row.length) {
                     console.log('row', row);
                     connection.pool.query("UPDATE ?? SET ?? = ? WHERE id = ?",
-                        [req.body.table, req.body.field, req.body.value, req.body.id],
+                        [req.body.table, req.body.field, value, req.body.id],
                         function (err, result) {
                             if (err) {
                                 res.status(400).send("Item not updated");
                                 throw err;
                             } else {
-                                console.log('update', result);
-                                res.status(200).send("Item updated");
+                                if (req.body.field == 'publicLink' && value!= null) {
+                                    value = req.headers.origin + '/resumes/public/'+ req.body.id + '/' + value ;
+                                }
+                                res.status(200).send({value: value, message:"Item updated"});
                             }
                         }
                     );
@@ -418,7 +447,7 @@ function resumeController() {
             } else if (resume) {
                 var pdf = require('html-pdf');
                 var options = require('../config/cv-pdf.js');
-                options.base = "http://" + req.headers.host;
+                options.base = req.headers.origin;
                 pdf.create(html, options).toStream(function (err, data) {
                     if (err) {
                         throw err.stack;

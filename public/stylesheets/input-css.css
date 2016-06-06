@@ -1,3 +1,19 @@
+.btnSkillEdit, .btnDeleteSkill {
+    background-color: #1d92af;
+    border-color: #1d92af;
+    border: 1px solid;
+    border-radius: 3px;    
+}
+
+.btnSkillEdit:hover, .btnDeleteSkill:hover {
+    color: #fff;
+    background-color: #2bb9dd;
+    border-color: #2bb9dd;
+    border: 1px solid;
+    border-radius: 3px;
+
+}
+
 .navbar .navbar-brand{
     color:white;
 }
@@ -299,7 +315,7 @@ ul.skill-progress li{
 }
 .btn-primary{
     vertical-align: middle;
-    margin-left: 10px;
+    /*margin-left: 10px;*/
 }
 
 #tblSkills{
@@ -307,9 +323,9 @@ ul.skill-progress li{
 }
 
 .btnSave{
-    margin-left: 10px;
+    /*margin-right: 10px;*/
 }
 
 .btnContinue{
-    margin-right: 10px;
+    /*margin-right: 10px;*/
 }

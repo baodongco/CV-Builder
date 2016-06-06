@@ -1,4 +1,5 @@
 var LocalStrategy   = require('passport-local').Strategy;
+var config = require('config');
 
 var auth = require('../controllers/auth-controller');
 
