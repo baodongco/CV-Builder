@@ -3,7 +3,7 @@ var di = require('di4js');
 function adminController() {
     this.getIndex = function (req, res) {
         di.resolve('userservice').getAllUsers(function (users) {
-            res.render('admin/index', {title: 'Admin page', loginId: req.user.id, users: users, message: req.flash('adminMessage')}); 
+            res.render('admin/index', {title: 'Admin page', loginId: req.user.id, loginUsername: req.user.username, users: users, message: req.flash('adminMessage')}); 
         });
     };
     

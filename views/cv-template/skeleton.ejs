@@ -26,7 +26,7 @@
     <div class="wrapper">
         <div class="sidebar-wrapper">
             <div class="profile-container">
-                <% if (resume.photoUrl) { %><img class="profile" src="<%= resume.photoUrl || "/public/images/no-photo.png" %>" alt="Profile picture" /><% } %>
+                <img class="profile" src="<%= resume.photoUrl || "/public/images/no-photo.png" %>" alt="Profile picture" />
                 <h1 class="name"><%= resume.firstName || ""%> <%= resume.lastName || "" %></h1>
                 <h3 class="tagline"><%- resume.sumHeadline || ""%></h3>
             </div><!--//profile-container-->
