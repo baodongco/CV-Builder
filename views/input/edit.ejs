@@ -84,6 +84,7 @@
                         <label for="experience[0][detail]"><span>Details </span>
                     <div id="detailsExperience-<%=i%>">
                         <textarea class="form-control editor" id="experienceDetail-<%=i%>" name="experience[<%=resume.experiences[i].id%>][detail]"><%=resume.experiences[i].detail%></textarea>
+                    <button class="btn btn-primary pull-right removeExperience" id="btnDelExperience-0" type="button">Remove</button>
                     </div>
                 </label>
                         <hr>
@@ -91,7 +92,7 @@
                     <%}%>
                         <div id="groupBtnExperience">
                             <div>
-                                <button class="btn btn-primary" type="button" id="btnAddMoreExperience">Add another</button>
+                                <button class="btn btn-primary" type="button" id="btnAddMoreExperience-0">Add another</button>
                             </div>
                             <button class="btn pull-left">Save</button>
                             <a href="#project" name="project" data-toggle="tab" class="btn pull-right">Continue</a>
@@ -121,6 +122,7 @@
                         <textarea class="form-control editor" id="projectDetail-<%=i%>" name="project[<%=resume.projects[i].id%>][detail]"> <%=resume.projects[i].detail%></textarea>
                     </div>
                 </label>
+                <button class="btn btn-primary pull-right removeProject" type="button" id="btnDelProject-0">Remove</button>
                     </fieldset>
                     <%}%>
                         <div id="groupBtnProject">
@@ -288,6 +290,7 @@
                         <textarea class="form-control editor" id="certificationDetail-<%=i%>"name="certification[<%=resume.certifications[i].id%>][detail]"><%=resume.certifications[i].detail%></textarea>
                     </div>
                 </label>
+                <button class="btn btn-primary pull-right removeCertification" type="button" id="btnDelCerti-0">Remove</button>
                     </fieldset>
                     <%}%>
                         <div id="groupBtnCertification">
@@ -322,6 +325,7 @@
                         <textarea class="editor" name="education[<%=resume.educations[i].id%>][detail]" id="educationDetails-<%=i%>" placeholder="Add a few details about this educational qualification..."><%=resume.educations[i].detail %></textarea>
                     </div>
                 </label>
+                <button class="btn btn-primary pull-right removeEducation" data-id="edu<%=i%>" type="button" id="btnDelEducation-0">Remove</button>
                     </fieldset>
                     <%}%>
                         <div id="groupBtnEducation">
