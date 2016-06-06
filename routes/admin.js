@@ -8,7 +8,7 @@ module.exports = {
             adminController.getIndex(req, res);
         });
 
-        app.get('/resumes/:name/:id', checkAdmin, function(req, res) {
+        app.get('/cv/:name/:id', checkAdmin, function(req, res) {
             adminController.listAllCVOfAUser(req, res);
         });
         
