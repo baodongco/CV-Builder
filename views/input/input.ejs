@@ -28,9 +28,8 @@
                 <div class="tab-pane active form-style-5 panel panel-default col-sm-12" id="title">
                     <div class="panel-body">
                         <fieldset>
-                            <label for="title"><span><sup>*</sup>Title: </span>
+                            <legend><span class="number">1</span>Title </legend>
                             <input type="text" class="form-control" name="title">
-                        </label>
                             <a href="#summary" name="summary" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
                         </fieldset>
                     </div>
@@ -38,7 +37,7 @@
                 <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="contact">
                     <div class="panel-body">
                         <fieldset>
-                            <legend><span class="number">1</span> Contact Information</legend>
+                            <legend><span class="number">2</span> Contact Information</legend>
                             <label for="firstName"><span><sup>*</sup>First Name: </span>
                             <input type="text" class="form-control" name="firstName">
                         </label>
@@ -66,7 +65,7 @@
                 <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="summary">
                     <div class="panel-body">
                         <fieldset>
-                            <legend><span class="number">2</span>Summary</legend>
+                            <legend><span class="number">3</span>Summary</legend>
                             <label for="sumHeadline"><span>Header </span>
                             <input class="form-control" name="sumHeadline" type="text">
                         </label>
@@ -81,7 +80,7 @@
                 <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="experience">
                     <div class="panel-body">
                         <fieldset id="field-experience-0" class="clonedExpInput">
-                            <legend><span class="number">3</span>Experience</legend>
+                            <legend><span class="number">4</span>Experience</legend>
                             <label for="experience[0][company]"><span>Company </span>
                                 <input class="form-control" type="text" id="experienceCompany-0" name="experience[0][company]" placeholder="e.g. Harvey Nash Vietnam">
                             </label>
@@ -114,7 +113,7 @@
                 <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="project">
                     <div class="panel-body">
                         <fieldset id="field-project-0">
-                            <legend><span class="number">4</span>Project</legend>
+                            <legend><span class="number">5</span>Project</legend>
                             <label for="project[0][title]"><span>Project title </span>
                                 <input class="form-control" name="project[0][title]" id="projectTitle-0" type="text">
                             </label>
@@ -148,7 +147,7 @@
                     <div class="panel-body">
                         <fieldset id="field-skill">
                             <input type="hidden" id="skillHiddenIndex" value="-1">
-                            <legend><span class="number">5</span>Skill</legend>
+                            <legend><span class="number">6</span>Skill</legend>
                             <label for="txtSkillName"><span>Skill Name </span>
                                 <input type="text" class="form-control" id="txtSkillName">
                             </label>
@@ -235,7 +234,7 @@
                 <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="certification">
                     <div class="panel-body">
                         <fieldset id="field-certification-0">
-                            <legend><span class="number">6</span>Certification</legend>
+                            <legend><span class="number">7</span>Certification</legend>
                             <label for="certification[0][title]"><span>Certification</span>
                                 <input type="text" name="certification[0][title]" id="certificationTitle-0" class="form-control" placeholder="Name of certification">
                             </label>
@@ -265,7 +264,7 @@
                 <div class="tab-pane form-style-5 panel panel-default col-sm-12" id="education">
                     <div class="panel-body">
                         <fieldset id="field-education-0">
-                            <legend><span class="number">7</span>Education</legend>
+                            <legend><span class="number">8</span>Education</legend>
                             <label for="txtEduInstitute"><span>Institute </span>
                                 <input type="text" name="education[0][institute]"  id="txtEduInstitute-0" class="form-control" placeholder="e.g. Harvard University">
                             </label>
@@ -281,10 +280,10 @@
                         </fieldset>
                         <div id="groupBtnEducation">
                             <div>
-                                <button class="btn btn-success" type="button" id="btnAddMoreEducation-0">Add another</button>
+                                <button class="btn btn-success" type="button" id="btnAddMoreEducation">Add another</button>
                             </div>
                             <button class="btn btn-primary pull-right btnSave">Save</button>
-                            <a href="#certification" name="certification" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
+                            <a href="#photo" name="photo" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
                         </div>
                     </div>
                 </div>
@@ -293,9 +292,11 @@
                     <div class="panel-body">
                         <form style="width: 250px">
                             <fieldset id="image-holder">
-                                <legend>Add Photo</legend>
+                                <legend><span class="number">9</span>Add Photo</legend>
                                 <div id="fileuploader">Upload</div>
                                 <input type="hidden" name="photoUrl" id="myImage">
+                                <button class="btn btn-primary pull-right btnSave">Save</button>
+
                             </fieldset>
                         </form>
                     </div>

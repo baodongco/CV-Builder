@@ -685,7 +685,7 @@ $(function () {
         var id = this.id;
         $('#modalRemoveSkill').data("id", id).modal('show');
     }
-    $("#btnAddMoreEducation-0").on("click", cloneEdu);
+    $("#btnAddMoreEducation").on("click", cloneEdu);
 
     $(".removeEducation").on("click", remove);
     //End clone Education
