@@ -53,7 +53,6 @@ function resumeController() {
 
     this.createResume = function (req, res) {
         res.render('input/input', { title: 'Input', req: req, message: req.flash('Input') });
-<<<<<<< HEAD
     }
 
 
@@ -323,7 +322,6 @@ function resumeController() {
      */
     this.postEditFieldResume = function (req, res) {
         var tables = ['resume', 'education', 'skill', 'project', 'experience', 'certification'];
-<<<<<<< HEAD
         if ( tables.indexOf(req.body.table) != -1 ) {
             var value = req.body.value;
             if (req.body.table == 'resume') {
@@ -335,10 +333,6 @@ function resumeController() {
                         value = null;
                     }
                 } 
-=======
-        if (tables.indexOf(req.body.table) != -1) {
-            if (req.body.table == 'resume' || req.body.field == 'publicLink') {
->>>>>>> cacbfacdc3cbc989f3891cbf827b07cc3fd9054d
                 var query = sql.checkResumeEditable;
                 var params = [req.body.id, req.user.id];
             } else {
