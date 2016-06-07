@@ -434,8 +434,9 @@ function resumeController() {
                         throw err.stack;
                         res.status(500).render('500');
                     } else {
-                        console.log('res_rows', res_rows);
-                        if (!res_rows.length || req.user.id != res_rows[0].userId) {
+                        if (!res_rows.length 
+                            || req.user.id != res_rows[0].userId 
+                            && req.user.role == 'user') {
                             res.status(404).render('404');
                         } else if (req.user.id == res_rows[0].userId) {
                             res.render('resume/preview', {

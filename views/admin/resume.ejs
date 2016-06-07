@@ -9,7 +9,7 @@
     </tr>
     <% resumes.forEach(function (resume) { %>
         <tr>
-            <td><a href="<%= resume.publicLink %>" target="_blank"><%= resume.title %></a></td>
+            <td><a href="/resumes/preview/<%= resume.id %>" target="_blank"><%= resume.title %></a></td>
             <td><%= resume.firstName %></td>
             <td><%= resume.lastName %></td>
         </tr>

@@ -17,7 +17,7 @@
 </head>
 <body>
 <header>
-    <% if(message.length > 0) { %>
+    <% if(message != undefined && message.length > 0) { %>
         <div class="home-alert alert alert-info alert-dismissible" role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <%= message %>
