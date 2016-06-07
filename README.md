@@ -1,16 +1,23 @@
 # CV Builder
 
 ## Getting started
--   Remember to edit the config/default.json to make your connection to your MySQL is successful
+-   Pre-installed: NodeJS 4.4.4, MySQL (latest version) and any text editor you prefer
+
+-   Edit the config/default.json to make your connection to your MySQL is successful
 
 -   Open MySQL and type SQL commands from DBGenerator.sql to create database for this project:
+
+-   Direct to project's folder and install necessary packages for the project
+```
+$ npm install
+```
 
 -   Open Terminal/Command Prompt/Powershell, direct to project's folder and type this to run:
 ```
 $ npm start
 ```
 
--   To login as admin type username : admin, password : Admin1234
+-   To login as super admin, type username : admin, password : Admin1234
  
 ## Run unit testing
 -   Install mocha
@@ -18,7 +25,7 @@ $ npm start
 $ npm install -g mocha
 ```
 
--   Run test on specific test file
+-   Run tests
 ```
-$ mocha tests/<filename.js>
+$ npm test
 ```
