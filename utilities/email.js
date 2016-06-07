@@ -5,12 +5,10 @@ var config = require('config');
 var ip = require('ip');
 var deploySettings = config.get('cv-builder.deploy');
 var port = deploySettings['port'];
+var address = ip.address();
 
-var host = ip.address() + ':' + port;
-
-if(host == '192.168.56.1'){
-	host = 'http://localhost:' +  port;
-}
+var host = 'http://localhost:' +  port;
+//var host =  'http://'+ address + ':' + port;
 
 app.set('views', __dirname + '/../views/mail-templates');
 app.set('view engine', 'ejs');
