@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
+<!--[if IE 8]>
+<html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]>
+<html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en"> <!--<![endif]-->
 <head>
     <title>Responsive Resume/CV Template for Developers</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic'
+          rel='stylesheet' type='text/css'>
     <!-- Global CSS -->
     <link rel="stylesheet" href="/public/stylesheets/template-css/nonresponsive-bootstrap.css">
     <!-- Plugins CSS -->
@@ -26,17 +30,28 @@
 <div class="wrapper">
     <div class="sidebar-wrapper">
         <div class="profile-container">
-            <img class="profile" src="/public/photo/2<%= resume.photoUrl %>" alt="Profile picture" />
-            <h1 class="name"><%= resume.firstName || ""%> <%= resume.lastName || "" %></h1>
-            <h3 class="tagline"><%- resume.sumHeadline || ""%></h3>
+            <%if(resume.photoUrl){%><img class="profile" src="/public/photo/2<%= resume.photoUrl %>" alt="Profile picture"/><%}%>
+            <h1 class="name"><%= resume.firstName || "" %> <%= resume.lastName || "" %></h1>
+            <h3 class="tagline"><%- resume.sumHeadline || "" %></h3>
         </div><!--//profile-container-->
 
         <div class="contact-container container-block">
             <ul class="list-unstyled contact-list">
-                <% if (resume.email) { %><li class="email"><i class="fa fa-envelope"></i><a href="mailto: <%= resume.email %>"><%= resume.email %></a></li> <% } %>
-                <% if (resume.phone) { %><li class="phone"><i class="fa fa-phone"></i><a href="tel:<%= resume.phone %>"><%= resume.phone %></a></li> <% } %>
-                <% if (resume.website) { %><li class="website"><i class="fa fa-globe"></i><a href="<%= resume.website %>" target="_blank"><%= resume.website %></a></li><% } %>
-                <% if (resume.address) { %><li class="address"><i class="fa fa-map-marker"></i><%= resume.address %></li> <% } %>
+                <% if (resume.email) { %>
+                <li class="email"><i class="fa fa-envelope"></i><a
+                            href="mailto: <%= resume.email %>"><%= resume.email %></a></li>
+                <% } %>
+                <% if (resume.phone) { %>
+                <li class="phone"><i class="fa fa-phone"></i><a href="tel:<%= resume.phone %>"><%= resume.phone %></a>
+                </li>
+                <% } %>
+                <% if (resume.website) { %>
+                <li class="website"><i class="fa fa-globe"></i><a href="<%= resume.website %>"
+                                                                  target="_blank"><%= resume.website %></a></li>
+                <% } %>
+                <% if (resume.address) { %>
+                <li class="address"><i class="fa fa-map-marker"></i><%= resume.address %></li>
+                <% } %>
             </ul>
         </div><!--//contact-container-->
         <% if (resume.educations.length) { %>
@@ -46,8 +61,16 @@
             <div class="item">
                 <h4 class="degree"><%= resume.educations[i].degree %></h4>
                 <h5 class="meta"><%= resume.educations[i].institute %></h5>
-                <div class="time"><% if (resume.educations[i].startTime != null) {%><%= resume.educations[i].startTime.toLocaleDateString() %> <% } if (resume.educations[i].endTime != null) {%>- <%= resume.educations[i].endTime.toLocaleDateString() %><%}%></div>
-                <% if (resume.educations[i].detail) {%><div class="edu-detail"><%- resume.educations[i].detail %></div><%}%>
+                <div class="time">
+                    <% if (resume.educations[i].startTime != null) { %>
+                    <%= resume.educations[i].startTime.toLocaleDateString() %>
+                    <% } if (resume.educations[i].endTime != null) { %>
+                    - <%= resume.educations[i].endTime.toLocaleDateString() %>
+                    <% } %>
+                </div>
+                <% if (resume.educations[i].detail) { %>
+                <div class="edu-detail"><%- resume.educations[i].detail %></div>
+                <% } %>
             </div><!--//item-->
             <% } %>
         </div><!--//education-container-->
@@ -67,12 +90,14 @@
         <% if (resume.certifications.length) { %>
         <section class="section certification-section sortable">
             <h2 class="section-title"><i class="fa fa-graduation-cap"></i>Certifications</h2>
-            <% for (var i=0; i < resume.certifications.length; i++) { %>
+            <% for (var i = 0; i < resume.certifications.length; i++) { %>
             <div class="item">
                 <div class="meta">
                     <div class="upper-row">
-                        <%if (resume.certifications[i].title) {%><h3 class="job-title"><%= resume.certifications[i].title %></h3><%}%>
-                        <%if (resume.certifications[i].date ) {%>
+                        <% if (resume.certifications[i].title) { %>
+                        <h3 class="job-title"><%= resume.certifications[i].title %></h3>
+                        <% } %>
+                        <% if (resume.certifications[i].date ) { %>
                         <div class="time"><%= resume.certifications[i].date.toLocaleDateString() %></div>
                         <% } %>
                     </div><!--//upper-row-->
@@ -89,13 +114,16 @@
         <% if (resume.experiences.length) { %>
         <section class="section experiences-section sortable">
             <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiences</h2>
-            <% for (var i=0; i < resume.experiences.length; i++) { %>
+            <% for (var i = 0; i < resume.experiences.length; i++) { %>
             <div class="item">
                 <div class="meta">
                     <div class="upper-row">
-                        <%if (resume.experiences[i].designation) {%><h3 class="job-title"><%= resume.experiences[i].designation %></h3><%}%>
-                        <%if (resume.experiences[i].startTime || resume.experiences[i].endTime ) {%>
-                        <div class="time"><%= resume.experiences[i].startTime.toLocaleDateString() || '' %> - <%= resume.experiences[i].endTime.toLocaleDateString() || '' %></div>
+                        <% if (resume.experiences[i].designation) { %>
+                        <h3 class="job-title"><%= resume.experiences[i].designation %></h3>
+                        <% } %>
+                        <% if (resume.experiences[i].startTime || resume.experiences[i].endTime ) { %>
+                        <div class="time"><%= resume.experiences[i].startTime.toLocaleDateString() || '' %>
+                            - <%= resume.experiences[i].endTime.toLocaleDateString() || '' %></div>
                         <% } %>
                     </div><!--//upper-row-->
                     <div class="company"><%= resume.experiences[i].company %></div>
@@ -110,15 +138,23 @@
         <% if (resume.projects.length) { %>
         <section class="section projects-section sortable">
             <h2 class="section-title"><i class="fa fa-archive"></i>Projects</h2>
-            <% for(var i=0; i<resume.projects.length; i++) {%>
+            <% for(var i = 0; i < resume.projects.length; i++) { %>
             <div class="item">
                     <span class="project-title">
                         <a href="<%= resume.projects[i].url || "#" %>"><%= resume.projects[i].title %></a>
                     </span>
                 <div class="project-detail"><%- resume.projects[i].detail %></div>
                     <span class="project-tagline">
-                        Time: <% if (resume.projects[i].startTime) {%><%= resume.projects[i].startTime.getMonth() + 1 %>/<%= resume.projects[i].startTime.getFullYear() %><% } %><% if (resume.projects[i].endtTime) {%> -
-                        <%= resume.projects[i].endTime.getMonth() +1 %>/<%= resume.projects[i].endTime.getFullYear()%><%}%></span>
+                        Time:
+                        <% if (resume.projects[i].startTime) { %>
+                        <%= resume.projects[i].startTime.getMonth() + 1 %>
+                        /<%= resume.projects[i].startTime.getFullYear() %>
+                        <% } %>
+                        <% if (resume.projects[i].endtTime) { %>
+                        -
+                        <%= resume.projects[i].endTime.getMonth() + 1 %>/<%= resume.projects[i].endTime.getFullYear() %>
+                        <% } %>
+                    </span>
             </div><!--//item-->
             <% } %>
 
@@ -128,19 +164,41 @@
         <section class="skills-section section sortable">
             <h2 class="section-title"><i class="fa fa-rocket"></i>Skills &amp; Proficiency</h2>
             <div class="skillset">
-                <% for(var i=0; i<resume.skills.length; i++) { %>
+                <% for(var i = 0; i < resume.skills.length; i++) { %>
                 <div class="item">
 
-                    <% if (resume.skills[i].name) { %><h3 class="level-title"><%= resume.skills[i].name %></h3><% } %>
+                    <% if (resume.skills[i].name) { %>
+                    <h3 class="level-title"><%= resume.skills[i].name %></h3>
+                    <% } %>
                     <span></span>
-                    <div class="level-bar">
-                        <div class="level-bar-inner" data-level="<%= resume.skills[i].expertise %>">
+                    <div class="level-bar">    
+                    <%var lvl  = 0;%>   
+                    <% switch(resume.skills[i].expertise) {
+                        case 'N/A': lvl=0;
+                            break;
+                        case 'Beginner':lvl=1;
+                            break;
+
+                        case 'Basic':lvl=2;
+                            break;
+                        case 'Intermediate':lvl=3;
+                            break;
+                        case 'Advance':lvl=4;
+                            break;
+                        case 'Expert': lvl=5;
+                            break;
+                        default: break;
+                    }%>             
+                        <div class="level-bar-inner" data-level="<%= lvl %>"><%= resume.skills[i].expertise %>
                         </div>
                     </div><!--//level-bar-->
                     <p class="text-small">
-                        <% if (resume.skills[i].experience) { %>Experiences: <%= resume.skills[i].experience %><br /><% } %>
+                        <% if (resume.skills[i].experience) { %>
+                        Experiences: <%= resume.skills[i].experience %><br/>
+                        <% } %>
                         <% if (resume.skills[i].lastUsed) { %>
-                        Last used: <%= resume.skills[i].lastUsed.getFullYear() %><% } %>
+                        Last used: <%= resume.skills[i].lastUsed.getFullYear() %>
+                        <% } %>
                     </p>
                 </div><!--//item-->
                 <% } %>
@@ -154,7 +212,10 @@
 <footer class="footer">
     <div class="text-center">
         <!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can check out other license options via our website: themes.3rdwavemedia.com */-->
-        <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+        <small class="copyright">Designed with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com"
+                                                                                 target="_blank">Xiaoying Riley</a> for
+            developers
+        </small>
     </div><!--//container-->
 </footer><!--//footer-->
 
@@ -163,6 +224,5 @@
 <script type="text/javascript" src="/public/javascripts/template-js/bootstrap.min.js"></script>
 <!-- custom js -->
 <script type="text/javascript" src="/public/javascripts/template-js/main-min.js"></script>
-
 </body>
-</html>
+</html> 

@@ -1,6 +1,5 @@
 $(function () {
-    CKEDITOR.replaceAll();
-    CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '220') });
+
     //JS Skill
     var txtSkillName = $('#txtSkillName');
     var level = 0;
@@ -9,6 +8,15 @@ $(function () {
     var tblSkills = $('#tblSkills tbody');
     var lblLevel = $('#lblLevel');
     var cloneIndexExp = $('#experienceLength').val();
+
+    $('#resumeForm').on('submit', function (e) {
+        if ($('#txtTitle').val().trim().length == 0) {
+            e.preventDefault();
+            $('#modalTitleNotNull').modal('show');
+
+        }
+    });
+
     if (isNaN(cloneIndexExp) || cloneIndexExp == -1) {
         cloneIndexExp = 1;
     }
@@ -149,7 +157,7 @@ $(function () {
     var rowCount = $('#tblSkills >tbody >tr').length;
     $('#btnAddSkill').click(function () {
         var check = $('#skillHiddenIndex').val();
-        if (txtSkillName.val().trim().length>0){
+        if (txtSkillName.val().trim().length > 0) {
             if (check == -1) {
                 var hiddenField = '';
                 var tdHtml = '<tr id="' + rowCount + '"><td><span id="spSkillName-' + rowCount + '">' + txtSkillName.val() + '</td>';
@@ -199,7 +207,7 @@ $(function () {
             lblLevel.text('N/A');
             level = 0;
         }
-        else{
+        else {
             $('#modalSkillNotNull').modal('show');
             txtSkillName.focus();
         }
@@ -287,7 +295,7 @@ $(function () {
             showButtonPanel: true,
             yearRange: '1999:2016',
             maxDate: new Date(),
-            dateFormat: 'yy-mm-01',
+            dateFormat: 'yy-mm-dd',
             onClose: function (dateText, inst) {
                 var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -309,7 +317,7 @@ $(function () {
             showButtonPanel: true,
             yearRange: '1999:2016',
             maxDate: new Date(),
-            dateFormat: 'yy-mm-01',
+            dateFormat: 'yy-mm-dd',
             onClose: function (dateText, inst) {
                 var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -331,7 +339,7 @@ $(function () {
             showButtonPanel: true,
             yearRange: '1999:2016',
             maxDate: new Date(),
-            dateFormat: 'yy-mm-01',
+            dateFormat: 'yy-mm-dd',
             onClose: function (dateText, inst) {
                 var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -344,8 +352,8 @@ $(function () {
                     $(this).datepicker('option', 'defaultDate', new Date(year, month, 1));
                     $(this).datepicker('setDate', new Date(year, month, 1));
                 }
-                var other = this.id == "educationFromDate-" + i ? "#educationToDate-" + i : "#educationFromDate-" + i;
-                var option = this.id == "educationFromDate-" + i ? "maxDate" : "minDate";
+                var other = this.id == "educationFromDate-" + this.id.slice(-1) ? "#educationToDate-" + this.id.slice(-1) : "#educationFromDate-" + this.id.slice(-1);
+                var option = this.id == "educationFromDate-" + this.id.slice(-1) ? "maxDate" : "minDate";
                 if ((selectedDate = $(other).val()).length > 0) {
                     year = selectedDate.substring(selectedDate.length - 4, selectedDate.length);
                     month = jQuery.inArray(selectedDate.substring(0, selectedDate.length - 5), $(this).datepicker('option', 'monthNames'));
@@ -363,7 +371,7 @@ $(function () {
             yearRange: '1999:2016',
             showButtonPane: true,
             maxDate: new Date(),
-            dateFormat: 'yy-mm-01',
+            dateFormat: 'yy-mm-dd',
             onClose: function (dateText, inst) {
                 var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -373,7 +381,8 @@ $(function () {
     }
 
 
-
+    CKEDITOR.replaceAll();
+    CKEDITOR.on('instanceLoaded', function (e) { e.editor.resize('100%', '220') });
     //Clone experience
     var $fieldExperienceClone = $("#field-experience-0");
     function cloneExp() {
@@ -426,7 +435,7 @@ $(function () {
                 showButtonPanel: true,
                 yearRange: '1999:2016',
                 maxDate: new Date(),
-                dateFormat: 'yy-mm-01',
+                dateFormat: 'yy-mm-dd',
                 onClose: function (dateText, inst) {
                     var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                     var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -506,7 +515,7 @@ $(function () {
                 showButtonPanel: true,
                 yearRange: '1999:2016',
                 maxDate: new Date(),
-                dateFormat: 'yy-mm-01',
+                dateFormat: 'yy-mm-dd',
                 onClose: function (dateText, inst) {
                     var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                     var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -589,7 +598,7 @@ $(function () {
                 showButtonPanel: true,
                 yearRange: '1999:2016',
                 maxDate: new Date(),
-                dateFormat: 'yy-mm-01',
+                dateFormat: 'yy-mm-dd',
                 onClose: function (dateText, inst) {
                     var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                     var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -660,7 +669,7 @@ $(function () {
                 showButtonPanel: true,
                 yearRange: '1999:2016',
                 maxDate: new Date(),
-                dateFormat: 'yy-mm-01',
+                dateFormat: 'yy-mm-dd',
                 onClose: function (dateText, inst) {
                     var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                     var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -704,7 +713,7 @@ $(function () {
             yearRange: '1999:2016',
             showButtonPane: true,
             maxDate: new Date(),
-            dateFormat: 'yy-mm-01',
+            dateFormat: 'yy-mm-dd',
             onClose: function (dateText, inst) {
                 var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
@@ -712,6 +721,8 @@ $(function () {
             },
         });
     }
+
+
     $("#fileuploader").uploadFile({
         url: "/resumes/photo",
         multiple: false,
@@ -733,22 +744,12 @@ $(function () {
                 dataType: "json",
                 method: "POST",
                 success: function (data) {
-
                     console.log('hit');
                     console.log(data);
                     var check = false;
-                    /*for (var key in data){
-                        if(data[key] == '') check = false;else check = true;
-                    }
-                    console.log(check);*/
                     if (check != null) {
-                        console.log(check);
-                        //for(var i=0;i<data.length;i++){ 
                         obj.createProgress(data.i128, "/public/photo/" + data.i128, data.size);
                     }
-                    //console.log('cai moi la: ');
-                    //console.log(obj);
-                    //}
                 },
                 error: function (status) {
                     console.log(status);
@@ -757,13 +758,10 @@ $(function () {
         },
 
         deleteCallback: function (data, pd) {
-            //console.log(typeof(data));
-            console.log(data);
-
             if (typeof (data) == "object") {
 
                 $.post("/resumes/photo", { op: "delete", nameImg: data[0] },
-                    function (resp, textStatus, jqXHR) {                        
+                    function (resp, textStatus, jqXHR) {
                     });
             }
             else {
@@ -771,12 +769,36 @@ $(function () {
                 console.log('obj 2 la ');
                 console.log(obj2);
                 $.post("/resumes/photo", { op: "delete", nameImg: obj2.i128 },
-                    function (resp, textStatus, jqXHR) {                        
+                    function (resp, textStatus, jqXHR) {
                     });
-            }},            
-        afterUploadAll: function(obj) {
+            }
+        },
+        afterUploadAll: function (obj) {
             var obj2 = JSON.parse(obj.responses[0]);
             $('#myImage').val(obj2.i128);
-        }       
+        }
     });
 });
+$(document).ready(function () {
+    $('#phone').blur(function (e) {
+        if (validatePhone('phone')) {
+            $('#spnPhoneStatus').html('Valid');
+            $('#spnPhoneStatus').css('color', 'green');
+        }
+        else {
+            $('#spnPhoneStatus').html('Invalid');
+            $('#spnPhoneStatus').css('color', 'red');
+        }
+    });
+});
+
+function validatePhone(phone) {
+    var a = document.getElementById(phone).value;
+    var filter = /^[0-9-+]+$/;
+    if (filter.test(a)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}

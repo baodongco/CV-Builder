@@ -16,7 +16,7 @@
 <div id="cv" class="instaFade">
 	<div class="mainDetails">
 		<div id="headshot" class="quickFade">
-			<img src="/public/photo/2<%= resume.photoUrl %>" alt="Profile picture" />
+			<%if(resume.photoUrl){%><img src="/public/photo/2<%= resume.photoUrl %>" alt="Profile picture" /><%}%>
 		</div>
 
 		<div id="name">
@@ -62,7 +62,7 @@
 					<%if (resume.experiences[i].startTime || resume.experiences[i].endTime ) {%>
 					<p class="subDetails"><%= resume.experiences[i].startTime.toLocaleDateString() || '' %> - <%= resume.experiences[i].endTime.toLocaleDateString() || '' %></p>
 					<% } %>
-					<p><%=resume.experiences[i].detail || ''%></p>
+					<%if(resume.experiences[i].detail) {%><p><%-resume.experiences[i].detail %></p><%}%>
 				</article>
 				<%}%>
 			</div>
@@ -70,7 +70,6 @@
 		</section>
 		<% } %>
 		<% if (resume.skills.length) { %>
-		<% var xpertise = ['N/A','Beginner', 'Basic', 'Advance', 'Expert'] %>
 
 		<section class="sortable">
 			<div class="sectionTitle">
@@ -80,7 +79,7 @@
 			<div class="sectionContent">
 				<ul class="keySkills">
 					<li><% if (resume.skills[i].name) {%><h4><%= resume.skills[i].name %> </h4><%}%>
-						<%if (resume.skills[i].expertise) {%>Expertise: <em><%= xpertise[resume.skills[i].expertise] %></em><br/><%}%>
+						<%if (resume.skills[i].expertise) {%>Expertise: <em><%= resume.skills[i].expertise %></em><br/><%}%>
 						<%if (resume.skills[i].lastUsed) {%>Last used: <%= resume.skills[i].lastUsed.getFullYear() %> <br/><% }%>
 						<%if (resume.skills[i].experience) {%>Experience: <%= resume.skills[i].experience %><%}%>
 					</li>

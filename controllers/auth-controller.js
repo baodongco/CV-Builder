@@ -204,7 +204,7 @@ function authController() {
             } else {
                 console.log(rows);
                 isError = false;
-                message = 'Enter your new password to reset!!';
+                message = '';
                 _guid = rows[0][0]['guid'];
             }
 
@@ -231,16 +231,18 @@ function authController() {
             if (isError) {
                 res.redirect('/');
             } else {
-                res.redirect('/reset-form?guid='+_guid);
+                  res.render('auth/reset-form', { title: 'Change password', message: req.flash('changePass'), 
+                    guid : _guid});
             }
-
+            
+            console.log('=========================' + _guid);            
             console.log(message);
          });
     };
 
     // POST: /reset
     this.postResetComplete = function(req, res){
-        var resetPasswordInfo = new ResetPasswordInfo(req.body);
+        var resetPasswordInfo = new ResetPasswordInfo(req.body);    
 
          di.resolve('userservice').postResetComplete(resetPasswordInfo.newHasingPass, resetPasswordInfo.guid, function(err, rows){
              if (err) {

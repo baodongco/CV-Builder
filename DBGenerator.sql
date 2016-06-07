@@ -101,7 +101,7 @@ INSERT INTO user(username, email, password, role) VALUES (
 
 INSERT INTO template(name) VALUES (
   'default'
-);
+), ('default 2'), ('default 3'), ('default 4');
 
 -- Store Procedure: activate account
 DELIMITER $$

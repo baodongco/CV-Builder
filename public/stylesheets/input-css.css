@@ -202,6 +202,9 @@ ul.skill-progress li{
 .tabs-left{
     float: left;
 }
+.ajax-file-upload-statusbar{
+    border: none;
+}
 .form-style-5{
     max-width: 100%;
     padding: 10px 20px;
