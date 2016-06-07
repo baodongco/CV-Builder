@@ -21,7 +21,7 @@
       "host": "localhost",
       "dbName": "CVBuilder",
       "user": "root",
-      "pass": "12345678"
+      "pass": "3120"
     },
     "email": {
       "from": "no-reply@admin.com",

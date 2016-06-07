@@ -6,8 +6,4 @@ module.exports = function () {
 			if (err) console.log(err);
 		});
 	};
-
-	this.update = function(data, callback) {
-		db.pool.query('UPDATE experience SET ?', data);
-	};
 };

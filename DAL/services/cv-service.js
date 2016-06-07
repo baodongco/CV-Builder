@@ -11,8 +11,6 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 			if (body.education !== undefined) {
 				body.education.forEach(function (item) {
 	                if (checkObject(item)) {
-	                    console.log('education hit');
-	                    console.log(item);
 	                    item.resId = resId;
 	                    eduRepo.create(item);
 	                }
@@ -22,8 +20,6 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 			if (body.experience !== undefined) {
 	            body.experience.forEach(function (item) {
 	                if (checkObject(item)) {
-	                    console.log('experience hit');
-	                    console.log(item);
 	                    item.resId = resId;
 	                    expRepo.create(item);
 	                }
@@ -33,8 +29,6 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 			if (body.certification !== undefined) {
 	            body.certification.forEach(function (item) {
 	                if (checkObject(item)) {
-	                    console.log('certification hit');
-	                    console.log(item);
 	                    item.resId = resId;
 	                    cerRepo.create(item);
 	            	}
@@ -44,8 +38,6 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 			if (body.project !== undefined) {
 	            body.project.forEach(function (item) {
 	                if (checkObject(item)) {
-	                    console.log('project hit');
-	                    console.log(item);
 	                    item.resId = resId;
 	                    proRepo.create(item);
 	                }
@@ -55,8 +47,6 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 			if (body.skill !== undefined) {
 	            body.skill.forEach(function (item) {
 	                if (checkObject(item)) {
-	                    console.log('skill hit');
-	                    console.log(item);
 	                    item.resId = resId;
 	                    item.lastUsed = item.lastUsed + '-01-01' ;
 	                    skiRepo.create(item);
@@ -65,12 +55,6 @@ module.exports = function (resRepo, eduRepo, expRepo, cerRepo, proRepo, skiRepo)
 			}
 
 			callback(result);
-		});
-	};
-
-	this.updateResume = function (resume, callback) {
-		resRepo.update(resume, function (result) {
-
 		});
 	};
 

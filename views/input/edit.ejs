@@ -20,7 +20,7 @@
     <div class="row">
         <div class="col-sm-3 col-sm-offset-1">
             <ul class="nav nav-tabs col-sm-12">
-                <li class="active" id="lititle"><a href="#title" data-toggle="tab"><span class="glyphicon glyphicon-phone"> Title</span></a></li>
+                <li class="active" id="lititle"><a href="#title" data-toggle="tab"><span class="glyphicon glyphicon-asterisk"> Title</span></a></li>
                 <li id="licontact"><a href="#contact" data-toggle="tab"><span class="glyphicon glyphicon-phone-alt"> Contact</span></a></li>
                 <li id="lisummary"><a href="#summary" data-toggle="tab"><span class="glyphicon glyphicon-user"> Summary</span></a></li>
                 <li id="liexperience"><a href="#experience" data-toggle="tab"><span class="glyphicon glyphicon-heart-empty"> Experience</span></a></li>
@@ -52,19 +52,19 @@
                             <input type="text" class="text-danger form-control" name="firstName" value="<%=resume.firstName%>" placeholder="First Name">
                         </label>
                         <label for="lastName"><span>Last Name: </span>
-                            <input type="text" name="lastName" class="form-control"value="<%=resume.lastName%>" placeholder="Last Name ">
+                            <input type="text" name="lastName" class="form-control" value="<%=resume.lastName%>" placeholder="Last Name ">
                         </label>
                         <label for="email"><span><sup>*</sup>Email: </span>
                             <input type="email" class="text-danger form-control" value="<%=resume.email%>"  name="email" placeholder="Your Email">
                         </label>
                         <label for="phone"><span>Phone: </span>
-                            <input type="text" name="phone" class="form-control"value="<%=resume.phone%>" placeholder="Phone">
+                            <input type="text" name="phone" class="form-control" value="<%=resume.phone%>" placeholder="Phone">
                         </label>
                         <label for="url1"><span>Website: </span>
                             <input type="url" name="website" class="form-control" value="<%=resume.website%>" placeholder="e.g:www.abc.com">
                         </label>
                         <label for="address"><span>Address </span>
-                            <textarea class="editor" name="address" class="form-control" placeholder="Address"><%=resume.address%></textarea>
+                            <input type="text" name="address" class="form-control" value="<%=resume.address%>">
                         </label>
                     </fieldset>
                     <button class="btn btn-primary pull-right">Save</button>
@@ -114,7 +114,6 @@
                             </div>
                         </label>
                                 <button class="btn btn-danger pull-right removeExperience" id="btnDelExperience-<%=i%>" data-id="exp-<%=i%>" type="button">Remove</button>
-                        <hr>
                     </fieldset>
                     <%}
                 }else{%>
@@ -218,11 +217,11 @@
                     <input type="hidden" id="skillsLength" value="<%=resume.skills.length%>">
                     <%for(var i=0;i<resume.skills.length;i++)
                     {%>
-                    <input type="hidden" name="skill[<%=resume.skills[i].id%>][id]" value="<%=resume.skills[i].id%>">
-                    <input type="hidden" id="skillName-<%=i%>" name="skill[<%=resume.skills[i].id%>][name]" value="<%=resume.skills[i].name%>">
-                    <input type="hidden" id="skillExpertise-<%=i%>" name="skill[<%=resume.skills[i].id%>][expertise]" value="<%=resume.skills[i].expertise%>">
-                    <input type="hidden" id="skillExperience-<%=i%>" name="skill[<%=resume.skills[i].id%>][experience]" value="<%=resume.skills[i].experience%>">
-                    <input type="hidden" id="skillLastUsed-<%=i%>" name="skill[<%=resume.skills[i].id%>][lastUsed]" value="<%=resume.skills[i].lastUsed%>">
+                        <input type="hidden" name="skill[<%=i%>][id]" value="<%=resume.skills[i].id%>">
+                        <input type="hidden" id="skillName-<%=i%>" name="skill[<%=i%>][name]" value="<%=resume.skills[i].name%>">
+                        <input type="hidden" id="skillExpertise-<%=i%>" name="skill[<%=i%>][expertise]" value="<%=resume.skills[i].expertise%>">
+                        <input type="hidden" id="skillExperience-<%=i%>" name="skill[<%=i%>][experience]" value="<%=resume.skills[i].experience%>">
+                        <input type="hidden" id="skillLastUsed-<%=i%>" name="skill[<%=i%>][lastUsed]" value="<%=resume.skills[i].lastUsed.getFullYear()%>">
                     <%}                   
                 }%>
 
@@ -231,34 +230,35 @@
                     <input type="text" class="form-control" id="txtSkillName">
                 </label>
                 <label for=""><span>Level</span></label>
-                <ul id="progress" class="nav skill-progress">
-                    <li id="ball0">
-                        <div id="layer0" class="ball"></div>
-                        <div id="layer12" class="pulse"></div>
-                    </li>
-                    <li id="ball1">
-                        <div id="layer1" class="ball"></div>
-                        <div id="layer7" class="pulse"></div>
-                    </li>
-                    <li id="ball2">
-                        <div id="layer2" class="ball"></div>
-                        <div id="layer8" class="pulse"></div>
-                    </li>
-                    <li id="ball3">
-                        <div id="layer3" class="ball"></div>
-                        <div id="layer9" class="pulse"></div>
-                    </li>
-                    <li id="ball4">
-                        <div id="layer4" class="ball"></div>
-                        <div id="layer10" class="pulse"></div>
-                    </li>
-                    <li id="ball5">
-                        <div id="layer5" class="ball"></div>
-                        <div id="layer11" class="pulse"></div>
-                    </li>
-                    <label id="lblLevel" style="color:blue;margin-left:200px">N/A</label>
-                </ul>
-
+                <div style="margin-bottom: 25px;">
+                    <ul id="progress" class="nav skill-progress">
+                        <li id="ball0">
+                            <div id="layer0" class="ball"></div>
+                            <div id="layer12" class="pulse"></div>
+                        </li>
+                        <li id="ball1">
+                            <div id="layer1" class="ball"></div>
+                            <div id="layer7" class="pulse"></div>
+                        </li>
+                        <li id="ball2">
+                            <div id="layer2" class="ball"></div>
+                            <div id="layer8" class="pulse"></div>
+                        </li>
+                        <li id="ball3">
+                            <div id="layer3" class="ball"></div>
+                            <div id="layer9" class="pulse"></div>
+                        </li>
+                        <li id="ball4">
+                            <div id="layer4" class="ball"></div>
+                            <div id="layer10" class="pulse"></div>
+                        </li>
+                        <li id="ball5">
+                            <div id="layer5" class="ball"></div>
+                            <div id="layer11" class="pulse"></div>
+                        </li>
+                    </ul>
+                    <label id="lblLevel">N/A</label>
+                </div>
                 <label for="txtExperience"><span>Experience</span>
                     <select id="ddlExperience" class="form-control">
                         <option value="0 month">0 month</option>
@@ -289,7 +289,7 @@
                 </label>
             </fieldset>
             <div class="table-responsive" style="min-height:300px;border">
-                <button class="btn btn-primary" type="button" id="btnAddSkill">Add skill</button>
+                <button class="btn btn-success" type="button" id="btnAddSkill">Add skill</button>
                 <table id="tblSkills" class="table  table-hover">
                     <thead>
                         <tr>
@@ -347,8 +347,8 @@
             </tbody>
         </table>
     </div>
-    <button class="btn btn-primary pull-left">Save</button>
-    <a href="#certification" name="certification" data-toggle="tab" class="btn btn-primary pull-right">Continue</a>
+    <button class="btn btn-primary pull-right">Save</button>
+    <a href="#certification" name="certification" data-toggle="tab" class="btn btn-primary pull-left">Continue</a>
 </div>
 </div>
 <div class="tab-pane form-style-5 col-sm-12 panel panel-default" id="certification">
@@ -474,7 +474,7 @@
             <legend><span class="number">9</span>Add Photo</legend>
             <div id="fileuploader">Upload</div>
             <img src="<%=%>" alt="">
-            <input type="hidden" id="myImage">
+            <input type="hidden" id="myImage" name="photoUrl" value="<%- resume.photoUrl %>">
             <button class="btn btn-primary pull-right btnSave">Save</button>
         </fieldset>
     </form>
@@ -483,7 +483,7 @@
 </div>
 </div>
 <div class="modal fade" id="modalRemoveSkill" role="dialog" style="z-index: 99999" data-id="">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -494,14 +494,14 @@
                 <p>Are you sure?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" id="btnConfirmRemove">Yes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal"><strong>Cancel</strong></button>
+                <button type="button" class="btn btn-danger pull-left" id="btnConfirmRemove">Yes</button>
+                <button type="button" class="btn btn-primary pull-right" data-dismiss="modal"><strong>Cancel</strong></button>
             </div>
         </div>
     </div>
 </div>
 <div class="modal fade" id="modalSkillNotNull" role="dialog" style="z-index: 99999" data-id="">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
@@ -511,7 +511,7 @@
                 <p>You must enter Skill's Name before Add Skill</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
@@ -527,7 +527,7 @@
                     <p>You must enter Resume's Title</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
                 </div>
             </div>
         </div>

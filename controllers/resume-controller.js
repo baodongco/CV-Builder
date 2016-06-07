@@ -106,69 +106,6 @@ function resumeController() {
         }
     }
 
-    this.insertResume = function (req, res) {
-        var resume = new Resume(req.body);
-        resume.userId = req.user.id;
-        resume.templateId = 1;
-        console.log(req.body);
-
-        // insert resume
-        connection.pool.query(sql.insertResume, resume, function (err, rows) {
-            if (err) console.log(err);
-
-            // insert sections
-            req.body.education.forEach(function (item) {
-                if (checkObject(item)) {
-                    console.log('education hit');
-                    console.log(item);
-                    item.resId = rows.insertId;
-                    insertItem(item, 'education');
-                }
-            });
-
-            req.body.experience.forEach(function (item) {
-                if (checkObject(item)) {
-                    console.log('experience hit');
-                    console.log(item);
-                    item.resId = rows.insertId;
-                    insertItem(item, 'experience');
-                }
-            });
-
-            req.body.certification.forEach(function (item) {
-                if (checkObject(item)) {
-                    console.log('certification hit');
-                    console.log(item);
-                    item.resId = rows.insertId;
-                    insertItem(item, 'certification');
-                }
-            });
-
-            req.body.project.forEach(function (item) {
-                if (checkObject(item)) {
-                    console.log('project hit');
-                    console.log(item);
-                    item.resId = rows.insertId;
-                    insertItem(item, 'project');
-                }
-            });
-
-            if (req.body.hasOwnProperty('skill')) {
-                req.body.skill.forEach(function (item) {
-                    if (checkObject(item)) {
-                        console.log('skill hit');
-                        console.log(item);
-                        item.resId = rows.insertId;
-                        insertItem(item, 'skill');
-                    }
-                });
-            }
-
-            //redirect to preview page
-            res.redirect('/resumes/preview/' + rows.insertId);
-        });
-    };
-
     this.updateResume = function (req, res) {        
         console.log('inside updateResume');
         var resume = new Resume(req.body);
@@ -176,29 +113,23 @@ function resumeController() {
         var userId = req.user.id;
         resume.userId = req.user.id;
         delete resume.id;
-        console.log('resume');
         
         connection.pool.query('SELECT * FROM resume WHERE id = ? AND userId = ?', [resId, userId], function(err, rows){                                    
             if (rows[0]) {
-                console.log("hit if int upate");
                 connection.pool.query("UPDATE resume SET ? WHERE id = " + resId, resume);        
 
                 //handle education items
                 req.body.education.forEach(function (item) {
                     console.log(item);
-                    if (item.hasOwnProperty('id')) {
-                        console.log('hit true');                
-                        if (Object.keys(item).length == 1) {                        
-                            console.log('hit delete');
+                    if (item.hasOwnProperty('id')) {            
+                        if (Object.keys(item).length == 1) {   
                             deleteItem(item, 'education');
                         } else {
                             if (checkObject(item)) {
-                                console.log('hit update');
                                 updateItem(item, 'education');
                             }                
                         };
                     } else {
-                        console.log('hit false');
                         if (checkObject(item)) {
                             item.resId = resId; 
                             insertItem(item, 'education');
@@ -209,19 +140,15 @@ function resumeController() {
                 //handle experience items
                 req.body.experience.forEach(function (item) {
                     console.log(item);
-                    if (item.hasOwnProperty('id')) {
-                        console.log('hit true');                
-                        if (Object.keys(item).length == 1) {                        
-                            console.log('hit delete');
+                    if (item.hasOwnProperty('id')) {               
+                        if (Object.keys(item).length == 1) {  
                             deleteItem(item, 'experience');
                         } else {
                             if (checkObject(item)) {
-                                console.log('hit update');
                                 updateItem(item, 'experience');
                             }                
                         };
                     } else {
-                        console.log('hit false');
                         if (checkObject(item)) {
                             item.resId = resId; 
                             insertItem(item, 'experience');
@@ -232,14 +159,11 @@ function resumeController() {
                 //handle project items
                 req.body.project.forEach(function (item) {
                     console.log(item);
-                    if (item.hasOwnProperty('id')) {
-                        console.log('hit true');                
-                        if (Object.keys(item).length == 1) {                        
-                            console.log('hit delete');
+                    if (item.hasOwnProperty('id')) {               
+                        if (Object.keys(item).length == 1) {  
                             deleteItem(item, 'project');
                         } else {
                             if (checkObject(item)) {
-                                console.log('hit update');
                                 updateItem(item, 'project');
                             }                
                         };
@@ -253,39 +177,36 @@ function resumeController() {
                 });
 
                 //handle skill items
-                req.body.skill.forEach(function (item) {
-                    console.log(item);
-                    if (item.hasOwnProperty('id')) {
-                        console.log('hit true');                
-                        if (Object.keys(item).length == 1) {                        
-                            console.log('hit delete');
-                            deleteItem(item, 'skill');
+                if (req.body.skill) {
+                    req.body.skill.forEach(function (item) {
+                        if (item.hasOwnProperty('id')) {              
+                            if (Object.keys(item).length == 1) {   
+                                deleteItem(item, 'skill');
+                            } else {
+                                if (checkObject(item)) {
+                                    console.log('hit update skill');
+                                    item.lastUsed = item.lastUsed + '-01-01';
+                                    updateItem(item, 'skill');
+                                }                
+                            };
                         } else {
+                            console.log('hit false skill');
                             if (checkObject(item)) {
-                                console.log('hit update');
-                                updateItem(item, 'skill');
-                            }                
-                        };
-                    } else {
-                        console.log('hit false');
-                        if (checkObject(item)) {
-                            item.resId = resId; 
-                            insertItem(item, 'skill');
+                                item.resId = resId; 
+                                item.lastUsed = item.lastUsed + '-01-01';
+                                insertItem(item, 'skill');
+                            }
                         }
-                    }
-                });
+                    });                    
+                }
 
                 //handle certification items
                 req.body.certification.forEach(function (item) {
-                    console.log(item);
-                    if (item.hasOwnProperty('id')) {
-                        console.log('hit true');                
-                        if (Object.keys(item).length == 1) {                        
-                            console.log('hit delete');
+                    if (item.hasOwnProperty('id')) {            
+                        if (Object.keys(item).length == 1) { 
                             deleteItem(item, 'certification');
                         } else {
                             if (checkObject(item)) {
-                                console.log('hit update');
                                 updateItem(item, 'certification');
                             }                
                         };
@@ -297,20 +218,18 @@ function resumeController() {
                         }
                     }
                 });
-                console.log('prepare to redirect to preview');
                 res.redirect('/resumes/preview/' + resId);    
-    } else {
-        console.log('prepare to redirect to home');
-        res.redirect('/');
-    }
-});  
+            } else {
+                res.redirect('/');
+            }
+        });  
     };
 
     /**
      * insert an item of a section to table
      * 
      */
-    function insertItem(item, table) {
+    function insertItem(item, table) {        
         connection.pool.query('INSERT INTO ' + table + ' SET ?', item);
     };
 
@@ -319,10 +238,8 @@ function resumeController() {
      * 
      */
     function updateItem(item, table) {
-        console.log('start update');
         var id = item.id;
-        delete item.id;
-        console.log(item);        
+        delete item.id;     
         connection.pool.query('UPDATE ' + table + ' SET ? WHERE id = ' + id, item, function(err) {
             if (err) {
                 console.log(err);
@@ -335,9 +252,6 @@ function resumeController() {
      * 
      */
     function deleteItem(item, table) {
-        console.log('start delete');
-        var query = mysql.format('DELETE FROM ' + table + ' WHERE id = ?', item.id);
-        console.log(query);
         connection.pool.query('DELETE FROM ' + table + ' WHERE id = ?', item.id, function(err) {
             if (err) {
                 console.log(err);
@@ -350,7 +264,6 @@ function resumeController() {
      * 
      */
     function checkObject(obj) {
-        console.log('start checkObject');
         for (var key in obj) {
             if (obj[key] == '') {
                 return false;
@@ -437,11 +350,10 @@ function resumeController() {
                         throw err.stack;
                         res.status(500).render('500');
                     } else {
-                        if (!res_rows.length 
-                            || req.user.id != res_rows[0].userId 
-                            && req.user.role == 'user') {
+                        console.log('1');
+                        if (!res_rows.length || (req.user.id != res_rows[0].userId && req.user.role == 'user')) {
                             res.status(404).render('404');
-                        } else if (req.user.id == res_rows[0].userId) {
+                        } else {
                             res.render('resume/preview', {
                                 title: 'View resume',
                                 resumeId: res_rows[0].id,
@@ -452,7 +364,6 @@ function resumeController() {
                         }
                     }
                 });
-
             }
         });
     };

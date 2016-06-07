@@ -1,3 +1,7 @@
+#btnConfirmRemove{
+    margin-bottom: 0px;
+}
+
 .btnSkillEdit, .btnDeleteSkill {
     background-color: #1d92af;
     border-color: #1d92af;

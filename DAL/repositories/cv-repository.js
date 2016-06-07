@@ -10,10 +10,4 @@ module.exports = function () {
 			callback(rows);
 		});
 	};
-
-	this.update = function(data, callback) {
-		db.pool.query('UPDATE resume SET ?', data, function(err, rows) {
-			callback(rows);
-		});
-	};
 };

@@ -6,6 +6,18 @@ body {
     background-color: #e9e9e9;
     /*background-image: url("./background.png");*/
 }
+
+#resumeContainer{
+    min-height: 700px;
+}
+
+.modal-content{
+    min-width: 350px;
+}
+
+#resumeForm{
+    min-height: 700px;
+}
 .navbar .navbar-brand{
     color:white;
 }
@@ -15,6 +27,12 @@ body {
 }
 
 .nav > li > a:hover{
+    color:white;
+    background-color:#2bb9dd;
+    cursor:pointer;
+}
+
+.nav .open > a:hover{
     color:white;
     background-color:#2bb9dd;
     cursor:pointer;

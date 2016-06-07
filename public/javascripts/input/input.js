@@ -648,8 +648,7 @@ $(function () {
                     $(this).data('id', 'edu' + cloneIndexEdu);
                     $(this).on('click', remove);
                 }
-            })
-        $("#field-education-" + cloneIndexEdu).append('<hr>');
+            })        
         $("#field-education-" + cloneIndexEdu).find("*").each(function () {
             var id = this.id || '';
             var name = this.name || '';
