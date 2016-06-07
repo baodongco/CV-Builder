@@ -1,80 +1,89 @@
-<% layout('./layouts/main.ejs') -%>
-<div id="confirm-dialog" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="confirm-dialog-label">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-    	<div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button> <h4 class="modal-title" id="confirm-dialog-label">Confirm delete</h4> </div>
-    	<div class="modal-body"></div>
-    	<div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	        <button type="button" class="btn btn-danger btn-delete">Delete</button>
-	     </div>
+<% layout('./layouts/main.ejs') - %>
+<div id="confirm-dialog" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog"
+     aria-labelledby="confirm-dialog-label">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="confirm-dialog-label">Confirm delete</h4></div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger btn-delete">Delete</button>
+            </div>
+        </div>
+
     </div>
-    
-  </div>
 </div>
 <div class="container">
-	<a href="/resumes/create"><i class="fa fa-file-text"></i> New</a>
-	<div class="panel panel-info">
-  	<!-- Default panel contents -->
-  		<div class="panel-heading">Your resumes </div>
-  		<% if (resumes.length == 0 ) {%>
-  		<div class="panel-body">
-		    <p>You have no resume. <a href="/resumes/create">Create your first resume!</a></p>
-  		</div>
-  		<% } else {%>
-	  	<!-- Table -->
-	  	<table class="table table-responsive">
-	    	<thead>
-	    		<tr>
-	    			<th>#</th>
-	    			<th>Resume title</th>
-	    			<th>Privacy</th>
-	    			<th>Actions</th>
-	    		</tr>
-	    	</thead>
-	    	<tbody>
-	    		<% for (var i = 0; i < resumes.length; i++) { %>
-	    			<tr data-res-id="<%= resumes[i].id %>" data-title="<%= resumes[i].title %>" >
-	    				<td><%= i+1 %></td>
-	    				<td><a href="/resumes/preview/<%= resumes[i].id%>"><%= resumes[i].title %></a></td>
-	    				<td><% if (resumes[i].publicLink) { %>
-	    					Public
-	    					<button data-toggle="popover" title="Share link" class="btn btn-link btn-xs">
-	    						<span class="glyphicon glyphicon-link"></span>
-	    					</button>
-	    					<div id="pop-content-<%=resumes[i].id%>" class="hidden">
-	    						<input type="text" value="<%= req.headers.host+ "/resumes/public/" + resumes[i].id+ "/" +resumes[i].publicLink %>">
-	    					</div>
-	    					<% } else { %>
-	    						Private
-	    					<% } %>
-	    				</td>
-	    				<td>
-	    					<div class="btn-group btn-group-xs">
-	    					<a href="/resumes/preview/<%= resumes[i].id %>" class="btn btn-default"><span class="glyphicon glyphicon-eye-open"></span> Preview</a>
-	    					<a href="/resumes/<%= resumes[i].id %>?type=pdf" class="btn btn-default"><span class="glyphicon glyphicon-download-alt"></span> Download</a>
-	    					<% if (resumes[i].publicLink) { %>
-	    					<button class="btn btn-warning prv-res">
-	    						<span class="glyphicon glyphicon-lock"></span> Private
-	    					</button>
-	    					<% } else{ %> 
-	    					<button class="btn btn-success pub-res">
-	    						<span class="glyphicon glyphicon-globe"></span> Public
-	    					</button>
-	    					<% }; %>
-	    					
-	    					<a href="/resumes/edit/<%= resumes[i].id %>" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
-	    					<button data-toggle="modal" data-target="#confirm-dialog" class="btn btn-danger">
-	    						<span class="glyphicon glyphicon-remove"></span> Delete
-	    					</button>
+    <a href="/resumes/create"><i class="fa fa-file-text"></i> New</a>
+    <div class="panel panel-info">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Your resumes</div>
+        <% if (resumes.length == 0 ) { %>
+        <div class="panel-body">
+            <p>You have no resume. <a href="/resumes/create">Create your first resume!</a></p>
+        </div>
+        <% } else { %>
+        <!-- Table -->
+        <table class="table table-responsive">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Resume title</th>
+                <th>Privacy</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for (var i = 0; i < resumes.length; i++) { %>
+            <tr data-res-id="<%= resumes[i].id %>" data-title="<%= resumes[i].title %>">
+                <td><%= i + 1 %></td>
+                <td><a href="/resumes/preview/<%= resumes[i].id %>"><%= resumes[i].title %></a></td>
+                <td>
+                    <% if (resumes[i].publicLink) { %>
+                    Public
+                    <button data-toggle="popover" title="Share link" class="btn btn-link btn-xs">
+                        <span class="glyphicon glyphicon-link"></span>
+                    </button>
+                    <div id="pop-content-<%= resumes[i].id %>" class="hidden">
+                        <input type="text"
+                               value="<%= req.headers.host + "/resumes/public/" + resumes[i].id + "/" + resumes[i].publicLink %>">
+                    </div>
+                    <% } else { %>
+                    Private
+                    <% } %>
+                </td>
+                <td>
+                    <div class="btn-group btn-group-xs">
+                        <a href="/resumes/preview/<%= resumes[i].id %>" class="btn btn-default"><span
+                                    class="glyphicon glyphicon-eye-open"></span> Preview</a>
+                        <a href="/resumes/<%= resumes[i].id %>?type=pdf" class="btn btn-default"><span
+                                    class="glyphicon glyphicon-download-alt"></span> Download</a>
+                        <% if (resumes[i].publicLink) { %>
+                        <button class="btn btn-warning prv-res">
+                            <span class="glyphicon glyphicon-lock"></span> Private
+                        </button>
+                        <% } else{ %>
+                        <button class="btn btn-success pub-res">
+                            <span class="glyphicon glyphicon-globe"></span> Public
+                        </button>
+                        <% }; %>
 
-	    					</div>
-	    				</td>
-	    			</tr>
-	    		<% }; %>
-	    	</tbody>
-	  	</table>
-	  	<% } %>
-	</div>
-	<script src="/public/javascripts/resumes/index.js"></script>
+                        <a href="/resumes/edit/<%= resumes[i].id %>" class="btn btn-info"><span
+                                    class="glyphicon glyphicon-pencil"></span> Edit</a>
+                        <button data-toggle="modal" data-target="#confirm-dialog" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span> Delete
+                        </button>
+
+                    </div>
+                </td>
+            </tr>
+            <% }; %>
+            </tbody>
+        </table>
+        <% } %>
+    </div>
+    <script src="/public/javascripts/resumes/index.js"></script>
 </div>

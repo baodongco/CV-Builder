@@ -1,16 +1,16 @@
-var express      = require('express');
-var path         = require('path');
-var favicon      = require('serve-favicon');
-var logger       = require('morgan');
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var engine       = require('ejs-mate');
-var passport     = require('passport');
-var flash        = require('connect-flash');
-var session      = require('express-session');
-var url          = require('url');
-var elogger      = require('express-logger');
-var fs           = require('fs');
+var bodyParser = require('body-parser');
+var engine = require('ejs-mate');
+var passport = require('passport');
+var flash = require('connect-flash');
+var session = require('express-session');
+var url = require('url');
+var elogger = require('express-logger');
+var fs = require('fs');
 
 var home = require('./routes/home');
 var auth = require('./routes/auth');
@@ -35,7 +35,7 @@ app.set('view engine', 'ejs');
 
 // Setup authentication with passport
 require('./utilities/passport')(passport); // pass passport for configuration
-app.use(session({ secret: 'cvbuilderauth', resave: true, saveUninitialized: true })); // session secret
+app.use(session({secret: 'cvbuilderauth', resave: true, saveUninitialized: true})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
@@ -62,9 +62,9 @@ resume.configure(app);
 
 // catch 404 and forward to error handler
 app.get('/404', function (req, res) {
-   res.render('404');
+    res.render('404');
 });
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     debug(err);
@@ -77,7 +77,7 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
+    app.use(function (err, req, res, next) {
         // res.status(err.status || 500);
         debug(err);
         if (err.status == 404)
@@ -90,7 +90,7 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     debug(err);
     if (err.status == 404)
@@ -102,7 +102,7 @@ app.use(function(err, req, res, next) {
 
 function debug(err) {
     var stream = fs.createWriteStream(__dirname + '/logs/debug.log', {flags: 'a'});
-    stream.once('open', function(fd) {
+    stream.once('open', function (fd) {
         stream.write(new Date() + ' : ');
         stream.write(err.message + '\n');
         stream.write('Status: ' + err.status + '\n');
