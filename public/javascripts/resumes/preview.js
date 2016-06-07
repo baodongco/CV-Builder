@@ -60,10 +60,30 @@
 			window.frames["resume-view-port"].print();
 		});
 		$('[data-toggle="tooltip"]').tooltip();
+		$('#btn-pdf').on('click', function () {
+			var html = $('iframe').contents().find('html');
+			$.post({
+				url: '/resumes/download',
+				data: {html : html},
+				success: function (data) {
+					var newWindow = window.open("", "new window");
+
+					//write the data to the document of the newWindow
+					newWindow.document.write(data);
+				}
+			})
+		})
 	});
 
 	$('iframe').on('load', function () {
-		$('iframe .sortfield').sortable({
-			item: 'iframe .sortable'
+		var ifr = $(this);
+		ifr.data('changed', false);
+		var ibody = $('iframe').contents().find('body');
+		$('.sortfield', ibody).sortable({
+			item: 'sortable',
+			placeholder: "dropfield",
+			cursor: 'move'
 		})
-	})
+	});
+
+

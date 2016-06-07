@@ -253,25 +253,24 @@ function resumeController() {
      * @return resume
      */
     this.getResume = function (req, res) {
-        if (req.query.type == 'pdf') {
-            getResumeDataById(req.params.id, function (resume) {
-                if (resume) {
-                    responsePdf(req, res, resume);
-                } else {
-                    res.send('File not found');
-                }
-            });
-        } else {
-            getResumeDataById(req.params.id, function (resume) {
-                //
-                if (resume) {
-                    responseHtml(res, resume);
-                } else {
-                    res.send('File not found');
-                }
-            });
-        }
+        getResumeDataById(req.params.id, function (resume) {
+            //
+            if (resume) {
+                responseHtml(res, resume);
+            } else {
+                res.send('File not found');
+            }
+        });
     };
+    /**
+     * Return the pdf resume
+     * @param req
+     * @param res
+     */
+    this.downloadResume = function (req, res) {
+        responsePdf(req, res);
+        }
+    }
 
     this.getPublicResume = function (req, res) {
         connection.pool.query("SELECT id FROM resume WHERE id = ? AND publicLink = ?", [req.params.id, req.params.token], function (err, row) {
@@ -418,28 +417,18 @@ function resumeController() {
      * @param  user - user data
      * @return resume in pdf format
      */
-    var responsePdf = function (req, res, resume) {
-        var ejs = require('ejs');
-        ejs.renderFile('./views/cv-template/skeleton-'+resume.templateId+'.ejs', { resume: resume }, null, function (err, html) {
+    var responsePdf = function (req, res) {
+        var pdf = require('html-pdf');
+        var options = require('../config/cv-pdf.js');
+        options.base = 'http://' + req.headers.host;
+        pdf.create(req.body.html, options).toStream(function (err, data) {
             if (err) {
                 throw err.stack;
-            } else if (resume) {
-                var pdf = require('html-pdf');
-                var options = require('../config/cv-pdf.js');
-                options.base = 'http://' + req.headers.host;
-                pdf.create(html, options).toStream(function (err, data) {
-                    if (err) {
-                        throw err.stack;
-                    } else {
-                        res.setHeader("content-type", "application/pdf");
-                        res.setHeader("content-disposition", "inline; filename=resume.pdf");
-
-                        data.pipe(res);
-                    }
-                });
             } else {
-                res.headers(404);
-                res.render('404');
+                res.setHeader("content-type", "application/pdf");
+                res.setHeader("content-disposition", "inline; filename=resume.pdf");
+
+                data.pipe(res);
             }
         });
     };
@@ -511,7 +500,6 @@ function resumeController() {
                 }
             };
         });
-    };
 
 };
 

@@ -244,3 +244,8 @@ section:last-child {
     animation-duration: 1.5s;
     animation-timing-function: ease-in;
 }
+.dropfield {
+	background-color: #9d9d9d;
+	border:solid 1px #00a5ff;
+	height: 100px;
+}

@@ -76,8 +76,11 @@ module.exports = {
       resumeController.postEditFieldResume(req, res);
   });
 
-     app.get('/resumes/privacy/:id', function (req, res) {
-      resumeController.getPrivacyResume(req, res);
+      /**
+       * Download pdf file
+       */
+  app.post('/resumes/download', function (req, res) {
+      resumeController.downloadResume(req, res);
   });
     /**
      * @param  id of resume
@@ -87,6 +90,7 @@ module.exports = {
      app.get('/resumes/:id', checkLogin, function (req, res) {
       resumeController.getResume(req, res);
   });
+
 
     /**
      * delete a resume
