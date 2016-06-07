@@ -32,24 +32,18 @@ var upload = multer({ storage: storage, limits: { fileSize: 5000000 } }).single(
 function resumeController() {
     this.getEditResume = function (req, res) {
         var userId = req.user.id;
-        var resId = req.params.id;
-        getResumeDataById(req.params.id, function (resume) {
-            console.log('Load resume \n' + resume);
-            imgName = resume.photoUrl;
-            console.log(imgName);
-            res.render('input/edit', { title: 'Edit', req: req, message: req.flash('Edit'), resume: resume });
+        var resId = req.params.id;       
+
+        connection.pool.query('SELECT * FROM resume WHERE id = ? AND userId = ?', [resId, userId], function(err, rows){                                    
+            if (rows[0]) {
+                getResumeDataById(req.params.id, function (resume) {                    
+                    imgName = resume.photoUrl;
+                    res.render('input/edit', { title: 'Edit', req: req, message: req.flash('Edit'), resume: resume });
+                });    
+            } else {
+                res.redirect('/');
+            }
         });
-        // connection.pool.query('SELECT EXISTS(SELECT 1 FROM resume WHERE id = ? AND userId = ?)', [resId, userId], function(rows){            
-        //     console.log(rows);
-        //     res.render('input/edit',{title:'Edit',req:req,message:req.flash('Edit'),resume:rows});
-        //     // if (rows) {
-        //     //     getResumeDataById(req.params.id, function(resume) {
-        //     //             res.render('', resume);
-        //     //         });    
-        //     // } else {
-        //     //     res.redirect('/');
-        //     // }
-        // });
     };
 
     this.createResume = function (req, res) {
@@ -66,61 +60,61 @@ function resumeController() {
                     imgName = "";
                     res.status(200).send(null);
                 } else {
-            var stats = fs.statSync("./public/photo/" + '2' + imgName);
-            var fileSizeInBytes = stats["size"];
-            var temp = '2'+imgName;
-            res.status(200).send(JSON.stringify({ i128: imgName, size: fileSizeInBytes }));
-            }});}
-        else {
-            res.status(200).send(null);
+                    var stats = fs.statSync("./public/photo/" + '2' + imgName);
+                    var fileSizeInBytes = stats["size"];
+                    var temp = '2'+imgName;
+                    res.status(200).send(JSON.stringify({ i128: imgName, size: fileSizeInBytes }));
+                }});}
+            else {
+                res.status(200).send(null);
+            }
         }
-    }
 
-    this.uploadPhoto = function (req, res) {
-        if (req.body.op != "delete") {
-            upload(req, res, function (err) {
-                if (err) {
-                    if (err.code == "LIMIT_FILE_SIZE") {
-                        req.flash('uploadMessage', 'File too large, choose another plz!');
-                        res.redirect('/photo');
+        this.uploadPhoto = function (req, res) {
+            if (req.body.op != "delete") {
+                upload(req, res, function (err) {
+                    if (err) {
+                        if (err.code == "LIMIT_FILE_SIZE") {
+                            req.flash('uploadMessage', 'File too large, choose another plz!');
+                            res.redirect('/photo');
+                        }
+                        return res.end("Error loading file.");
                     }
-                    return res.end("Error loading file.");
-                }
-                var imgName2 = '1' + imgName;
-                var imgName3 = '2' + imgName;
+                    var imgName2 = '1' + imgName;
+                    var imgName3 = '2' + imgName;
 
-                jimp.read(path.normalize("./public/photo/" + imgName), function (err, imgName) {
-                    if (err) throw err;
+                    jimp.read(path.normalize("./public/photo/" + imgName), function (err, imgName) {
+                        if (err) throw err;
                     imgName.scaleToFit(400, 600)            // resize 
                         .quality(60)                 // set JPEG quality          
                         .write("./public/photo/" + imgName2); // save 
-                });
-                jimp.read(path.normalize("./public/photo/" + imgName), function (err, imgName) {
-                    if (err) throw err;
+                    });
+                    jimp.read(path.normalize("./public/photo/" + imgName), function (err, imgName) {
+                        if (err) throw err;
                     imgName.scaleToFit(200, 300)            // resize 
                         .quality(60)                 // set JPEG quality 
                         .write("./public/photo/" + imgName3); // save 
+                    });
+                    res.status(200).send(JSON.stringify({ i128: imgName }));
+                    console.log(req);
+
                 });
-                res.status(200).send(JSON.stringify({ i128: imgName }));
-                console.log(req);
-
-            });
+            }
+            else {
+                fs.unlinkSync("./public/photo/" + req.body.nameImg);
+                var nameImg2 = "./public/photo/" + '1' + req.body.nameImg;
+                var nameImg3 = "./public/photo/" + '2' + req.body.nameImg;
+                fs.unlinkSync(nameImg2);
+                fs.unlinkSync(nameImg3);
+                nameImg = "";
+            }
         }
-        else {
-            fs.unlinkSync("./public/photo/" + req.body.nameImg);
-            var nameImg2 = "./public/photo/" + '1' + req.body.nameImg;
-            var nameImg3 = "./public/photo/" + '2' + req.body.nameImg;
-            fs.unlinkSync(nameImg2);
-            fs.unlinkSync(nameImg3);
-            nameImg = "";
-        }
-    }
 
-    this.insertResume = function (req, res) {
-        var resume = new Resume(req.body);
-        resume.userId = req.user.id;
-        resume.templateId = 1;
-        console.log(req.body);
+        this.insertResume = function (req, res) {
+            var resume = new Resume(req.body);
+            resume.userId = req.user.id;
+            resume.templateId = 1;
+            console.log(req.body);
 
         // insert resume
         connection.pool.query(sql.insertResume, resume, function (err, rows) {
@@ -182,132 +176,142 @@ function resumeController() {
     this.updateResume = function (req, res) {        
         var resume = new Resume(req.body);
         var resId = resume.id;
+        var userId = req.user.id;
         resume.userId = req.user.id;
         delete resume.id;
-        console.log(resume);        
-        query = connection.pool.query("UPDATE resume SET ? WHERE id = " + resId, resume);        
+        
+        connection.pool.query('SELECT * FROM resume WHERE id = ? AND userId = ?', [resId, userId], function(err, rows){                                    
+            if (rows[0]) {
+                connection.pool.query("UPDATE resume SET ? WHERE id = " + resId, resume);        
 
-        //handle education items
-        req.body.education.forEach(function (item) {
-            console.log(item);
-            if (item.hasOwnProperty('id')) {
-                console.log('hit true');                
-                if (Object.keys(item).length == 1) {                        
-                    console.log('hit delete');
-                    deleteItem(item, 'education');
-                } else {
-                    if (checkObject(item)) {
-                        console.log('hit update');
-                        updateItem(item, 'education');
-                    }                
-                };
-            } else {
-                console.log('hit false');
-                if (checkObject(item)) {
-                    item.resId = resId; 
-                    insertItem(item, 'education');
-                }
-            }
-        });
+                //handle education items
+                req.body.education.forEach(function (item) {
+                    console.log(item);
+                    if (item.hasOwnProperty('id')) {
+                        console.log('hit true');                
+                        if (Object.keys(item).length == 1) {                        
+                            console.log('hit delete');
+                            deleteItem(item, 'education');
+                        } else {
+                            if (checkObject(item)) {
+                                console.log('hit update');
+                                updateItem(item, 'education');
+                            }                
+                        };
+                    } else {
+                        console.log('hit false');
+                        if (checkObject(item)) {
+                            item.resId = resId; 
+                            insertItem(item, 'education');
+                        }
+                    }
+                });
 
-        //handle experience items
-        req.body.experience.forEach(function (item) {
-            console.log(item);
-            if (item.hasOwnProperty('id')) {
-                console.log('hit true');                
-                if (Object.keys(item).length == 1) {                        
-                    console.log('hit delete');
-                    deleteItem(item, 'experience');
-                } else {
-                    if (checkObject(item)) {
-                        console.log('hit update');
-                        updateItem(item, 'experience');
-                    }                
-                };
-            } else {
-                console.log('hit false');
-                if (checkObject(item)) {
-                    item.resId = resId; 
-                    insertItem(item, 'experience');
-                }
-            }
-        });
+                //handle experience items
+                req.body.experience.forEach(function (item) {
+                    console.log(item);
+                    if (item.hasOwnProperty('id')) {
+                        console.log('hit true');                
+                        if (Object.keys(item).length == 1) {                        
+                            console.log('hit delete');
+                            deleteItem(item, 'experience');
+                        } else {
+                            if (checkObject(item)) {
+                                console.log('hit update');
+                                updateItem(item, 'experience');
+                            }                
+                        };
+                    } else {
+                        console.log('hit false');
+                        if (checkObject(item)) {
+                            item.resId = resId; 
+                            insertItem(item, 'experience');
+                        }
+                    }
+                });
 
-        //handle project items
-        req.body.project.forEach(function (item) {
-            console.log(item);
-            if (item.hasOwnProperty('id')) {
-                console.log('hit true');                
-                if (Object.keys(item).length == 1) {                        
-                    console.log('hit delete');
-                    deleteItem(item, 'project');
-                } else {
-                    if (checkObject(item)) {
-                        console.log('hit update');
-                        updateItem(item, 'project');
-                    }                
-                };
-            } else {
-                console.log('hit false');
-                if (checkObject(item)) {
-                    item.resId = resId; 
-                    insertItem(item, 'project');
-                }
-            }
-        });
+                //handle project items
+                req.body.project.forEach(function (item) {
+                    console.log(item);
+                    if (item.hasOwnProperty('id')) {
+                        console.log('hit true');                
+                        if (Object.keys(item).length == 1) {                        
+                            console.log('hit delete');
+                            deleteItem(item, 'project');
+                        } else {
+                            if (checkObject(item)) {
+                                console.log('hit update');
+                                updateItem(item, 'project');
+                            }                
+                        };
+                    } else {
+                        console.log('hit false');
+                        if (checkObject(item)) {
+                            item.resId = resId; 
+                            insertItem(item, 'project');
+                        }
+                    }
+                });
 
-        //handle skill items
-        req.body.skill.forEach(function (item) {
-            console.log(item);
-            if (item.hasOwnProperty('id')) {
-                console.log('hit true');                
-                if (Object.keys(item).length == 1) {                        
-                    console.log('hit delete');
-                    deleteItem(item, 'skill');
-                } else {
-                    if (checkObject(item)) {
-                        console.log('hit update');
-                        updateItem(item, 'skill');
-                    }                
-                };
-            } else {
-                console.log('hit false');
-                if (checkObject(item)) {
-                    item.resId = resId; 
-                    insertItem(item, 'skill');
-                }
-            }
-        });
+                //handle skill items
+                req.body.skill.forEach(function (item) {
+                    console.log(item);
+                    if (item.hasOwnProperty('id')) {
+                        console.log('hit true');                
+                        if (Object.keys(item).length == 1) {                        
+                            console.log('hit delete');
+                            deleteItem(item, 'skill');
+                        } else {
+                            if (checkObject(item)) {
+                                console.log('hit update');
+                                updateItem(item, 'skill');
+                            }                
+                        };
+                    } else {
+                        console.log('hit false');
+                        if (checkObject(item)) {
+                            item.resId = resId; 
+                            insertItem(item, 'skill');
+                        }
+                    }
+                });
 
-        //handle certification items
-        req.body.certification.forEach(function (item) {
-            console.log(item);
-            if (item.hasOwnProperty('id')) {
-                console.log('hit true');                
-                if (Object.keys(item).length == 1) {                        
-                    console.log('hit delete');
-                    deleteItem(item, 'certification');
-                } else {
-                    if (checkObject(item)) {
-                        console.log('hit update');
-                        updateItem(item, 'certification');
-                    }                
-                };
-            } else {
-                console.log('hit false');
-                if (checkObject(item)) {
-                    item.resId = resId; 
-                    insertItem(item, 'certification');
-                }
-            }
-        });
-    };
+                //handle certification items
+                req.body.certification.forEach(function (item) {
+                    console.log(item);
+                    if (item.hasOwnProperty('id')) {
+                        console.log('hit true');                
+                        if (Object.keys(item).length == 1) {                        
+                            console.log('hit delete');
+                            deleteItem(item, 'certification');
+                        } else {
+                            if (checkObject(item)) {
+                                console.log('hit update');
+                                updateItem(item, 'certification');
+                            }                
+                        };
+                    } else {
+                        console.log('hit false');
+                        if (checkObject(item)) {
+                            item.resId = resId; 
+                            insertItem(item, 'certification');
+                        }
+                    }
+                });
+
+                res.redirect('/resumes/preview/' + resId);    
+    } else {
+        res.redirect('/');
+    }
+});     
+
+};
 
     /**
      * insert an item of a section to table
      * 
      */
-    function insertItem(item, table) {
+     function insertItem(item, table) {
         connection.pool.query('INSERT INTO ' + table + ' SET ?', item);
     };
 
@@ -315,7 +319,7 @@ function resumeController() {
      * update an item of a section to table
      * 
      */
-    function updateItem(item, table) {
+     function updateItem(item, table) {
         console.log('start update');
         var id = item.id;
         delete item.id;
@@ -331,7 +335,7 @@ function resumeController() {
      * delete an item of a section to table
      * 
      */
-    function deleteItem(item, table) {
+     function deleteItem(item, table) {
         console.log('start delete');
         var query = mysql.format('DELETE FROM ' + table + ' WHERE id = ?', item.id);
         console.log(query);
@@ -346,7 +350,7 @@ function resumeController() {
      * check if an item is valid
      * 
      */
-    function checkObject(obj) {
+     function checkObject(obj) {
         console.log('start checkObject');
         for (var key in obj) {
             if (obj[key] == '') {
@@ -360,7 +364,7 @@ function resumeController() {
      * get all resumes of user
      * 
      */
-    this.getResumes = function (req, res) {
+     this.getResumes = function (req, res) {
         connection.pool.query("SELECT userId, id, title, publicLink FROM resume WHERE userId =? ",
             req.user.id, function (err, rows) {
                 if (err) {
@@ -370,7 +374,7 @@ function resumeController() {
                     res.render('resume/index', { title: "My resumes", resumes: rows, req: req, message: req.flash('') });
                 }
             }
-        )
+            )
     }
 
     /**
@@ -379,7 +383,7 @@ function resumeController() {
      * @param type = 'html'
      * @return resume
      */
-    this.getResume = function (req, res) {
+     this.getResume = function (req, res) {
         if (req.query.type == 'pdf') {
             getResumeDataById(req.params.id, function (resume) {
                 if (resume) {
@@ -424,7 +428,7 @@ function resumeController() {
      * render view resume page
      * @param id of resume
      */
-    this.getPreviewResume = function (req, res) {
+     this.getPreviewResume = function (req, res) {
         connection.pool.query(sql.getTemplates, function (err, temp_rows) {
             if (err) {
                 throw err.stack
@@ -438,17 +442,17 @@ function resumeController() {
                             || req.user.id != res_rows[0].userId 
                             && req.user.role == 'user') {
                             res.status(404).render('404');
-                        } else if (req.user.id == res_rows[0].userId) {
-                            res.render('resume/preview', {
-                                title: 'View resume',
-                                resumeId: res_rows[0].id,
-                                templates: temp_rows,
-                                req: req,
-                                message: req.flash('')
-                            });
-                        }
+                    } else if (req.user.id == res_rows[0].userId) {
+                        res.render('resume/preview', {
+                            title: 'View resume',
+                            resumeId: res_rows[0].id,
+                            templates: temp_rows,
+                            req: req,
+                            message: req.flash('')
+                        });
                     }
-                });
+                }
+            });
 
             }
         });
@@ -462,7 +466,7 @@ function resumeController() {
      * @param  value: new value
      * @return status code
      */
-    this.postEditFieldResume = function (req, res) {
+     this.postEditFieldResume = function (req, res) {
         var tables = ['resume', 'education', 'skill', 'project', 'experience', 'certification'];
         if ( tables.indexOf(req.body.table) != -1 ) {
             var value = req.body.value;
@@ -500,7 +504,7 @@ function resumeController() {
                                 res.status(200).send({value: value, message:"Item updated"});
                             }
                         }
-                    );
+                        );
                 }
             });
         } else {
@@ -513,7 +517,7 @@ function resumeController() {
      * delete resume and related data
      * @param  id resume
      */
-    this.deleteResume = function (req, res) {
+     this.deleteResume = function (req, res) {
         connection.pool.query("SELECT id FROM resume WHERE id = ? and userId = ?",
             [req.params.id, req.user.id], function (err, row) {
                 if (err) {
@@ -532,21 +536,21 @@ function resumeController() {
                     }
                 }
             }
-        );
+            );
     }
 
     /*
     ==============================================================================================
       Helper functions
     ==============================================================================================
-     */
+    */
 
     /**
      * @param  res response
      * @param  user - user data
      * @return resume in pdf format
      */
-    var responsePdf = function (req, res, resume) {
+     var responsePdf = function (req, res, resume) {
         var ejs = require('ejs');
         ejs.renderFile('./views/cv-template/skeleton-'+resume.templateId+'.ejs', { resume: resume }, null, function (err, html) {
             if (err) {
@@ -577,7 +581,7 @@ function resumeController() {
      * @param  user - user data
      * @return resume in html format
      */
-    var responseHtml = function (res, resume) {
+     var responseHtml = function (res, resume) {
         if (resume) {
             res.render('cv-template/skeleton-'+resume.templateId, { resume: resume });
         } else {
@@ -589,7 +593,7 @@ function resumeController() {
      * @param  id resumeId
      * @param  callback do whatever you want with returned resume data
      */
-    var getResumeDataById = function (id, callback) {
+     var getResumeDataById = function (id, callback) {
         connection.pool.query("CALL udsp_getAllResumeData(?)", id, function (err, rows) {
             if (err) {
                 throw err;
