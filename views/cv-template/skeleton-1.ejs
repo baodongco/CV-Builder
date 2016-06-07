@@ -55,9 +55,9 @@
             
         </div><!--//sidebar-wrapper-->
         
-        <div class="main-wrapper">
+        <div class="main-wrapper sortfield">
             
-            <section class="section summary-section">
+            <section class="section summary-section sortable">
                 <h2 class="section-title"><i class="fa fa-user"></i>Career Profile</h2>
                 <div class="summary">
                     <%- resume.sumContent %>
@@ -65,7 +65,7 @@
             </section><!--//section-->
 
             <% if (resume.certifications.length) { %>
-            <section class="section certification-section">
+            <section class="section certification-section sortable">
                 <h2 class="section-title"><i class="fa fa-graduation-cap"></i>Certifications</h2>                
                 <% for (var i=0; i < resume.certifications.length; i++) { %>
                 <div class="item">
@@ -87,7 +87,7 @@
             <% } %>
 
             <% if (resume.experiences.length) { %>
-            <section class="section experiences-section">
+            <section class="section experiences-section sortable">
                 <h2 class="section-title"><i class="fa fa-briefcase"></i>Experiences</h2>                
                 <% for (var i=0; i < resume.experiences.length; i++) { %>
                 <div class="item">
@@ -108,7 +108,7 @@
             </section><!--//section-->
             <% } %>
             <% if (resume.projects.length) { %>
-            <section class="section projects-section">
+            <section class="section projects-section sortable">
                 <h2 class="section-title"><i class="fa fa-archive"></i>Projects</h2>
                 <% for(var i=0; i<resume.projects.length; i++) {%>
                 <div class="item">
@@ -125,7 +125,7 @@
             </section><!--//section-->
             <% } %>
             <% if (resume.skills.length) { %>
-            <section class="skills-section section">
+            <section class="skills-section section sortable">
                 <h2 class="section-title"><i class="fa fa-rocket"></i>Skills &amp; Proficiency</h2>
                 <div class="skillset">
                 <% for(var i=0; i<resume.skills.length; i++) { %>        
@@ -162,6 +162,6 @@
     <script type="text/javascript" src="/public/javascripts/template-js/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="/public/javascripts/template-js/bootstrap.min.js"></script>    
     <!-- custom js -->
-    <script type="text/javascript" src="/public/javascripts/template-js/main-min.js"></script>            
+    <script type="text/javascript" src="/public/javascripts/template-js/main-min.js"></script>
 </body>
 </html> 

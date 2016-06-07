@@ -34,7 +34,7 @@
 		<div class="clear"></div>
 	</div>
 	
-	<div id="mainArea" class="quickFade delayFive">
+	<div id="mainArea" class="quickFade delayFive sortfield">
 		<% if(resume.sumContent) {%>
 		<section>
 			<article>
@@ -50,7 +50,7 @@
 		</section>
 		<%}%>
 		<% if (resume.experiences.length) {%>		
-		<section>
+		<section class="sortable">
 			<div class="sectionTitle">
 				<h1>Work Experience</h1>
 			</div>
@@ -72,7 +72,7 @@
 		<% if (resume.skills.length) { %>
 		<% var xpertise = ['N/A','Beginner', 'Basic', 'Advance', 'Expert'] %>
 		
-		<section>
+		<section class="sortable">
 			<div class="sectionTitle">
 				<h1>Key Skills</h1>
 			</div>
@@ -90,8 +90,8 @@
 			<div class="clear"></div>
 		</section>
 		<% } %>
-		<% if (resume.educations.length) {%>		
-		<section>
+		<% if (resume.educations.length) {%>
+		<section class="sortable">
 			<div class="sectionTitle">
 				<h1>Education</h1>
 			</div>
@@ -110,7 +110,7 @@
 		</section>
 		<%}%>
 		<% if(resume.projects.length) {%>
-		<section>
+		<section class="sortable">
 			<div class="sectionTitle">
 				<h1>Projects</h1>
 			</div>
@@ -129,7 +129,7 @@
 		</section>
 		<% } %>
 		<% if(resume.certifications.length) {%>
-		<section>
+		<section class="sortable">
 			<div class="sectionTitle">
 				<h1>Certifications</h1>
 			</div>
@@ -150,5 +150,7 @@
 		<%}%>
 	</div>
 </div>
+<script type="text/javascript" src="/public/javascripts/template-js/jquery-1.11.3.min.js"></script>
+
 </body>
 </html>

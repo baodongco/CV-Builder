@@ -367,7 +367,7 @@ function resumeController() {
                     throw err.stack;
                 } else {
                     console.log('reuses', rows);
-                    res.render('resume/index', { title: "My resumes", resumes: rows, req: req });
+                    res.render('resume/index', { title: "My resumes", resumes: rows, req: req, message: req.flash('') });
                 }
             }
         )
@@ -414,7 +414,7 @@ function resumeController() {
                         }
                     });
                 } else {
-                    return res.status(404).send('File not found');
+                    return res.status(404).render('404');
                 }
             }
         })
@@ -432,16 +432,18 @@ function resumeController() {
                 connection.pool.query("SELECT id, userId FROM resume WHERE id = ?", req.params.id, function (err, res_rows) {
                     if (err) {
                         throw err.stack;
+                        res.status(500).render('500');
                     } else {
                         console.log('res_rows', res_rows);
                         if (!res_rows.length || req.user.id != res_rows[0].userId) {
-                            res.status(404).send('File not found');
+                            res.status(404).render('404');
                         } else if (req.user.id == res_rows[0].userId) {
                             res.render('resume/preview', {
                                 title: 'View resume',
                                 resumeId: res_rows[0].id,
                                 templates: temp_rows,
-                                req: req
+                                req: req,
+                                message: req.flash('')
                             });
                         }
                     }
@@ -505,41 +507,6 @@ function resumeController() {
         }
     }
 
-    /**
-     * set resume as public or private
-     * @param  id resume
-     * @param  status
-     * @return code and ?generated url
-     */
-    this.getPrivacyResume = function (req, res) {
-        console.log('here');
-        var Guid = require('guid');
-        // generate url /resumes/id/token if status=true
-        var publicLink = req.body.status ? "/resumes/" + req.params.id + "/" + Guid.create() : null;
-
-        connection.pool.query("SELECT id, publicLink FROM resume WHERE id = ? and userId = ?",
-            [req.params.id, req.user.id], function (err, row) {
-                if (err) {
-                    throw err;
-                    res.status(401).send('Unauthorized');
-                } else if (row[0].id) {
-                    // if status = true but publiclink exists. refuse it
-                    if (row[0].publicLink && req.body.status) {
-                        res.status(403).send("Resume's already been public");
-                    } else {
-                        connection.pool.query(updatePublicLink, [publicLink, req.params.id], function (err, result) {
-                            if (err) {
-                                throw err;
-                                res.status(503).send('Unable to update resume');
-                            } else {
-                                res.status(200).send({ publicLink: publicLink });
-                            }
-                        });
-                    }
-                }
-            }
-        );
-    };
 
     /**
      * delete resume and related data
@@ -599,7 +566,7 @@ function resumeController() {
                 });
             } else {
                 res.headers(404);
-                res.send('File not found');
+                res.render('404');
             }
         });
     };
@@ -614,7 +581,7 @@ function resumeController() {
             res.render('cv-template/skeleton-'+resume.templateId, { resume: resume });
         } else {
             res.headers(404);
-            res.send('File not found');
+            res.render('404');
         }
     };
     /**

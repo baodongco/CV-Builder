@@ -61,3 +61,9 @@
 		});
 		$('[data-toggle="tooltip"]').tooltip();
 	});
+
+	$('iframe').on('load', function () {
+		$('iframe .sortfield').sortable({
+			item: 'iframe .sortable'
+		})
+	})
