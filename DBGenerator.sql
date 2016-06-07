@@ -29,7 +29,7 @@ CREATE TABLE resume (
   website VARCHAR(300),
   address VARCHAR(300),
   sumHeadline VARCHAR(500),
-  sumContent VARCHAR(500),
+  sumContent TEXT,
   photoUrl VARCHAR(300),
   publicLink VARCHAR(300),
   userId int,
