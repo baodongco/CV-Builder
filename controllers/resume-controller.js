@@ -57,10 +57,10 @@ function resumeController() {
     }
 
 
-    this.loadPhoto = function (req, res) {
-        imgName = "";
-
+    this.loadPhoto = function (req, res) {        
+        console.log('hit loadphoto');
         if (imgName !== "") {
+            console.log('hit0');
             fs.access("./public/photo/" + imgName, fs.F_OK, function (err) {
                 if(err){
                     imgName = "";

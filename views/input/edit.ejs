@@ -37,8 +37,8 @@
                     <fieldset>
                         <legend><span class="number">1</span>Title</legend>
                         <label for="title">
-                            <span>Resume title:</span>                                
-                            <input type="text" class="form-control" value="<%=resume.title%>" name="title">
+                            <span>Resume title:</span>
+                            <input id="txttitle" type="text" class="form-control" value="<%=resume.title%>" name="title">
                         </label>
                         <a href="#contact" name="contact" data-toggle="tab" class="btn btn-primary pull-left btnContinue">Next section</a>
                     </fieldset>
@@ -509,6 +509,22 @@
             </div>
             <div class="modal-body">
                 <p>You must enter Skill's Name before Add Skill</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalTitleNotNull" role="dialog" style="z-index: 99999" data-id="">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Please enter resume title</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>

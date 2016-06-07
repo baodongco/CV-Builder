@@ -8,6 +8,14 @@ $(function () {
     var lastYearUsed = $('#ddlLYU');
     var tblSkills = $('#tblSkills tbody');
     var lblLevel = $('#lblLevel');
+
+    $("#resumeForm").on('submit', function(e) {
+        if ($("#txttitle").val().trim().length == 0) {
+            e.preventDefault();
+            $('#modalTitleNotNull').modal('show');
+        }
+    });
+
     var cloneIndexExp = $('#experienceLength').val();
     if (isNaN(cloneIndexExp) || cloneIndexExp == -1) {
         cloneIndexExp = 1;
@@ -324,36 +332,7 @@ $(function () {
         });
     }
 
-    for (var i = 0; i < cloneIndexEdu; i++) {
-        $("#educationFromDate-" + i + ", #educationToDate-" + i).datepicker({
-            changeMonth: true,
-            changeYear: true,
-            showButtonPanel: true,
-            yearRange: '1999:2016',
-            maxDate: new Date(),
-            dateFormat: 'yy-mm-01',
-            onClose: function (dateText, inst) {
-                var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                $(this).datepicker('setDate', new Date(year, month, 1));
-            },
-            beforeShow: function (input, inst) {
-                if ((datestr = $(this).val()).length > 0) {
-                    year = datestr.substring(datestr.length - 4, datestr.length);
-                    month = jQuery.inArray(datestr.substring(0, datestr.length - 5), $(this).datepicker('option', 'monthNames'));
-                    $(this).datepicker('option', 'defaultDate', new Date(year, month, 1));
-                    $(this).datepicker('setDate', new Date(year, month, 1));
-                }
-                var other = this.id == "educationFromDate-" + i ? "#educationToDate-" + i : "#educationFromDate-" + i;
-                var option = this.id == "educationFromDate-" + i ? "maxDate" : "minDate";
-                if ((selectedDate = $(other).val()).length > 0) {
-                    year = selectedDate.substring(selectedDate.length - 4, selectedDate.length);
-                    month = jQuery.inArray(selectedDate.substring(0, selectedDate.length - 5), $(this).datepicker('option', 'monthNames'));
-                    $(this).datepicker("option", option, new Date(year, month, 1));
-                }
-            },
-        });
-    }
+    
 
     for (var i = 0; i < cloneIndexPro; i++) {
         $("#projectFromDate-" + i + ", #projectToDate-" + i).datepicker({
@@ -373,7 +352,36 @@ $(function () {
     }
 
 
-
+for (var i = 0; i < cloneIndexEdu; i++) {
+        $("#educationFromDate-" + i + ", #educationToDate-" + i).datepicker({
+            changeMonth: true,
+            changeYear: true,
+            showButtonPanel: true,
+            yearRange: '1999:2016',
+            maxDate: new Date(),
+            dateFormat: 'yy-mm-01',
+            onClose: function (dateText, inst) {
+                var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                $(this).datepicker('setDate', new Date(year, month, 1));
+            },
+            beforeShow: function (input, inst) {
+                if ((datestr = $(this).val()).length > 0) {
+                    year = datestr.substring(datestr.length - 4, datestr.length);
+                    month = jQuery.inArray(datestr.substring(0, datestr.length - 5), $(this).datepicker('option', 'monthNames'));
+                    $(this).datepicker('option', 'defaultDate', new Date(year, month, 1));
+                    $(this).datepicker('setDate', new Date(year, month, 1));
+                }
+                var other = this.id == "educationFromDate-" + this.id.slice(-1) ? "#educationToDate-" + this.id.slice(-1) : "#educationFromDate-" + this.id.slice(-1);
+                var option = this.id == "educationFromDate-" + this.id.slice(-1) ? "maxDate" : "minDate";
+                if ((selectedDate = $(other).val()).length > 0) {
+                    year = selectedDate.substring(selectedDate.length - 4, selectedDate.length);
+                    month = jQuery.inArray(selectedDate.substring(0, selectedDate.length - 5), $(this).datepicker('option', 'monthNames'));
+                    $(this).datepicker("option", option, new Date(year, month, 1));
+                }
+            },
+        });
+    }
     //Clone experience
     var $fieldExperienceClone = $("#field-experience-0");
     function cloneExp() {
