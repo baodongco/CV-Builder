@@ -763,10 +763,7 @@ $(function () {
             if (typeof (data) == "object") {
 
                 $.post("/resumes/photo", { op: "delete", nameImg: data[0] },
-
-                    function (resp, textStatus, jqXHR) {
-                        //Show Message
-                        alert("File Deleted");
+                    function (resp, textStatus, jqXHR) {                        
                     });
             }
             else {
@@ -774,21 +771,12 @@ $(function () {
                 console.log('obj 2 la ');
                 console.log(obj2);
                 $.post("/resumes/photo", { op: "delete", nameImg: obj2.i128 },
-
-                    function (resp, textStatus, jqXHR) {
-                        //Show Message
-                        alert("File Deleted");
+                    function (resp, textStatus, jqXHR) {                        
                     });
-            }
-
-            pd.statusbar.hide(); //You choice.
-
-        },
-        onSuccess: function (data) {
-            console.log(data);
-            $('#myImage').val(data);
-            $('#myImageUrl').val(data);
-        }
-
+            }},            
+        afterUploadAll: function(obj) {
+            var obj2 = JSON.parse(obj.responses[0]);
+            $('#myImage').val(obj2.i128);
+        }       
     });
 });

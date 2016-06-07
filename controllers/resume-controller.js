@@ -58,7 +58,6 @@ function resumeController() {
 
 
     this.loadPhoto = function (req, res) {
-        console.log('loadPhoto hit');
         imgName = "";
 
         if (imgName !== "") {
@@ -67,10 +66,9 @@ function resumeController() {
                     imgName = "";
                     res.status(200).send(null);
                 } else {
-            
-            console.log(imgName);
-            var stats = fs.statSync("./public/photo/" + imgName);
+            var stats = fs.statSync("./public/photo/" + '2' + imgName);
             var fileSizeInBytes = stats["size"];
+            var temp = '2'+imgName;
             res.status(200).send(JSON.stringify({ i128: imgName, size: fileSizeInBytes }));
             }});}
         else {
@@ -123,9 +121,11 @@ function resumeController() {
         resume.userId = req.user.id;
         resume.templateId = 1;
         console.log(req.body);
+
         // insert resume
         connection.pool.query(sql.insertResume, resume, function (err, rows) {
             if (err) console.log(err);
+
             // insert sections
             req.body.education.forEach(function (item) {
                 if (checkObject(item)) {
@@ -174,53 +174,180 @@ function resumeController() {
                 });
             }
 
-            //return resume Id
+            //redirect to preview page
             res.redirect('/resumes/preview/' + rows.insertId);
         });
     };
 
-    this.updateResume = function (req, res) {
-        console.log(req.body);
+    this.updateResume = function (req, res) {        
         var resume = new Resume(req.body);
         var resId = resume.id;
         resume.userId = req.user.id;
         delete resume.id;
-        console.log(resume);
-        sql = mysql.format("UPDATE resume SET ? WHERE id = " + resId, resume);
-        console.log('query: ' + sql);
-        var query = connection.pool.query("UPDATE resume SET ? WHERE id = " + resId, resume);
-        console.log(query);
+        console.log(resume);        
+        query = connection.pool.query("UPDATE resume SET ? WHERE id = " + resId, resume);        
+
         //handle education items
         req.body.education.forEach(function (item) {
+            console.log(item);
             if (item.hasOwnProperty('id')) {
-                if (chekcObject(item)) {
-                    updateItem(item, 'education');
-                } else {
+                console.log('hit true');                
+                if (Object.keys(item).length == 1) {                        
+                    console.log('hit delete');
                     deleteItem(item, 'education');
-                }
+                } else {
+                    if (checkObject(item)) {
+                        console.log('hit update');
+                        updateItem(item, 'education');
+                    }                
+                };
             } else {
+                console.log('hit false');
                 if (checkObject(item)) {
+                    item.resId = resId; 
                     insertItem(item, 'education');
                 }
             }
-        })
+        });
+
+        //handle experience items
+        req.body.experience.forEach(function (item) {
+            console.log(item);
+            if (item.hasOwnProperty('id')) {
+                console.log('hit true');                
+                if (Object.keys(item).length == 1) {                        
+                    console.log('hit delete');
+                    deleteItem(item, 'experience');
+                } else {
+                    if (checkObject(item)) {
+                        console.log('hit update');
+                        updateItem(item, 'experience');
+                    }                
+                };
+            } else {
+                console.log('hit false');
+                if (checkObject(item)) {
+                    item.resId = resId; 
+                    insertItem(item, 'experience');
+                }
+            }
+        });
+
+        //handle project items
+        req.body.project.forEach(function (item) {
+            console.log(item);
+            if (item.hasOwnProperty('id')) {
+                console.log('hit true');                
+                if (Object.keys(item).length == 1) {                        
+                    console.log('hit delete');
+                    deleteItem(item, 'project');
+                } else {
+                    if (checkObject(item)) {
+                        console.log('hit update');
+                        updateItem(item, 'project');
+                    }                
+                };
+            } else {
+                console.log('hit false');
+                if (checkObject(item)) {
+                    item.resId = resId; 
+                    insertItem(item, 'project');
+                }
+            }
+        });
+
+        //handle skill items
+        req.body.skill.forEach(function (item) {
+            console.log(item);
+            if (item.hasOwnProperty('id')) {
+                console.log('hit true');                
+                if (Object.keys(item).length == 1) {                        
+                    console.log('hit delete');
+                    deleteItem(item, 'skill');
+                } else {
+                    if (checkObject(item)) {
+                        console.log('hit update');
+                        updateItem(item, 'skill');
+                    }                
+                };
+            } else {
+                console.log('hit false');
+                if (checkObject(item)) {
+                    item.resId = resId; 
+                    insertItem(item, 'skill');
+                }
+            }
+        });
+
+        //handle certification items
+        req.body.certification.forEach(function (item) {
+            console.log(item);
+            if (item.hasOwnProperty('id')) {
+                console.log('hit true');                
+                if (Object.keys(item).length == 1) {                        
+                    console.log('hit delete');
+                    deleteItem(item, 'certification');
+                } else {
+                    if (checkObject(item)) {
+                        console.log('hit update');
+                        updateItem(item, 'certification');
+                    }                
+                };
+            } else {
+                console.log('hit false');
+                if (checkObject(item)) {
+                    item.resId = resId; 
+                    insertItem(item, 'certification');
+                }
+            }
+        });
     };
 
+    /**
+     * insert an item of a section to table
+     * 
+     */
     function insertItem(item, table) {
         connection.pool.query('INSERT INTO ' + table + ' SET ?', item);
     };
 
+    /**
+     * update an item of a section to table
+     * 
+     */
     function updateItem(item, table) {
+        console.log('start update');
         var id = item.id;
         delete item.id;
-        connection.pool.query('UPDATE ' + table + ' SET ?? WHERE id = ?', [item, id]);
+        console.log(item);        
+        connection.pool.query('UPDATE ' + table + ' SET ? WHERE id = ' + id, item, function(err) {
+            if (err) {
+                console.log(err);
+            }
+        });        
     };
 
+    /**
+     * delete an item of a section to table
+     * 
+     */
     function deleteItem(item, table) {
-        connection.pool.query('DELETE ' + table + ' WHERE id = ', item.id);
+        console.log('start delete');
+        var query = mysql.format('DELETE FROM ' + table + ' WHERE id = ?', item.id);
+        console.log(query);
+        connection.pool.query('DELETE FROM ' + table + ' WHERE id = ?', item.id, function(err) {
+            if (err) {
+                console.log(err);
+            }
+        });
     }
 
+    /**
+     * check if an item is valid
+     * 
+     */
     function checkObject(obj) {
+        console.log('start checkObject');
         for (var key in obj) {
             if (obj[key] == '') {
                 return false;
