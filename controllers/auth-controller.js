@@ -1,6 +1,6 @@
- var bcrypt = require('bcrypt-nodejs');
- var di = require('di4js');
- var config = require('config');
+var bcrypt = require('bcrypt-nodejs');
+var di = require('di4js');
+var config = require('config');
 
 var connection = require('../DAL/connection');
 var queries = require('../services/user-services');
@@ -14,14 +14,14 @@ var activeUserSettings = config.get('cv-builder.active-user');
 
 function authController() {
     // GET /register
-    this.getRegister = function(req, res) {
+    this.getRegister = function (req, res) {
         res.render('auth/register', {
-            message: req.flash('signupMessage'), title: 'Register',req: req
+            message: req.flash('signupMessage'), title: 'Register', req: req
         });
     };
 
     // POST /register
-    this.postRegister = function(req, res) {
+    this.postRegister = function (req, res) {
         var newUser = new RegisterUser(req.body);
 
         // Check if username already exists.
@@ -55,14 +55,14 @@ function authController() {
 
 
     // GET /login
-    this.getLogin = function(req, res) {
+    this.getLogin = function (req, res) {
         res.render('auth/login', {
             message: req.flash('loginMessage'), title: 'Login', req: req
         });
     };
 
     // POST /login
-    this.postLogin = function(req, done) {
+    this.postLogin = function (req, done) {
         var loginUser = new LoginUser(req.body);
 
         di.resolve('userservice').login(loginUser.username, function (users) {
@@ -83,14 +83,14 @@ function authController() {
     };
 
 
-    this.logout = function(req, res) {
+    this.logout = function (req, res) {
         req.logout();
         res.redirect('/');
     };
 
 
     // GET /activate
-    this.getActivate = function(req, res){
+    this.getActivate = function (req, res) {
         var activationCode = req.query.guid;
         var ttl = activeUserSettings['ttl'];
         var isError = true;
@@ -99,8 +99,8 @@ function authController() {
         var sqlState = '';
 
 
-        di.resolve('userservice').getActivateUser(activationCode, ttl, function(err, rows){
-              if (err){
+        di.resolve('userservice').getActivateUser(activationCode, ttl, function (err, rows) {
+            if (err) {
                 console.log(err);
                 message = err.message;
                 index = message.indexOf(':');
@@ -114,10 +114,10 @@ function authController() {
             var compare = sqlState.localeCompare('46000');
             console.log("==================" + compare);
 
-            if(compare == 0){
+            if (compare == 0) {
                 var msg = message.split(':');
-                
-                 // send email for reset password
+
+                // send email for reset password
                 var emailInfo = new EmailInfo(msg[1].trim(), msg[2].trim(), msg[0].trim());
                 var email = new Email(emailInfo);
                 email.sendEmailResetPassword();
@@ -126,7 +126,7 @@ function authController() {
                 message = 'Expired link to active your account!!\n. Your new activate link has been sent to your email address. Please check again!!';
             }
 
-    
+
             if (isError) {
                 req.flash('homeMessage', message);
                 res.redirect('/');
@@ -139,18 +139,18 @@ function authController() {
 
 
     // GET /reset
-    this.getReset = function(req, res){
-         res.render('auth/reset', {
-            message: req.flash('resetMessage'), title: 'Reset',req:req
+    this.getReset = function (req, res) {
+        res.render('auth/reset', {
+            message: req.flash('resetMessage'), title: 'Reset', req: req
         });
     };
 
     // POST /reset
-    this.postReset = function(req, res){
+    this.postReset = function (req, res) {
         var email_address = req.body.email;
 
-         di.resolve('userservice').postReset(email_address, function(err, rows){
-            console.log("SP_RESET_PASSWORD('"+ email_address +"')");
+        di.resolve('userservice').postReset(email_address, function (err, rows) {
+            console.log("SP_RESET_PASSWORD('" + email_address + "')");
             var index = 0;
             var message = '';
             var uuid = '';
@@ -170,20 +170,20 @@ function authController() {
                 console.log(rows);
 
                 // send email for reset password
-                 var emailInfo = new EmailInfo(username, email_address, uuid);
-                 var email = new Email(emailInfo);
-                 email.sendEmailResetPassword();
+                var emailInfo = new EmailInfo(username, email_address, uuid);
+                var email = new Email(emailInfo);
+                email.sendEmailResetPassword();
             }
 
             console.log(message);
             req.flash('homeMessage', message);
             res.redirect('/');
-         });
+        });
     };
 
-    
+
     // GET: /reset
-    this.getResetComplete = function(req, res){
+    this.getResetComplete = function (req, res) {
         var guid = req.query.guid;
         var ttl = activeUserSettings['ttl'];
         var isError = true;
@@ -191,9 +191,9 @@ function authController() {
         var message = '';
         var _guid = '';
         var sqlState = '';
-        var uuid = '';    
+        var uuid = '';
 
-         di.resolve('userservice').getResetComplete(guid, ttl, function(err, rows){
+        di.resolve('userservice').getResetComplete(guid, ttl, function (err, rows) {
 
             if (err) {
                 console.log(err);
@@ -212,12 +212,12 @@ function authController() {
             console.log(sqlState);
 
             var compare = sqlState.localeCompare('49000');
-            console.log("=================="+compare);
+            console.log("==================" + compare);
 
-            if(compare == 0){
+            if (compare == 0) {
                 var msg = message.split(':');
-                
-                 // send email for reset password
+
+                // send email for reset password
                 var emailInfo = new EmailInfo(msg[1].trim(), msg[2].trim(), msg[0].trim());
                 var email = new Email(emailInfo);
                 email.sendEmailResetPassword();
@@ -231,29 +231,29 @@ function authController() {
             if (isError) {
                 res.redirect('/');
             } else {
-                res.redirect('/reset-form?guid='+_guid);
+                res.redirect('/reset-form?guid=' + _guid);
             }
 
             console.log(message);
-         });
+        });
     };
 
     // POST: /reset
-    this.postResetComplete = function(req, res){
+    this.postResetComplete = function (req, res) {
         var resetPasswordInfo = new ResetPasswordInfo(req.body);
 
-         di.resolve('userservice').postResetComplete(resetPasswordInfo.newHasingPass, resetPasswordInfo.guid, function(err, rows){
-             if (err) {
+        di.resolve('userservice').postResetComplete(resetPasswordInfo.newHasingPass, resetPasswordInfo.guid, function (err, rows) {
+            if (err) {
                 console.log(err);
             } else {
                 req.flash('loginMessage', 'Password has been reset successful!!');
                 res.redirect('/login');
             }
-         });
+        });
     };
 
     // GET: /reset-form
-    this.getResetForm = function(req, res){
+    this.getResetForm = function (req, res) {
         res.render('auth/reset-form', {
             message: req.flash('resetMessage'), title: 'Reset-form', guid: req.query.guid
         });
@@ -262,37 +262,39 @@ function authController() {
 
     // GET: /change-password
     this.getChangePassword = function (req, res) {
-        res.render('auth/change-password', { title: 'Change password', message: req.flash('changePass'), 
-            username: req.user.username, id: req.user.id });
+        res.render('auth/change-password', {
+            title: 'Change password', message: req.flash('changePass'),
+            username: req.user.username, id: req.user.id
+        });
     };
 
     // POST: /change-password
     this.postChangePassword = function (req, res) {
         var user = new PassModification(req.body);
 
-        di.resolve('userservice').postChangePassword(user.id, function(err, rows){
-              if (!bcrypt.compareSync(user.oldPass, rows[0].password)) {
+        di.resolve('userservice').postChangePassword(user.id, function (err, rows) {
+            if (!bcrypt.compareSync(user.oldPass, rows[0].password)) {
                 req.flash('changePass', 'Old password is incorrect');
                 res.redirect('/change_password');
             } else if (user.oldPass == user.newPass) {
                 req.flash('changePass', 'Old password and new password are the same');
                 res.redirect('/change_password');
             } else {
-                connection.pool.query(queries.changePassword, [user.newHasingPass, user.id], function(err, rows) {
+                connection.pool.query(queries.changePassword, [user.newHasingPass, user.id], function (err, rows) {
                     req.flash('homeMessage', 'Password updated successfully');
                     res.redirect('/');
                 });
-            }  
+            }
         });
     };
 
-    
-    this.serializeUser = function(user, done) {
+
+    this.serializeUser = function (user, done) {
         done(null, user.id);
     };
 
-    this.deserializeUser = function(id, done) {
-        connection.pool.query(queries.getUserById, id, function(err, rows) {
+    this.deserializeUser = function (id, done) {
+        connection.pool.query(queries.getUserById, id, function (err, rows) {
             done(err, rows[0]);
         });
     };

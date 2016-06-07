@@ -8,7 +8,9 @@ describe('Test user business service', function () {
         var mockReturnUsers = [{id: 1, username: 'dienbui'}];
 
         var mockRepo = function () {
-            this.getAll = function (callback) { callback(mockReturnUsers); }
+            this.getAll = function (callback) {
+                callback(mockReturnUsers);
+            }
         };
 
         var ser = new service(new mockRepo());
@@ -22,7 +24,9 @@ describe('Test user business service', function () {
     it('Check user by username returns a matching user', function testSlash(done) {
         var mockReturnUsers = [{id: 3, username: 'dienbui'}];
         var mockRepo = function () {
-            this.checkExisting = function (columnName, value, callback) { callback(mockReturnUsers); }
+            this.checkExisting = function (columnName, value, callback) {
+                callback(mockReturnUsers);
+            }
         };
 
         var ser = new service(new mockRepo());
@@ -37,7 +41,9 @@ describe('Test user business service', function () {
         var mockReturnUsers = [{}];
         var mockInputUsername = 'abc';
         var mockRepo = function () {
-            this.checkExisting = function (columnName, value, callback) { callback(mockReturnUsers); }
+            this.checkExisting = function (columnName, value, callback) {
+                callback(mockReturnUsers);
+            }
         };
 
         var ser = new service(new mockRepo());
@@ -51,7 +57,9 @@ describe('Test user business service', function () {
     it('Check user by email returns a matching user', function testSlash(done) {
         var mockReturnUsers = [{id: 3, email: 'dien@gmail.com'}];
         var mockRepo = function () {
-            this.checkExisting = function (columnName, value, callback) { callback(mockReturnUsers); }
+            this.checkExisting = function (columnName, value, callback) {
+                callback(mockReturnUsers);
+            }
         };
 
         var ser = new service(new mockRepo());
@@ -66,7 +74,9 @@ describe('Test user business service', function () {
         var mockReturnUsers = [{}];
         var mockInputEmail = 'undefined@gmail.com';
         var mockRepo = function () {
-            this.checkExisting = function (columnName, value, callback) { callback(mockReturnUsers); }
+            this.checkExisting = function (columnName, value, callback) {
+                callback(mockReturnUsers);
+            }
         };
 
         var ser = new service(new mockRepo());
@@ -80,7 +90,9 @@ describe('Test user business service', function () {
     it('Successful login', function testSlash(done) {
         var mockReturnUsers = [{id: 3, username: 'admin'}];
         var mockRepo = function () {
-            this.getWithCondition = function (columnName, value, callback) { callback(mockReturnUsers); }
+            this.getWithCondition = function (columnName, value, callback) {
+                callback(mockReturnUsers);
+            }
         };
 
         var ser = new service(new mockRepo());
@@ -95,7 +107,9 @@ describe('Test user business service', function () {
         var mockReturnUsers = [{}];
         var mockInputUsername = 'abc';
         var mockRepo = function () {
-            this.getWithCondition = function (columnName, value, callback) { callback(mockReturnUsers); }
+            this.getWithCondition = function (columnName, value, callback) {
+                callback(mockReturnUsers);
+            }
         };
 
         var ser = new service(new mockRepo());

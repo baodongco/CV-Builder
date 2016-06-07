@@ -2,153 +2,201 @@
 <html>
 <head>
 
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-	<link id="theme-style" rel="stylesheet" href="/public/stylesheets/template-css/styles-<%= resume.templateId %>.css">
+    <link id="theme-style" rel="stylesheet" href="/public/stylesheets/template-css/styles-<%= resume.templateId %>.css">
 
-	<link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
 
-	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
 <body id="top">
 <div id="cv" class="instaFade">
-	<div class="mainDetails">
-		<div id="headshot" class="quickFade">
-			<img src="/public/photo/2<%= resume.photoUrl %>" alt="Profile picture" />
-		</div>
+    <div class="mainDetails">
+        <div id="headshot" class="quickFade">
+            <img src="/public/photo/2<%= resume.photoUrl %>" alt="Profile picture"/>
+        </div>
 
-		<div id="name">
-			<h1 class="quickFade delayTwo"><%= resume.firstName || ""%> <%= resume.lastName || "" %></h1>
-			<h2 class="quickFade delayThree"><%- resume.sumHeadline %></h2>
-		</div>
+        <div id="name">
+            <h1 class="quickFade delayTwo"><%= resume.firstName || "" %> <%= resume.lastName || "" %></h1>
+            <h2 class="quickFade delayThree"><%- resume.sumHeadline %></h2>
+        </div>
 
-		<div id="contactDetails" class="quickFade delayFour">
-			<ul>
-				<% if (resume.email) { %><li>e: <a href="mailto:<%= resume.email %>" target="_blank"><%= resume.email %></a></li><%}%>
-				<% if (resume.website) { %><li>w: <a href="<%= resume.website %>"><%= resume.email %></a></li><%}%>
-				<% if (resume.phone) {%><li>m: <%= resume.phone %></li><%}%>
-			</ul>
-		</div>
-		<div class="clear"></div>
-	</div>
+        <div id="contactDetails" class="quickFade delayFour">
+            <ul>
+                <% if (resume.email) { %>
+                <li>e: <a href="mailto:<%= resume.email %>" target="_blank"><%= resume.email %></a></li>
+                <% } %>
+                <% if (resume.website) { %>
+                <li>w: <a href="<%= resume.website %>"><%= resume.email %></a></li>
+                <% } %>
+                <% if (resume.phone) { %>
+                <li>m: <%= resume.phone %></li>
+                <% } %>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
 
-	<div id="mainArea" class="quickFade delayFive sortfield">
-		<% if(resume.sumContent) {%>
-		<section>
-			<article>
-				<div class="sectionTitle">
-					<h1>Personal Profile</h1>
-				</div>
+    <div id="mainArea" class="quickFade delayFive sortfield">
+        <% if(resume.sumContent) { %>
+        <section>
+            <article>
+                <div class="sectionTitle">
+                    <h1>Personal Profile</h1>
+                </div>
 
-				<div class="sectionContent">
-					<%- resume.sumContent %>
-				</div>
-			</article>
-			<div class="clear"></div>
-		</section>
-		<%}%>
-		<% if (resume.experiences.length) {%>
-		<section class="sortable">
-			<div class="sectionTitle">
-				<h1>Work Experience</h1>
-			</div>
+                <div class="sectionContent">
+                    <%- resume.sumContent %>
+                </div>
+            </article>
+            <div class="clear"></div>
+        </section>
+        <% } %>
+        <% if (resume.experiences.length) { %>
+        <section class="sortable">
+            <div class="sectionTitle">
+                <h1>Work Experience</h1>
+            </div>
 
-			<div class="sectionContent">
-				<% for (var i = 0; i < resume.experiences.length; i++) { %>
-				<article>
-					<h2><%= resume.experiences[i].company %></h2>
-					<%if (resume.experiences[i].startTime || resume.experiences[i].endTime ) {%>
-					<p class="subDetails"><%= resume.experiences[i].startTime.toLocaleDateString() || '' %> - <%= resume.experiences[i].endTime.toLocaleDateString() || '' %></p>
-					<% } %>
-					<p><%=resume.experiences[i].detail || ''%></p>
-				</article>
-				<%}%>
-			</div>
-			<div class="clear"></div>
-		</section>
-		<% } %>
-		<% if (resume.skills.length) { %>
-		<% var xpertise = ['N/A','Beginner', 'Basic', 'Advance', 'Expert'] %>
+            <div class="sectionContent">
+                <% for (var i = 0; i < resume.experiences.length; i++) { %>
+                <article>
+                    <h2><%= resume.experiences[i].company %></h2>
+                    <% if (resume.experiences[i].startTime || resume.experiences[i].endTime ) { %>
+                    <p class="subDetails"><%= resume.experiences[i].startTime.toLocaleDateString() || '' %>
+                        - <%= resume.experiences[i].endTime.toLocaleDateString() || '' %></p>
+                    <% } %>
+                    <p><%= resume.experiences[i].detail || '' %></p>
+                </article>
+                <% } %>
+            </div>
+            <div class="clear"></div>
+        </section>
+        <% } %>
+        <% if (resume.skills.length) { %>
+        <% var xpertise = ['N/A', 'Beginner', 'Basic', 'Advance', 'Expert'] %>
 
-		<section class="sortable">
-			<div class="sectionTitle">
-				<h1>Key Skills</h1>
-			</div>
-			<%for (var i = 0; i< resume.skills.length; i++){%>
-			<div class="sectionContent">
-				<ul class="keySkills">
-					<li><% if (resume.skills[i].name) {%><h4><%= resume.skills[i].name %> </h4><%}%>
-						<%if (resume.skills[i].expertise) {%>Expertise: <em><%= xpertise[resume.skills[i].expertise] %></em><br/><%}%>
-						<%if (resume.skills[i].lastUsed) {%>Last used: <%= resume.skills[i].lastUsed.getFullYear() %> <br/><% }%>
-						<%if (resume.skills[i].experience) {%>Experience: <%= resume.skills[i].experience %><%}%>
-					</li>
-				</ul>
-			</div>
-			<%}%>
-			<div class="clear"></div>
-		</section>
-		<% } %>
-		<% if (resume.educations.length) {%>
-		<section class="sortable">
-			<div class="sectionTitle">
-				<h1>Education</h1>
-			</div>
-			<% for (var i = 0; i < resume.educations.length; i++) { %>
-			<div class="sectionContent">
-				<article>
-					<%if (resume.educations[i].name) {%><h2><%= resume.educations[i].name %></h2><%}%>
-					<%if (resume.educations[i].degree) { %><p class="subDetails"><%= resume.educations[i].degree %></p><%}%>
-					<em><%if (resume.educations[i].startTime) {%><%=resume.educations[i].startTime.toLocaleDateString()%> <%}%>
-						<%if (resume.educations[i].endTime) { %> - <%= resume.educations[i].endTime.toLocaleDateString()%></em><%}%>
-					<%if (resume.educations[i].detail) {%><%- resume.educations[i].detail %><%}%>
-				</article>
-			</div>
-			<%}%>
-			<div class="clear"></div>
-		</section>
-		<%}%>
-		<% if(resume.projects.length) {%>
-		<section class="sortable">
-			<div class="sectionTitle">
-				<h1>Projects</h1>
-			</div>
-			<% for (var i = 0; i < resume.projects.length; i++) { %>
-			<div class="sectionContent">
-				<article>
-					<%if (resume.projects[i].title) {%><h2><%= resume.projects[i].title %></h2><%}%>
-					<%if (resume.projects[i].url) { %><p class="subDetails">Url: <a href="<%= resume.projects[i].url %>"><%= resume.projects[i].url %></a></p><%}%>
-					<em><%if (resume.projects[i].startTime) {%><%=resume.projects[i].startTime.toLocaleDateString()%> <%}%>
-						<%if (resume.projects[i].endTime){ %> - <%= resume.projects[i].endTime.toLocaleDateString()%><%}%></em>
-					<%if (resume.projects[i].detail) {%> <%- resume.projects[i].detail %> <%}%>
-				</article>
-			</div>
-			<%}%>
-			<div class="clear"></div>
-		</section>
-		<% } %>
-		<% if(resume.certifications.length) {%>
-		<section class="sortable">
-			<div class="sectionTitle">
-				<h1>Certifications</h1>
-			</div>
-			<% for (var i = 0; i < resume.certifications.length; i++) { %>
-			<div class="sectionContent">
-				<article>
-					<%if (resume.certifications[i].title) {%><h2><%= resume.certifications[i].title %></h2><%}%>
-					<%if (resume.certifications[i].authority) { %>
-					<p class="subDetails">Authority: <%= resume.certifications[i].authority %></p>
-					<%}%>
-					<em><%if (resume.certifications[i].date) {%> <%=resume.certifications[i].date.toLocaleDateString()%> <%}%></em>
-					<%if (resume.certifications[i].detail) {%><%- resume.certifications[i].detail %><%}%>
-				</article>
-			</div>
-			<%}%>
-			<div class="clear"></div>
-		</section>
-		<%}%>
-	</div>
+        <section class="sortable">
+            <div class="sectionTitle">
+                <h1>Key Skills</h1>
+            </div>
+            <% for (var i = 0; i < resume.skills.length; i++){ %>
+            <div class="sectionContent">
+                <ul class="keySkills">
+                    <li>
+                        <% if (resume.skills[i].name) { %>
+                        <h4><%= resume.skills[i].name %> </h4>
+                        <% } %>
+                        <% if (resume.skills[i].expertise) { %>
+                        Expertise: <em><%= xpertise[resume.skills[i].expertise] %></em><br/>
+                        <% } %>
+                        <% if (resume.skills[i].lastUsed) { %>
+                        Last used: <%= resume.skills[i].lastUsed.getFullYear() %> <br/>
+                        <% } %>
+                        <% if (resume.skills[i].experience) { %>
+                        Experience: <%= resume.skills[i].experience %>
+                        <% } %>
+                    </li>
+                </ul>
+            </div>
+            <% } %>
+            <div class="clear"></div>
+        </section>
+        <% } %>
+        <% if (resume.educations.length) { %>
+        <section class="sortable">
+            <div class="sectionTitle">
+                <h1>Education</h1>
+            </div>
+            <% for (var i = 0; i < resume.educations.length; i++) { %>
+            <div class="sectionContent">
+                <article>
+                    <% if (resume.educations[i].name) { %>
+                    <h2><%= resume.educations[i].name %></h2>
+                    <% } %>
+                    <% if (resume.educations[i].degree) { %>
+                    <p class="subDetails"><%= resume.educations[i].degree %></p>
+                    <% } %>
+                    <em>
+                        <% if (resume.educations[i].startTime) { %>
+                        <%= resume.educations[i].startTime.toLocaleDateString() %>
+                        <% } %>
+                        <% if (resume.educations[i].endTime) { %>
+                        - <%= resume.educations[i].endTime.toLocaleDateString() %></em>
+                    <% } %>
+                    <% if (resume.educations[i].detail) { %>
+                    <%- resume.educations[i].detail %>
+                    <% } %>
+                </article>
+            </div>
+            <% } %>
+            <div class="clear"></div>
+        </section>
+        <% } %>
+        <% if(resume.projects.length) { %>
+        <section class="sortable">
+            <div class="sectionTitle">
+                <h1>Projects</h1>
+            </div>
+            <% for (var i = 0; i < resume.projects.length; i++) { %>
+            <div class="sectionContent">
+                <article>
+                    <% if (resume.projects[i].title) { %>
+                    <h2><%= resume.projects[i].title %></h2>
+                    <% } %>
+                    <% if (resume.projects[i].url) { %>
+                    <p class="subDetails">Url: <a href="<%= resume.projects[i].url %>"><%= resume.projects[i].url %></a>
+                    </p>
+                    <% } %>
+                    <em>
+                        <% if (resume.projects[i].startTime) { %>
+                        <%= resume.projects[i].startTime.toLocaleDateString() %>
+                        <% } %>
+                        <% if (resume.projects[i].endTime){ %>
+                        - <%= resume.projects[i].endTime.toLocaleDateString() %>
+                        <% } %>
+                    </em>
+                    <% if (resume.projects[i].detail) { %>
+                    <%- resume.projects[i].detail %>
+                    <% } %>
+                </article>
+            </div>
+            <% } %>
+            <div class="clear"></div>
+        </section>
+        <% } %>
+        <% if(resume.certifications.length) { %>
+        <section class="sortable">
+            <div class="sectionTitle">
+                <h1>Certifications</h1>
+            </div>
+            <% for (var i = 0; i < resume.certifications.length; i++) { %>
+            <div class="sectionContent">
+                <article>
+                    <% if (resume.certifications[i].title) { %>
+                    <h2><%= resume.certifications[i].title %></h2>
+                    <% } %>
+                    <% if (resume.certifications[i].authority) { %>
+                    <p class="subDetails">Authority: <%= resume.certifications[i].authority %></p>
+                    <% } %>
+                    <em>
+                        <% if (resume.certifications[i].date) { %>
+                        <%= resume.certifications[i].date.toLocaleDateString() %>
+                        <% } %>
+                    </em>
+                    <% if (resume.certifications[i].detail) { %>
+                    <%- resume.certifications[i].detail %>
+                    <% } %>
+                </article>
+            </div>
+            <% } %>
+            <div class="clear"></div>
+        </section>
+        <% } %>
+    </div>
 </div>
 <script type="text/javascript" src="/public/javascripts/template-js/jquery-1.11.3.min.js"></script>
 

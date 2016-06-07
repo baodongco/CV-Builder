@@ -20,7 +20,7 @@ module.exports = function (repo) {
     this.addNewUser = function (user, callback) {
         repo.create(user, function () {
             callback();
-        })  
+        })
     };
 
     this.login = function (username, callback) {
@@ -28,10 +28,10 @@ module.exports = function (repo) {
             callback(users);
         })
     };
-    
+
     this.disableUser = function (id, callback) {
         repo.update('isDisabled', 1, id, function () {
-            callback(); 
+            callback();
         });
     };
 
@@ -52,39 +52,39 @@ module.exports = function (repo) {
             callback();
         });
     };
-    
+
     this.getAllCVOfAUser = function (id, callback) {
         repo.getCVsByUserId(id, function (resumes) {
             callback(resumes);
         })
     };
 
-    this.getActivateUser = function(activationCode, ttl, callback){
-        repo.activate(activationCode, ttl, function(err, rows){
+    this.getActivateUser = function (activationCode, ttl, callback) {
+        repo.activate(activationCode, ttl, function (err, rows) {
             callback(err, rows);
         });
     };
 
-    this.postReset = function(email_address, callback){
-        repo.validateReset(email_address, function(err, rows){
+    this.postReset = function (email_address, callback) {
+        repo.validateReset(email_address, function (err, rows) {
             callback(err, rows);
         });
     };
 
-    this.getResetComplete = function(guid, ttl, callback){
-        repo.resetComplete(guid, ttl, function(err, rows){
+    this.getResetComplete = function (guid, ttl, callback) {
+        repo.resetComplete(guid, ttl, function (err, rows) {
             callback(err, rows);
         });
     };
 
-    this.postResetComplete = function(newHasingPass, guid, callback){
-        repo.resetPassComplete(newHasingPass, guid, function(err, rows){
+    this.postResetComplete = function (newHasingPass, guid, callback) {
+        repo.resetPassComplete(newHasingPass, guid, function (err, rows) {
             callback(err, rows);
         });
     };
 
-    this.postChangePassword = function(id, callback){
-        repo.changePassword(id, function(err, rows){
+    this.postChangePassword = function (id, callback) {
+        repo.changePassword(id, function (err, rows) {
             callback(err, rows);
         });
     };

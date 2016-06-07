@@ -18,10 +18,11 @@
 <body>
 <header>
     <% if(message != undefined && message.length > 0) { %>
-        <div class="home-alert alert alert-info alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <%= message %>
-        </div>
+    <div class="home-alert alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+        <%= message %>
+    </div>
     <% } %>
     <nav class="navbar navbar-light" style="background-color: #2bb9dd;">
         <div class="container">
@@ -37,10 +38,10 @@
             </div>
             <div id="navbar" class="navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                 <ul class="nav navbar-nav">
-                    
-                <% if (req.isAuthenticated()) { %>
+
+                    <% if (req.isAuthenticated()) { %>
                     <% if (req.user.role != 'user') { %>
-                        <li><a href="/admin">Go to admin page</a></li>
+                    <li><a href="/admin">Go to admin page</a></li>
                     <% } %>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
@@ -55,17 +56,17 @@
                             <li><a href="/logout"><i class="icon-switch2"></i> Logout</a></li>
                         </ul>
                     </li>
-                <% } else { %>
+                    <% } else { %>
                     <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>                    
-                <% } %>
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    <% } %>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
-    <%- body -%>
-    <script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<%- body - %>
+<script src="/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 </body>
 
 <footer id="footer">

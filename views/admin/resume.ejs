@@ -1,4 +1,4 @@
-<% layout('./layouts/admin.ejs') -%>
+<% layout('./layouts/admin.ejs') - %>
 
 <h2>List of CVs of <%= user %> </h2>
 <table class="table table-bordered table-striped">
@@ -8,10 +8,10 @@
         <th>Last Name</th>
     </tr>
     <% resumes.forEach(function (resume) { %>
-        <tr>
-            <td><a href="/resumes/preview/<%= resume.id %>" target="_blank"><%= resume.title %></a></td>
-            <td><%= resume.firstName %></td>
-            <td><%= resume.lastName %></td>
-        </tr>
+    <tr>
+        <td><a href="/resumes/preview/<%= resume.id %>" target="_blank"><%= resume.title %></a></td>
+        <td><%= resume.firstName %></td>
+        <td><%= resume.lastName %></td>
+    </tr>
     <% }) %>
 </table>

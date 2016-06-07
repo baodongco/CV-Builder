@@ -8,21 +8,21 @@ var proRepo = require('../DAL/repositories/project-repository');
 var skiRepo = require('../DAL/repositories/skill-repository');
 
 describe('Test resume business service', function () {
-	it('Insert resume', function testSlash(done) {
-		var mockReturnResume = {id:1};
-		var mockInputResume = {id:1};
+    it('Insert resume', function testSlash(done) {
+        var mockReturnResume = {id: 1};
+        var mockInputResume = {id: 1};
 
-		var mockRepo = function () {
-			this.create = function(resume, callback) { 
-				callback(mockReturnResume);
-			};
-		};
+        var mockRepo = function () {
+            this.create = function (resume, callback) {
+                callback(mockReturnResume);
+            };
+        };
 
-		var ser = new service(new mockRepo(), eduRepo, expRepo, cerRepo, proRepo, skiRepo);
-		ser.insertResume(mockInputResume, function(result) {
-			console.log(result.id);
-			assert.equal(result.id, 1);
-			done();
-		});
-	});
+        var ser = new service(new mockRepo(), eduRepo, expRepo, cerRepo, proRepo, skiRepo);
+        ser.insertResume(mockInputResume, function (result) {
+            console.log(result.id);
+            assert.equal(result.id, 1);
+            done();
+        });
+    });
 })
