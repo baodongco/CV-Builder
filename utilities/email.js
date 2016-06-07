@@ -4,11 +4,12 @@ var mailer = require('express-mailer');
 var config = require('config');
 var ip = require('ip');
 var deploySettings = config.get('cv-builder.deploy');
+var port = deploySettings['port'];
 
-var host = ip.address();
+var host = ip.address() + ':' + port;
 
 if(host == '192.168.56.1'){
-	host = 'http://localhost:' + deploySettings['port'];
+	host = 'http://localhost:' +  port;
 }
 
 app.set('views', __dirname + '/../views/mail-templates');
