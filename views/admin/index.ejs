@@ -1,4 +1,4 @@
-<% layout('./layouts/admin.ejs') -%>
+<% layout('./layouts/admin.ejs') - %>
 
 <h2>List of users</h2>
 <table class="table table-bordered table-striped">
@@ -8,53 +8,53 @@
         <th>Role</th>
         <th>Activated</th>
         <th>Enable/Disable account</th>
-        <% if (loginId == 1) {%>
-            <th>Promote/demote account</th>
+        <% if (loginId == 1) { %>
+        <th>Promote/demote account</th>
         <% } %>
     </tr>
     <% users.forEach(function (user) { %>
-        <tr>
-            <td><a href="/cv/<%= user.username%>/<%= user.id %>"><%= user.username%></a></td>
-            <td><%= user.email%></td>
-            <td><%= user.role%></td>
-            <% if (user.activationCode) { %>
-                <td>false</td>
-            <% } else  { %>
-                <td>true</td>
-            <% } %>
+    <tr>
+        <td><a href="/cv/<%= user.username %>/<%= user.id %>"><%= user.username %></a></td>
+        <td><%= user.email %></td>
+        <td><%= user.role %></td>
+        <% if (user.activationCode) { %>
+        <td>false</td>
+        <% } else  { %>
+        <td>true</td>
+        <% } %>
 
-            <% if (loginId != user.id && user.id != 1) {%>
-                <% if (!user.isDisabled) { %>
-                    <td>
-                        <a href="#" data-id="<%= user.id %>" class="disable btn btn-danger">
-                            Disable
-                        </a>
-                    </td>
-                <% } else { %>
-                    <td>
-                        <a href="#" data-id="<%= user.id %>" class="enable btn btn-success">
-                            Enable
-                        </a>
-                    </td>
-                <% } %>
-            <% } else { %>
-                <td></td>
-            <% } %>
+        <% if (loginId != user.id && user.id != 1) { %>
+        <% if (!user.isDisabled) { %>
+        <td>
+            <a href="#" data-id="<%= user.id %>" class="disable btn btn-danger">
+                Disable
+            </a>
+        </td>
+        <% } else { %>
+        <td>
+            <a href="#" data-id="<%= user.id %>" class="enable btn btn-success">
+                Enable
+            </a>
+        </td>
+        <% } %>
+        <% } else { %>
+        <td></td>
+        <% } %>
 
-            <% if (loginId == 1) {%>
-                <% if (user.role == 'user') { %>
-                    <td>
-                        <a href="/admin/user/promote/<%= user.id %>" class="btn btn-success"> Promote </a>
-                    </td>
-                <% } else if (user.role == 'super') {%>
-                    <td></td>
-                <% } else { %>
-                    <td>
-                        <a href="/admin/user/demote/<%= user.id %>" class="btn btn-danger"> Demote </a>
-                    </td>
-                <% } %>
-            <% } %>
-        </tr>
+        <% if (loginId == 1) { %>
+        <% if (user.role == 'user') { %>
+        <td>
+            <a href="/admin/user/promote/<%= user.id %>" class="btn btn-success"> Promote </a>
+        </td>
+        <% } else if (user.role == 'super') { %>
+        <td></td>
+        <% } else { %>
+        <td>
+            <a href="/admin/user/demote/<%= user.id %>" class="btn btn-danger"> Demote </a>
+        </td>
+        <% } %>
+        <% } %>
+    </tr>
     <% }) %>
 </table>
 

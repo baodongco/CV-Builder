@@ -1,6 +1,7 @@
-.navbar{
-    background-color:black;
+.navbar {
+    background-color: black;
 }
+
 .head_nav.fix {
     left: 0;
     max-width: 100%;
@@ -10,7 +11,8 @@
     width: 100%;
     z-index: 1000;
 }
-h2{
+
+h2 {
     background: #43D1AF;
     padding: 10px 0;
     font-size: 140%;
@@ -20,37 +22,38 @@ h2{
     margin-top: 1px;
 
 }
-.tabs-left
-{
-    border-bottom:none;
-    padding-top:2px;
+
+.tabs-left {
+    border-bottom: none;
+    padding-top: 2px;
     margin: 0px;
 }
-nav nav-tabs tabs-left{
+
+nav nav-tabs tabs-left {
     height: 42px;
     width: 200px;
     margin-top: 40px;
 }
-.tabs-left>li
-{
-    float:none;
-    margin-bottom:2px;
+
+.tabs-left > li {
+    float: none;
+    margin-bottom: 2px;
 }
-.tabs-left>li
-{
-    margin-right:-1px;
+
+.tabs-left > li {
+    margin-right: -1px;
 }
-.tabs-left>li.active>a,.tabs-left>li.active>a:focus,.tabs-left>li.active>a:hover
-{
-    border-bottom-color:white;
-    border-right-color:transparent;
+
+.tabs-left > li.active > a, .tabs-left > li.active > a:focus, .tabs-left > li.active > a:hover {
+    border-bottom-color: white;
+    border-right-color: transparent;
     background-color: lightgray;
     background-color: white;
     height: 42px;
     width: 200px;
 }
-.tabs-left>li>a
-{
+
+.tabs-left > li > a {
     margin-right: 0;
     display: block;
     text-transform: uppercase;
@@ -64,17 +67,19 @@ nav nav-tabs tabs-left{
     width: 200px;
 
 }
-form{
+
+form {
     position: relative;
 }
-h3{
- font-family: cursive;
+
+h3 {
+    font-family: cursive;
     color: palegreen;
 }
 
-.paper-content{
+.paper-content {
     min-height: 600px;
-    float:left;
+    float: left;
     background: white;
     border: none;
     box-shadow: 0 0 1px #777;
@@ -84,13 +89,15 @@ h3{
     width: 800px;
     text-align: center;
 }
-fieldset{
-   border: 1px solid #eeeeee;
-   border-left: none;
+
+fieldset {
+    border: 1px solid #eeeeee;
+    border-left: none;
     padding: 10px;
     position: relative;
 }
-.btn{
+
+.btn {
     background-color: #21759B;
     background-image: linear-gradient(to bottom, #2A95C5, #21759B);
     box-shadow: 0 1px 0 rgba(120, 200, 230, 0.5) inset;
@@ -107,26 +114,29 @@ fieldset{
     cursor: pointer;
     white-space: nowrap;
 }
+
 .btn:hover, .btn:focus {
     background-color: #278AB7;
-    background-image: linear-gradient(to bottom,#2E9FD2,#21759B);
+    background-image: linear-gradient(to bottom, #2E9FD2, #21759B);
     border-color: #1B607F;
-    box-shadow: 0 1px 0 rgba(120,200,230,0.6) inset;
-    text-shadow: 0 -1px 0 rgba(0,0,0,0.3)
+    box-shadow: 0 1px 0 rgba(120, 200, 230, 0.6) inset;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3)
 }
 
 .ui-datepicker-calendar {
     display: none;
 }
 
-.inputCV{
+.inputCV {
     margin-top: 100px;
 }
-textarea{
+
+textarea {
     width: 457px;
     height: 50px;
 }
-sup{
+
+sup {
     top: -0.5em;
     font-size: 75%;
     line-height: 0;
@@ -134,12 +144,15 @@ sup{
     vertical-align: baseline;
     color: red;
 }
-.text-danger{
+
+.text-danger {
     color: red;
 }
+
 .jssorb05 {
     position: absolute;
 }
+
 .jssorb05 div, .jssorb05 div:hover, .jssorb05 .av {
     position: absolute;
     /* size of bullet elment */
@@ -149,10 +162,22 @@ sup{
     overflow: hidden;
     cursor: pointer;
 }
-.jssorb05 div { background-position: -7px -7px; }
-.jssorb05 div:hover, .jssorb05 .av:hover { background-position: -37px -7px; }
-.jssorb05 .av { background-position: -67px -7px; }
-.jssorb05 .dn, .jssorb05 .dn:hover { background-position: -97px -7px; }
+
+.jssorb05 div {
+    background-position: -7px -7px;
+}
+
+.jssorb05 div:hover, .jssorb05 .av:hover {
+    background-position: -37px -7px;
+}
+
+.jssorb05 .av {
+    background-position: -67px -7px;
+}
+
+.jssorb05 .dn, .jssorb05 .dn:hover {
+    background-position: -97px -7px;
+}
 
 /* jssor slider arrow navigator skin 12 css */
 /*
@@ -173,14 +198,32 @@ sup{
     background: url('img/slide/a12.png') no-repeat;
     overflow: hidden;
 }
-.jssora12l { background-position: -16px -37px; }
-.jssora12r { background-position: -75px -37px; }
-.jssora12l:hover { background-position: -136px -37px; }
-.jssora12r:hover { background-position: -195px -37px; }
-.jssora12l.jssora12ldn { background-position: -256px -37px; }
-.jssora12r.jssora12rdn { background-position: -315px -37px; }
 
-hr{
+.jssora12l {
+    background-position: -16px -37px;
+}
+
+.jssora12r {
+    background-position: -75px -37px;
+}
+
+.jssora12l:hover {
+    background-position: -136px -37px;
+}
+
+.jssora12r:hover {
+    background-position: -195px -37px;
+}
+
+.jssora12l.jssora12ldn {
+    background-position: -256px -37px;
+}
+
+.jssora12r.jssora12rdn {
+    background-position: -315px -37px;
+}
+
+hr {
     border-top: 1px solid #eeeeee;
 }
 
@@ -190,20 +233,23 @@ footer {
     padding-bottom: 35px;
     -webkit-font-smoothing: antialiased;
 }
-footer .menu a{
+
+footer .menu a {
     text-decoration: none;
 }
 
-footer .menu{
-    margin-top:-20px;
+footer .menu {
+    margin-top: -20px;
 }
 
-footer .menu ul li{
-    display:inline-block
+footer .menu ul li {
+    display: inline-block
 }
-footer .menu ul{
-    list-style-type:none;
+
+footer .menu ul {
+    list-style-type: none;
 }
+
 footer .menu ul li a {
     color: #ccc;
     padding: 15px 10px;
@@ -214,9 +260,11 @@ footer .menu ul li a {
     -o-transition: color 0.2s linear;
     transition: color 0.2s linear;
 }
+
 footer .footer-border {
     border-color: #576375;
 }
+
 footer .copyright {
     color: #B5C5CF;
     font-size: 14px;

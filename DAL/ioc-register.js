@@ -20,14 +20,14 @@ function ioc() {
         di.autowired(false).register('expRepo').as(expRepo);
         di.autowired(false).register('cerRepo').as(cerRepo);
         di.autowired(false).register('proRepo').as(proRepo);
-        di.autowired(false).register('skiRepo').as(skiRepo);        
+        di.autowired(false).register('skiRepo').as(skiRepo);
         di.autowired(false).register('cvService').as(CVService).withConstructor()
-        												.param().ref('resRepo')
-        												.param().ref('eduRepo')
-        												.param().ref('expRepo')
-        												.param().ref('cerRepo')
-        												.param().ref('proRepo')
-        												.param().ref('skiRepo');
+            .param().ref('resRepo')
+            .param().ref('eduRepo')
+            .param().ref('expRepo')
+            .param().ref('cerRepo')
+            .param().ref('proRepo')
+            .param().ref('skiRepo');
     }
 }
 

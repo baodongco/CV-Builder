@@ -1,6 +1,6 @@
 /*
-references: https://www.npmjs.com/package/html-pdf
-*/
+ references: https://www.npmjs.com/package/html-pdf
+ */
 var multer = require('multer');
 var fs = require('fs');
 var imgName = "";
@@ -16,7 +16,7 @@ var educationModel = require('../models/education');
 var experienceModel = require('../models/experience');
 var projectModel = require('../models/project');
 var skillModel = require('../models/skill');
-var mysql      = require('mysql');
+var mysql = require('mysql');
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -27,7 +27,7 @@ var storage = multer.diskStorage({
         callback(null, imgName);
     }
 });
-var upload = multer({ storage: storage, limits: { fileSize: 5000000 } }).single('userPhoto');
+var upload = multer({storage: storage, limits: {fileSize: 5000000}}).single('userPhoto');
 
 function resumeController() {
     this.getEditResume = function (req, res) {
@@ -47,7 +47,7 @@ function resumeController() {
     };
 
     this.createResume = function (req, res) {
-        res.render('input/input', { title: 'Input', req: req, message: req.flash('Input') });
+        res.render('input/input', {title: 'Input', req: req, message: req.flash('Input')});
     }
 
 
@@ -56,7 +56,7 @@ function resumeController() {
         if (imgName !== "") {
             console.log('hit0');
             fs.access("./public/photo/" + imgName, fs.F_OK, function (err) {
-                if(err){
+                if (err) {
                     imgName = "";
                     res.status(200).send(null);
                 } else {
@@ -68,6 +68,7 @@ function resumeController() {
             else {
                 res.status(200).send(null);
             }
+
         }
 
         this.uploadPhoto = function (req, res) {
@@ -173,7 +174,7 @@ function resumeController() {
         });
     };
 
-    this.updateResume = function (req, res) {        
+    this.updateResume = function (req, res) {
         var resume = new Resume(req.body);
         var resId = resume.id;
         var userId = req.user.id;
@@ -309,7 +310,7 @@ function resumeController() {
 
     /**
      * insert an item of a section to table
-     * 
+     *
      */
      function insertItem(item, table) {
         connection.pool.query('INSERT INTO ' + table + ' SET ?', item);
@@ -317,29 +318,29 @@ function resumeController() {
 
     /**
      * update an item of a section to table
-     * 
+     *
      */
      function updateItem(item, table) {
         console.log('start update');
         var id = item.id;
         delete item.id;
-        console.log(item);        
-        connection.pool.query('UPDATE ' + table + ' SET ? WHERE id = ' + id, item, function(err) {
+        console.log(item);
+        connection.pool.query('UPDATE ' + table + ' SET ? WHERE id = ' + id, item, function (err) {
             if (err) {
                 console.log(err);
             }
-        });        
+        });
     };
 
     /**
      * delete an item of a section to table
-     * 
+     *
      */
      function deleteItem(item, table) {
         console.log('start delete');
         var query = mysql.format('DELETE FROM ' + table + ' WHERE id = ?', item.id);
         console.log(query);
-        connection.pool.query('DELETE FROM ' + table + ' WHERE id = ?', item.id, function(err) {
+        connection.pool.query('DELETE FROM ' + table + ' WHERE id = ?', item.id, function (err) {
             if (err) {
                 console.log(err);
             }
@@ -348,7 +349,7 @@ function resumeController() {
 
     /**
      * check if an item is valid
-     * 
+     *
      */
      function checkObject(obj) {
         console.log('start checkObject');
@@ -362,7 +363,7 @@ function resumeController() {
 
     /**
      * get all resumes of user
-     * 
+     *
      */
      this.getResumes = function (req, res) {
         connection.pool.query("SELECT userId, id, title, publicLink FROM resume WHERE userId =? ",
@@ -371,7 +372,7 @@ function resumeController() {
                     throw err.stack;
                 } else {
                     console.log('reuses', rows);
-                    res.render('resume/index', { title: "My resumes", resumes: rows, req: req, message: req.flash('') });
+                    res.render('resume/index', {title: "My resumes", resumes: rows, req: req, message: req.flash('')});
                 }
             }
             )
@@ -438,8 +439,8 @@ function resumeController() {
                         throw err.stack;
                         res.status(500).render('500');
                     } else {
-                        if (!res_rows.length 
-                            || req.user.id != res_rows[0].userId 
+                        if (!res_rows.length
+                            || req.user.id != res_rows[0].userId
                             && req.user.role == 'user') {
                             res.status(404).render('404');
                     } else if (req.user.id == res_rows[0].userId) {
@@ -468,17 +469,17 @@ function resumeController() {
      */
      this.postEditFieldResume = function (req, res) {
         var tables = ['resume', 'education', 'skill', 'project', 'experience', 'certification'];
-        if ( tables.indexOf(req.body.table) != -1 ) {
+        if (tables.indexOf(req.body.table) != -1) {
             var value = req.body.value;
             if (req.body.table == 'resume') {
-                if(req.body.field == 'publicLink'){
+                if (req.body.field == 'publicLink') {
                     if (req.body.value == 'true') {
                         var Guid = require('guid');
                         value = Guid.create().value;
                     } else {
                         value = null;
                     }
-                } 
+                }
                 var query = sql.checkResumeEditable;
                 var params = [req.body.id, req.user.id];
             } else {
@@ -498,10 +499,10 @@ function resumeController() {
                                 res.status(400).send("Item not updated");
                                 throw err;
                             } else {
-                                if (req.body.field == 'publicLink' && value!= null) {
-                                    value = req.headers.origin + '/resumes/public/'+ req.body.id + '/' + value ;
+                                if (req.body.field == 'publicLink' && value != null) {
+                                    value = req.headers.origin + '/resumes/public/' + req.body.id + '/' + value;
                                 }
-                                res.status(200).send({value: value, message:"Item updated"});
+                                res.status(200).send({value: value, message: "Item updated"});
                             }
                         }
                         );
@@ -540,10 +541,17 @@ function resumeController() {
     }
 
     /*
+<<<<<<< HEAD
     ==============================================================================================
       Helper functions
     ==============================================================================================
     */
+=======
+     ==============================================================================================
+     Helper functions
+     ==============================================================================================
+     */
+>>>>>>> aa60e9c7e9a41295d9e77d49d1da99969dd81e27
 
     /**
      * @param  res response
@@ -552,7 +560,7 @@ function resumeController() {
      */
      var responsePdf = function (req, res, resume) {
         var ejs = require('ejs');
-        ejs.renderFile('./views/cv-template/skeleton-'+resume.templateId+'.ejs', { resume: resume }, null, function (err, html) {
+        ejs.renderFile('./views/cv-template/skeleton-' + resume.templateId + '.ejs', {resume: resume}, null, function (err, html) {
             if (err) {
                 throw err.stack;
             } else if (resume) {
@@ -583,7 +591,7 @@ function resumeController() {
      */
      var responseHtml = function (res, resume) {
         if (resume) {
-            res.render('cv-template/skeleton-'+resume.templateId, { resume: resume });
+            res.render('cv-template/skeleton-' + resume.templateId, {resume: resume});
         } else {
             res.headers(404);
             res.render('404');
@@ -627,21 +635,24 @@ function resumeController() {
                     var projects = [];
                     for (var i = 0; i < rows[4].length; i++) {
                         projects[i] = new projectModel(rows[4][i]);
-                    };
+                    }
+                    ;
                     resume.projects = projects;
 
                     // skills
                     var skills = [];
                     for (var i = 0; i < rows[5].length; i++) {
                         skills[i] = new skillModel(rows[5][i]);
-                    };
+                    }
+                    ;
                     resume.skills = skills;
 
                     callback(resume);
                 } else {
                     callback(null);
                 }
-            };
+            }
+            ;
         });
     };
 

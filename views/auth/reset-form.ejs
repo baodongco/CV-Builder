@@ -1,4 +1,4 @@
-<% layout('./layouts/auth.ejs') -%>
+<% layout('./layouts/auth.ejs') - %>
 
 <div class="auth-form">
     <h1><span class="fa fa-sign-in"></span> Reset password </h1>
@@ -14,7 +14,7 @@
     <% } %>
     <form action="/reset-complete" method="post" role="form" id="resetPassComplete">
 
-         <input type="hidden" name="id" value="<%= guid %>">
+        <input type="hidden" name="id" value="<%= guid %>">
 
         <div class="form-group">
             <label>New Password *</label>

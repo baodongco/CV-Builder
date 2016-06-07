@@ -1,4 +1,4 @@
-<% layout('./layouts/auth.ejs') -%>
+<% layout('./layouts/auth.ejs') - %>
 
 <div class="auth-form">
     <h1><span class="fa fa-sign-in"></span> Enter your email </h1>
@@ -6,9 +6,9 @@
 
     <!-- show any messages that come back with authentication -->
     <% if (message.length > 0) { %>
-        <div class="alert alert-danger">
-            <%= message %>
-        </div>
+    <div class="alert alert-danger">
+        <%= message %>
+    </div>
     <% } %>
     <!-- RESET FORM -->
     <form action="/reset" method="post" role="form" id="resetForm">

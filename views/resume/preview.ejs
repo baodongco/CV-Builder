@@ -1,42 +1,52 @@
-<% layout('./layouts/main.ejs') -%>
+<% layout('./layouts/main.ejs') - %>
 
 <div class="container">
-	<div class="row">
-	<!-- start here template poll-->
-		<div class="col-sm-10 col-sm-offset-1">
-			<div id="temp-poll" class="carousel slide">
-			  <div class="carousel-inner">
-			  	<% for (var i = 0; i < templates.length; i++) { %>
-			    <div class="item <% if (i == 0) { %>active <% } %>" data-id="<%= templates[i].id %>">
-			    	<div class="col-xs-3">
-			     		<a href="#"><img src="/public/images/layout/Template/hover<%= templates[i].id %>.png" class="<% if (i==0) { %> selected <% } %> img-responsive" alt="<%= templates[i].name %>"  data-id="<%= templates[i].id %>"></a>
-			     	</div>
-			    </div>
-			    <% } %>
-			  </div>
-			  <a class="left carousel-control" href="#temp-poll" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-			  <a class="right carousel-control" href="#temp-poll" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-			</div>
-		</div>
-	</div>
-	<!-- end template poll here -->
-	<div class="row">
-		<div class="panel panel-primary clearfix">
-			<div class="panel-heading">				
-			    <div class="panel-title">Resume</div>
-		    	<div class="btn-group">
-		    		<a href="/resumes/edit/<%= resumeId %>" class="btn btn-info"><span title="edit" data-toggle="tooltip" class="glyphicon glyphicon-pencil"> </span></a>
-			    	<a href="/resumes/<%= resumeId %>?type=pdf" target="_blank" class="btn btn-info"><span title="download" data-toggle="tooltip" class="glyphicon glyphicon-download-alt"> </span></a>
-			    	<a id="resume-print" href="javascript:void()" class="btn btn-info"> <span title="print" data-toggle="tooltip" class="glyphicon glyphicon-print"> </span></a>
-				</div>
-			</div>
-			<div class="panel-body">		
-			<div id="resume-preview-container" data-id="<%= resumeId %>" class="col-md-12 well">		
-				<iframe src="http://localhost:3000/resumes/<%= resumeId %>" name="resume-view-port" id="resume-view-port"></iframe>
-			</div>
-			</div>
-		</div>
-	</div>
+    <div class="row">
+        <!-- start here template poll-->
+        <div class="col-sm-10 col-sm-offset-1">
+            <div id="temp-poll" class="carousel slide">
+                <div class="carousel-inner">
+                    <% for (var i = 0; i < templates.length; i++) { %>
+                    <div class="item <% if (i == 0) { %>active <% } %>" data-id="<%= templates[i].id %>">
+                        <div class="col-xs-3">
+                            <a href="#"><img src="/public/images/layout/Template/hover<%= templates[i].id %>.png"
+                                             class="<% if (i == 0) { %> selected <% } %> img-responsive"
+                                             alt="<%= templates[i].name %>" data-id="<%= templates[i].id %>"></a>
+                        </div>
+                    </div>
+                    <% } %>
+                </div>
+                <a class="left carousel-control" href="#temp-poll" data-slide="prev"><i
+                            class="glyphicon glyphicon-chevron-left"></i></a>
+                <a class="right carousel-control" href="#temp-poll" data-slide="next"><i
+                            class="glyphicon glyphicon-chevron-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <!-- end template poll here -->
+    <div class="row">
+        <div class="panel panel-primary clearfix">
+            <div class="panel-heading">
+                <div class="panel-title">Resume</div>
+                <div class="btn-group">
+                    <a href="/resumes/edit/<%= resumeId %>" class="btn btn-info"><span title="edit"
+                                                                                       data-toggle="tooltip"
+                                                                                       class="glyphicon glyphicon-pencil"> </span></a>
+                    <a href="/resumes/<%= resumeId %>?type=pdf" target="_blank" class="btn btn-info"><span
+                                title="download" data-toggle="tooltip" class="glyphicon glyphicon-download-alt"> </span></a>
+                    <a id="resume-print" href="javascript:void()" class="btn btn-info"> <span title="print"
+                                                                                              data-toggle="tooltip"
+                                                                                              class="glyphicon glyphicon-print"> </span></a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div id="resume-preview-container" data-id="<%= resumeId %>" class="col-md-12 well">
+                    <iframe src="http://localhost:3000/resumes/<%= resumeId %>" name="resume-view-port"
+                            id="resume-view-port"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="/public/javascripts/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/public/javascripts/resumes/preview.js"></script>

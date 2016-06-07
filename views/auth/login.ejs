@@ -1,4 +1,4 @@
-<% layout('./layouts/auth.ejs') -%>
+<% layout('./layouts/auth.ejs') - %>
 
 <div class="auth-form">
     <h1><span class="fa fa-sign-in"></span> Login </h1>
@@ -6,12 +6,12 @@
 
     <!-- show any messages that come back with authentication -->
     <% if (message.length > 0) { %>
-        <div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <%= message %>
-        </div>
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <%= message %>
+    </div>
     <% } %>
 
     <!-- LOGIN FORM -->
@@ -36,7 +36,7 @@
         <u><a href="/reset">Forgot password?</a></u>
     </form>
 
-    <hr>  
+    <hr>
     <br>
     <p>Don't have an account? <b><a href="/register">Sign up</a></b></p>
     <p><a href="/">Back to home</a></p>
