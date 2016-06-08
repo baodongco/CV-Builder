@@ -773,7 +773,7 @@ $(function () {
             }
         },
         afterUploadAll: function (obj) {
-            var obj2 = JSON.parse(obj.responses[0]);
+            var obj2 = JSON.parse(obj.responses[obj.responses.length-1]);
             $('#myImage').val(obj2.i128);
         }
     });
