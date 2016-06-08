@@ -120,7 +120,7 @@ function authController() {
                  // send email for reset password
                 var emailInfo = new EmailInfo(msg[1].trim(), msg[2].trim(), msg[0].trim());
                 var email = new Email(emailInfo);
-                email.sendEmailResetPassword();
+                email.sendEmail();
 
                 // 
                 message = 'Expired link to active your account!!\n. Your new activate link has been sent to your email address. Please check again!!';
