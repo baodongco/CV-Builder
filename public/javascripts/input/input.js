@@ -164,7 +164,7 @@ $(function () {
                 tdHtml += '<td class="text-center"><ul id="lprogress' + rowCount + '" class="nav skill-lprogress"><li id="lball0' + rowCount + '"><div id="llayer0" class="ball"></div><div id="llayer12" class="pulse"></div></li><li id="lball1' + rowCount + '"><div id="layer1" class="ball"></div><div id="layer7" class="pulse"></div></li><li id="lball2' + rowCount + '"><div id="layer2" class="ball"></div><div id="llayer8" class="pulse"></div></li><li id="lball3' + rowCount + '"><div id="layer3" class="ball"></div><div id="layer9" class="pulse"></div></li><li id="lball4' + rowCount + '"><div id="layer4" class="ball"></div><div id="layer10" class="pulse"></div></li><li id="lball5' + rowCount + '"><div id="layer5" class="ball"></div><div id="llayer11" class="pulse"></div></li></ul></td>';
                 tdHtml += '<td><span id="spExperience-' + rowCount + '">' + experience.val() + '</span></td>';
                 tdHtml += '<td><span id="spLastYearUsed-' + rowCount + '">' + lastYearUsed.val() + '</td>';
-                tdHtml += '<td><button type="button" class="btn-primary btnSkillEdit" id="btnEditSkill-' + rowCount + '">Edit</button><button type="button" class="btn-primary btnDeleteSkill" id="btnDeleteSkill-' + rowCount + '">Delete</button></tr>';
+                tdHtml += '<td><button type="button" class="btn-primary btnSkillEdit" id="btnEditSkill-' + rowCount + '">Edit</button><button type="button" class="btn-primary btnDeleteSkill" id="btnDeleteSkill-' + rowCount + '">Remove</button></tr>';
                 tblSkills.append(tdHtml);
                 $('#lprogress' + rowCount + ' li').removeClass('running').queue(function (next) {
                     for (var i = 0; i <= level; i++) {
@@ -246,6 +246,7 @@ $(function () {
                 rowCount--;
             $('#skillHiddenIndex').val('-1');
         }
+        $('#modalRemoveSkill').data('id','');
         $('#modalRemoveSkill').modal('hide');
     });
     $('#tblSkills').on('click', '.btnSkillEdit', function () {
